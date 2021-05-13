@@ -251,7 +251,7 @@ components:
     ResponseFinancingsContract:
       $ref: ./schemas/financings_apis/ResponseFinancingsContract.yaml
     ResponseFinancingsInstalments:
-      $ref: ./schemas/financings_apis/ResponseFinancingsInstalments.yaml?
+      $ref: ./schemas/financings_apis/ResponseFinancingsInstalments.yaml
     ResponseFinancingsPayments:
       $ref: ./schemas/financings_apis/ResponseFinancingsPayments.yaml
     ResponseFinancingsWarranties:
