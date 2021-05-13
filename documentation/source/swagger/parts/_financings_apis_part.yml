@@ -274,8 +274,6 @@ components:
       $ref: ./schemas/financings_apis/FinancingsContractFee.yaml
     FinancingsContractedWarranty:
       $ref: ./schemas/financings_apis/FinancingsContractedWarranty.yaml
-    FinancingsContractInterestRate:
-      $ref: ./schemas/financings_apis/FinancingsContractInterestRate.yaml
     FinancingsFeeOverParcel:
       $ref: ./schemas/financings_apis/FinancingsFeeOverParcel.yaml
     FinancingsFinanceCharge:
