@@ -88,7 +88,7 @@ paths:
         - Financings
       summary: Obtém os dados do contrato de financiamento identificado por contractId
       description: Método para obter os dados do contrato de financiamento identificado por contractId mantido pelo cliente na instituição transmissora
-      operationId: financingsGetContractsContractId
+      operationId: getContractsContractId
       parameters:
         - $ref: '#/components/parameters/contractId'
         - $ref: '#/components/parameters/Authorization'
@@ -127,7 +127,7 @@ paths:
         - Financings
       summary: Obtém a lista de garantias vinculadas ao contrato de financiamento identificado por contractId
       description: Método para obter a lista de garantias vinculadas ao contrato de financiamento identificado por contractId mantido pelo cliente na instituição transmissora
-      operationId: financingsGetContractsContractIdWarranties
+      operationId: getContractsContractIdWarranties
       parameters:
         - $ref: '#/components/parameters/contractId'
         - $ref: '#/components/parameters/page'
@@ -168,7 +168,7 @@ paths:
         - Financings
       summary: Obtém os dados do cronograma de parcelas do contrato de financiamento identificado por contractId
       description: Método para obter os dados do cronograma de parcelas do contrato de financiamento identificado por contractId mantido pelo cliente na instituição transmissora
-      operationId: financingsGetContractsContractIdScheduledInstalments
+      operationId: getContractsContractIdInstalments
       parameters:
         - $ref: '#/components/parameters/contractId'
         - $ref: '#/components/parameters/page'
@@ -209,7 +209,7 @@ paths:
         - Financings
       summary: Obtém os dados de pagamentos do contrato de financiamento identificado por contractId
       description: Método para obter os dados de pagamentos do contrato de financiamento identificado por contractId mantido pelo cliente na instituição transmissora
-      operationId: financingsGetContractsContractIdPayments
+      operationId: getContractsContractIdPayments
       parameters:
         - $ref: '#/components/parameters/contractId'
         - $ref: '#/components/parameters/page'
@@ -251,7 +251,7 @@ components:
     ResponseFinancingsContract:
       $ref: ./schemas/financings_apis/ResponseFinancingsContract.yaml
     ResponseFinancingsInstalments:
-      $ref: ./schemas/financings_apis/ResponseFinancingsInstalments.yaml
+      $ref: ./schemas/financings_apis/ResponseFinancingsInstalments.yaml?
     ResponseFinancingsPayments:
       $ref: ./schemas/financings_apis/ResponseFinancingsPayments.yaml
     ResponseFinancingsWarranties:
@@ -260,7 +260,41 @@ components:
       $ref: ./schemas/enum/EnumContractProductTypeFinancings.yaml
     EnumProductSubType:
       $ref: ./schemas/enum/EnumContractProductSubTypeFinancings.yaml
-    
+    FinancingsContractInterestRate:
+      $ref: ./schemas/financings_apis/FinancingsContractInterestRate.yaml
+    FinancingsBalloonPayment:
+      $ref: ./schemas/financings_apis/FinancingsBalloonPayment.yaml
+    FinancingsChargeOverParcel:
+      $ref: ./schemas/financings_apis/FinancingsChargeOverParcel.yaml
+    FinancingsCompletedPayment:
+      $ref: ./schemas/financings_apis/FinancingsCompletedPayment.yaml
+    FinancingsContract:
+      $ref: ./schemas/financings_apis/FinancingsContract.yaml
+    FinancingsContractFee:
+      $ref: ./schemas/financings_apis/FinancingsContractFee.yaml
+    FinancingsContractedWarranty:
+      $ref: ./schemas/financings_apis/FinancingsContractedWarranty.yaml
+    FinancingsContractInterestRate:
+      $ref: ./schemas/financings_apis/FinancingsContractInterestRate.yaml
+    FinancingsFeeOverParcel:
+      $ref: ./schemas/financings_apis/FinancingsFeeOverParcel.yaml
+    FinancingsFinanceCharge:
+      $ref: ./schemas/financings_apis/FinancingsFinanceCharge.yaml
+    FinancingsInstalments:
+      $ref: ./schemas/financings_apis/FinancingsInstalments.yaml
+    FinancingsListContract:
+      $ref: ./schemas/financings_apis/FinancingsListContract.yaml.
+    FinancingsOverParcel:
+      $ref: ./schemas/financings_apis/FinancingsOverParcel.yaml
+    FinancingsPayments:
+      $ref: ./schemas/financings_apis/FinancingsPayments.yaml
+    FinancingsReleases:
+      $ref: ./schemas/financings_apis/FinancingsReleases.yaml
+    FinancingsTaxesOverParcel:
+      $ref: ./schemas/financings_apis/FinancingsTaxesOverParcel.yaml
+    FinancingsWarranties:
+      $ref: ./schemas/financings_apis/FinancingsWarranties.yaml
+
   parameters:
     Authorization:
       $ref: ./parameters/Authorization.yaml
