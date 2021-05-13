@@ -88,7 +88,7 @@ paths:
         - Financings
       summary: Obtém os dados do contrato de financiamento identificado por contractId
       description: Método para obter os dados do contrato de financiamento identificado por contractId mantido pelo cliente na instituição transmissora
-      operationId: getContractsContractId
+      operationId: financingsGetContractsContractId
       parameters:
         - $ref: '#/components/parameters/contractId'
         - $ref: '#/components/parameters/Authorization'
