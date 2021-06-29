@@ -37,7 +37,6 @@ jobs:
 
       - run: npm install -g widdershins
       - run: npm install -g @apidevtools/swagger-cli
-      - run: npm install -g @mermaid-js/mermaid-cli
 
       ###
       #ATENÇÃO: não é parar ligar a automação da Fase 1 sem a autorização do comitê de Open Banking
