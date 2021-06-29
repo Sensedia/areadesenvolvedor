@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Build de diagramas com base nos arquivos de referência do diretório source/diagrams
+mmdc -i source/diagrams/teste.mmd -o source/images/tld/TLD_ElectronicChannels_v1.png -b transparent
+
 ###
 #ATENÇÃO: não é parar ligar a automação da Fase 1 sem a autorização do comitê de Open Banking
 # Open Banking Fase 1
