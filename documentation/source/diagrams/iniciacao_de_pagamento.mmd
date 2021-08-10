@@ -41,10 +41,10 @@ end
 Note over Detentora: status do consentimento AUTHORISED
 
 Detentora-->>Iniciadora: Redireciona para a Iniciadora (code)
-Iniciadora->>Detentora: POST /token (Pedido de access_token (code) e scope: payments,openid)
+Iniciadora->>Detentora: POST /token (Pedido de access_token (code) e scope: payments)
 Detentora->>Detentora: Valida certificado SSL e scopes
 Detentora->>Detentora: gera access_token
-Detentora-->>Iniciadora: access-token (scope: payments, openid)
+Detentora-->>Iniciadora: access-token (scope: payments)
 Iniciadora->>Detentora: POST payments/v1/pix/payments
 Detentora->>Detentora: Validações de negócios
 Detentora-->>Iniciadora: 201 Created
