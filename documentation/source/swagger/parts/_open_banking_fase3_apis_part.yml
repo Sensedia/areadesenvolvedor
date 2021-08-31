@@ -696,8 +696,6 @@ components:
       $ref: ./schemas/enum/EnumRejectionReasonType.yaml
     Identification:
       $ref: ./schemas/payments_apis/PaymentIdentification.yaml
-    Links:
-      $ref: ./schemas/Links.yaml
     LoggedUser:
       $ref: ./schemas/payments_apis/LoggedUser.yaml
     Meta:
