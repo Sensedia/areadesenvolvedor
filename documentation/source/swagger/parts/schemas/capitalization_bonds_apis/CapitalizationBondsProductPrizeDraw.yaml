@@ -1,0 +1,44 @@
+type: object
+description: Conjunto de informações relativas aos Títulos de Capitalização
+required:
+  - periodicity
+  - quantity
+  - prizeMultiplier
+  - earlyRedemption
+  - mandatoryDraw  
+  - additionalConditions
+  - minimumProbability
+properties:
+  periodicity:
+    $ref: ../enum/EnumCapitalizationBondsFrequency.yaml
+  periodicityOthers:
+    type: string
+    description: Lista string a ser preenchida pelas participantes quando houver ‘OUTROS’ no campo ‘periodicity’.
+    maxLength: 20
+    example: ""
+  quantity: 
+    type: number
+    description: Número da quantidade de sorteios previstos ao longo da vigência.
+    maxLength: 5
+    example: 99999
+  prizeMultiplier:
+    type: number
+    description: 'Valor dos sorteios representado por múltiplo do valor de contribuição. Por exemplo: 5 vezes valor da contribuição'
+    maxLength: 6
+    example: 999999
+  earlyRedemption:
+    $ref: ../enum/EnumCapitalizationBondsProductYesOrNoOptions.yaml
+  mandatoryDraw:
+    $ref: ../enum/EnumCapitalizationBondsProductYesOrNoOptions.yaml
+  additionalConditions:
+    type: string
+    description: Campo aberto para complementar a regra dos sorteios do produto, a ser feita para cada participante.
+    maxLength: 200
+    example: 'Sorteio aos Sábados'
+  minimumProbability:
+    type: number
+    format: double
+    description: Número representativo da probabilidade mínima de contemplação nos sorteios, em porcentagem (%).
+    maxLength: 7
+    example: 0.000001
+additionalProperties: false
