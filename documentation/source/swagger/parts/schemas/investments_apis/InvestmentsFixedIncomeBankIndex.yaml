@@ -1,0 +1,20 @@
+type: object
+required:
+  - indexer
+  - issueRemunerationRate
+properties:
+  indexer:
+    $ref: ../enum/EnumInvestmentsFixedIncomeBankIndexer.yaml
+  indexerAdditionalInfo:
+    type: string
+    description: Campo a ser preenchido pelas participantes quando houver ‘Outros’ no campo ‘Indexador’.
+    maxLength: 50
+    example: 'Dólar'
+  issueRemunerationRate:
+    type: string
+    description: Taxa efetiva percebida no momento da emissão do título.<br><br>Distribuição de Frequência, conforme proposta em anexo, segmentadas por grupo de produto, indexador e modalidade de cálculo da taxa.
+    minLength: 3
+    maxLength: 8
+    pattern: '^\d{1}\.\d{1,6}$'
+    example: '0.040000'
+additionalProperties: false
