@@ -1,0 +1,43 @@
+type: object
+description: "Conjunto de informações referentes às informações de câmbio"
+required:
+  - participantIdentification
+  - transactionType
+  - foreignCurrency
+  - transactionCategory
+  - deliveryForeignCurrency
+  - rangeTransactionCategory
+  - targetAudience
+  - vetAmount
+  - onlineRate
+properties:
+  participantIdentification:
+    $ref: ../business_commons/ParticipantIdentification.yaml
+  transactionType:
+    $ref: ../enum/EnumExchangeTransactionType.yaml
+  foreignCurrency:
+    $ref: ../enum/EnumExchangeForeignCurrency.yaml
+  transactionCategory:
+    $ref: ../enum/EnumExchangeTransactionCategory.yaml
+  deliveryForeignCurrency:
+    $ref: ../enum/EnumExchangeDeliveryForeignCurrency.yaml
+  rangeTransactionCategory:
+    $ref: ../enum/EnumExchangeRangeTransactionCategory.yaml
+  targetAudience:
+    $ref: ../enum/EnumExchangeTargetAudience.yaml
+  vetAmount:
+    type: string
+    description: Média simples do VET das operações PF/PJ para cada intervalo conforme a circular 4015 BCB.
+    maxLength: 7
+    pattern: '^\d{1}\.\d{1,5}$'
+    example: "5.5023"
+  onlineRate:
+    type: array
+    items:
+      $ref: ./OnlineRate.yaml
+    description: | 
+      Taxa disponibilizada (taxa online) pelas instituições no formato D+0/D+2 (valor  U$ 100.000-operações cambio pronto) separado por moeda dólar e euro  compra e venda PF/PJ.  
+      - Não entra operações de cambio futuro, ACC/ACE, futuros, trava.  
+      - Deve ser adicionado um timestamp no momento da consulta no formato  hh:mm:ss 
+      - Adicionar disclaimer informando que a taxa apresentada é somente  informativa, para a contratação de uma operação, deverá ser consultado o  canal correspondente de cada instituição.
+additionalProperties: false
