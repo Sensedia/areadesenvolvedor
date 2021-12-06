@@ -1,0 +1,724 @@
+openapi: 3.0.0
+info:
+  title: Fase 4 - APIs do Open Banking Brasil
+  description: |
+    Estas APIs visam o compartilhamento de dados sobre Títulos de Capitalização e suas
+    características entre as Instituições Financeiras participantes do Open Banking Brasil
+  version: 1.0.0-rc1.0
+tags:
+  - name: API - Títulos de Capitalização
+    description: |
+      |Versão|
+      |:-----|
+      |1.0.0-rc1.0|
+
+      #### Visão Geral
+
+      As instituições financeiras participantes podem consultar a lista de Títulos de Capitalização de outras instituições participantes
+
+      #### Especificação em OAS 3.0
+
+      <a href="swagger/swagger_capitalization_bonds_apis.yaml" target="_blank">Download da Especificação (OAS 3.0)</a>
+
+  - name: API - Investimentos
+    description: |
+      |Versão|
+      |:-----|
+      |1.0.0|
+
+      #### Visão Geral
+
+      As instituições financeiras participantes podem consultar a lista de Fundos de Investimentos de outras instituições participantes
+
+      #### Especificação em OAS 3.0
+
+      <a href="swagger/swagger_investments_apis.yaml" target="_blank">Download da Especificação (OAS 3.0)</a>
+
+  - name: API - Câmbio
+    description: |
+      |Versão|
+      |:-----|
+      |1.0.0-rc1.0|
+
+      #### Visão Geral
+
+      As instituições financeiras participantes podem consultar as informações de câmbio de outras instituições participantes
+
+      #### Especificação em OAS 3.0
+
+      <a href="swagger/swagger_exchange_apis.yaml" target="_blank">Download da Especificação (OAS 3.0)</a>
+  - name: API - Credenciamento
+    description: |
+      |Versão|
+      |:-----|
+      |1.0.0-rc1.0|
+
+      #### Visão Geral
+
+      As instituições financeiras participantes podem consultar as informações de credenciamento de outras instituições participantes
+
+      #### Especificação em OAS 3.0
+
+      <a href="swagger/swagger_acquiring_services_apis.yaml" target="_blank">Download da Especificação (OAS 3.0)</a>
+  - name: API - Previdência
+    description: |
+      |Versão|
+      |:-----|
+      |1.0.0-rc1.0|
+
+      #### Visão Geral
+
+      As instituições financeiras participantes podem consultar as informações de previdência de outras instituições participantes
+
+      #### Especificação em OAS 3.0
+
+      <a href="swagger/swagger_pension_apis.yaml" target="_blank">Download da Especificação (OAS 3.0)</a>
+
+paths:
+  /open-data/capitalization-bonds/v1/products:
+    get:
+      tags:
+        - API - Títulos de Capitalização
+      summary: Lista de títulos de capitalização
+      operationId: capitalizationBondsGetProducts
+      description: |
+        Método para obter a lista de todos os títulos de Capitalização de uma instituição
+
+        ### Dicionário de dados
+
+        Campos de resposta do endpoint de `/products`
+
+        <a href='dictionary/capitalizationBondsGetProducts_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
+
+        Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
+
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+      responses:
+        '200':
+          $ref: '#/components/responses/OKResponseCapitalizationBondsProductsList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /open-data/investments/v1/funds:
+    get:
+      tags:
+        - API - Investimentos
+      summary: Lista de fundos de investimento
+      operationId: investmentsGetFunds
+      description: |
+        Método para obter a lista de todos os fundos de investimento de uma instituição
+
+        ### Dicionário de dados
+
+        Campos de resposta do endpoint de `/funds`
+
+        <a href='dictionary/investmentsGetFunds_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
+
+        Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+      responses:
+        '200':
+          $ref: '#/components/responses/OKResponseInvestmentsFund'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /open-data/investments/v1/fixed-income-bank:
+    get:
+      tags:
+        - API - Investimentos
+      summary: Lista de produtos de renda fixa bancária (CDB, RDB, LCI e LCA)
+      operationId: investmentsGetFixedIncomeBank
+      description: |
+        Método para obter a lista de todos os produtos de renda fixa bancária de uma instituição
+
+        ### Dicionário de dados
+
+        Campos de resposta do endpoint de `/fixed-income-bank`
+
+        <a href='dictionary/investmentsGetFixedIncomeBank_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
+
+        Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+      responses:
+        '200':
+          $ref: '#/components/responses/OKResponseInvestmentsFixedIncomeBank'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /open-data/investments/v1/fixed-income-credit:
+    get:
+      tags:
+        - API - Investimentos
+      summary: Lista de produtos de renda fixa crédito (Debêntures, CRI e CRA)
+      operationId: investmentsGetFixedIncomeCredit
+      description: |
+        Método para obter a lista de todos os produtos de renda fixa crédito de uma instituição
+
+        ### Dicionário de dados
+
+        Campos de resposta do endpoint de `/fixed-income-credit`
+
+        <a href='dictionary/investmentsGetFixedIncomeCredit_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
+
+          Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+      responses:
+        '200':
+          $ref: '#/components/responses/OKResponseInvestmentsFixedIncomeCredit'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /open-data/investments/v1/variable-income:
+    get:
+      tags:
+        - API - Investimentos
+      summary: Lista de produtos de renda variável (Ações e Fundos de Índices)
+      operationId: investmentsGetVariableIncome
+      description: |
+        Método para obter a lista de todos os produtos de renda variável de uma instituição
+
+        ### Dicionário de dados
+
+        Campos de resposta do endpoint de `/variable-income`
+
+        <a href='dictionary/investmentsGetVariableIncome_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
+
+          Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+      responses:
+        '200':
+          $ref: '#/components/responses/OKResponseInvestmentsVariableIncome'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /open-data/investments/v1/treasure:
+    get:
+      tags:
+        - API - Investimentos
+      summary: Lista de informações sobre títulos do tesouro direto
+      operationId: investmentsGeTreasure
+      description: |
+        Método para obter a lista de todas as informações sobre títulos do tesouro direto de uma instituição
+
+        ### Dicionário de dados
+
+        Campos de resposta do endpoint de `/treasure`
+
+        <a href='dictionary/investmentsGetTreasure_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
+
+          Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+      responses:
+        '200':
+          $ref: '#/components/responses/OKResponseInvestmentsTreasure'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /open-data/exchange/v1/personal-exchange:
+    get:
+      tags:
+        - API - Câmbio
+      summary: Conjunto de informações de Câmbio para Pessoa Física.
+      operationId: getPersonalExchange
+      description: |
+        Método para disponibilizar o valor VET.
+
+        ### Dicionário de dados
+
+        Campos de resposta do endpoint de `/personal-exchange`
+
+        <a href='dictionary/getPersonalExchange_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
+
+        Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
+
+      responses:
+        '200':
+          $ref: '#/components/responses/OKResponseExchangeProductsData'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /open-data/exchange/v1/business-exchange:
+    get:
+      tags:
+        - API - Câmbio
+      summary: Conjunto de informações de Câmbio para Pessoa Jurídica.
+      operationId: getBusinessExchange
+      description: |
+        Método para disponibilizar o valor VET.
+
+        ### Dicionário de dados
+
+        Campos de resposta do endpoint de `/business-exchange`
+
+        <a href='dictionary/getBusinessExchange_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
+
+        Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
+
+      responses:
+        '200':
+          $ref: '#/components/responses/OKResponseExchangeProductsData'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /open-data/acquiring-services/v1/products:
+    get:
+      tags:
+        - API - Credenciamento
+      summary: Conjunto de informações de Credenciamento.
+      operationId: getAcquiringServicesProducts
+      description: |
+        Método para disponibilizar as taxas e tarifas por serviços.
+
+        ### Dicionário de dados
+
+        Campos de resposta do endpoint de `/products`
+
+        <a href='dictionary/getAcquiringServicesProducts_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
+
+        Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
+
+      responses:
+        '200':
+          $ref: '#/components/responses/OKResponseAcquiringServicesProductsData'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /open-data/pension/v1/risk-coverages:
+    get:
+      tags:
+        - API - Previdência
+      summary: Conjunto de informações de Previdência de Coberturas de Risco.
+      operationId: getPensionRiskCoverages
+      description: |
+        Método para disponibilizar informações de Previdência de Coberturas de Risco.
+
+        ### Dicionário de dados
+
+        Campos de resposta do endpoint de `/risk-coverages`
+
+        <a href='dictionary/getPensionRiskCoverages_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
+
+        Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
+
+      responses:
+        '200':
+          $ref: '#/components/responses/OkGetRiskPensionContractData'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /open-data/pension/v1/survival-coverages:
+    get:
+      tags:
+        - API - Previdência
+      summary: Conjunto de informações de Previdência de Coberturas de Sobrevivência.
+      operationId: getPensionSurvivalCoverages
+      description: |
+        Método para disponibilizar informações de Previdência de Coberturas de Sobrevivência.
+
+        ### Dicionário de dados
+
+        Campos de resposta do endpoint de `/survival-coverages`
+
+        <a href='dictionary/getPensionSurvivalCoverages_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
+
+        Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
+
+      responses:
+        '200':
+          $ref: '#/components/responses/OkGetSurvivalPensionContractData'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    OKResponseGetAcquiringServices:
+      $ref: ./schemas/acquiring_services_apis/OkResponseGetAcquiringServicesContract.yaml
+    AcquiringServicesContractData:
+      $ref: ./schemas/acquiring_services_apis/AcquiringServicesContractData.yaml
+    OkResponseGetRiskPension:
+      $ref: ./schemas/pension_apis/risk/OkResponseGetRiskPensionContract.yaml
+    GetRiskPensionContractData:
+      $ref: ./schemas/pension_apis/risk/GetRiskPensionContractData.yaml
+    RiskPensionUpdate:
+      $ref: ./schemas/pension_apis/risk/RiskPensionUpdate.yaml
+    ExcludedRisk:
+      $ref: ./schemas/pension_apis/risk/RiskPensionExcludedRisk.yaml
+    EnumRiskPensionPaymentModality:
+      $ref: ./schemas/enum/EnumRiskPensionPaymentModality.yaml
+    UpdateIndex:
+      $ref: ./schemas/enum/EnumPensionUpdateIndex.yaml
+    Product:
+      $ref: ./schemas/pension_apis/survival/SurvivalPensionProduct.yaml
+    Coverage:
+      $ref: ./schemas/pension_apis/risk/RiskPensionCoverage.yaml
+    CoverageAttributes:
+      $ref: ./schemas/pension_apis/risk/RiskPensionCoverageAttributes.yaml
+    CoverageAttributesMaxValue:
+      $ref: ./schemas/pension_apis/risk/RiskPensionCoverageAttributes.yaml
+    GracePeriod:
+      $ref: ./schemas/pension_apis/risk/RiskPensionGracePeriod.yaml
+    TermsAndConditions:
+      $ref: ./schemas/business_commons/TermsAndConditionsItem.yaml
+    UpdatePMBaC:
+      $ref: ./schemas/pension_apis/risk/RiskPensionUpdatePMBaC.yaml
+    UpdateAward:
+      $ref: ./schemas/pension_apis/risk/RiskPensionUpdateAward.yaml
+    AgeReframing:
+      $ref: ./schemas/pension_apis/risk/RiskPensionAgeReframing.yaml
+    Reclaim:
+      $ref: ./schemas/pension_apis/risk/RiskPensionReclaim.yaml
+    ReclaimTable:
+      $ref: ./schemas/pension_apis/risk/RiskPensionReclaimTable.yaml
+    ContributionPayment:
+      $ref: ./schemas/pension_apis/risk/RiskPensionContributionPayment.yaml
+    MinimumRequirements:
+      $ref: ./schemas/pension_apis/risk/RiskPensionMinimumRequirements.yaml
+    AcquiringServicesFeesAndRatesForService:
+      $ref: ./schemas/acquiring_services_apis/FeesAndRatesForService.yaml
+    Price:
+      $ref: ./schemas/acquiring_services_apis/Price.yaml
+    EnumAcquiringServicesCode:
+      $ref: ./schemas/enum/EnumAcquiringServicesCode.yaml
+    EnumAcquiringServicesInterval:
+      $ref: ./schemas/enum/EnumAcquiringServicesInterval.yaml
+    EnumAcquiringServicesFeeName:
+      $ref: ./schemas/enum/EnumAcquiringServicesFeeName.yaml
+    ParticipantIdentification:
+      $ref: ./schemas/business_commons/ParticipantIdentification.yaml
+    OKResponseGetExchange:
+      $ref: ./schemas/exchange_apis/OkResponseGetExchangeContract.yaml
+    ExchangeContractData:
+      $ref: ./schemas/exchange_apis/ExchangeContractData.yaml
+    OnlineRate:
+      $ref: ./schemas/exchange_apis/OnlineRate.yaml
+    EnumExchangeDeliveryForeignCurrency:
+      $ref: ./schemas/enum/EnumExchangeDeliveryForeignCurrency.yaml
+    EnumExchangeForeignCurrency:
+      $ref: ./schemas/enum/EnumExchangeForeignCurrency.yaml
+    EnumExchangeRangeTransactionCategory:
+      $ref: ./schemas/enum/EnumExchangeRangeTransactionCategory.yaml
+    EnumTargetAudience:
+      $ref: ./schemas/business_commons/EnumTargetAudience.yaml
+    EnumExchangeTransactionCategory:
+      $ref: ./schemas/enum/EnumExchangeTransactionCategory.yaml
+    EnumExchangeTransactionType:
+      $ref: ./schemas/enum/EnumExchangeTransactionType.yaml
+    ResponseCapitalizationBondsProductsList:
+      $ref: ./schemas/capitalization_bonds_apis/ResponseCapitalizationBondsProductsList.yaml
+    CapitalizationBondsProduct:
+      $ref: ./schemas/capitalization_bonds_apis/CapitalizationBondsProduct.yaml
+    CapitalizationBondsProductEarlyRedemption:
+      $ref: ./schemas/capitalization_bonds_apis/CapitalizationBondsProductEarlyRedemption.yaml
+    EnumCapitalizationBondsProductModality:
+      $ref: ./schemas/enum/EnumCapitalizationBondsProductModality.yaml
+    EnumCapitalizationBondsProductPaymentFrequency:
+      $ref: ./schemas/enum/EnumCapitalizationBondsProductPaymentTerm.yaml
+    CapitalizationBondsProductIdentificationData:
+      $ref: ./schemas/capitalization_bonds_apis/CapitalizationBondsProductIdentificationData.yaml
+    CapitalizationBondsProductTermsAndConditions:
+      $ref: ./schemas/capitalization_bonds_apis/CapitalizationBondsProductTermsAndConditions.yaml
+    CapitalizationBondsProductQuota:
+      $ref: ./schemas/capitalization_bonds_apis/CapitalizationBondsProductQuota.yaml
+    CapitalizationPeriod:
+      $ref: ./schemas/capitalization_bonds_apis/CapitalizationBondsProductCapitalizationPeriod.yaml
+    LatePayment:
+      $ref: ./schemas/capitalization_bonds_apis/CapitalizationBondsProductLatePayment.yaml
+    CapitalizationBondsProductContributionPayment:
+      $ref: ./schemas/capitalization_bonds_apis/CapitalizationBondsProductContributionPayment.yaml
+    CapitalizationBondsProductPaymentMethod:
+      $ref: ./schemas/enum/CapitalizationBondsProductPaymentMethod.yaml
+    EnumCapitalizationBondsProductYesOrNoOptions:
+      $ref: ./schemas/enum/EnumPrizeDrawLiquidityEarlyRedemption.yaml
+    PrizeDraw:
+      $ref: ./schemas/capitalization_bonds_apis/CapitalizationBondsProductPrizeDraw.yaml
+    EnumCapitalizationBondsFrequency:
+      $ref: ./schemas/enum/EnumContributionAmountPeriodicity.yaml
+    CapitalizationBondsProductEnumTargetAudience:
+      $ref: ./schemas/enum/CapitalizationBondsProductEnumTargetAudience.yaml
+    OKResponseInvestmentsFund:
+      $ref: ./schemas/investments_apis/ResponseInvestmentsFund.yaml
+    OKResponseInvestmentsFixedIncomeBank:
+      $ref: ./schemas/investments_apis/ResponseInvestmentsFixedIncomeBank.yaml
+    OKResponseInvestmentsFixedIncomeCredit:
+      $ref: ./schemas/investments_apis/ResponseInvestmentsFixedIncomeCredit.yaml
+    OKResponseInvestmentsVariableIncome:
+      $ref: ./schemas/investments_apis/ResponseInvestmentsVariableIncome.yaml
+    OKResponseInvestmentsTreasure:
+      $ref: ./schemas/investments_apis/ResponseInvestmentsTreasure.yaml
+    InvestmentsFixedIncomeBank:
+      $ref: ./schemas/investments_apis/InvestmentsFixedIncomeBank.yaml
+    InvestmentsFixedIncomeBankIndex:
+      $ref: ./schemas/investments_apis/InvestmentsFixedIncomeBankIndex.yaml
+    InvestmentsFixedIncomeBankInvestmentConditions:
+      $ref: ./schemas/investments_apis/InvestmentsFixedIncomeBankInvestmentConditions.yaml
+    InvestmentsFixedIncomeBankProductIdentification:
+      $ref: ./schemas/investments_apis/InvestmentsFixedIncomeBankProductIdentification.yaml
+    InvestmentsFixedIncomeCredit:
+      $ref: ./schemas/investments_apis/InvestmentsFixedIncomeCredit.yaml
+    InvestmentsFixedIncomeCreditFees:
+      $ref: ./schemas/investments_apis/InvestmentsFixedIncomeCreditFees.yaml
+    InvestmentsFund:
+      $ref: ./schemas/investments_apis/InvestmentsFund.yaml
+    InvestmentsFundFees:
+      $ref: ./schemas/investments_apis/InvestmentsFundFees.yaml
+    InvestmentsFundGeneralConditions:
+      $ref: ./schemas/investments_apis/InvestmentsFundGeneralConditions.yaml
+    InvestmentsFundProduct:
+      $ref: ./schemas/investments_apis/InvestmentsFundProduct.yaml
+    InvestmentsTreasure:
+      $ref: ./schemas/investments_apis/InvestmentsTreasure.yaml
+    InvestmentsTreasureFees:
+      $ref: ./schemas/investments_apis/InvestmentsTreasureFees.yaml
+    InvestmentsVariableIncome:
+      $ref: ./schemas/investments_apis/InvestmentsVariableIncome.yaml
+    InvestmentsVariableIncomeFees:
+      $ref: ./schemas/investments_apis/InvestmentsVariableIncomeFees.yaml
+    EnumInvestmentsFixedIncomeBankIndexer:
+      $ref: ./schemas/enum/EnumInvestmentsFixedIncomeBankIndexer.yaml
+    EnumInvestmentsFixedIncomeBankProductType:
+      $ref: ./schemas/enum/EnumInvestmentsFixedIncomeBankProductType.yaml
+    EnumInvestmentsFixedIncomeBankRedemptionTerm:
+      $ref: ./schemas/enum/EnumInvestmentsFixedIncomeBankRedemptionTerm.yaml
+    EnumInvestmentsFixedIncomeCreditInvestmentType:
+      $ref: ./schemas/enum/EnumInvestmentsFixedIncomeCreditInvestmentType.yaml
+    EnumInvestmentsFundFeesPerformanceFeeBenchmark:
+      $ref: ./schemas/enum/EnumInvestmentsFundFeesPerformanceFeeBenchmark.yaml
+    EnumInvestmentsFundFeesPerformanceFeeMethod:
+      $ref: ./schemas/enum/EnumInvestmentsFundFeesPerformanceFeeMethod.yaml
+    EnumInvestmentsFundGeneralConditionsFundQuotaType:
+      $ref: ./schemas/enum/EnumInvestmentsFundGeneralConditionsFundQuotaType.yaml
+    EnumInvestmentsFundGeneralConditionsTermType:
+      $ref: ./schemas/enum/EnumInvestmentsFundGeneralConditionsTermType.yaml
+    EnumInvestmentsFundProductAnbimaCategory:
+      $ref: ./schemas/enum/EnumInvestmentsFundProductAnbimaCategory.yaml
+    EnumInvestmentsFundTaxation:
+      $ref: ./schemas/enum/EnumInvestmentsFundTaxation.yaml
+    EnumInvestmentsTreasureInvestmentType:
+      $ref: ./schemas/enum/EnumInvestmentsTreasureInvestmentType.yaml
+    EnumInvestmentsVariableIncomeInvestmentType:
+      $ref: ./schemas/enum/EnumInvestmentsVariableIncomeInvestmentType.yaml
+    InvestmentsParticipantIdentification:
+      $ref: ./schemas/business_commons/ParticipantIdentification.yaml
+    Links:
+      $ref: ./schemas/Links.yaml
+    Meta:
+      $ref: ./schemas/Meta.yaml
+    ResponseError:
+      $ref: ./schemas/ResponseError.yaml
+    OKResponseSurvivalCoveragePension:
+      $ref: './schemas/pension_apis/survival/OkResponseGetSurvivalPensionContract.yaml'
+    GetSurvivalPensionContractData:
+      $ref: './schemas/pension_apis/survival/GetSurvivalPensionContractData.yaml'
+    SurvivalPensionInvestimentFund:
+      $ref: './schemas/pension_apis/survival/SurvivalPensionInvestimentFund.yaml'
+    SurvivalPensionProduct:
+      $ref: ./schemas/pension_apis/survival/SurvivalPensionProduct.yaml
+    SurvivalPensionMinimumRequirements:
+      $ref: ./schemas/pension_apis/survival/SurvivalPensionMinimumRequirements.yaml
+    SurvivalPensionDetail:
+      $ref: ./schemas/pension_apis/survival/SurvivalPensionDetail.yaml
+    SusepProcessNumber:
+      $ref: ./schemas/business_commons/SusepProcessNumber.yaml
+    SurvivalPensionDefferalPeriod:
+      $ref: ./schemas/pension_apis/survival/SurvivalPensionDefferalPeriod.yaml
+    SurvivalPensionType:
+      $ref: ./schemas/pension_apis/survival/SurvivalPensionType.yaml
+    SurvivalPensionGracePeriod:
+      $ref: ./schemas/pension_apis/survival/SurvivalGracePeriod.yaml
+    SurvivalPensionCosts:
+      $ref: ./schemas/pension_apis/survival/SurvivalPensionCosts.yaml
+    SurvivalPensionLoadingAntecipated:
+      $ref: ./schemas/pension_apis/survival/SurvivalPensionLoadingAntecipated.yaml
+    SurvivalPensionLoadingLate:
+      $ref: ./schemas/pension_apis/survival/SurvivalPensionLoadingLate.yaml
+    SurvivalPensionMinimumPremiumAmount:
+      $ref: ./schemas/pension_apis/survival/SurvivalPensionMinimumPremiumAmount.yaml
+    SurvivalPensionPermission:
+      $ref: ./schemas/pension_apis/survival/SurvivalPensionPermission.yaml
+    SurvivalPensionGrantPeriodBenefit:
+      $ref: ./schemas/pension_apis/survival/SurvivalPensionGrantPeriodBenefit.yaml
+  parameters:
+    page:
+      $ref: ./parameters/Page.yaml
+    pageSize:
+      $ref: ./parameters/PageSize.yaml
+  responses:
+    OkGetSurvivalPensionContractData:
+      description: Coberturas de Previdência de Sobrevivência obtidas com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas/pension_apis/survival/OkResponseGetSurvivalPensionContract.yaml
+    OKResponseAcquiringServicesProductsData:
+      description: Taxas e tarifas por serviços obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas/acquiring_services_apis/OkResponseGetAcquiringServicesContract.yaml
+    OKResponseExchangeProductsData:
+      description: Dados de operações de câmbio da instituição obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas/exchange_apis/OkResponseGetExchangeContract.yaml
+    OkGetRiskPensionContractData:
+      description: Dados de operações de previdência da instituição obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas/pension_apis/risk/OkResponseGetRiskPensionContract.yaml
+    OKResponseCapitalizationBondsProductsList:
+      description: Dados de título(s) de capitalização obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas/capitalization_bonds_apis/ResponseCapitalizationBondsProductsList.yaml
+    OKResponseInvestmentsFund:
+      description: Dados de fundos de investimento obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas/investments_apis/ResponseInvestmentsFund.yaml
+    OKResponseInvestmentsFixedIncomeBank:
+      description: Dados de produtos de renda fixa bancária obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas/investments_apis/ResponseInvestmentsFixedIncomeBank.yaml
+    OKResponseInvestmentsFixedIncomeCredit:
+      description: Dados de produtos de renda fixa crédito obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas/investments_apis/ResponseInvestmentsFixedIncomeCredit.yaml
+    OKResponseInvestmentsVariableIncome:
+      description: Dados de produtos de renda variável obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas/investments_apis/ResponseInvestmentsVariableIncome.yaml
+    OKResponseInvestmentsTreasure:
+      description: Dados de títulos do tesouro direto obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas/investments_apis/ResponseInvestmentsTreasure.yaml
+    BadRequest:
+      description: 'A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.'
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: ./schemas/ResponseError.yaml
+    InternalServerError:
+      description: Ocorreu um erro no gateway da API ou no microsserviço
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: ./schemas/ResponseError.yaml
+    MethodNotAllowed:
+      description: O consumidor tentou acessar o recurso com um método não suportado
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: ./schemas/ResponseError.yaml
+    NotFound:
+      description: O recurso solicitado não existe ou não foi implementado
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: ./schemas/ResponseError.yaml
+    TooManyRequests:
+      description: 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido'
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: ./schemas/ResponseError.yaml

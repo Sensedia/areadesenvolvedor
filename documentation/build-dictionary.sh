@@ -16,6 +16,11 @@ APIS=(
   "credit_cards_apis"
   "accounts_apis"
   "payments_apis"
+  "capitalization_bonds_apis"
+  "investments_apis"
+  "exchange_apis"
+  "acquiring_services_apis"
+  "pension_apis"
 )
 
 APIS_CONDITIONAL=(
