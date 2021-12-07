@@ -1,0 +1,7 @@
+type: string
+description: ''
+maxLength: 10
+enum:
+  - COLETIVO
+  - INDIVIDUAL
+example: INDIVIDUAL
