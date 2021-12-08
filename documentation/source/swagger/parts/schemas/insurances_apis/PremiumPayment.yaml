@@ -1,0 +1,21 @@
+type: object
+required:
+  - paymentMethod
+  - paymentType
+  - paymentDetail
+properties:
+  paymentMethod:
+    type: array
+    minItems: 1
+    items:
+      $ref: ../enum/EnumPremiumPaymentMethodType.yaml
+  paymentType:
+    type: array
+    minItems: 1
+    items:
+      $ref: ../enum/EnumPremiumPaymentType.yaml
+  paymentDetail:
+    type: string
+    maxLength: 100
+    example: 'Campo aberto para detalhamento do campo ‘Outros’ por cada participante.'
+additionalProperties: false
