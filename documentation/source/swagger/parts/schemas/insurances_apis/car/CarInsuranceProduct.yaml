@@ -1,0 +1,86 @@
+type: object
+required:
+  - name
+  - code
+  - coverages
+  - carParts
+  - carModels
+  - vehicleOvernightZipCode
+  - autoInsuranceAdditional
+  - autoInsuranceAdditionalInfo
+  - assistanceServices
+  - termsAndConditions
+  - term
+  - customerService
+  - premiumPayment
+  - minimumRequirement
+  - targetAudiences
+properties:
+  name:
+    type: string
+    description: 'Nome comercial do produto, pelo qual é identificado nos canais de distribuição e atendimento da sociedade.'
+    maxLength: 80
+    example: 'Produto A'
+  code:
+    type: string
+    description: 'Código único a ser definido pela sociedade.'
+    maxLength: 80
+    example: '0001'
+  coverages:
+    type: array
+    description: 'Coberturas'
+    items:
+      $ref: ./CarCoverageItem.yaml
+    minItems: 1
+  carParts:
+    type: array
+    description: 'Tipo de peça utilizada para reparação – Nova ou Usada.'
+    items:
+      $ref: ./CarPartsItem.yaml
+    minItems: 1
+  carModels:
+    type: array
+    description: 'Modelos do Veículo'
+    items:
+      $ref: ./CarModelsItem.yaml
+    minItems: 1
+  vehicleOvernightZipCode:
+    type: number
+    description: 'CEP de Pernoite do Veículo (Entrada de Dados).'
+    maximum: 99999999
+    example: 1311000
+  autoInsuranceAdditional:
+    $ref: ../../enum/EnumInsuranceAdditionalType.yaml
+  autoInsuranceAdditionalInfo:
+    type: string
+    description: 'Campo aberto para descrição de cada participante ao selecionar o domínio ‘Outros’ no campo acima ‘Adicionais’ diferenciais do produto em questão.'
+    maxLength: 100
+    example: 'Detalhar os serviços, benefícios e outros'
+  assistanceServices:
+    type: array
+    description: 'Serviços de Assistência'
+    items:
+      $ref: ../AssistanceServicesItem.yaml
+    minItems: 1
+  #Ver ../../business_commons/TermsAndConditionsItem.yaml
+  termsAndConditions:
+    type: array
+    description: ''
+    items:
+      $ref: ../../business_commons/TermsAndConditionsItem.yaml
+    minItems: 1
+  term:
+    $ref: ../../enum/EnumInsuranceTermType.yaml
+  customerService:
+    type: array
+    description: 'Rede de Atendimento'
+    minItems: 1
+    items:
+      $ref: ../../enum/EnumCustomerServiceType.yaml
+  premiumPayment:
+    $ref: ../PremiumPayment.yaml
+  minimumRequirement:
+    $ref: ../MinimumRequirement.yaml
+  targetAudiences:
+    $ref: ../../business_commons/EnumTargetAudience.yaml
+additionalProperties: false

@@ -1,0 +1,24 @@
+type: object
+required:
+  - carPartCondition
+  - carPartType
+properties:
+  carPartCondition:
+    type: string
+    description: |
+      Novas ou usada. A considerar os domínios abaixo:
+        1. Novas
+        2. Usadas
+        3. Novas e/ou Usadas
+    example: '1. Novas'
+  carPartType:
+    type: array
+    description: |
+      Originais e Compatíveis. A considerar os domínios abaixo:
+        1. Originais
+        2. Compatíveis
+        3. Originais e/ou Compatíveis
+    minItems: 1
+    items:
+      $ref: ../../enum/EnumCarPartType.yaml
+additionalProperties: false
