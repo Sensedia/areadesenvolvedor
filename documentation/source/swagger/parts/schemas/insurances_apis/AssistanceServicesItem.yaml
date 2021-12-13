@@ -1,0 +1,18 @@
+type: object
+properties:
+  assistanceServicesPackage:
+    type: array
+    minItems: 1
+    items:
+      $ref: ../enum/EnumAssistanceServicesPackageType.yaml
+  assistanceServicesDetail:
+    type: string
+    description: Campo livre para descrição dos serviços ofertados por cada sociedade participante (incluindo indicação se o serviço é Gratuito ou Pago)
+    maxLength: 1000
+    example: Perda Parcial - Colisão
+  chargeTypeSignaling:
+    type: array
+    minItems: 1
+    items:
+      $ref: ../enum/EnumChargeTypeSignalingType.yaml
+additionalProperties: false
