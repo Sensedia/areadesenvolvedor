@@ -1,0 +1,12 @@
+type: object
+properties:
+  contractBaseType:
+    type: array
+    minItems: 1
+    items:
+      $ref: ../../enum/EnumCarContractBaseType.yaml
+  contractBaseMinValue:
+    $ref: ./ContractBaseValue.yaml
+  contractBaseMaxValue:
+    $ref: ./ContractBaseValue.yaml
+additionalProperties: false

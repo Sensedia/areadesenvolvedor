@@ -1,0 +1,15 @@
+type: object
+required:
+  - url
+properties:
+  type:
+    description: Listagem para indicar quais serão o(s) risco(s) excluído(s) aplicável(is) à(s) cobertura(s).
+    type: string
+    example: 'NA'
+  url:
+    description: |
+      Campo aberto (possibilidade de incluir URL) Comentários: As URLs são limitadas a 2048 caracteres mas, para o contexto do Open Insurance, foi adotado a metade deste tamanho (1024). tamanho. p.ex.
+      https://openinsurance.com.br/aaa
+    type: string
+    example: "https://openinsurance.com.br/aaa"
+    maxLength: 1024
