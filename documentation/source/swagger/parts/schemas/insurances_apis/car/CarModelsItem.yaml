@@ -1,0 +1,13 @@
+type: object
+properties:
+  manufacturer:
+    type: string
+    description: 'Chamada via código FIPE – retorna os veículos (Marca) que são cobertos no produto'
+    maxLength: 20
+    example: 'FORD'
+  fipeCode:
+    type: string
+    description: 'Chamada via código FIPE – retorna os veículos (código fipe) que são cobertos no produto'
+    maxLength: 20
+    example: '003128-3'
+additionalProperties: false

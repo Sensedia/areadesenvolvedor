@@ -1,0 +1,13 @@
+type: object
+required:
+  - amount
+  - unit
+properties:
+  amount:
+    type: integer
+    description: 'Informar o prazo de carência'
+    maxLength: 4
+    example: 180
+  unit:
+    $ref: ../../enum/EnumPersonalInsuranceGracePeriodUnit.yaml
+additionalProperties: false
