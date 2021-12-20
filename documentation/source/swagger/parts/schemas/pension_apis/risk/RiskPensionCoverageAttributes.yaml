@@ -1,0 +1,41 @@
+type: object
+description: Atributos da cobertura
+required:
+  - minValue
+  - maxValue
+  - currency
+  - gracePeriod
+properties:
+  indenizationPaymentMethod:
+    $ref: ../../enum/EnumRiskPensionPaymentModality.yaml
+  minValue:
+    type: number
+    example: 1500
+    description: |
+      Listagem do valor mínimo de cobertura (Capital Segurado), diária ou parcela aceito pela sociedade para cada combinação de modalidade/cobertura do produto.
+      Conforme moeda.
+    maximum: 999999999999999
+  maxValue: 
+    type: number
+    example: 5000
+    description: |
+      Listagem do valor máximo de cobertura (Capital Segurado), diária ou parcela aceito pela sociedade para cada combinação de modalidade/cobertura do produto.
+      Conforme moeda.
+    maximum: 999999999999999
+  indemnifiable:
+    $ref: ./RiskPensionIndemnfiable.yaml
+  deductibleDays:
+    type: number
+    description: Listagem de franquia em dias para cada combinação de modalidade/cobertura do produto.
+    maximum: 9999999999
+    example: 10
+  currency:
+    $ref: ../../business_commons/CurrencyCode.yaml
+  gracePeriod:
+    $ref: ./RiskPensionGracePeriod.yaml
+  excludedRisk:
+    type: array
+    description: Listagem para indicar quais serão o(s) risco(s) excluído(s) aplicável(is) à(s) cobertura(s).
+    items:
+      $ref: ./RiskPensionExcludedRisk.yaml
+    
