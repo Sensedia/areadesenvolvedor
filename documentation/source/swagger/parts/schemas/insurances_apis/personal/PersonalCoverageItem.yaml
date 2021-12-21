@@ -1,0 +1,19 @@
+type: object
+required:
+  - type
+  - coverageAttributes
+properties:
+  type:
+    type: array
+    description: 'É o conjunto dos riscos cobertos elencados na apólice. (RESOLUÇÃO CNSP Nº 341/2016). Listagem de coberturas incluídas no produto que deve observar a relação discriminada de coberturas, conforme Tabela Tipo de Cobertura'
+    minItems: 1
+    items:
+      $ref: ../../enum/EnumHomeCoverageType.yaml
+  detail:
+    type: string
+    description: 'Lista a ser preenchida pelas participantes quando houver Outros (permitir a publicação de uma nova cobertura que não esteja na lista básica; adotar a mesma sistemática do campo "outros" em Assistência)'
+    maxLength: 1000
+    example: ''
+  coverageAttributes:
+    $ref: ./PersonalCoverageItemAttributes.yaml
+additionalProperties: false

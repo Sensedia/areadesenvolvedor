@@ -1,0 +1,15 @@
+type: object
+required:
+  - productIdentification
+  - index
+  - investmentConditions
+properties:
+  participantIdentification:
+    $ref: ../business_commons/ParticipantIdentification.yaml
+  productIdentification:
+    $ref: ./InvestmentsFixedIncomeBankProductIdentification.yaml
+  index:
+    $ref: ./InvestmentsFixedIncomeBankIndex.yaml
+  investmentConditions:
+    $ref: ./InvestmentsFixedIncomeBankInvestmentConditions.yaml
+additionalProperties: false
