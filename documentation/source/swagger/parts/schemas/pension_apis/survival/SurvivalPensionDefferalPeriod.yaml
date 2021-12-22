@@ -1,0 +1,54 @@
+type: object
+description: Período de Diferimento
+required:
+  - premiumPaymentMethods
+properties:
+  interestRate:
+    type: string
+    pattern: '^[0-1]\.\d{6}$'
+    description: Taxa de juros garantida que remunera o plano durante a fase de diferimento/acumulação.
+    example: '0.251231'
+  updateIndex:
+    $ref: ../../enum/EnumPensionUpdateIndex.yaml
+  otherMinimumPerformanceGarantees:
+    type: string
+    description: Para produtos do tipo PDR e VDR, indicação do índice de ampla divulgação utilizados como garantia mínima de desempenho.
+    example: SELIC
+    maxLength: 12
+  minimumPremium:
+    $ref: ./SurvivalPensionMinimumPremium.yaml
+  premiumPaymentMethods:
+    type: array
+    items:
+      $ref: ../../enum/EnumSurvivalPaymentMethod.yaml
+  permissionExtraordinaryContributions:
+    description: |
+      Se ficam permitidos aportes extraordinários. A considerar os seguintes domínios:
+      1. Sim; (true)
+      2. Não (false).
+    type: boolean
+    example: true
+  permissionScheduledFinancialPayments:
+    description: |
+      Se ficam permitidos pagamentos financeiros programados. A considerar os seguintes domínios:
+      1. Sim; (true)
+      2. Não (false).
+    type: boolean
+    example: true
+  gracePeriod:
+    $ref: ./SurvivalGracePeriod.yaml
+  reversalFinancialResults:
+    type: string
+    pattern: '^[0-1]\.\d{6}$'
+    description: Percentual de reversão de excedente financeiro na concessão. Em %.
+    example: '0.051230'
+  investmentFunds:
+    type: array
+    items:
+      $ref: ./SurvivalPensionInvestimentFund.yaml
+  portabilityPaymentTerm: 
+    type: number
+    description: Prazo em dias para pagamento da portabilidade.
+    example: 20
+    maximum: 9999
+    
