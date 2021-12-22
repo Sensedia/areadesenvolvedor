@@ -1,0 +1,12 @@
+type: object
+required:
+  - term
+properties:
+  term:
+    $ref: ../../enum/EnumInsuranceTermType.yaml
+  termAdditionalInfo:
+    type: string
+    description: 'Campo aberto para detalhamento do campo ‘Outros’ por cada participante.'
+    maxLength: 255
+    example: ''
+additionalProperties: false
