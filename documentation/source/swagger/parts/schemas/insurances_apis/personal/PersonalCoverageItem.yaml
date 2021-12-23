@@ -1,0 +1,15 @@
+type: object
+required:
+  - type
+  - coverageAttributes
+properties:
+  type:
+    $ref: ../../enum/EnumInsurancePersonalCoverageType.yaml
+  additionalInfo:
+    type: string
+    description: 'Campo aberto para descrição de cada participante ao selecionar o domínio ‘Outros’ no campo acima ´Tipo’ diferenciais do produto em questão.'
+    maxLength: 100
+    example: 'Detalhar os serviços, benefícios e outros'
+  coverageAttributes:
+    $ref: ./PersonalCoverageItemAttributes.yaml
+additionalProperties: false

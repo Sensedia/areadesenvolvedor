@@ -1,0 +1,9 @@
+type: object
+properties:
+  type:
+    $ref: ../../enum/EnumCarContractBaseType.yaml
+  minValue:
+    $ref: ./ContractBaseValue.yaml
+  maxValue:
+    $ref: ./ContractBaseValue.yaml
+additionalProperties: false
