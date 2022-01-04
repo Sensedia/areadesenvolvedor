@@ -2,6 +2,8 @@ type: string
 maxLength: 3
 enum:
   - PIX
+  - TED
+  - TEF
 example: PIX
 description: |
   Este campo define o tipo de pagamento que será iniciado após a autorização do consentimento.
