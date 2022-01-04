@@ -1,0 +1,45 @@
+type: object
+description: Atributos da cobertura
+required:
+  - deductibleType
+  - fullIndemnityDeductible
+  - geographicScope
+properties:
+  minLMI:
+    $ref: ../CoverageItemAttributesMinLMI.yaml
+  maxLMI:
+    $ref: ../CoverageItemAttributesMaxLMI.yaml
+  newCarMaximumCalculatingPeriod:
+    type: integer
+    description: 'Prazo máximo para veículo zero quilômetro em meses'
+    maxLength: 3
+    example: 12
+  fullIndemnityPercentage:
+    type: string
+    description: Será caracterizada a indenização integral quando os prejuízos resultantes de um mesmo sinistro, atingirem ou ultrapassarem a quantia apurada a partir da aplicação de percentual previamente determinado sobre o valor contratado. (Circular 269/2004).
+    pattern: '^\d{1,5}\.\d{2}$'
+    maxLength: 8
+    example: '75.00'
+  deductibleType:
+    $ref: ../../enum/EnumCoverageItemDeductibleType.yaml
+  fullIndemnityDeductible:
+    type: boolean
+    description: |
+      (Circular 269/2004). A considerar os domínios abaixo:
+      1. true
+      2. false
+    example: true
+  deductiblePaymentByCoverage:
+    type: boolean
+    description: |
+       Mudança do campo com a sinalização para cada cobertura se a seguradora exige pagamento de franquia.
+        1. true
+        2. false
+    example: true
+  mandatoryParticipation:
+    $ref: ./CoverageItemMandatoryParticipation.yaml
+  geographicScope:
+    type: array
+    items:
+      $ref: ./CarCoverageItemAttributesGeographicScope.yaml
+additionalProperties: false

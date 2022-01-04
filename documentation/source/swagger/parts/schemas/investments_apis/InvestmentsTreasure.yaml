@@ -1,0 +1,9 @@
+type: object
+required:
+  - fees
+properties:
+  participantIdentification:
+    $ref: ../business_commons/ParticipantIdentification.yaml
+  fees:
+    $ref: ./InvestmentsTreasureFees.yaml
+additionalProperties: false
