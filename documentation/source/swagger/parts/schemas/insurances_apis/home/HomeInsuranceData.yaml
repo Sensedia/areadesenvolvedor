@@ -1,0 +1,16 @@
+type: object
+required:
+  - participant
+  - society
+  - products
+properties:
+  participant:
+    $ref: ../../business_commons/ParticipantIdentification.yaml
+  society:
+    $ref: ../../business_commons/SocietyIdentification.yaml
+  products:
+    type: array
+    items:
+      $ref: ./HomeInsuranceProduct.yaml
+    minItems: 1
+additionalProperties: false

@@ -1,0 +1,13 @@
+type: object
+required:
+  - participantIdentification
+properties:
+  participant:
+    $ref: ../../business_commons/ParticipantIdentification.yaml
+  society:
+    $ref: ../../business_commons/SocietyIdentification.yaml
+  products:
+    type: array
+    items:
+      $ref: ./RiskPensionProduct.yaml
+additionalProperties: false

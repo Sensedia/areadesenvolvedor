@@ -1,0 +1,301 @@
+openapi: 3.0.0
+info:
+  title: API Seguros - Open Banking Brasil
+  description: |
+    As APIs descritas neste documento são referentes a API de Seguros da fase OpenInsurance do Open Banking Brasil.
+  version: 1.0.0-rc1.0
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+  contact:
+    name: Governança do Open Banking Brasil – Especificações
+    email: gt-interfaces@openbankingbr.org
+    url: 'https://openbanking-brasil.github.io/areadesenvolvedor/'
+servers:
+  - url: 'https://api.banco.com.br/open-banking/opendata-insurance/v1'
+    description: Servidor de Produção
+  - url: 'https://apih.banco.com.br/open-banking/opendata-insurance/v1'
+    description: Servidor de Homologação
+tags:
+  - name: Seguros
+    description: Operações para consulta de informações de seguros automotivos, residenciais e pessoais
+paths:
+  /cars:
+    get:
+      tags:
+        - Seguros
+      summary: Conjunto de informações referentes a seguros automotivos de uma instituição
+      operationId: getCarInsurance
+      description: Método para obter a lista de todos os seguros automotivos de uma instituição
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+      responses:
+        '200':
+          $ref: '#/components/responses/OKResponseCarInsuranceList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /homes:
+    get:
+      tags:
+        - Seguros
+      summary: Conjunto de informações referentes a seguros residenciais de uma instituição
+      operationId: getHomeInsurance
+      description: Método para obter a lista de todos os seguros automotivos de uma instituição
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+      responses:
+        '200':
+          $ref: '#/components/responses/OKResponseHomeInsuranceList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /personals:
+    get:
+      tags:
+        - Seguros
+      summary: Conjunto de informações referentes a seguros pessoais de uma instituição
+      operationId: getPersonalInsurance
+      description: Método para obter a lista de todos os seguros pessoais de uma instituição
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+      responses:
+        '200':
+          $ref: '#/components/responses/OKResponsePersonalInsuranceList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    # Início schemas comuns
+    ParticipantIdentification:
+      $ref: ./schemas/business_commons/ParticipantIdentification.yaml
+    SocietyIdentification:
+      $ref: ./schemas/business_commons/SocietyIdentification.yaml
+    CnpjNumber:
+      $ref: ./schemas/business_commons/CnpjNumber.yaml
+    AssistanceServicesItem:
+      $ref: ./schemas/insurances_apis/AssistanceServicesItem.yaml
+    CoverageItemAttributesMinLMI:
+      $ref: ./schemas/insurances_apis/CoverageItemAttributesMinLMI.yaml
+    CoverageItemAttributesMaxLMI:
+      $ref: ./schemas/insurances_apis/CoverageItemAttributesMaxLMI.yaml
+    CoverageItemAttributeUnit:
+      $ref: ./schemas/insurances_apis/CoverageItemAttributeUnit.yaml
+    MinimumRequirement:
+      $ref: ./schemas/insurances_apis/MinimumRequirement.yaml
+    PremiumPayment:
+      $ref: ./schemas/insurances_apis/PremiumPayment.yaml
+    CurrencyValue:
+      $ref: ./schemas/business_commons/CurrencyValue.yaml
+    CurrencyCode:
+      $ref: ./schemas/business_commons/CurrencyCode.yaml
+    GracePeriod:
+      $ref: ./schemas/business_commons/GracePeriod.yaml
+    TermsAndConditionsItem:
+      $ref: ./schemas/business_commons/TermsAndConditionsItem.yaml
+    EnumProductModality:
+      $ref: ./schemas/business_commons/EnumProductModality.yaml
+    EnumGracePeriodUnit:
+      $ref: ./schemas/business_commons/EnumGracePeriodUnit.yaml
+    # Fim schemas comuns
+
+    # Início car schemas
+    OKResponseCarInsuranceList:
+      $ref: ./schemas/insurances_apis/car/ResponseCarInsuranceList.yaml
+    CarInsuranceData:
+      $ref: ./schemas/insurances_apis/car/CarInsuranceData.yaml
+    CarInsuranceProduct:
+      $ref: ./schemas/insurances_apis/car/CarInsuranceProduct.yaml
+    CarCoverageItem:
+      $ref: ./schemas/insurances_apis/car/CarCoverageItem.yaml
+    EnumCarCoverageType:
+      $ref: ./schemas/enum/EnumCarCoverageType.yaml
+    CarCoverageItemAttributes:
+      $ref: ./schemas/insurances_apis/car/CarCoverageItemAttributes.yaml
+    ContractBase:
+      $ref: ./schemas/insurances_apis/car/ContractBase.yaml
+    NewCar:
+      $ref: ./schemas/insurances_apis/car/CarCoverageItemNewCar.yaml
+    CarGeoGraphicScope:
+      $ref: ./schemas/insurances_apis/car/CarCoverageItemAttributesGeographicScope.yaml
+    ContractBaseDeterminedValue:
+      $ref: ./schemas/insurances_apis/car/ContractBaseDeterminedValue.yaml
+    EnumCoverageItemDeductibleType:
+      $ref: ./schemas/enum/EnumCoverageItemDeductibleType.yaml
+    CoverageItemMandatoryParticipation:
+      $ref: ./schemas/insurances_apis/car/CoverageItemMandatoryParticipation.yaml
+    EnumCoverageItemGeographicScopeType:
+      $ref: ./schemas/enum/EnumCoverageItemGeographicScopeType.yaml
+    CarPartsItem:
+      $ref: ./schemas/insurances_apis/car/CarPartsItem.yaml
+    EnumCarPartType:
+      $ref: ./schemas/enum/EnumCarPartType.yaml
+    CarModel:
+      $ref: ./schemas/insurances_apis/car/CarModel.yaml
+    EnumInsuranceAdditionalType:
+      $ref: ./schemas/enum/EnumInsuranceAdditionalType.yaml
+    EnumAssistanceServicesPackageType:
+      $ref: ./schemas/enum/EnumAssistanceServicesPackageType.yaml
+    EnumChargeTypeSignalingType:
+      $ref: ./schemas/enum/EnumChargeTypeSignalingType.yaml
+    EnumInsuranceTermType:
+      $ref: ./schemas/enum/EnumInsuranceTermType.yaml
+    EnumCustomerServiceType:
+      $ref: ./schemas/enum/EnumCustomerServiceType.yaml
+    EnumPremiumPaymentMethodType:
+      $ref: ./schemas/enum/EnumPremiumPaymentMethodType.yaml
+    EnumPremiumPaymentType:
+      $ref: ./schemas/enum/EnumPremiumPaymentType.yaml
+    EnumTargetAudience:
+      $ref: ./schemas/business_commons/EnumTargetAudience.yaml
+    # Fim car schemas
+
+    # Início home schemas
+    OKResponseHomeInsuranceList:
+      $ref: ./schemas/insurances_apis/home/ResponseHomeInsuranceList.yaml
+    HomeInsuranceData:
+      $ref: ./schemas/insurances_apis/home/HomeInsuranceData.yaml
+    HomeInsuranceProduct:
+      $ref: ./schemas/insurances_apis/home/HomeInsuranceProduct.yaml
+    HomeCoverageItem:
+      $ref: ./schemas/insurances_apis/home/HomeCoverageItem.yaml
+    EnumHomeCoverageType:
+      $ref: ./schemas/enum/EnumHomeCoverageType.yaml
+    HomeCoverageItemAttributes:
+      $ref: ./schemas/insurances_apis/home/HomeCoverageItemAttributes.yaml
+    HomePropertyCharacteristics:
+      $ref: ./schemas/insurances_apis/home/HomePropertyCharacteristics.yaml
+    EnumHomePropertyType:
+      $ref: ./schemas/enum/EnumHomePropertyType.yaml
+    EnumHomePropertyBuildType:
+      $ref: ./schemas/enum/EnumHomePropertyBuildType.yaml
+    EnumHomePropertyUsageType:
+      $ref: ./schemas/enum/EnumHomePropertyUsageType.yaml
+    EnumHomeImportanceInsuredType:
+      $ref: ./schemas/enum/EnumHomeImportanceInsuredType.yaml
+    ValidityItem:
+      $ref: ./schemas/insurances_apis/home/ValidityItem.yaml
+    # Fim home schemas
+
+    # Início personal schemas
+    OKResponsePersonalInsuranceList:
+      $ref: ./schemas/insurances_apis/personal/ResponsePersonalInsuranceList.yaml
+    PersonalInsuranceData:
+      $ref: ./schemas/insurances_apis/personal/PersonalInsuranceData.yaml
+    PersonalInsuranceProduct:
+      $ref: ./schemas/insurances_apis/personal/PersonalInsuranceProduct.yaml
+    PersonalCoverageItem:
+      $ref: ./schemas/insurances_apis/personal/PersonalCoverageItem.yaml
+    PersonalCoverageItemAttributes:
+      $ref: ./schemas/insurances_apis/personal/PersonalCoverageItemAttributes.yaml
+    EnumIdemnityPaymentMethod:
+      $ref: ./schemas/enum/EnumPersonalIndemnityPaymentFrequencyType.yaml
+    EnumPersonalIndemnityPaymentFrequencyType:
+      $ref: ./schemas/enum/EnumPersonalIndemnityPaymentFrequencyType.yaml
+    EnumPersonalIndemnfiablePeriodType:
+      $ref: ./schemas/enum/EnumPersonalIndemnfiablePeriodType.yaml
+    EnumPersonalExcludedRisksType:
+      $ref: ./schemas/enum/EnumPersonalExcludedRisksType.yaml
+    EnumPersonalInsuranceAssistanceType:
+      $ref: ./schemas/enum/EnumPersonalInsuranceAssistanceType.yaml
+    PersonalInsurancePmbacRemuneration:
+      $ref: ./schemas/insurances_apis/personal/PersonalInsurancePmbacRemuneration.yaml
+    PersonalInsuranceBenefitRecalculation:
+      $ref: ./schemas/insurances_apis/personal/PersonalInsuranceBenefitRecalculation.yaml
+    PersonalInsuranceAgeAdjustment:
+      $ref: ./schemas/insurances_apis/personal/PersonalInsuranceAgeAdjustment.yaml
+    EnumPersonalInsuranceOtherGuaranteedValues:
+      $ref: ./schemas/enum/EnumPersonalInsuranceOtherGuaranteedValues.yaml
+    EnumPersonalInsuranceIndemnityPaymentMethod:
+      $ref: ./schemas/enum/EnumPersonalInsuranceIndemnityPaymentMethod.yaml
+    EnumPersonalInsuranceIndemnityPaymentIncome:
+      $ref: ./schemas/enum/EnumPersonalInsuranceIndemnityPaymentIncome.yaml
+    PersonalInsurancePremiumPayment:
+      $ref: ./schemas/insurances_apis/personal/PersonalInsurancePremiumPayment.yaml
+    EnumPersonalInsurancePremiumPaymentFrequency:
+      $ref: ./schemas/enum/EnumPersonalInsurancePremiumPaymentFrequency.yaml
+    # Fim personal schemas
+
+    Links:
+      $ref: ./schemas/Links.yaml
+    Meta:
+      $ref: ./schemas/Meta.yaml
+  parameters:
+    page:
+      $ref: ./parameters/Page.yaml
+    pageSize:
+      $ref: ./parameters/PageSize.yaml
+  responses:
+    OKResponseCarInsuranceList:
+      description: Dados de seguro(s) automotivos obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas/insurances_apis/car/ResponseCarInsuranceList.yaml
+    OKResponseHomeInsuranceList:
+      description: Dados de seguro(s) residenciais obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas/insurances_apis/home/ResponseHomeInsuranceList.yaml
+    OKResponsePersonalInsuranceList:
+      description: Dados de seguro(s) pessoais obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas/insurances_apis/personal/ResponsePersonalInsuranceList.yaml
+    BadRequest:
+      description: 'A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.'
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: ./schemas/ResponseError.yaml
+    InternalServerError:
+      description: Ocorreu um erro no gateway da API ou no microsserviço
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: ./schemas/ResponseError.yaml
+    MethodNotAllowed:
+      description: O consumidor tentou acessar o recurso com um método não suportado
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: ./schemas/ResponseError.yaml
+    NotFound:
+      description: O recurso solicitado não existe ou não foi implementado
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: ./schemas/ResponseError.yaml
+    TooManyRequests:
+      description: 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido'
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: ./schemas/ResponseError.yaml
