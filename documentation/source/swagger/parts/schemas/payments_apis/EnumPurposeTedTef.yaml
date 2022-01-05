@@ -1,0 +1,9 @@
+type: string
+maxLength: 3
+enum:
+  - PIX
+  - TED
+  - TEF
+example: PIX
+description: |
+  Para o caso de TED o campo é obrigatório, para o caso de TEF não. É responsabilidade da iniciadora desenvolver esse condicionante de modo a garantir a usabilidade especificada pelo GT UX.
