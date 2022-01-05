@@ -310,7 +310,7 @@ paths:
         - $ref: "#/components/parameters/xCustomerUserAgent"
       responses:
         "200":
-          $ref: "#/components/responses/200PaymentsInitiationPixPaymentIdRead"
+          $ref: "#/components/responses/200PaymentsInitiationTedTefPaymentIdRead"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -352,9 +352,6 @@ components:
       $ref: ./schemas/payments_apis/ResponseTedTefPayment.yaml
     ResponseTedTefPaymentData:
       $ref: ./schemas/payments_apis/ResponseTedTefPaymentData.yaml
-
-
-
     422ResponseErrorCreateConsent:
       $ref: ./schemas/payments_apis/422ResponseErrorCreateConsent.yaml
     422ResponseErrorCreatePixPayment:
@@ -379,8 +376,6 @@ components:
       $ref: ./schemas/enum/EnumAccountPaymentsType.yaml
     EnumAuthorisationStatusType:
       $ref: ./schemas/enum/EnumAuthorisationStatusType.yaml
-    EnumErrorsCreateConsent:
-      $ref: ./schemas/enum/EnumErrorsCreateConsent.yaml
     EnumErrorsCreatePayment:
       $ref: ./schemas/enum/EnumErrorsCreatePayment.yaml
     EnumLocalInstrument:
@@ -534,3 +529,15 @@ components:
         application/jwt:
           schema:
             $ref: "#/components/schemas/ResponsePixPayment"
+    200PaymentsInitiationTedTefPaymentIdRead:
+      description: Dados de iniciação de pagamento ted-tef obtidos com sucesso.
+      headers:
+        x-fapi-interaction-id:
+          description: |
+            Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+          schema:
+            $ref: "#/components/schemas/XFapiInteractionId"
+      content:
+        application/jwt:
+          schema:
+            $ref: "#/components/schemas/ResponseTedTefPayment"
