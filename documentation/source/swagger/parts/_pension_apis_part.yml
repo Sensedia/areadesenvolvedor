@@ -81,8 +81,6 @@ components:
       $ref: './schemas/pension_apis/survival/GetSurvivalPensionContractData.yaml'
     SurvivalPensionInvestimentFund:
       $ref: './schemas/pension_apis/survival/SurvivalPensionInvestimentFund.yaml'
-    SurvivalPensionProduct:
-      $ref: ./schemas/pension_apis/survival/SurvivalPensionProduct.yaml
     SurvivalPensionMinimumRequirements:
       $ref: ./schemas/pension_apis/survival/SurvivalPensionMinimumRequirements.yaml
     SusepProcessNumber:
@@ -111,8 +109,6 @@ components:
       $ref: './schemas/Meta.yaml'
     ParticipantIdentification:
       $ref: ./schemas/business_commons/ParticipantIdentification.yaml
-    RiskPensionProduct:
-      $ref: ./schemas/pension_apis/risk/RiskPensionProduct.yaml
     EnumRiskPensionIndemnifiablePeriod:
       $ref: ./schemas/enum/EnumRiskPensionIndemnifiablePeriod.yaml
     EnumTargetAudience:

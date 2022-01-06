@@ -129,8 +129,6 @@ components:
       $ref: ./schemas/insurances_apis/car/ResponseCarInsuranceList.yaml
     CarInsuranceData:
       $ref: ./schemas/insurances_apis/car/CarInsuranceData.yaml
-    CarInsuranceProduct:
-      $ref: ./schemas/insurances_apis/car/CarInsuranceProduct.yaml
     CarCoverageItem:
       $ref: ./schemas/insurances_apis/car/CarCoverageItem.yaml
     EnumCarCoverageType:
@@ -180,8 +178,6 @@ components:
       $ref: ./schemas/insurances_apis/home/ResponseHomeInsuranceList.yaml
     HomeInsuranceData:
       $ref: ./schemas/insurances_apis/home/HomeInsuranceData.yaml
-    HomeInsuranceProduct:
-      $ref: ./schemas/insurances_apis/home/HomeInsuranceProduct.yaml
     HomeCoverageItem:
       $ref: ./schemas/insurances_apis/home/HomeCoverageItem.yaml
     EnumHomeCoverageType:
@@ -198,8 +194,6 @@ components:
       $ref: ./schemas/enum/EnumHomePropertyUsageType.yaml
     EnumHomeImportanceInsuredType:
       $ref: ./schemas/enum/EnumHomeImportanceInsuredType.yaml
-    ValidityItem:
-      $ref: ./schemas/insurances_apis/home/ValidityItem.yaml
     # Fim home schemas
 
     # Início personal schemas
@@ -207,14 +201,10 @@ components:
       $ref: ./schemas/insurances_apis/personal/ResponsePersonalInsuranceList.yaml
     PersonalInsuranceData:
       $ref: ./schemas/insurances_apis/personal/PersonalInsuranceData.yaml
-    PersonalInsuranceProduct:
-      $ref: ./schemas/insurances_apis/personal/PersonalInsuranceProduct.yaml
     PersonalCoverageItem:
       $ref: ./schemas/insurances_apis/personal/PersonalCoverageItem.yaml
     PersonalCoverageItemAttributes:
       $ref: ./schemas/insurances_apis/personal/PersonalCoverageItemAttributes.yaml
-    EnumIdemnityPaymentMethod:
-      $ref: ./schemas/enum/EnumPersonalIndemnityPaymentFrequencyType.yaml
     EnumPersonalIndemnityPaymentFrequencyType:
       $ref: ./schemas/enum/EnumPersonalIndemnityPaymentFrequencyType.yaml
     EnumPersonalIndemnfiablePeriodType:
