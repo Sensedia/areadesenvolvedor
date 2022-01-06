@@ -2847,6 +2847,101 @@ Objeto contendo as informações de resposta do consentimento para a iniciação
 |payment|[PaymentConsent](#schemapaymentconsent)|true|Objeto contendo dados de pagamento para consentimento.|
 |debtorAccount|[DebtorAccount](#schemadebtoraccount)|false|Objeto que contém a identificação da conta de origem do pagador.  <br>As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.|
 
+<h2 id="tocS_ResponsePaymentConsentData">ResponsePaymentConsentData</h2>
+
+<a id="schemaresponsepaymentconsentdata"></a>
+<a id="schema_ResponsePaymentConsentData"></a>
+<a id="tocSresponsepaymentconsentdata"></a>
+<a id="tocsresponsepaymentconsentdata"></a>
+
+```json
+{
+  "consentId": "urn:bancoex:C1DD33123",
+  "creationDateTime": "2021-05-21T08:30:00Z",
+  "expirationDateTime": "2021-05-21T08:30:00Z",
+  "statusUpdateDateTime": "2021-05-21T08:30:00Z",
+  "status": "AWAITING_AUTHORISATION",
+  "revocation": {
+    "loggedUser": {
+      "document": {
+        "identification": "11111111111",
+        "rel": "CPF"
+      }
+    },
+    "revoked_by": "USER",
+    "reason": {
+      "code": "OTHER",
+      "additionalInformation": "Não quero mais o serviço"
+    }
+  },
+  "loggedUser": {
+    "document": {
+      "identification": "11111111111",
+      "rel": "CPF"
+    }
+  },
+  "businessEntity": {
+    "document": {
+      "identification": "11111111111111",
+      "rel": "CNPJ"
+    }
+  },
+  "creditor": {
+    "personType": "PESSOA_NATURAL",
+    "cpfCnpj": "58764789000137",
+    "name": "Marco Antonio de Brito"
+  },
+  "payment": {
+    "type": "PIX",
+    "schedule": {
+      "single": {
+        "date": "2021-01-01"
+      }
+    },
+    "date": "2021-01-01",
+    "currency": "BRL",
+    "amount": "100000.12",
+    "ibgeTownCode": "5300108",
+    "details": {
+      "localInstrument": "DICT",
+      "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\n",
+      "proxy": "12345678901",
+      "creditorAccount": {
+        "ispb": "12345678",
+        "issuer": "1774",
+        "number": "1234567890",
+        "accountType": "CACC"
+      }
+    }
+  },
+  "debtorAccount": {
+    "ispb": "12345678",
+    "issuer": "1774",
+    "number": "1234567890",
+    "accountType": "CACC"
+  }
+}
+
+```
+
+Objeto contendo as informações de resposta do consentimento para a iniciação de pagamento individual.
+
+### Propriedades
+
+|Nome|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|consentId|string|true|Identificador único do consentimento criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.<br>Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource<br>Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN<br>seja um identificador de recurso persistente e independente da localização.<br>Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:<br>- o namespace(urn)<br>- o identificador associado ao namespace da instituição transnmissora (bancoex)<br>- o identificador específico dentro do namespace (C1DD33123).<br>Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).|
+|creationDateTime|string(date-time)|true|Data e hora em que o consentimento foi criado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).|
+|expirationDateTime|string(date-time)|true|Data e hora em que o consentimento da iniciação de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).<br>O consentimento é criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expiração - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.<br>Para o cenário em que o status assumiu AUTHORISED, o tempo máximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este é o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. Não é possível prorrogar este tempo e a criação de um novo consentimento será necessária para os cenários de insucesso.<br>O tempo do expirationDateTime é garantido com os 15 minutos do access token, sendo possível utilizar mais três refresh tokens até totalizar 60 minutos.|
+|statusUpdateDateTime|string(date-time)|true|Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).|
+|status|[EnumAuthorisationStatusType](#schemaenumauthorisationstatustype)|true|Retorna o estado do consentimento, o qual no momento de sua criação será AWAITING_AUTHORISATION.<br>Este estado será alterado depois da autorização do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED, REJECTED ou REVOKED. <br>O consentimento fica no estado CONSUMED após ocorrer a iniciação do pagamento referente ao consentimento.  <br>Em caso de consentimento expirado a detentora deverá retornar o status REJECTED.  <br>Em caso de revogação do consentimento a detentora deverá retornar o status REVOKED.  <br>Estados possíveis:  <br>AWAITING_AUTHORISATION - Aguardando autorização  <br>AUTHORISED - Autorizado   <br>REJECTED - Rejeitado  <br>CONSUMED - Consumido   <br>REVOKED - Revogado|
+|revocation|[Revocation](#schemarevocation)|false|Objeto que contém as informações das circunstância da revogação.<br>O campo loggedUser deve ser preenchidos quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revoked_by estiver com o valor USER.|
+|loggedUser|[LoggedUser](#schemaloggeduser)|true|Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.|
+|businessEntity|[BusinessEntity](#schemabusinessentity)|false|Usuário (pessoa jurídica) que encontra-se logado na instituição Iniciadora de Pagamento. [Restrição] Preenchimento obrigatório se usuário logado na instituição Iniciadora de Pagamento for um CNPJ (pessoa jurídica).|
+|creditor|[Identification](#schemaidentification)|true|Objeto contendo os dados do recebedor (creditor).|
+|payment|[PaymentConsent](#schemapaymentconsent)|true|Objeto contendo dados de pagamento para consentimento.|
+|debtorAccount|[DebtorAccount](#schemadebtoraccount)|false|Objeto que contém a identificação da conta de origem do pagador.  <br>As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.|
+
 <h2 id="tocS_ResponsePixPayment">ResponsePixPayment</h2>
 
 <a id="schemaresponsepixpayment"></a>
@@ -2901,6 +2996,73 @@ Objeto contendo as informações de resposta do consentimento para a iniciação
 |links|object|true|Referências para outros recusos da API requisitada.|
 |» self|string(uri)|true|URI completo que gerou a resposta atual.|
 |meta|[Meta](#schemameta)|true|Meta informações referente à API requisitada.|
+
+<h2 id="tocS_Revocation">Revocation</h2>
+
+<a id="schemarevocation"></a>
+<a id="schema_Revocation"></a>
+<a id="tocSrevocation"></a>
+<a id="tocsrevocation"></a>
+
+```json
+{
+  "loggedUser": {
+    "document": {
+      "identification": "11111111111",
+      "rel": "CPF"
+    }
+  },
+  "revoked_by": "USER",
+  "reason": {
+    "code": "OTHER",
+    "additionalInformation": "Não quero mais o serviço"
+  }
+}
+
+```
+
+Objeto que contém as informações das circunstância da revogação.
+O campo loggedUser deve ser preenchidos quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revoked_by estiver com o valor USER.
+
+### Propriedades
+
+|Nome|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|loggedUser|[LoggedUser](#schemaloggeduser)|true|Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.|
+|revoked_by|string|true|Define qual das partes envolvidas na transação está realizando a revogação. Valores possíveis: USER (Revogado pelo usuário), ASPSP (Provedor de serviços de pagamento para serviços de conta - Detentora de conta), TPP (Instituições Provedoras - iniciadora de pagamentos).<br>Os motivos de revogação do consentimento: FRAUD e ACCOUNT_CLOSURE só podem ser usados caso o campo: data.revocation.revoked_by tenha o valor TPP ou ASPSP, ou seja, somente no caso de revogação unilateral pela iniciadora ou detentora.|
+|reason|[Reason](#schemareason)|true|Define a razão pela qual o consentimento foi revogado.|
+
+<h2 id="tocS_Reason">Reason</h2>
+
+<a id="schemareason"></a>
+<a id="schema_Reason"></a>
+<a id="tocSreason"></a>
+<a id="tocsreason"></a>
+
+```json
+{
+  "code": "OTHER",
+  "additionalInformation": "Não quero mais o serviço"
+}
+
+```
+
+Define a razão pela qual o consentimento foi revogado.
+
+### Propriedades
+
+|Nome|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|code|string|true|Define o código da razão pela qual o consentimento foi revogado. <br>Valores possíveis: <br>FRAUD - Indica suspeita de fraude <br>ACCOUNT_CLOSURE - Indica que a conta do usuário foi encerrada <br>OTHER - Indica que motivo do cancelamento está fora dos motivos pré-estabelecidos.|
+|additionalInformation|string|false|Contém informações adicionais definidas pelo requisitante da revogação.<br>O campo additionalInformation é obrigatório quando a revogação for feita pela iniciadora ou pela detentora unilateralmente, ou seja, o campo revoked_by igual a TPP ou ASPSP e o motivo de revogação for OTHER.|
+
+#### Enumerated Values
+
+|Nome|Código|
+|---|---|
+|code|FRAUD|
+|code|ACCOUNT_CLOSURE|
+|code|OTHER|
 
 <h2 id="tocS_Revocation">Revocation</h2>
 
