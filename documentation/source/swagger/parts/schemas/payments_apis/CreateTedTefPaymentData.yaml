@@ -6,7 +6,7 @@ properties:
   localInstrument:
     $ref: ./EnumLocalInstrument.yaml
   payment:
-    $ref: ./PaymentPix.yaml
+    $ref: ./Payment.yaml
   creditorAccount:
     $ref: ./CreditorAccountTedTef.yaml
   purpose:

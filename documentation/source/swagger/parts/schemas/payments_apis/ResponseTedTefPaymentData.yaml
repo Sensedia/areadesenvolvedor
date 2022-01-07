@@ -60,7 +60,7 @@ properties:
   localInstrument:
     $ref: ../payments_apis/EnumLocalInstrument.yaml
   payment:
-    $ref: ./PaymentPix.yaml
+    $ref: ./Payment.yaml
   creditorAccount:
     $ref: ../payments_apis/CreditorAccountTedTef.yaml
   rejectionReason:
