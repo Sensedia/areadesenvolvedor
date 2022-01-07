@@ -454,7 +454,7 @@ components:
       $ref: ./schemas/payments_apis/PaymentConsent.yaml
     PatchPaymentsConsent:
       $ref: ./schemas/payments_apis/PatchPaymentsConsent.yaml
-    PaymentPix:
+    Payment:
       $ref: ./schemas/payments_apis/Payment.yaml
     ResponseError:
       $ref: ./schemas/ResponseError.yaml
