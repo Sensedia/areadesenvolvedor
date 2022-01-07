@@ -348,7 +348,7 @@ paths:
         - OAuth2AuthorizationCode:
             - "consent:consentId"
             - payments
-  /pix/ted-tef/{paymentId}:
+  /ted-tef/{paymentId}:
     get:
       tags:
         - Pagamentos
