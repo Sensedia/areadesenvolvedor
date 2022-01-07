@@ -979,20 +979,21 @@ components:
       additionalProperties: false
     Revocation:
       type: object
-      description: "Objeto que contém as informações das circunstância da revogação.\nO campo\_loggedUser\_deve ser preenchidos quando a revogação for feita pelo usuário final, ou seja, se o campo\_data.revocation.revoked_by\_estiver com o valor\_USER.\n"
+      description: "Objeto que contém as informações das circunstância da revogação.\nO campo loggedUser deve ser preenchidos quando a revogação for feita pelo usuário final, ou seja, se o campo\_data.revocation.revoked_by\_estiver com o valor\_USER.\n"
       required:
-        - loggedUser
-        - revoked_by
+        - revokedBy
         - reason
       properties:
         loggedUser:
           $ref: '#/components/schemas/LoggedUser'
-        revoked_by:
+        revokedBy:
           type: string
           maxLength: 140
           pattern: '[\w\W\s]*'
           example: USER
-          description: "Define qual das partes envolvidas na transação está realizando a revogação. Valores possíveis:\_USER\_(Revogado pelo usuário),\_ASPSP\_(Provedor de serviços de pagamento para serviços de conta - Detentora de conta),\_TPP\_(Instituições Provedoras - iniciadora de pagamentos).\nOs motivos de revogação do consentimento:\_FRAUD\_e\_ACCOUNT_CLOSURE\_só podem ser usados caso o campo:\_data.revocation.revoked_by\_tenha o valor\_TPP\_ou\_ASPSP, ou seja, somente no caso de revogação unilateral pela iniciadora ou detentora.\n"
+          description: |
+            Define qual das partes envolvidas na transação está realizando a revogação. Valores possíveis: USER (Revogado pelo usuário), ASPSP (Provedor de serviços de pagamento para serviços de conta - Detentora de conta), TPP (Instituições Provedoras - iniciadora de pagamentos).
+            Os motivos de revogação do consentimento: FRAUD e ACCOUNT_CLOSURE só podem ser usados caso o campo: data.revocation.revokedBy tenha o valor TPP ou ASPSP, ou seja, somente no caso de revogação unilateral pela iniciadora ou detentora.
         reason:
           type: object
           description: Define a razão pela qual o consentimento foi revogado.
@@ -1016,7 +1017,9 @@ components:
               description: "Contém informações adicionais definidas pelo requisitante da revogação.\nO campo\_additionalInformation\_é obrigatório quando a revogação for feita pela iniciadora ou pela detentora unilateralmente, ou seja, o campo revoked_by igual a\_TPP\_ou\_ASPSP\_e o motivo de revogação for\_OTHER.\n"
     LoggedUser:
       type: object
-      description: Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.
+      description: |
+        Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.
+        [Restrição] Deve obrigatoriamente ser enviado quando a revogação for feita pelo usuário final, ou seja, se o campo revokedBy estiver com o valor 'USER'.
       additionalProperties: false
       required:
         - document
@@ -1071,8 +1074,6 @@ components:
       description: Objeto contendo dados de pagamento para consentimento.
       required:
         - type
-        - schedule
-        - date
         - currency
         - amount
         - details
@@ -1081,7 +1082,9 @@ components:
           $ref: '#/components/schemas/EnumPaymentType'
         schedule:
           type: object
-          description: Define o agendamento do pagamento. Utilizado somente na funcionalidade de agendamento de pagamentos.
+          description: |
+            Define o agendamento do pagamento. Utilizado somente na funcionalidade de agendamento de pagamentos.
+            [Restrição] Deve obrigatoriamente ser enviado caso o campo date não seja informado (cenários de PIX Agendamento).
           required:
             - single
           properties:
@@ -1107,7 +1110,9 @@ components:
           maxLength: 10
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-01-01'
-          description: 'Data do pagamento, conforme especificação RFC-3339.'
+          description: |
+            Data do pagamento, conforme especificação RFC-3339.
+            [Restrição] Deve obrigatoriamente ser enviado caso o campo schedule não seja informado (cenários de PIX).
         currency:
           type: string
           maxLength: 3

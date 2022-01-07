@@ -1,5 +1,7 @@
 type: object
-description: Define o agendamento do pagamento. Utilizado somente na funcionalidade de agendamento de pagamentos.
+description: |
+  Define o agendamento do pagamento. Utilizado somente na funcionalidade de agendamento de pagamentos.
+  [Restrição] Deve obrigatoriamente ser enviado caso o campo date não seja informado (cenários de PIX Agendamento).
 required:
   - single
 properties:
