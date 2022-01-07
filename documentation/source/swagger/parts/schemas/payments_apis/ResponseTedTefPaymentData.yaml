@@ -17,11 +17,8 @@ properties:
     pattern: ^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$
     example: TXpRMU9UQTROMWhZV2xSU1FUazJSMDl
     description: |
-      Código ou identificador único informado pela instituição detentora da conta para representar
-      a iniciação de pagamento individual. O `paymentId` deve ser diferente do `endToEndId`.
+      Código ou identificador único informado pela instituição detentora da conta para representar a iniciação de pagamento individual.
       Este é o identificador que deverá ser utilizado na consulta ao status da iniciação de pagamento efetuada.
-  endToEndId:
-    $ref: ../business_commons/EndToEndId.yaml
   consentId:
     type: string
     maxLength: 256
@@ -57,10 +54,8 @@ properties:
       sempre com a utilização de timezone UTC(UTC time format).
   status:
     $ref: ../enum/EnumPaymentStatusType.yaml
-  localInstrument:
-    $ref: ../payments_apis/EnumLocalInstrument.yaml
   payment:
-    $ref: ./PaymentPix.yaml
+    $ref: ./Payment.yaml
   creditorAccount:
     $ref: ../payments_apis/CreditorAccountTedTef.yaml
   rejectionReason:
