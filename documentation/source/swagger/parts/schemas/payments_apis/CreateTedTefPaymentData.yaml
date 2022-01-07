@@ -1,0 +1,32 @@
+type: object
+description: Objeto contendo dados do pagamento e do recebedor (creditor).
+required:
+  - payment
+properties:
+  localInstrument:
+    $ref: ./EnumLocalInstrument.yaml
+  payment:
+    $ref: ./PaymentPix.yaml
+  creditorAccount:
+    $ref: ./CreditorAccountTedTef.yaml
+  purpose:
+    $ref: ./EnumPurposeTedTef.yaml
+  scheduledPaymentDateTime:
+    type: string
+    format: date-time
+    example: '2021-05-21T08:30:00Z'
+    pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+    maxLength: 20
+    description: Aguardando definições do GT Especificações a respeito de Pix
+  firstPaymentDateTime:
+    type: string
+    format: date-time
+    example: '2021-05-21T08:30:00Z'
+    pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+    maxLength: 20
+    description: Aguardando definições do GT Especificações a respeito de Pix
+  installmentNumber:
+    type: integer
+    description: Aguardando definições do GT Especificações a respeito de Pix
+    example: 9
+additionalProperties: false
