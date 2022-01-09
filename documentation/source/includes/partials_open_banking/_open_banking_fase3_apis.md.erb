@@ -2597,7 +2597,7 @@ Objeto contendo dados de pagamento para consentimento.
 |---|---|---|---|---|
 |data|object|true|Objeto contendo dados do pagamento e do recebedor (creditor).|
 |» status|[EnumAuthorisationStatusType](#schemaenumauthorisationstatustype)|true|Retorna o estado do consentimento, o qual no momento de sua criação será AWAITING_AUTHORISATION.<br>Este estado será alterado depois da autorização do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED, REJECTED ou REVOKED. <br>O consentimento fica no estado CONSUMED após ocorrer a iniciação do pagamento referente ao consentimento.  <br>Em caso de consentimento expirado a detentora deverá retornar o status REJECTED.  <br>Em caso de revogação do consentimento a detentora deverá retornar o status REVOKED.  <br>Estados possíveis:  <br>AWAITING_AUTHORISATION - Aguardando autorização  <br>AUTHORISED - Autorizado   <br>REJECTED - Rejeitado  <br>CONSUMED - Consumido   <br>REVOKED - Revogado|
-|» revocation|[Revocation](#schemarevocation)|true|Objeto que contém as informações das circunstância da revogação.<br>O campo loggedUser deve ser preenchidos quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revoked_by estiver com o valor USER.|
+|» revocation|[Revocation](#schemarevocation)|true|Objeto que contém as informações das circunstância da revogação.<br>O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revoked_by estiver com o valor USER.|
 
 <h2 id="tocS_PaymentPix">PaymentPix</h2>
 
@@ -2841,7 +2841,7 @@ Objeto contendo as informações de resposta do consentimento para a iniciação
 |expirationDateTime|string(date-time)|true|Data e hora em que o consentimento da iniciação de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).<br>O consentimento é criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expiração - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.<br>Para o cenário em que o status assumiu AUTHORISED, o tempo máximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este é o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. Não é possível prorrogar este tempo e a criação de um novo consentimento será necessária para os cenários de insucesso.<br>O tempo do expirationDateTime é garantido com os 15 minutos do access token, sendo possível utilizar mais três refresh tokens até totalizar 60 minutos.|
 |statusUpdateDateTime|string(date-time)|true|Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).|
 |status|[EnumAuthorisationStatusType](#schemaenumauthorisationstatustype)|true|Retorna o estado do consentimento, o qual no momento de sua criação será AWAITING_AUTHORISATION.<br>Este estado será alterado depois da autorização do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED, REJECTED ou REVOKED. <br>O consentimento fica no estado CONSUMED após ocorrer a iniciação do pagamento referente ao consentimento.  <br>Em caso de consentimento expirado a detentora deverá retornar o status REJECTED.  <br>Em caso de revogação do consentimento a detentora deverá retornar o status REVOKED.  <br>Estados possíveis:  <br>AWAITING_AUTHORISATION - Aguardando autorização  <br>AUTHORISED - Autorizado   <br>REJECTED - Rejeitado  <br>CONSUMED - Consumido   <br>REVOKED - Revogado|
-|revocation|[Revocation](#schemarevocation)|false|Objeto que contém as informações das circunstância da revogação.<br>O campo loggedUser deve ser preenchidos quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revoked_by estiver com o valor USER.|
+|revocation|[Revocation](#schemarevocation)|false|Objeto que contém as informações das circunstância da revogação.<br>O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revoked_by estiver com o valor USER.|
 |loggedUser|[LoggedUser](#schemaloggeduser)|true|Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.<br>[Restrição] Deve obrigatoriamente ser enviado quando a revogação for feita pelo usuário final, ou seja, se o campo revokedBy estiver com o valor 'USER'.|
 |businessEntity|[BusinessEntity](#schemabusinessentity)|false|Usuário (pessoa jurídica) que encontra-se logado na instituição Iniciadora de Pagamento. [Restrição] Preenchimento obrigatório se usuário logado na instituição Iniciadora de Pagamento for um CNPJ (pessoa jurídica).|
 |creditor|[Identification](#schemaidentification)|true|Objeto contendo os dados do recebedor (creditor).|
@@ -2928,15 +2928,23 @@ Objeto contendo as informações de resposta do consentimento para a iniciação
 ```
 
 Objeto que contém as informações das circunstância da revogação.
-O campo loggedUser deve ser preenchidos quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revoked_by estiver com o valor USER.
+O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revoked_by estiver com o valor USER.
 
 ### Propriedades
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
 |loggedUser|[LoggedUser](#schemaloggeduser)|false|Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.<br>[Restrição] Deve obrigatoriamente ser enviado quando a revogação for feita pelo usuário final, ou seja, se o campo revokedBy estiver com o valor 'USER'.|
-|revokedBy|string|true|Define qual das partes envolvidas na transação está realizando a revogação. Valores possíveis: USER (Revogado pelo usuário), ASPSP (Provedor de serviços de pagamento para serviços de conta - Detentora de conta), TPP (Instituições Provedoras - iniciadora de pagamentos).<br>Os motivos de revogação do consentimento: FRAUD e ACCOUNT_CLOSURE só podem ser usados caso o campo: data.revocation.revokedBy tenha o valor TPP ou ASPSP, ou seja, somente no caso de revogação unilateral pela iniciadora ou detentora.|
+|revokedBy|string|true|Define qual das partes envolvidas na transação está realizando a revogação. Valores possíveis:<br>- USER (Revogado pelo usuário)<br>- ASPSP (Provedor de serviços de pagamento para serviços de conta - Detentora de conta)<br>- TPP (Instituições Provedoras - iniciadora de pagamentos)|
 |reason|[Reason](#schemareason)|true|Define a razão pela qual o consentimento foi revogado.|
+
+#### Enumerated Values
+
+|Nome|Código|
+|---|---|
+|revokedBy|USER|
+|revokedBy|ASPSP|
+|revokedBy|TPP|
 
 <h2 id="tocS_Reason">Reason</h2>
 
