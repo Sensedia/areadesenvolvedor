@@ -3619,6 +3619,14 @@ O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuá
 |revokedBy|ASPSP|
 |revokedBy|TPP|
 
+#### Enumerated Values
+
+|Nome|Código|
+|---|---|
+|revokedBy|USER|
+|revokedBy|ASPSP|
+|revokedBy|TPP|
+
 <h2 id="tocS_Reason">Reason</h2>
 
 <a id="schemareason"></a>
@@ -3640,8 +3648,8 @@ Define a razão pela qual o consentimento foi revogado.
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|code|string|true|Define o código da razão pela qual o consentimento foi revogado. <br>Valores possíveis: <br>FRAUD - Indica suspeita de fraude <br>ACCOUNT_CLOSURE - Indica que a conta do usuário foi encerrada <br>OTHER - Indica que motivo do cancelamento está fora dos motivos pré-estabelecidos.|
-|additionalInformation|string|false|Contém informações adicionais definidas pelo requisitante da revogação.<br>O campo additionalInformation é obrigatório quando a revogação for feita pela iniciadora ou pela detentora unilateralmente, ou seja, o campo revoked_by igual a TPP ou ASPSP e o motivo de revogação for OTHER.|
+|code|string|true|Define o código da razão pela qual o consentimento foi revogado. <br>Valores possíveis: <br><br>- FRAUD - Indica suspeita de fraude.<br>- ACCOUNT_CLOSURE - Indica que a conta do usuário foi encerrada. <br>- OTHER - Indica que motivo do cancelamento está fora dos motivos pré-estabelecidos.<br><br>[Restrição] Os motivos de revogação do consentimento: FRAUD e ACCOUNT_CLOSURE só podem ser usados caso o campo revokedBy tenha o valor TPP ou ASPSP, ou seja, somente no caso de revogação unilateral pela iniciadora ou detentora.|
+|additionalInformation|string|false|Contém informações adicionais definidas pelo requisitante da revogação.<br><br>[Restrição] Deverá ser obrigatoriamente preenchido quando a revogação for feita pela iniciadora ou pela detentora unilateralmente, ou seja, quando o campo revokedBy for igual a TPP ou ASPSP e o motivo de revogação for OTHER.|
 
 #### Enumerated Values
 
