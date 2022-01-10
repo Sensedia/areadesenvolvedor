@@ -1,5 +1,5 @@
 
-<h1 id="fase-3-apis-do-open-banking-brasil">Fase 3 - APIs do Open Banking Brasil v1.0.1</h1>
+<h1 id="fase-3-apis-do-open-banking-brasil">Fase 3 - APIs do Open Banking Brasil v1.1.0</h1>
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
@@ -500,7 +500,7 @@ As validações referentes a assinatura de mensagens devem preceder as validaç�
 
 |Versão|
 |:-----|
-|1.0.1|
+|1.1.0|
 
 #### Visão Geral
 
@@ -3055,6 +3055,14 @@ O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuá
 |creditor|[Identification](#schemaidentification)|true|Objeto contendo os dados do recebedor (creditor).|
 |payment|[PaymentConsent](#schemapaymentconsent)|true|Objeto contendo dados de pagamento para consentimento.|
 |debtorAccount|[DebtorAccount](#schemadebtoraccount)|false|Objeto que contém a identificação da conta de origem do pagador.  <br>As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.|
+
+#### Enumerated Values
+
+|Nome|Código|
+|---|---|
+|revokedBy|USER|
+|revokedBy|ASPSP|
+|revokedBy|TPP|
 
 #### Enumerated Values
 
