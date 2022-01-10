@@ -7,7 +7,10 @@ enum:
 example: OTHER
 description: |
   Define o código da razão pela qual o consentimento foi revogado. 
-  Valores possíveis: 
-  FRAUD - Indica suspeita de fraude 
-  ACCOUNT_CLOSURE - Indica que a conta do usuário foi encerrada 
-  OTHER - Indica que motivo do cancelamento está fora dos motivos pré-estabelecidos.
+  Valores possíveis: 
+
+  - FRAUD - Indica suspeita de fraude.
+  - ACCOUNT_CLOSURE - Indica que a conta do usuário foi encerrada. 
+  - OTHER - Indica que motivo do cancelamento está fora dos motivos pré-estabelecidos.
+
+  [Restrição] Os motivos de revogação do consentimento: FRAUD e ACCOUNT_CLOSURE só podem ser usados caso o campo revokedBy tenha o valor TPP ou ASPSP, ou seja, somente no caso de revogação unilateral pela iniciadora ou detentora.

@@ -12,4 +12,5 @@ properties:
     example: Não quero mais o serviço
     description: |
       Contém informações adicionais definidas pelo requisitante da revogação.
-      O campo additionalInformation é obrigatório quando a revogação for feita pela iniciadora ou pela detentora unilateralmente, ou seja, o campo revoked_by igual a TPP ou ASPSP e o motivo de revogação for OTHER.
+
+      [Restrição] Deverá ser obrigatoriamente preenchido quando a revogação for feita pela iniciadora ou pela detentora unilateralmente, ou seja, quando o campo revokedBy for igual a TPP ou ASPSP e o motivo de revogação for OTHER.
