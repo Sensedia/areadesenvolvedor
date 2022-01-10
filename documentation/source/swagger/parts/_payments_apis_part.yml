@@ -193,8 +193,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ResponseError"
       security:
-        - OAuth2AuthorizationCode:
-            - "consent:consentId"
+        - OAuth2ClientCredentials:
             - payments
   /pix/payments:
     post:
