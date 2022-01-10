@@ -1,0 +1,16 @@
+type: object
+description: "Conjunto de informações referentes às informações de credenciamento"
+required:
+  - participantIdentification
+  - name
+  - code
+  - chargingTriggerInfo
+properties:
+  participantIdentification:
+    $ref: ../business_commons/ParticipantIdentification.yaml
+  feesAndRatesForService:
+    type: array
+    items:
+      $ref: ./FeesAndRatesForService.yaml
+  
+additionalProperties: false
