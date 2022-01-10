@@ -347,7 +347,7 @@ paths:
         - OAuth2AuthorizationCode:
             - "consent:consentId"
             - payments
-  /ted-tef/{paymentId}:
+  /ted-tef/payments{paymentId}:
     get:
       tags:
         - Pagamentos
@@ -405,6 +405,7 @@ components:
       $ref: ./schemas/payments_apis/ResponseTedTefPayment.yaml
     ResponseTedTefPaymentData:
       $ref: ./schemas/payments_apis/ResponseTedTefPaymentData.yaml
+
     422ResponseErrorCreateConsent:
       $ref: ./schemas/payments_apis/422ResponseErrorCreateConsent.yaml
     422ResponseErrorCreatePixPayment:
