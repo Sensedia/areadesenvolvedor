@@ -835,7 +835,7 @@ paths:
         - OAuth2AuthorizationCode:
             - "consent:consentId"
             - payments
-  /payments/v1/ted-tef/{paymentId}:
+  /payments/v1/ted-tef/payments/{paymentId}:
     get:
       tags:
         - API - Pagamentos
@@ -893,7 +893,6 @@ components:
       $ref: ./schemas/payments_apis/ResponseTedTefPayment.yaml
     ResponseTedTefPaymentData:
       $ref: ./schemas/payments_apis/ResponseTedTefPaymentData.yaml
-
     422ResponseErrorCreateConsent:
       $ref: ./schemas/payments_apis/422ResponseErrorCreateConsent.yaml
     422ResponseErrorCreatePixPayment:
@@ -962,6 +961,7 @@ components:
       $ref: ./schemas/payments_apis/Reason.yaml
     ResponsePixPaymentData:
       $ref: ./schemas/payments_apis/ResponsePixPaymentData.yaml
+
   parameters:
     consentId:
       $ref: ./parameters/ConsentId.yaml
@@ -979,6 +979,7 @@ components:
       $ref: ./parameters/XFapiInteractionId.yaml
     XIdempotencyKey:
       $ref: ./parameters/XIdempotencyKey.yaml
+
   responses:
     BadRequest:
       $ref: ./responses/payments_apis/BadRequest.yaml
@@ -1050,20 +1051,6 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/ResponsePixPayment"
-
-    201PaymentsInitiationTedTefPaymentCreated:
-      description: Iniciação de pagamento ted-tef criada com sucesso.
-      headers:
-        x-fapi-interaction-id:
-          description: |
-            Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
-          schema:
-            $ref: ./headers/XFapiInteractionId.yaml
-      content:
-        application/jwt:
-          schema:
-            $ref: "#/components/schemas/ResponseTedTefPayment"
-
     200PaymentsInitiationPixPaymentIdRead:
       description: Dados de iniciação de pagamento Pix obtidos com sucesso.
       headers:
@@ -1076,6 +1063,18 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/ResponsePixPayment"
+    201PaymentsInitiationTedTefPaymentCreated:
+      description: Iniciação de pagamento ted-tef criada com sucesso.
+      headers:
+        x-fapi-interaction-id:
+          description: |
+            Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+          schema:
+            $ref: ./headers/XFapiInteractionId.yaml
+      content:
+        application/jwt:
+          schema:
+            $ref: "#/components/schemas/ResponseTedTefPayment"
     200PaymentsInitiationTedTefPaymentIdRead:
       description: Dados de iniciação de pagamento ted-tef obtidos com sucesso.
       headers:
