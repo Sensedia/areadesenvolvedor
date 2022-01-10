@@ -848,7 +848,7 @@ components:
     PatchPaymentsConsent:
       $ref: ./schemas/payments_apis/PatchPaymentsConsent.yaml
     PaymentPix:
-      $ref: ./schemas/payments_apis/PaymentPix.yaml
+      $ref: ./schemas/payments_apis/Payment.yaml
     ResponseError:
       $ref: ./schemas/ResponseError.yaml
     ResponsePaymentConsent:
