@@ -781,12 +781,11 @@ paths:
           OAuth2Security:
             - "consent:consentId"
             - payments
-
   /payments/v1/ted-tef/payments:
     post:
       tags:
         - API - Pagamentos
-      summary: Ted-tef - Criar iniciação de pagamento.
+      summary: Ted-Tef - Criar iniciação de pagamento.
       operationId: paymentsPostTedTefPayments
       description: Método para criar uma iniciação de pagamento ted-tef.
       parameters:
@@ -840,7 +839,7 @@ paths:
     get:
       tags:
         - API - Pagamentos
-      summary: Ted-tef - Consultar iniciação de pagamento.
+      summary: Ted-Tef - Consultar iniciação de pagamento.
       operationId: paymentsGetTedTefPaymentsPaymentId
       description: Método para consultar uma iniciação de pagamento ted-tef.
       parameters:
@@ -879,8 +878,7 @@ paths:
         - OAuth2AuthorizationCode:
             - payments
         - OAuth2ClientCredentials:
-            - payments  
-
+            - payments
 components:
   schemas:
     CreateTedTefPayment:
@@ -1052,7 +1050,7 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/ResponsePixPayment"
-            
+
     201PaymentsInitiationTedTefPaymentCreated:
       description: Iniciação de pagamento ted-tef criada com sucesso.
       headers:
