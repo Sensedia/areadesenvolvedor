@@ -621,7 +621,17 @@ paths:
         - API - Pagamentos
       summary: "Revogar consentimento de pagamento."
       operationId: paymentsPatchPixPayments
-      description: Método para revogação do consentimento.
+      description: |
+        Método para revogação do consentimento.
+
+        ### Dicionário de dados
+
+        Campos de resposta do endpoint de `/consents`
+
+        <a href='dictionary/paymentsPatchPixPayments_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
+
+        Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
+
       parameters:
         - $ref: "#/components/parameters/consentId"
         - $ref: "#/components/parameters/Authorization"
@@ -787,7 +797,16 @@ paths:
         - API - Pagamentos
       summary: Ted-Tef - Criar iniciação de pagamento.
       operationId: paymentsPostTedTefPayments
-      description: Método para criar uma iniciação de pagamento ted-tef.
+      description: |
+        Método para criar uma iniciação de pagamento ted-tef.
+
+        ### Dicionário de dados
+
+        Campos de resposta do endpoint de `/ted-tef/payments`
+
+        <a href='dictionary/paymentsPostTedTefPayments_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
+
+        Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
       parameters:
         - $ref: "#/components/parameters/Authorization"
         - $ref: "#/components/parameters/xFapiAuthDate"
@@ -841,7 +860,16 @@ paths:
         - API - Pagamentos
       summary: Ted-Tef - Consultar iniciação de pagamento.
       operationId: paymentsGetTedTefPaymentsPaymentId
-      description: Método para consultar uma iniciação de pagamento ted-tef.
+      description: |
+        Método para consultar uma iniciação de pagamento ted-tef.
+
+        ### Dicionário de dados
+
+        Campos de resposta do endpoint de `/ted-tef/payments`.
+
+        <a href='dictionary/paymentsGetTedTefPaymentsPaymentId_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
+
+        Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
       parameters:
         - $ref: "#/components/parameters/paymentId"
         - $ref: "#/components/parameters/Authorization"
