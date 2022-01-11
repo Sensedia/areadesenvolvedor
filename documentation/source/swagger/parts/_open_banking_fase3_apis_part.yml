@@ -229,22 +229,33 @@ info:
     #### REVOKED
     - O estado REVOKED existirá somente quando a revogação for realizada pelo Usuário ou Iniciadora ou Detentora (somente para consentimentos de agendamento).
 
-    Os possíveis status do pagamento são:
+    **Os possíveis status do pagamento PIX, são:**
+
+    PDNG, PART, ACSP, ACSC, ACCC e RJCT.
+
+    **Pagamento PIX**
+
+    ![Maquina de Estados](images/sequence-diagrams/state-machine_phase3_pix_payment.png)
+    <a href="images/sequence-diagrams/state-machine_phase3_pix_payment.png" target="_blank">Download dos status de pagamento PIX</a>
+
+    **Os possíveis status do pagamento PIX agendamento, são:**
 
     PDNG, SASP, SASC, PART, ACSP, ACSC, ACCC e RJCT.
 
-    ![Maquina de Estados](images/sequence-diagrams/state-machine_phase3_pix_scheduling_payment.png)
-    <a href="images/sequence-diagrams/state-machine_phase3_pix_scheduling_payment.png" target="_blank">Download dos status de pagamento</a>
+    **Pagamento PIX agendamento**
 
-    Abaixo segue a descrição dos status relacionados a máquina de estados pertinente ao pagamento.
+    ![Maquina de Estados](images/sequence-diagrams/state-machine_phase3_pix_scheduling_payment_v2.png)
+    <a href="images/sequence-diagrams/state-machine_phase3_pix_scheduling_payment_v2.png" target="_blank">Download dos status de pagamento PIX agendamento</a>
+
+    Abaixo segue a descrição dos status relacionados a máquina de estados pertinente aos tipos de pagamento PIX e PIX agendamento:
 
     #### PDNG (PENDING)
     - O status informa que a iniciação de pagamento ou transação de pagamento está pendente. Checagens adicionais em realização.
 
-    #### SASP (SCHEDULE_ACCEPTED_SETTLEMENT_IN_PROCESS)
+    #### SASP (SCHEDULE_ACCEPTED_SETTLEMENT_IN_PROCESS) - **somente para PIX agendamento**.
     - O status informa que o agendamento está em processamento.
 
-    #### SASC (SCHEDULE_ACCEPTED_SETTLEMENT_COMPLETED)
+    #### SASC (SCHEDULE_ACCEPTED_SETTLEMENT_COMPLETED) - **somente para PIX agendamento**.
     - O status informa que o agendamento foi realizado com sucesso.
 
     #### PART (PARTIALLY ACCEPTED)
@@ -486,13 +497,13 @@ info:
 
     As validações referentes a assinatura de mensagens devem preceder as validações de idempotência.
 
-  version: 1.0.1
+  version: 1.1.0
 tags:
   - name: API - Pagamentos
     description: |
       |Versão|
       |:-----|
-      |1.0.1|
+      |1.1.0|
 
       #### Visão Geral
 

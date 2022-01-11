@@ -1,5 +1,5 @@
 
-<h1 id="fase-3-apis-do-open-banking-brasil">Fase 3 - APIs do Open Banking Brasil v1.0.1</h1>
+<h1 id="fase-3-apis-do-open-banking-brasil">Fase 3 - APIs do Open Banking Brasil v1.1.0</h1>
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
@@ -229,22 +229,33 @@ Algumas definições são importantes para tratar a transição dos estados do c
 #### REVOKED
 - O estado REVOKED existirá somente quando a revogação for realizada pelo Usuário ou Iniciadora ou Detentora (somente para consentimentos de agendamento).
 
-Os possíveis status do pagamento são:
+**Os possíveis status do pagamento PIX, são:**
+
+PDNG, PART, ACSP, ACSC, ACCC e RJCT.
+
+**Pagamento PIX**
+
+![Maquina de Estados](images/sequence-diagrams/state-machine_phase3_pix_payment.png)
+<a href="images/sequence-diagrams/state-machine_phase3_pix_payment.png" target="_blank">Download dos status de pagamento PIX</a>
+
+**Os possíveis status do pagamento PIX agendamento, são:**
 
 PDNG, SASP, SASC, PART, ACSP, ACSC, ACCC e RJCT.
 
-![Maquina de Estados](images/sequence-diagrams/state-machine_phase3_pix_scheduling_payment.png)
-<a href="images/sequence-diagrams/state-machine_phase3_pix_scheduling_payment.png" target="_blank">Download dos status de pagamento</a>
+**Pagamento PIX agendamento**
 
-Abaixo segue a descrição dos status relacionados a máquina de estados pertinente ao pagamento.
+![Maquina de Estados](images/sequence-diagrams/state-machine_phase3_pix_scheduling_payment_v2.png)
+<a href="images/sequence-diagrams/state-machine_phase3_pix_scheduling_payment_v2.png" target="_blank">Download dos status de pagamento PIX agendamento</a>
+
+Abaixo segue a descrição dos status relacionados a máquina de estados pertinente aos tipos de pagamento PIX e PIX agendamento:
 
 #### PDNG (PENDING)
 - O status informa que a iniciação de pagamento ou transação de pagamento está pendente. Checagens adicionais em realização.
 
-#### SASP (SCHEDULE_ACCEPTED_SETTLEMENT_IN_PROCESS)
+#### SASP (SCHEDULE_ACCEPTED_SETTLEMENT_IN_PROCESS) - **somente para PIX agendamento**.
 - O status informa que o agendamento está em processamento.
 
-#### SASC (SCHEDULE_ACCEPTED_SETTLEMENT_COMPLETED)
+#### SASC (SCHEDULE_ACCEPTED_SETTLEMENT_COMPLETED) - **somente para PIX agendamento**.
 - O status informa que o agendamento foi realizado com sucesso.
 
 #### PART (PARTIALLY ACCEPTED)
@@ -489,7 +500,7 @@ As validações referentes a assinatura de mensagens devem preceder as validaç�
 
 |Versão|
 |:-----|
-|1.0.1|
+|1.1.0|
 
 #### Visão Geral
 
@@ -902,7 +913,7 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 
 |Nome|Origem|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|consentId|path|string|true|O consentId é o identificador único do consentimento a ser revogado e deverá ser um URN - Uniform Resource Name.|
+|consentId|path|string|true|O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  |
 |Authorization|header|string|true|Cabeçalho HTTP padrão. Permite que as credenciais sejam fornecidas dependendo do tipo de recurso solicitado|
 |x-fapi-auth-date|header|string|false|Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC|
 |x-fapi-customer-ip-address|header|string|false|O endereço IP do usuário se estiver atualmente logado com o receptor.|
@@ -911,7 +922,15 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 
 #### Detailed descriptions
 
-**consentId**: O consentId é o identificador único do consentimento a ser revogado e deverá ser um URN - Uniform Resource Name.
+**consentId**: O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+seja um identificador de recurso persistente e independente da localização.  
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex) 
+- o identificador específico dentro do namespace (C1DD33123).  
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
 
 > O comando acima retorna uma estrutura json como essa:
 
@@ -1502,7 +1521,7 @@ Método para revogação do consentimento.
 
 |Nome|Origem|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|consentId|path|string|true|O consentId é o identificador único do consentimento a ser revogado e deverá ser um URN - Uniform Resource Name.|
+|consentId|path|string|true|O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  |
 |Authorization|header|string|true|Cabeçalho HTTP padrão. Permite que as credenciais sejam fornecidas dependendo do tipo de recurso solicitado|
 |x-fapi-auth-date|header|string|false|Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC|
 |x-fapi-customer-ip-address|header|string|false|O endereço IP do usuário se estiver atualmente logado com o receptor.|
@@ -1513,7 +1532,15 @@ Método para revogação do consentimento.
 
 #### Detailed descriptions
 
-**consentId**: O consentId é o identificador único do consentimento a ser revogado e deverá ser um URN - Uniform Resource Name.
+**consentId**: O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+seja um identificador de recurso persistente e independente da localização.  
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex) 
+- o identificador específico dentro do namespace (C1DD33123).  
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
 
 > O comando acima retorna uma estrutura json como essa:
 
@@ -1612,10 +1639,10 @@ consent:consentId,payments
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
 |errors|[object]|true||
-|» code|string|true|Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:  <br>• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  <br>• DATA_PGTO_INVALIDA: Data de pagamento inválida.  <br>• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.  <br>• NAO_INFORMADO: Não informado.|
-|» title|string|true|Título específico do erro reportado, de acordo com o código enviado:  <br>• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  <br>• DATA_PGTO_INVALIDA: Data de pagamento inválida. <br>• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.<br>• NAO_INFORMADO: Não informado.|
-|» detail|string|true|Descrição específica do erro de acordo com o código reportado:  <br>• FORMA_PGTO_INVALIDA – Meio de pagamento inválido.  <br>• DATA_PGTO_INVALIDA – Data de pagamento inválida no contexto, por exemplo, data no passado. Para pagamentos únicos deve ser informada a data atual, do dia corrente.  <br>• DETALHE_PGTO_INVALIDO: O campo [nome_campo] não atende os requisitos de preenchimento.  <br>• NAO_INFORMADO – Não reportado/identificado pela instituição detentora de conta.|
-|meta|[Meta](#schemameta)|false|Meta informações referente à API requisitada.|
+|» code|string|true|Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:  <br>• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  <br>• DATA_PGTO_INVALIDA: Data de pagamento inválida.  <br>• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.  <br>• NAO_INFORMADO: Não informado.   <br>• INVALID_SCHEDULE: Agendamento inválido.|
+|» title|string|true|Título específico do erro reportado, de acordo com o código enviado:  <br>• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  <br>• DATA_PGTO_INVALIDA: Data de pagamento inválida. <br>• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.<br>• NAO_INFORMADO: Não informado.    <br>• INVALID_SCHEDULE: Agendamento inválido.|
+|» detail|string|true|Descrição específica do erro de acordo com o código reportado:  <br>• FORMA_PGTO_INVALIDA – Meio de pagamento inválido.  <br>• DATA_PGTO_INVALIDA – Data de pagamento inválida no contexto, por exemplo, data no passado. Para pagamentos únicos deve ser informada a data atual, do dia corrente.  <br>• DETALHE_PGTO_INVALIDO: O campo [nome_campo] não atende os requisitos de preenchimento.  <br>• NAO_INFORMADO – Não reportado/identificado pela instituição detentora de conta.  <br>• INVALID_SCHEDULE – O campo data.payment.schedule.single.date deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília. O campo data.payment.schedule.single.date deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.|
+|meta|[Meta](#schemameta)|false|Meta informações referente a API requisitada.|
 
 #### Enumerated Values
 
@@ -1625,6 +1652,7 @@ consent:consentId,payments
 |code|DATA_PGTO_INVALIDA|
 |code|DETALHE_PGTO_INVALIDO|
 |code|NAO_INFORMADO|
+|code|INVALID_SCHEDULE|
 
 <h2 id="tocS_422ResponseErrorCreatePixPayment">422ResponseErrorCreatePixPayment</h2>
 
@@ -2599,7 +2627,7 @@ Objeto contendo dados de pagamento para consentimento.
 |---|---|---|---|---|
 |data|object|true|Objeto contendo dados do pagamento e do recebedor (creditor).|
 |» status|[EnumAuthorisationStatusType](#schemaenumauthorisationstatustype)|true|Retorna o estado do consentimento, o qual no momento de sua criação será AWAITING_AUTHORISATION.<br>Este estado será alterado depois da autorização do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED, REJECTED ou REVOKED. <br>O consentimento fica no estado CONSUMED após ocorrer a iniciação do pagamento referente ao consentimento.  <br>Em caso de consentimento expirado a detentora deverá retornar o status REJECTED.  <br>Em caso de revogação do consentimento a detentora deverá retornar o status REVOKED.  <br>Estados possíveis:  <br>AWAITING_AUTHORISATION - Aguardando autorização  <br>AUTHORISED - Autorizado   <br>REJECTED - Rejeitado  <br>CONSUMED - Consumido   <br>REVOKED - Revogado|
-|» revocation|[Revocation](#schemarevocation)|true|Objeto que contém as informações das circunstância da revogação.<br>O campo loggedUser deve ser preenchidos quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revoked_by estiver com o valor USER.|
+|» revocation|[Revocation](#schemarevocation)|true|Objeto que contém as informações das circunstância da revogação.<br>O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.|
 
 <h2 id="tocS_PaymentPix">PaymentPix</h2>
 
@@ -2938,7 +2966,7 @@ Objeto contendo as informações de resposta do consentimento para a iniciação
 |expirationDateTime|string(date-time)|true|Data e hora em que o consentimento da iniciação de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).<br>O consentimento é criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expiração - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.<br>Para o cenário em que o status assumiu AUTHORISED, o tempo máximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este é o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. Não é possível prorrogar este tempo e a criação de um novo consentimento será necessária para os cenários de insucesso.<br>O tempo do expirationDateTime é garantido com os 15 minutos do access token, sendo possível utilizar mais três refresh tokens até totalizar 60 minutos.|
 |statusUpdateDateTime|string(date-time)|true|Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).|
 |status|[EnumAuthorisationStatusType](#schemaenumauthorisationstatustype)|true|Retorna o estado do consentimento, o qual no momento de sua criação será AWAITING_AUTHORISATION.<br>Este estado será alterado depois da autorização do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED, REJECTED ou REVOKED. <br>O consentimento fica no estado CONSUMED após ocorrer a iniciação do pagamento referente ao consentimento.  <br>Em caso de consentimento expirado a detentora deverá retornar o status REJECTED.  <br>Em caso de revogação do consentimento a detentora deverá retornar o status REVOKED.  <br>Estados possíveis:  <br>AWAITING_AUTHORISATION - Aguardando autorização  <br>AUTHORISED - Autorizado   <br>REJECTED - Rejeitado  <br>CONSUMED - Consumido   <br>REVOKED - Revogado|
-|revocation|[Revocation](#schemarevocation)|false|Objeto que contém as informações das circunstância da revogação.<br>O campo loggedUser deve ser preenchidos quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revoked_by estiver com o valor USER.|
+|revocation|[Revocation](#schemarevocation)|false|Objeto que contém as informações das circunstância da revogação.<br>O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.|
 |loggedUser|[LoggedUser](#schemaloggeduser)|true|Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.<br>[Restrição] Deve obrigatoriamente ser enviado quando a revogação for feita pelo usuário final, ou seja, se o campo revokedBy estiver com o valor 'USER'.|
 |businessEntity|[BusinessEntity](#schemabusinessentity)|false|Usuário (pessoa jurídica) que encontra-se logado na instituição Iniciadora de Pagamento. [Restrição] Preenchimento obrigatório se usuário logado na instituição Iniciadora de Pagamento for um CNPJ (pessoa jurídica).|
 |creditor|[Identification](#schemaidentification)|true|Objeto contendo os dados do recebedor (creditor).|
@@ -3092,15 +3120,23 @@ Define a razão pela qual o consentimento foi revogado.
 ```
 
 Objeto que contém as informações das circunstância da revogação.
-O campo loggedUser deve ser preenchidos quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revoked_by estiver com o valor USER.
+O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.
 
 ### Propriedades
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
 |loggedUser|[LoggedUser](#schemaloggeduser)|false|Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.<br>[Restrição] Deve obrigatoriamente ser enviado quando a revogação for feita pelo usuário final, ou seja, se o campo revokedBy estiver com o valor 'USER'.|
-|revokedBy|string|true|Define qual das partes envolvidas na transação está realizando a revogação. Valores possíveis: USER (Revogado pelo usuário), ASPSP (Provedor de serviços de pagamento para serviços de conta - Detentora de conta), TPP (Instituições Provedoras - iniciadora de pagamentos).<br>Os motivos de revogação do consentimento: FRAUD e ACCOUNT_CLOSURE só podem ser usados caso o campo: data.revocation.revokedBy tenha o valor TPP ou ASPSP, ou seja, somente no caso de revogação unilateral pela iniciadora ou detentora.|
+|revokedBy|string|true|Define qual das partes envolvidas na transação está realizando a revogação. Valores possíveis:<br>- USER (Revogado pelo usuário)<br>- ASPSP (Provedor de serviços de pagamento para serviços de conta - Detentora de conta)<br>- TPP (Instituições Provedoras - iniciadora de pagamentos)|
 |reason|[Reason](#schemareason)|true|Define a razão pela qual o consentimento foi revogado.|
+
+#### Enumerated Values
+
+|Nome|Código|
+|---|---|
+|revokedBy|USER|
+|revokedBy|ASPSP|
+|revokedBy|TPP|
 
 <h2 id="tocS_Reason">Reason</h2>
 
@@ -3123,8 +3159,8 @@ Define a razão pela qual o consentimento foi revogado.
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|code|string|true|Define o código da razão pela qual o consentimento foi revogado. <br>Valores possíveis: <br>FRAUD - Indica suspeita de fraude <br>ACCOUNT_CLOSURE - Indica que a conta do usuário foi encerrada <br>OTHER - Indica que motivo do cancelamento está fora dos motivos pré-estabelecidos.|
-|additionalInformation|string|false|Contém informações adicionais definidas pelo requisitante da revogação.<br>O campo additionalInformation é obrigatório quando a revogação for feita pela iniciadora ou pela detentora unilateralmente, ou seja, o campo revoked_by igual a TPP ou ASPSP e o motivo de revogação for OTHER.|
+|code|string|true|Define o código da razão pela qual o consentimento foi revogado. <br>Valores possíveis: <br><br>- FRAUD - Indica suspeita de fraude.<br>- ACCOUNT_CLOSURE - Indica que a conta do usuário foi encerrada. <br>- OTHER - Indica que motivo do cancelamento está fora dos motivos pré-estabelecidos.<br><br>[Restrição] Os motivos de revogação do consentimento: FRAUD e ACCOUNT_CLOSURE só podem ser usados caso o campo revokedBy tenha o valor TPP ou ASPSP, ou seja, somente no caso de revogação unilateral pela iniciadora ou detentora.|
+|additionalInformation|string|false|Contém informações adicionais definidas pelo requisitante da revogação.<br><br>[Restrição] Deverá ser obrigatoriamente preenchido quando a revogação for feita pela iniciadora ou pela detentora unilateralmente, ou seja, quando o campo revokedBy for igual a TPP ou ASPSP e o motivo de revogação for OTHER.|
 
 #### Enumerated Values
 
