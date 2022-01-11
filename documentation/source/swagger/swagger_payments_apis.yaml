@@ -180,7 +180,7 @@ paths:
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
         '422':
-          $ref: '#/components/responses/UnprocessableEntityPixPayments'
+          $ref: '#/components/responses/UnprocessableEntityPatchConsent'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
@@ -347,7 +347,7 @@ paths:
         - OAuth2AuthorizationCode:
             - 'consent:consentId'
             - payments
-  '/pix/ted-tef/{paymentId}':
+  '/ted-tef/payments/{paymentId}':
     get:
       tags:
         - Pagamentos
@@ -407,31 +407,36 @@ components:
       required:
         - payment
       properties:
-        localInstrument:
-          $ref: '#/components/schemas/CreatePixPaymentData/properties/localInstrument'
         payment:
-          $ref: '#/components/schemas/PaymentPix'
+          $ref: '#/components/schemas/Payment'
         creditorAccount:
           $ref: '#/components/schemas/TedTefCreditorAccount'
         purpose:
           $ref: '#/components/schemas/EnumPurposeTedTef'
+        purposeAdditionalInfo:
+          type: string
+          maxLength: 100
+          pattern: \w*\W*
+          example: Informações adicionais
+          description: |
+            Texto livre para complementar informação relativa ao campo purpose. 
+            [Restrição] Preencher quando purpose for igual OUTROS.
         scheduledPaymentDateTime:
           type: string
           format: date-time
           example: '2021-05-21T08:30:00Z'
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
           maxLength: 20
-          description: Aguardando definições do GT Especificações a respeito de Pix
+          description: Define o agendamento do pagamento. Utilizado somente na funcionalidade de agendamento de pagamentos.
         firstPaymentDateTime:
           type: string
           format: date-time
           example: '2021-05-21T08:30:00Z'
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
           maxLength: 20
-          description: Aguardando definições do GT Especificações a respeito de Pix
+          description: Define a primeira data alvo do pagamento. O fuso horário de Brasília deve ser utilizado para criação e racionalização sobre os dados deste campo.
         installmentNumber:
           type: integer
-          description: Aguardando definições do GT Especificações a respeito de Pix
           example: 9
       additionalProperties: false
     EnumPurposeTedTef:
@@ -708,11 +713,8 @@ components:
           pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
           example: TXpRMU9UQTROMWhZV2xSU1FUazJSMDl
           description: |
-            Código ou identificador único informado pela instituição detentora da conta para representar
-            a iniciação de pagamento individual. O `paymentId` deve ser diferente do `endToEndId`.
+            Código ou identificador único informado pela instituição detentora da conta para representar a iniciação de pagamento individual.
             Este é o identificador que deverá ser utilizado na consulta ao status da iniciação de pagamento efetuada.
-        endToEndId:
-          $ref: '#/components/schemas/EndToEndId'
         consentId:
           type: string
           maxLength: 256
@@ -748,10 +750,8 @@ components:
             sempre com a utilização de timezone UTC(UTC time format).
         status:
           $ref: '#/components/schemas/EnumPaymentStatusType'
-        localInstrument:
-          $ref: '#/components/schemas/CreatePixPaymentData/properties/localInstrument'
         payment:
-          $ref: '#/components/schemas/PaymentPix'
+          $ref: '#/components/schemas/Payment'
         creditorAccount:
           $ref: '#/components/schemas/TedTefCreditorAccount'
         rejectionReason:
@@ -960,7 +960,7 @@ components:
             - QRES - QR code estático
             - INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido.
         payment:
-          $ref: '#/components/schemas/PaymentPix'
+          $ref: '#/components/schemas/Payment'
         creditorAccount:
           $ref: '#/components/schemas/CreditorAccount'
         remittanceInformation:
@@ -1559,21 +1559,22 @@ components:
             - single
           properties:
             single:
-              type: object
-              description: Define a política de agendamento único.
-              additionalProperties: false
-              required:
-                - date
-              properties:
-                date:
-                  type: string
-                  format: date
-                  maxLength: 10
-                  pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
-                  example: '2021-01-01'
-                  description: |
-                    Define a data alvo da liquidação do pagamento. O fuso horário de Brasilia deve ser utilizado para criação e racionalização sobre os dados deste campo.  
-                    OBS:Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.
+              oneOf:
+                - type: object
+                  description: Define a política de agendamento único.
+                  additionalProperties: false
+                  required:
+                    - date
+                  properties:
+                    date:
+                      type: string
+                      format: date
+                      maxLength: 10
+                      pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                      example: '2021-01-01'
+                      description: |
+                        Define a data alvo da liquidação do pagamento. O fuso horário de Brasilia deve ser utilizado para criação e racionalização sobre os dados deste campo.  
+                        OBS:Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.
         date:
           type: string
           format: date
@@ -1630,7 +1631,7 @@ components:
             revocation:
               $ref: '#/components/schemas/Revocation'
       additionalProperties: false
-    PaymentPix:
+    Payment:
       type: object
       description: Objeto contendo dados do pagameto como moeda e valor.
       required:
@@ -1894,7 +1895,7 @@ components:
           example: '50685362000135'
           description: CNPJ do Iniciador de Pagamento devidamente habilitado para a prestação de Serviço de Iniciação no Pix.
         payment:
-          $ref: '#/components/schemas/PaymentPix'
+          $ref: '#/components/schemas/Payment'
         transactionIdentification:
           type: string
           pattern: '^[a-zA-Z0-9][a-zA-Z0-9]{0,24}$'
@@ -2172,6 +2173,93 @@ components:
             Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
           schema:
             $ref: '#/components/schemas/XFapiInteractionId'
+    UnprocessableEntityPatchConsent:
+      description: 'A solicitação foi bem formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.'
+      content:
+        application/jwt:
+          schema:
+            type: object
+            required:
+              - errors
+            properties:
+              errors:
+                type: array
+                minItems: 1
+                maxItems: 9
+                items:
+                  type: object
+                  required:
+                    - code
+                    - title
+                    - detail
+                  properties:
+                    code:
+                      type: string
+                      maxLength: 50
+                      enum:
+                        - USER_INFORMATION_REQUIRED
+                        - OPERATION_NOT_ALLOWED_BY_STATUS
+                        - OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE
+                        - REVOCATION_TIME_LIMIT_EXCEEDED
+                        - REVOCATION_REASON_NOT_ALLOWED
+                        - REVOCATION_ADDITIONAL_INFORMATION_REQUIRED
+                      example: OPERATION_NOT_ALLOWED_BY_STATUS
+                      description: |
+                        Códigos de erros previstos na revogação do consentimento de pagamento:  
+                        • USER_INFORMATION_REQUIRED - O campo data.revocation.loggedUser deve ser preenchidos quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revoked_by estiver com o valor USER.  
+                        • OPERATION_NOT_ALLOWED_BY_STATUS: O consentimento só pode ser revogado nos status CONSUMED.  
+                        • OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Somente consentimentos para pagamentos agendados podem ser revogados, ou seja, que possuam o campo data.payment.schedule preenchido.  
+                        • REVOCATION_TIME_LIMIT_EXCEEDED: O consentimento só pode ser revogado até o dia anterior, ou seja, a meia noite no fuso horário de Brasília do dia imediatamente anterior a data alvo da liquidação do pagamento.  
+                        • REVOCATION_REASON_NOT_ALLOWED: Os motivos de revogação do consentimento: FRAUD e ACCOUNT_CLOSURE só podem ser usados caso o campo: data.revocation.revokedBy tenha o valor TPP ou ASPSP, ou seja, somente no caso de revogação unilateral pela iniciadora ou detentora.  
+                        • REVOCATION_ADDITIONAL_INFORMATION_REQUIRED: O campo data.revocation.reason.additionalInformation é obrigatório quando a revogação for feita pela iniciadora ou pela detentora unilateralmente, ou seja, o campo revoked_by igual a TPP ou ASPSP e o motivo de revogação for OTHER.
+                    title:
+                      type: string
+                      maxLength: 255
+                      pattern: \w*\W*
+                      example: Motivo de revogação não permitido.
+                      description: |
+                        Título específico do erro reportado, de acordo com o código enviado:
+                        • USER_INFORMATION_REQUIRED: Operação não permitida.
+                        • OPERATION_NOT_ALLOWED_BY_STATUS: Operação não permitida.
+                        • OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Valor da transação incompatível.
+                        • REVOCATION_TIME_LIMIT_EXCEEDED: Prazo limite para revogação excedido.
+                        • REVOCATION_REASON_NOT_ALLOWED: Motivo de revogação não permitido.
+                        • REVOCATION_ADDITIONAL_INFORMATION_REQUIRED: Informação adicional requerida.
+                    detail:
+                      type: string
+                      maxLength: 2048
+                      pattern: \w*\W*
+                      example: Operação não suportada pelo tipo de consentimento.
+                      description: |
+                        Descrição específica do erro de acordo com o código reportado:
+                        • USER_INFORMATION_REQUIRED: Informação do usuário requerida.
+                        • OPERATION_NOT_ALLOWED_BY_STATUS: Operação não permitida devido ao status atual do consentimento.
+                        • OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Operação não suportada pelo tipo de consentimento.
+                        • REVOCATION_TIME_LIMIT_EXCEEDED: Prazo limite para revogação excedido.
+                        • REVOCATION_REASON_NOT_ALLOWED: Motivo de revogação não permitido.
+                        • REVOCATION_ADDITIONAL_INFORMATION_REQUIRED: Informação adicional requerida.
+                  additionalProperties: false
+              meta:
+                $ref: '#/components/schemas/Meta'
+            additionalProperties: false
+          examples:
+            Motivo de revogação não permitido:
+              summary: Motivo de revogação não permitido
+              value:
+                errors:
+                  - code: REVOCATION_REASON_NOT_ALLOWED
+                    title: Motivo de revogação não permitido.
+                    detail: Motivo de revogação não permitido.
+                meta:
+                  totalRecords: 1
+                  totalPages: 1
+                  requestDateTime: '2021-05-21T08:30:00Z'
+      headers:
+        x-fapi-interaction-id:
+          description: |
+            Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+          schema:
+            $ref: '#/components/schemas/XFapiInteractionId'
     Unauthorized:
       description: Cabeçalho de autenticação ausente/inválido ou token inválido
       content:
@@ -2244,18 +2332,6 @@ components:
         application/jwt:
           schema:
             $ref: '#/components/schemas/ResponsePixPayment'
-    201PaymentsInitiationTedTefPaymentCreated:
-      description: Iniciação de pagamento ted-tef criada com sucesso.
-      headers:
-        x-fapi-interaction-id:
-          description: |
-            Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
-          schema:
-            $ref: '#/components/schemas/XFapiInteractionId'
-      content:
-        application/jwt:
-          schema:
-            $ref: '#/components/schemas/ResponseTedTefPayment'
     200PaymentsInitiationPixPaymentIdRead:
       description: Dados de iniciação de pagamento Pix obtidos com sucesso.
       headers:
@@ -2268,6 +2344,18 @@ components:
         application/jwt:
           schema:
             $ref: '#/components/schemas/ResponsePixPayment'
+    201PaymentsInitiationTedTefPaymentCreated:
+      description: Iniciação de pagamento ted-tef criada com sucesso.
+      headers:
+        x-fapi-interaction-id:
+          description: |
+            Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+          schema:
+            $ref: '#/components/schemas/XFapiInteractionId'
+      content:
+        application/jwt:
+          schema:
+            $ref: '#/components/schemas/ResponseTedTefPayment'
     200PaymentsInitiationTedTefPaymentIdRead:
       description: Dados de iniciação de pagamento ted-tef obtidos com sucesso.
       headers:
