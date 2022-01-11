@@ -38,7 +38,7 @@ properties:
   costType:
     $ref: ../enum/EnumCapitalizationBondsProductCostType.yaml
   termsAndConditions:
-    $ref: ./CapitalizationBondsProductTermsAndConditions.yaml
+    $ref: ../business_commons/TermsAndConditionsItem.yaml
   quotas:
     type: array
     description: Informações relativas às taxas da Quotas praticadas para cada Parcela
@@ -50,12 +50,12 @@ properties:
     format: int32
     description: Período entre a data de início e a data final para constituição do capital a ser pago ao(s) titular(es) do direito de resgate. Prazo de vigência do título de capitalização em meses (Resolução CNSP 384/20). Em meses.
     maxLength: 3
-    example: 999
+    example: 48
   serieSize:
     type: integer
     description: Os títulos de capitalização que prevejam sorteio devem ser estruturados em séries, ou seja, em sequências ou em grupos de títulos submetidos às mesmas condições e características, à exceção do valor do pagamento.
     maxLength: 10
-    example: 5000000000
+    example: 5000000
   capitalizationPeriod:
     $ref: ./CapitalizationBondsProductCapitalizationPeriod.yaml
   latePayment:

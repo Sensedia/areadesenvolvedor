@@ -5,6 +5,7 @@ required:
   - code
   - segment
   - type
+  - targetAudience
 properties:
   participant:
     $ref: ../../business_commons/ParticipantIdentification.yaml
@@ -26,7 +27,7 @@ properties:
     $ref: ../../enum/EnumSurvivalPensionSegment.yaml
   modality:
     $ref: ../../enum/EnumPensionModality.yaml
-  adittionalInfo:
+  additionalInfo:
     type: string
     description: Campo aberto (possibilidade de incluir URL)
     example:
