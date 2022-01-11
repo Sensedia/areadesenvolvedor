@@ -23,13 +23,16 @@ tags:
   - name: Exchange VET Value
     description: Operações para obter as informações de Câmbio para valor do VET.
 paths:
-  /online-rate:
+  /online-rates:
     get:
       tags:
         - Exchange Online Rate
       summary: Conjunto de informações de Câmbio para taxa online.
       operationId: exchangeGetOnlineRate
       description: Método para disponibilizar a taxa online.
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
       responses:
         '200':
           $ref: '#/components/responses/OKResponseExchangeOnlineRate'
@@ -43,13 +46,16 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /vet-value:
+  /vet-values:
     get:
       tags:
         - Exchange VET Value
       summary: Conjunto de informações de Câmbio para valor do VET.
       operationId: exchangeGetVetValue
       description: Método para disponibilizar o valor VET.
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
       responses:
         '200':
           $ref: '#/components/responses/OKResponseExchangeVetValue'
@@ -168,49 +174,43 @@ components:
       type: object
       description: Conjunto de informações referentes às informações de câmbio
       required:
-        - participantIdentification
-        - onlineRate
+        - participant
+        - values
+        - timestamp
+        - disclaimer
       properties:
-        participantIdentification:
+        participant:
           $ref: '#/components/schemas/ExchangeParticipantIdentification'
-        onlineRate:
-          type: object
-          description: 'Taxa disponibilizada (taxa online) pelas instituições no formato D+2 (valor U$ 100.000-operações cambio pronto) separado por moeda dólar e euro compra e venda PF/PJ.<br><ul><li>Não entra operações de cambio futuro, ACC/ACE, futuros, trava</li><li>Deve ser adicionado um timestamp no momento da consulta no formato hh:mm:ss</li><li>Adicionar disclaimer informando que a taxa apresentada é somente informativa, para a contratação de uma operação, deverá ser consultado o canal correspondente de cada instituição</li></ul>'
-          required:
-            - values
-            - timestamp
-            - disclaimer
-          properties:
-            values:
-              type: array
-              items:
-                $ref: '#/components/schemas/OnlineRate'
-              example:
-                - foreignCurrency: USD
-                  deliveryForeignCurrency: ESPECIE
-                  transactionType: COMPRA
-                  targetAudience: PF
-                  value: '5.5023'
-                - foreignCurrency: EUR
-                  deliveryForeignCurrency: CARTAO_PRE_PAGO
-                  transactionType: VENDA
-                  targetAudience: PJ
-                  value: '2.7045'
-            timestamp:
-              type: string
-              format: date-time
-              description: Timestamp do momento da consulta
-              example: '2017-07-21T17:32:28Z'
-            disclaimer:
-              type: string
-              description: 'Disclaimer informando que a taxa apresentada é somente informativa, para a contratação de uma operação, deverá ser consultado o canal correspondente de cada instituição.'
-              example: 'Informamos que esta taxa é estimada e exclusiva para fins de Open Finance,  não sendo válida para a contratação de operações de câmbio. Para obter a taxa para fechamento do câmbio, pedimos consultar os canais disponíveis para contratação.'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/OnlineRate'
+          example:
+            - foreignCurrency: USD
+              deliveryForeignCurrency: ESPECIE
+              transactionType: COMPRA
+              targetAudience: PF
+              value: '5.5023'
+            - foreignCurrency: EUR
+              deliveryForeignCurrency: CARTAO_PRE_PAGO
+              transactionType: VENDA
+              targetAudience: PJ
+              value: '2.7045'
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp do momento da consulta
+          example: '2017-07-21T17:32:28Z'
+        disclaimer:
+          type: string
+          description: 'Disclaimer informando que a taxa apresentada é somente informativa, para a contratação de uma operação, deverá ser consultado o canal correspondente de cada instituição.'
+          example: 'Informamos que esta taxa é estimada e exclusiva para fins de Open Finance,  não sendo válida para a contratação de operações de câmbio. Para obter a taxa para fechamento do câmbio, pedimos consultar os canais disponíveis para contratação.'
       additionalProperties: false
     ExchangeVetValue:
       type: object
       description: Conjunto de informações referentes às informações de câmbio
       required:
-        - participantIdentification
+        - participant
         - transactionType
         - foreignCurrency
         - transactionCategory
@@ -218,12 +218,12 @@ components:
         - rangeTransactionCategory
         - vetAmount
       properties:
-        participantIdentification:
+        participant:
           $ref: '#/components/schemas/ExchangeParticipantIdentification'
         transactionType:
           $ref: '#/components/schemas/EnumExchangeTransactionType'
         foreignCurrency:
-          $ref: '#/components/schemas/EnumExchangeForeignCurrency'
+          $ref: '#/components/schemas/OnlineRate/properties/foreignCurrency'
         transactionCategory:
           $ref: '#/components/schemas/EnumExchangeTransactionCategory'
         deliveryForeignCurrency:
@@ -249,7 +249,10 @@ components:
         - value
       properties:
         foreignCurrency:
-          $ref: '#/components/schemas/EnumExchangeForeignCurrency'
+          type: string
+          pattern: '^[A-Z]{3}$'
+          description: 'Moeda referente ao valor da transação, segundo modelo ISO-4217. p.ex. ''BRL''<br>Todos os saldos informados estão representados com a moeda vigente do Brasil'
+          example: BRL
         deliveryForeignCurrency:
           $ref: '#/components/schemas/EnumExchangeDeliveryForeignCurrency'
         transactionType:
@@ -272,17 +275,6 @@ components:
         - CARTAO_PRE_PAGO
         - TELETRANSMISSAO_SWIFT
       example: CARTAO_PRE_PAGO
-    EnumExchangeForeignCurrency:
-      type: string
-      description: |
-        É a moeda estrangeira, segundo modelo ISO 4217. (Vide Enum)
-        - USD
-        - EUR
-      maxLength: 3
-      enum:
-        - USD
-        - EUR
-      example: USD
     EnumExchangeRangeTransactionCategory:
       type: string
       description: A classificação conforme a circular BCB nº 4015.
@@ -375,6 +367,26 @@ components:
         - PESSOA_JURIDICA
         - PESSOA_NATURAL_JURIDICA
       example: PESSOA_NATURAL
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Número da página que está sendo requisitada (o valor da primeira página é 1).
+      schema:
+        type: integer
+        default: 1
+        minimum: 1
+        format: int32
+    pageSize:
+      name: page-size
+      in: query
+      description: Quantidade total de registros por páginas.
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+        format: int32
+        maximum: 1000
   responses:
     OKResponseExchangeOnlineRate:
       description: Dados de operações de câmbio da instituição obtidos com sucesso.

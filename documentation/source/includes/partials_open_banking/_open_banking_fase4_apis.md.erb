@@ -38,7 +38,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://example.com/opendata-capitalization-bonds/v1/products");
+xhr.open("GET", "https://example.com/opendata-capitalization/v1/bonds");
 xhr.setRequestHeader("Accept", "application/json");
 
 xhr.send(data);
@@ -51,7 +51,7 @@ conn = http.client.HTTPSConnection("example.com")
 
 headers = { 'Accept': "application/json" }
 
-conn.request("GET", "/opendata-capitalization-bonds/v1/products", headers=headers)
+conn.request("GET", "/opendata-capitalization/v1/bonds", headers=headers)
 
 res = conn.getresponse()
 data = res.read()
@@ -60,18 +60,18 @@ print(data.decode("utf-8"))
 ```
 
 ```java
-HttpResponse<String> response = Unirest.get("https://example.com/opendata-capitalization-bonds/v1/products")
+HttpResponse<String> response = Unirest.get("https://example.com/opendata-capitalization/v1/bonds")
   .header("Accept", "application/json")
   .asString();
 ```
 
-`GET /opendata-capitalization-bonds/v1/products`
+`GET /opendata-capitalization/v1/bonds`
 
 Método para obter a lista de todos os títulos de Capitalização de uma instituição
 
 ### Dicionário de dados
 
-Campos de resposta do endpoint de `/products`
+Campos de resposta do endpoint de `/bonds`
 
 <a href='dictionary/capitalizationBondsGetProducts_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
 
@@ -92,22 +92,20 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 {
   "data": [
     {
-      "participantIdentification": {
+      "participant": {
         "brand": "Organização",
         "name": "Organização A1",
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "insuranceCompanyIdentification": {
-        "name": "ACME cap da ACME seguros",
-        "cnpjNumber": "50685362000135"
+      "society": {
+        "name": "Society A1",
+        "cnpjNumber": "13456789000112"
       },
-      "product": {
-        "name": "ACMEcap",
-        "code": "01234589_cap",
-        "modality": "TRADICIONAL",
-        "costType": "PAGAMENTO_UNICO"
-      },
+      "name": "ACMEcap",
+      "code": "01234589_cap",
+      "modality": "TRADICIONAL",
+      "costType": "PAGAMENTO_UNICO",
       "termsAndConditions": {
         "susepProcessNumber": "15414.622222/2222-22",
         "termsRegulations": "https://ACME.exemplo/capitalizacao/tradicional/pdf/condicoes_gerais.pdf"
@@ -150,12 +148,13 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
         "adjustmentIndexAdditionalInfo": ""
       },
       "redemptionPercentageEndTerm": "1.51",
+      "finalRedemptionRate": "1.51",
       "draws": [
         {
           "timeInterval": "UNICO",
-          "periodicityAdditionalInfo": "",
+          "timeIntervalAdditionalInfo": "",
           "quantity": 10000,
-          "prizeMultiplier": 999999,
+          "prizeMultiplier": 5,
           "earlySettlementRaffle": true,
           "mandatoryContemplation": true,
           "ruleDescription": "Sorteio aos Sábados",
@@ -164,9 +163,7 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
       ],
       "additionalInfo": "https://ACME.exemplo/capitalizacao/tradicional/pdf/condicoes_gerais",
       "minimumRequirementDetails": "https://ACME.exemplo/capitalizacao/tradicional/pdf/condicoes_gerais",
-      "targetAudiences": [
-        "PESSOA_NATURAL"
-      ]
+      "targetAudience": "PESSOA_NATURAL"
     }
   ],
   "links": {
@@ -281,41 +278,49 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 {
   "data": [
     {
-      "participantIdentification": {
+      "participant": {
         "brand": "Organização",
         "name": "Organização A1",
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "product": {
-        "name": "FUNDO DE INVESTIMENTO EM COTAS DE FUNDOS DE INVESTIMENTO",
-        "cnpjNumber": "64108803000191",
-        "isinCode": "BRAAAAAAA000",
-        "admin": "ADM OPEN BANKING DTVM S.A.",
-        "adminCnpjNumber": "14511732000150",
-        "fundManager": "GESTOR OPEN BANKING DTVM S.A.",
-        "fundManagerCnpjNumber": "16332711000101",
-        "anbimaCategory": "MULTIMERCADO"
+      "name": "FUNDO DE INVESTIMENTO EM COTAS DE FUNDOS DE INVESTIMENTO",
+      "cnpjNumber": "64108803000191",
+      "isinCode": "BRAAAAAAA000",
+      "admin": {
+        "name": "ADM OPEN BANKING DTVM S.A.",
+        "cnpjNumber": "14511732000150"
       },
+      "fundManager": {
+        "name": "GESTOR OPEN BANKING DTVM S.A.",
+        "cnpjNumber": "16332711000101"
+      },
+      "anbimaCategory": "MULTIMERCADO",
       "fees": {
         "maxAdminFee": "0.020000",
         "entryFee": "0.010000",
-        "performanceFeeMethod": "PASSIVO",
-        "performanceFeeBenchmark": "CDI",
-        "performanceFeeBenchmarkAdditionalInfo": "string",
-        "performanceFeeAmount": "0.050000",
+        "performanceFee": {
+          "method": "PASSIVO",
+          "benchmark": "CDI",
+          "benchmarkAdditionalInfo": "string",
+          "amount": "0.050000"
+        },
         "exitFee": "0.030000"
       },
       "generalConditions": {
         "minimumAmount": "100000.12",
         "currency": "BRL",
-        "redemptionQuotationDays": 3,
-        "redemptionQuotationTerm": "DIAS_CORRIDOS",
-        "redemptionPaymentTerm": 3,
-        "redemptionGraceDays": "DIAS_CORRIDOS",
-        "applicationQuotationDays": 60,
-        "applicationQuotationTerm": 3,
-        "applicationQuotationPeriod": "DIAS_CORRIDOS",
+        "redemption": {
+          "quotationDays": 3,
+          "quotationTerm": "DIAS_CORRIDOS",
+          "paymentTerm": 3,
+          "graceDays": "DIAS_CORRIDOS"
+        },
+        "application": {
+          "quotationDays": 60,
+          "quotationTerm": 3,
+          "quotationPeriod": "DIAS_CORRIDOS"
+        },
         "fundQuotaType": "COTA_DE_ABERTURA"
       },
       "taxation": "CURTO_PRAZO"
@@ -365,7 +370,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://example.com/opendata-investments/v1/fixed-income-bank");
+xhr.open("GET", "https://example.com/opendata-investments/v1/bank-fixed-incomes");
 xhr.setRequestHeader("Accept", "application/json");
 
 xhr.send(data);
@@ -378,7 +383,7 @@ conn = http.client.HTTPSConnection("example.com")
 
 headers = { 'Accept': "application/json" }
 
-conn.request("GET", "/opendata-investments/v1/fixed-income-bank", headers=headers)
+conn.request("GET", "/opendata-investments/v1/bank-fixed-incomes", headers=headers)
 
 res = conn.getresponse()
 data = res.read()
@@ -387,18 +392,18 @@ print(data.decode("utf-8"))
 ```
 
 ```java
-HttpResponse<String> response = Unirest.get("https://example.com/opendata-investments/v1/fixed-income-bank")
+HttpResponse<String> response = Unirest.get("https://example.com/opendata-investments/v1/bank-fixed-incomes")
   .header("Accept", "application/json")
   .asString();
 ```
 
-`GET /opendata-investments/v1/fixed-income-bank`
+`GET /opendata-investments/v1/bank-fixed-incomes`
 
 Método para obter a lista de todos os produtos de renda fixa bancária de uma instituição
 
 ### Dicionário de dados
 
-Campos de resposta do endpoint de `/fixed-income-bank`
+Campos de resposta do endpoint de `/bank-fixed-incomes`
 
 <a href='dictionary/investmentsGetFixedIncomeBank_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
 
@@ -419,16 +424,14 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 {
   "data": [
     {
-      "participantIdentification": {
+      "participant": {
         "brand": "Organização",
         "name": "Organização A1",
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "productIdentification": {
-        "issuerInstitutionCNPJ": "45086338000178",
-        "productType": "CDB"
-      },
+      "issuerInstitutionCNPJ": "45086338000178",
+      "investimentType": "CDB",
       "index": {
         "indexer": "CDI",
         "indexerAdditionalInfo": "Dólar",
@@ -516,7 +519,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://example.com/opendata-investments/v1/fixed-income-credit");
+xhr.open("GET", "https://example.com/opendata-investments/v1/credit-fixed-incomes");
 xhr.setRequestHeader("Accept", "application/json");
 
 xhr.send(data);
@@ -529,7 +532,7 @@ conn = http.client.HTTPSConnection("example.com")
 
 headers = { 'Accept': "application/json" }
 
-conn.request("GET", "/opendata-investments/v1/fixed-income-credit", headers=headers)
+conn.request("GET", "/opendata-investments/v1/credit-fixed-incomes", headers=headers)
 
 res = conn.getresponse()
 data = res.read()
@@ -538,18 +541,18 @@ print(data.decode("utf-8"))
 ```
 
 ```java
-HttpResponse<String> response = Unirest.get("https://example.com/opendata-investments/v1/fixed-income-credit")
+HttpResponse<String> response = Unirest.get("https://example.com/opendata-investments/v1/credit-fixed-incomes")
   .header("Accept", "application/json")
   .asString();
 ```
 
-`GET /opendata-investments/v1/fixed-income-credit`
+`GET /opendata-investments/v1/credit-fixed-incomes`
 
 Método para obter a lista de todos os produtos de renda fixa crédito de uma instituição
 
 ### Dicionário de dados
 
-Campos de resposta do endpoint de `/fixed-income-credit`
+Campos de resposta do endpoint de `/credit-fixed-incomes`
 
 <a href='dictionary/investmentsGetFixedIncomeCredit_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
 
@@ -570,72 +573,70 @@ Campos de resposta do endpoint de `/fixed-income-credit`
 {
   "data": [
     {
-      "participantIdentification": {
+      "participant": {
         "brand": "Organização",
         "name": "Organização A1",
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "fees": {
-        "investmentType": "CRI",
-        "custodyFee": {
-          "name": "NA",
-          "code": "NA",
-          "chargingTriggerInfo": "NA",
-          "prices": [
-            {
-              "interval": "1_FAIXA",
-              "value": "0.020300",
-              "customerRate": "0.500000"
-            },
-            {
-              "interval": "2_FAIXA",
-              "value": "0.030600",
-              "customerRate": "0.100000"
-            },
-            {
-              "interval": "3_FAIXA",
-              "value": "0.034300",
-              "customerRate": "0.300000"
-            },
-            {
-              "interval": "4_FAIXA",
-              "value": "0.246800",
-              "customerRate": "0.100000"
-            }
-          ],
-          "minimum": "0.010000",
-          "maximum": "0.300000"
-        },
-        "loadingRate": {
-          "name": "NA",
-          "code": "NA",
-          "chargingTriggerInfo": "NA",
-          "prices": [
-            {
-              "interval": "1_FAIXA",
-              "value": "0.020300",
-              "customerRate": "0.500000"
-            },
-            {
-              "interval": "2_FAIXA",
-              "value": "0.030600",
-              "customerRate": "0.100000"
-            },
-            {
-              "interval": "3_FAIXA",
-              "value": "0.034300",
-              "customerRate": "0.300000"
-            },
-            {
-              "interval": "4_FAIXA",
-              "value": "0.246800",
-              "customerRate": "0.100000"
-            }
-          ],
-          "minimum": "0.010000",
-          "maximum": "0.300000"
-        }
+      "investmentType": "CRI",
+      "custodyFee": {
+        "name": "NA",
+        "code": "NA",
+        "chargingTriggerInfo": "NA",
+        "prices": [
+          {
+            "interval": "1_FAIXA",
+            "value": "0.020300",
+            "customerRate": "0.500000"
+          },
+          {
+            "interval": "2_FAIXA",
+            "value": "0.030600",
+            "customerRate": "0.100000"
+          },
+          {
+            "interval": "3_FAIXA",
+            "value": "0.034300",
+            "customerRate": "0.300000"
+          },
+          {
+            "interval": "4_FAIXA",
+            "value": "0.246800",
+            "customerRate": "0.100000"
+          }
+        ],
+        "minimum": "0.010000",
+        "maximum": "0.300000"
+      },
+      "loadingRate": {
+        "name": "NA",
+        "code": "NA",
+        "chargingTriggerInfo": "NA",
+        "prices": [
+          {
+            "interval": "1_FAIXA",
+            "value": "0.020300",
+            "customerRate": "0.500000"
+          },
+          {
+            "interval": "2_FAIXA",
+            "value": "0.030600",
+            "customerRate": "0.100000"
+          },
+          {
+            "interval": "3_FAIXA",
+            "value": "0.034300",
+            "customerRate": "0.300000"
+          },
+          {
+            "interval": "4_FAIXA",
+            "value": "0.246800",
+            "customerRate": "0.100000"
+          }
+        ],
+        "minimum": "0.010000",
+        "maximum": "0.300000"
       }
     }
   ],
@@ -683,7 +684,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://example.com/opendata-investments/v1/variable-income");
+xhr.open("GET", "https://example.com/opendata-investments/v1/variable-incomes");
 xhr.setRequestHeader("Accept", "application/json");
 
 xhr.send(data);
@@ -696,7 +697,7 @@ conn = http.client.HTTPSConnection("example.com")
 
 headers = { 'Accept': "application/json" }
 
-conn.request("GET", "/opendata-investments/v1/variable-income", headers=headers)
+conn.request("GET", "/opendata-investments/v1/variable-incomes", headers=headers)
 
 res = conn.getresponse()
 data = res.read()
@@ -705,18 +706,18 @@ print(data.decode("utf-8"))
 ```
 
 ```java
-HttpResponse<String> response = Unirest.get("https://example.com/opendata-investments/v1/variable-income")
+HttpResponse<String> response = Unirest.get("https://example.com/opendata-investments/v1/variable-incomes")
   .header("Accept", "application/json")
   .asString();
 ```
 
-`GET /opendata-investments/v1/variable-income`
+`GET /opendata-investments/v1/variable-incomes`
 
 Método para obter a lista de todos os produtos de renda variável de uma instituição
 
 ### Dicionário de dados
 
-Campos de resposta do endpoint de `/variable-income`
+Campos de resposta do endpoint de `/variable-incomes`
 
 <a href='dictionary/investmentsGetVariableIncome_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
 
@@ -737,72 +738,70 @@ Campos de resposta do endpoint de `/variable-income`
 {
   "data": [
     {
-      "participantIdentification": {
+      "participant": {
         "brand": "Organização",
         "name": "Organização A1",
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "fees": {
-        "investmentType": "ACOES",
-        "custodyFee": {
-          "name": "NA",
-          "code": "NA",
-          "chargingTriggerInfo": "NA",
-          "prices": [
-            {
-              "interval": "1_FAIXA",
-              "value": "0.020300",
-              "customerRate": "0.500000"
-            },
-            {
-              "interval": "2_FAIXA",
-              "value": "0.030600",
-              "customerRate": "0.100000"
-            },
-            {
-              "interval": "3_FAIXA",
-              "value": "0.034300",
-              "customerRate": "0.300000"
-            },
-            {
-              "interval": "4_FAIXA",
-              "value": "0.246800",
-              "customerRate": "0.100000"
-            }
-          ],
-          "minimum": "0.010000",
-          "maximum": "0.300000"
-        },
-        "loadingRate": {
-          "name": "NA",
-          "code": "NA",
-          "chargingTriggerInfo": "NA",
-          "prices": [
-            {
-              "interval": "1_FAIXA",
-              "value": "0.020300",
-              "customerRate": "0.500000"
-            },
-            {
-              "interval": "2_FAIXA",
-              "value": "0.030600",
-              "customerRate": "0.100000"
-            },
-            {
-              "interval": "3_FAIXA",
-              "value": "0.034300",
-              "customerRate": "0.300000"
-            },
-            {
-              "interval": "4_FAIXA",
-              "value": "0.246800",
-              "customerRate": "0.100000"
-            }
-          ],
-          "minimum": "0.010000",
-          "maximum": "0.300000"
-        }
+      "investmentType": "ACOES",
+      "custodyFee": {
+        "name": "NA",
+        "code": "NA",
+        "chargingTriggerInfo": "NA",
+        "prices": [
+          {
+            "interval": "1_FAIXA",
+            "value": "0.020300",
+            "customerRate": "0.500000"
+          },
+          {
+            "interval": "2_FAIXA",
+            "value": "0.030600",
+            "customerRate": "0.100000"
+          },
+          {
+            "interval": "3_FAIXA",
+            "value": "0.034300",
+            "customerRate": "0.300000"
+          },
+          {
+            "interval": "4_FAIXA",
+            "value": "0.246800",
+            "customerRate": "0.100000"
+          }
+        ],
+        "minimum": "0.010000",
+        "maximum": "0.300000"
+      },
+      "loadingRate": {
+        "name": "NA",
+        "code": "NA",
+        "chargingTriggerInfo": "NA",
+        "prices": [
+          {
+            "interval": "1_FAIXA",
+            "value": "0.020300",
+            "customerRate": "0.500000"
+          },
+          {
+            "interval": "2_FAIXA",
+            "value": "0.030600",
+            "customerRate": "0.100000"
+          },
+          {
+            "interval": "3_FAIXA",
+            "value": "0.034300",
+            "customerRate": "0.300000"
+          },
+          {
+            "interval": "4_FAIXA",
+            "value": "0.246800",
+            "customerRate": "0.100000"
+          }
+        ],
+        "minimum": "0.010000",
+        "maximum": "0.300000"
       }
     }
   ],
@@ -850,7 +849,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://example.com/opendata-investments/v1/treasure");
+xhr.open("GET", "https://example.com/opendata-investments/v1/treasure-titles");
 xhr.setRequestHeader("Accept", "application/json");
 
 xhr.send(data);
@@ -863,7 +862,7 @@ conn = http.client.HTTPSConnection("example.com")
 
 headers = { 'Accept': "application/json" }
 
-conn.request("GET", "/opendata-investments/v1/treasure", headers=headers)
+conn.request("GET", "/opendata-investments/v1/treasure-titles", headers=headers)
 
 res = conn.getresponse()
 data = res.read()
@@ -872,18 +871,18 @@ print(data.decode("utf-8"))
 ```
 
 ```java
-HttpResponse<String> response = Unirest.get("https://example.com/opendata-investments/v1/treasure")
+HttpResponse<String> response = Unirest.get("https://example.com/opendata-investments/v1/treasure-titles")
   .header("Accept", "application/json")
   .asString();
 ```
 
-`GET /opendata-investments/v1/treasure`
+`GET /opendata-investments/v1/treasure-titles`
 
 Método para obter a lista de todas as informações sobre títulos do tesouro direto de uma instituição
 
 ### Dicionário de dados
 
-Campos de resposta do endpoint de `/treasure`
+Campos de resposta do endpoint de `/treasure-titles`
 
 <a href='dictionary/investmentsGetTreasure_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
 
@@ -904,72 +903,70 @@ Campos de resposta do endpoint de `/treasure`
 {
   "data": [
     {
-      "participantIdentification": {
+      "participant": {
         "brand": "Organização",
         "name": "Organização A1",
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "fees": {
-        "investmentType": "TESOURO_DIRETO",
-        "custodyFee": {
-          "name": "NA",
-          "code": "NA",
-          "chargingTriggerInfo": "NA",
-          "prices": [
-            {
-              "interval": "1_FAIXA",
-              "value": "0.020300",
-              "customerRate": "0.500000"
-            },
-            {
-              "interval": "2_FAIXA",
-              "value": "0.030600",
-              "customerRate": "0.100000"
-            },
-            {
-              "interval": "3_FAIXA",
-              "value": "0.034300",
-              "customerRate": "0.300000"
-            },
-            {
-              "interval": "4_FAIXA",
-              "value": "0.246800",
-              "customerRate": "0.100000"
-            }
-          ],
-          "minimum": "0.010000",
-          "maximum": "0.300000"
-        },
-        "loadingRate": {
-          "name": "NA",
-          "code": "NA",
-          "chargingTriggerInfo": "NA",
-          "prices": [
-            {
-              "interval": "1_FAIXA",
-              "value": "0.020300",
-              "customerRate": "0.500000"
-            },
-            {
-              "interval": "2_FAIXA",
-              "value": "0.030600",
-              "customerRate": "0.100000"
-            },
-            {
-              "interval": "3_FAIXA",
-              "value": "0.034300",
-              "customerRate": "0.300000"
-            },
-            {
-              "interval": "4_FAIXA",
-              "value": "0.246800",
-              "customerRate": "0.100000"
-            }
-          ],
-          "minimum": "0.010000",
-          "maximum": "0.300000"
-        }
+      "investmentType": "TESOURO_DIRETO",
+      "custodyFee": {
+        "name": "NA",
+        "code": "NA",
+        "chargingTriggerInfo": "NA",
+        "prices": [
+          {
+            "interval": "1_FAIXA",
+            "value": "0.020300",
+            "customerRate": "0.500000"
+          },
+          {
+            "interval": "2_FAIXA",
+            "value": "0.030600",
+            "customerRate": "0.100000"
+          },
+          {
+            "interval": "3_FAIXA",
+            "value": "0.034300",
+            "customerRate": "0.300000"
+          },
+          {
+            "interval": "4_FAIXA",
+            "value": "0.246800",
+            "customerRate": "0.100000"
+          }
+        ],
+        "minimum": "0.010000",
+        "maximum": "0.300000"
+      },
+      "loadingRate": {
+        "name": "NA",
+        "code": "NA",
+        "chargingTriggerInfo": "NA",
+        "prices": [
+          {
+            "interval": "1_FAIXA",
+            "value": "0.020300",
+            "customerRate": "0.500000"
+          },
+          {
+            "interval": "2_FAIXA",
+            "value": "0.030600",
+            "customerRate": "0.100000"
+          },
+          {
+            "interval": "3_FAIXA",
+            "value": "0.034300",
+            "customerRate": "0.300000"
+          },
+          {
+            "interval": "4_FAIXA",
+            "value": "0.246800",
+            "customerRate": "0.100000"
+          }
+        ],
+        "minimum": "0.010000",
+        "maximum": "0.300000"
       }
     }
   ],
@@ -1031,7 +1028,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://example.com/opendata-exchange/v1/online-rate");
+xhr.open("GET", "https://example.com/opendata-exchange/v1/online-rates");
 xhr.setRequestHeader("Accept", "application/json");
 
 xhr.send(data);
@@ -1044,7 +1041,7 @@ conn = http.client.HTTPSConnection("example.com")
 
 headers = { 'Accept': "application/json" }
 
-conn.request("GET", "/opendata-exchange/v1/online-rate", headers=headers)
+conn.request("GET", "/opendata-exchange/v1/online-rates", headers=headers)
 
 res = conn.getresponse()
 data = res.read()
@@ -1053,22 +1050,29 @@ print(data.decode("utf-8"))
 ```
 
 ```java
-HttpResponse<String> response = Unirest.get("https://example.com/opendata-exchange/v1/online-rate")
+HttpResponse<String> response = Unirest.get("https://example.com/opendata-exchange/v1/online-rates")
   .header("Accept", "application/json")
   .asString();
 ```
 
-`GET /opendata-exchange/v1/online-rate`
+`GET /opendata-exchange/v1/online-rates`
 
 Método para disponibilizar a taxa online.
 
 ### Dicionário de dados
 
-Campos de resposta do endpoint de `/online-rate`
+Campos de resposta do endpoint de `/online-rates`
 
 <a href='dictionary/exchangeGetOnlineRate_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
 
 Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
+
+<h3 id="conjunto-de-informações-de-câmbio-para-taxa-online.-parameters">Parâmetros</h3>
+
+|Nome|Origem|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|page|query|integer(int32)|false|Número da página que está sendo requisitada (o valor da primeira página é 1).|
+|page-size|query|integer(int32)|false|Quantidade total de registros por páginas.|
 
 > O comando acima retorna uma estrutura json como essa:
 
@@ -1078,32 +1082,30 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 {
   "data": [
     {
-      "participantIdentification": {
+      "participant": {
         "brand": "Organização",
         "name": "Organização A1",
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "onlineRate": {
-        "values": [
-          {
-            "foreignCurrency": "USD",
-            "deliveryForeignCurrency": "ESPECIE",
-            "transactionType": "COMPRA",
-            "targetAudience": "PF",
-            "value": "5.5023"
-          },
-          {
-            "foreignCurrency": "EUR",
-            "deliveryForeignCurrency": "CARTAO_PRE_PAGO",
-            "transactionType": "VENDA",
-            "targetAudience": "PJ",
-            "value": "2.7045"
-          }
-        ],
-        "timestamp": "2017-07-21T17:32:28Z",
-        "disclaimer": "Informamos que esta taxa é estimada e exclusiva para fins de Open Finance,  não sendo válida para a contratação de operações de câmbio. Para obter a taxa para fechamento do câmbio, pedimos consultar os canais disponíveis para contratação."
-      }
+      "values": [
+        {
+          "foreignCurrency": "USD",
+          "deliveryForeignCurrency": "ESPECIE",
+          "transactionType": "COMPRA",
+          "targetAudience": "PF",
+          "value": "5.5023"
+        },
+        {
+          "foreignCurrency": "EUR",
+          "deliveryForeignCurrency": "CARTAO_PRE_PAGO",
+          "transactionType": "VENDA",
+          "targetAudience": "PJ",
+          "value": "2.7045"
+        }
+      ],
+      "timestamp": "2017-07-21T17:32:28Z",
+      "disclaimer": "Informamos que esta taxa é estimada e exclusiva para fins de Open Finance,  não sendo válida para a contratação de operações de câmbio. Para obter a taxa para fechamento do câmbio, pedimos consultar os canais disponíveis para contratação."
     }
   ],
   "links": {
@@ -1150,7 +1152,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://example.com/opendata-exchange/v1/vet-value");
+xhr.open("GET", "https://example.com/opendata-exchange/v1/vet-values");
 xhr.setRequestHeader("Accept", "application/json");
 
 xhr.send(data);
@@ -1163,7 +1165,7 @@ conn = http.client.HTTPSConnection("example.com")
 
 headers = { 'Accept': "application/json" }
 
-conn.request("GET", "/opendata-exchange/v1/vet-value", headers=headers)
+conn.request("GET", "/opendata-exchange/v1/vet-values", headers=headers)
 
 res = conn.getresponse()
 data = res.read()
@@ -1172,22 +1174,29 @@ print(data.decode("utf-8"))
 ```
 
 ```java
-HttpResponse<String> response = Unirest.get("https://example.com/opendata-exchange/v1/vet-value")
+HttpResponse<String> response = Unirest.get("https://example.com/opendata-exchange/v1/vet-values")
   .header("Accept", "application/json")
   .asString();
 ```
 
-`GET /opendata-exchange/v1/vet-value`
+`GET /opendata-exchange/v1/vet-values`
 
 Método para disponibilizar o valor VET.
 
 ### Dicionário de dados
 
-Campos de resposta do endpoint de `/vet-value`
+Campos de resposta do endpoint de `/vet-values`
 
 <a href='dictionary/exchangeGetVetValue_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
 
 Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
+
+<h3 id="conjunto-de-informações-de-câmbio-para-valor-vet.-parameters">Parâmetros</h3>
+
+|Nome|Origem|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|page|query|integer(int32)|false|Número da página que está sendo requisitada (o valor da primeira página é 1).|
+|page-size|query|integer(int32)|false|Quantidade total de registros por páginas.|
 
 > O comando acima retorna uma estrutura json como essa:
 
@@ -1197,14 +1206,14 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 {
   "data": [
     {
-      "participantIdentification": {
+      "participant": {
         "brand": "Organização",
         "name": "Organização A1",
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
       "transactionType": "COMPRA",
-      "foreignCurrency": "USD",
+      "foreignCurrency": "BRL",
       "transactionCategory": "COMERCIO_EXTERIOR",
       "deliveryForeignCurrency": "CARTAO_PRE_PAGO",
       "rangeTransactionCategory": "0,01_200",
@@ -1270,7 +1279,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://example.com/opendata-acquiring-services/v1/personal-acquiring-services");
+xhr.open("GET", "https://example.com/opendata-acquiring-services/v1/personals");
 xhr.setRequestHeader("Accept", "application/json");
 
 xhr.send(data);
@@ -1283,7 +1292,7 @@ conn = http.client.HTTPSConnection("example.com")
 
 headers = { 'Accept': "application/json" }
 
-conn.request("GET", "/opendata-acquiring-services/v1/personal-acquiring-services", headers=headers)
+conn.request("GET", "/opendata-acquiring-services/v1/personals", headers=headers)
 
 res = conn.getresponse()
 data = res.read()
@@ -1292,22 +1301,29 @@ print(data.decode("utf-8"))
 ```
 
 ```java
-HttpResponse<String> response = Unirest.get("https://example.com/opendata-acquiring-services/v1/personal-acquiring-services")
+HttpResponse<String> response = Unirest.get("https://example.com/opendata-acquiring-services/v1/personals")
   .header("Accept", "application/json")
   .asString();
 ```
 
-`GET /opendata-acquiring-services/v1/personal-acquiring-services`
+`GET /opendata-acquiring-services/v1/personals`
 
 Método para disponibilizar as taxas e tarifas por serviços.
 
 ### Dicionário de dados
 
-Campos de resposta do endpoint de `/personal-acquiring-services`
+Campos de resposta do endpoint de `/personals`
 
 <a href='dictionary/getPersonalAcquiringServices_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
 
 Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
+
+<h3 id="conjunto-de-informações-de-credenciamento-para-pessoa-física.-parameters">Parâmetros</h3>
+
+|Nome|Origem|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|page|query|integer(int32)|false|Número da página que está sendo requisitada (o valor da primeira página é 1).|
+|page-size|query|integer(int32)|false|Quantidade total de registros por páginas.|
 
 > O comando acima retorna uma estrutura json como essa:
 
@@ -1316,43 +1332,39 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 ```json
 {
   "data": {
-    "participantIdentification": {
+    "participant": {
       "brand": "Organização",
       "name": "Organização A1",
       "cnpjNumber": "13456789000112",
       "urlComplementaryList": "https://empresaa1.com/companies"
     },
-    "feesAndRatesForService": [
+    "feeName": "TAXA_DE_DESCONTO_NA_MODALIDADE_CREDITO",
+    "code": "MDR_CREDITO",
+    "prices": [
       {
-        "feeName": "TAXA_DE_DESCONTO_NA_MODALIDADE_CREDITO",
-        "code": "MDR_CREDITO",
-        "prices": [
-          {
-            "interval": "1_FAIXA",
-            "value": "0.0203",
-            "customerRate": "0.5000"
-          },
-          {
-            "interval": "2_FAIXA",
-            "value": "0.0306",
-            "customerRate": "0.1000"
-          },
-          {
-            "interval": "3_FAIXA",
-            "value": "0.0343",
-            "customerRate": "0.3000"
-          },
-          {
-            "interval": "4_FAIXA",
-            "value": "0.2468",
-            "customerRate": "0.1000"
-          }
-        ],
-        "chargingTriggerInfo": "NA",
-        "minimum": "2.0",
-        "maximum": "5.0"
+        "interval": "1_FAIXA",
+        "value": "0.0203",
+        "customerRate": "0.5000"
+      },
+      {
+        "interval": "2_FAIXA",
+        "value": "0.0306",
+        "customerRate": "0.1000"
+      },
+      {
+        "interval": "3_FAIXA",
+        "value": "0.0343",
+        "customerRate": "0.3000"
+      },
+      {
+        "interval": "4_FAIXA",
+        "value": "0.2468",
+        "customerRate": "0.1000"
       }
-    ]
+    ],
+    "chargingTriggerInfo": "NA",
+    "minimum": "2.0",
+    "maximum": "5.0"
   },
   "links": {
     "self": "https://api.banco.com.br/open-banking/api/v1/resource",
@@ -1398,7 +1410,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://example.com/opendata-acquiring-services/v1/business-acquiring-services");
+xhr.open("GET", "https://example.com/opendata-acquiring-services/v1/businesses");
 xhr.setRequestHeader("Accept", "application/json");
 
 xhr.send(data);
@@ -1411,7 +1423,7 @@ conn = http.client.HTTPSConnection("example.com")
 
 headers = { 'Accept': "application/json" }
 
-conn.request("GET", "/opendata-acquiring-services/v1/business-acquiring-services", headers=headers)
+conn.request("GET", "/opendata-acquiring-services/v1/businesses", headers=headers)
 
 res = conn.getresponse()
 data = res.read()
@@ -1420,22 +1432,29 @@ print(data.decode("utf-8"))
 ```
 
 ```java
-HttpResponse<String> response = Unirest.get("https://example.com/opendata-acquiring-services/v1/business-acquiring-services")
+HttpResponse<String> response = Unirest.get("https://example.com/opendata-acquiring-services/v1/businesses")
   .header("Accept", "application/json")
   .asString();
 ```
 
-`GET /opendata-acquiring-services/v1/business-acquiring-services`
+`GET /opendata-acquiring-services/v1/businesses`
 
 Método para disponibilizar as taxas e tarifas por serviços.
 
 ### Dicionário de dados
 
-Campos de resposta do endpoint de `/business-acquiring-services`
+Campos de resposta do endpoint de `/businesses`
 
 <a href='dictionary/getBusinessAcquiringServices_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
 
 Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
+
+<h3 id="conjunto-de-informações-de-credenciamento-para-pessoa-jurídica.-parameters">Parâmetros</h3>
+
+|Nome|Origem|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|page|query|integer(int32)|false|Número da página que está sendo requisitada (o valor da primeira página é 1).|
+|page-size|query|integer(int32)|false|Quantidade total de registros por páginas.|
 
 > O comando acima retorna uma estrutura json como essa:
 
@@ -1444,43 +1463,39 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 ```json
 {
   "data": {
-    "participantIdentification": {
+    "participant": {
       "brand": "Organização",
       "name": "Organização A1",
       "cnpjNumber": "13456789000112",
       "urlComplementaryList": "https://empresaa1.com/companies"
     },
-    "feesAndRatesForService": [
+    "feeName": "TAXA_DE_DESCONTO_NA_MODALIDADE_CREDITO",
+    "code": "MDR_CREDITO",
+    "prices": [
       {
-        "feeName": "TAXA_DE_DESCONTO_NA_MODALIDADE_CREDITO",
-        "code": "MDR_CREDITO",
-        "prices": [
-          {
-            "interval": "1_FAIXA",
-            "value": "0.0203",
-            "customerRate": "0.5000"
-          },
-          {
-            "interval": "2_FAIXA",
-            "value": "0.0306",
-            "customerRate": "0.1000"
-          },
-          {
-            "interval": "3_FAIXA",
-            "value": "0.0343",
-            "customerRate": "0.3000"
-          },
-          {
-            "interval": "4_FAIXA",
-            "value": "0.2468",
-            "customerRate": "0.1000"
-          }
-        ],
-        "chargingTriggerInfo": "NA",
-        "minimum": "2.0",
-        "maximum": "5.0"
+        "interval": "1_FAIXA",
+        "value": "0.0203",
+        "customerRate": "0.5000"
+      },
+      {
+        "interval": "2_FAIXA",
+        "value": "0.0306",
+        "customerRate": "0.1000"
+      },
+      {
+        "interval": "3_FAIXA",
+        "value": "0.0343",
+        "customerRate": "0.3000"
+      },
+      {
+        "interval": "4_FAIXA",
+        "value": "0.2468",
+        "customerRate": "0.1000"
       }
-    ]
+    ],
+    "chargingTriggerInfo": "NA",
+    "minimum": "2.0",
+    "maximum": "5.0"
   },
   "links": {
     "self": "https://api.banco.com.br/open-banking/api/v1/resource",
@@ -1579,6 +1594,13 @@ Campos de resposta do endpoint de `/risk-coverages`
 
 Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
 
+<h3 id="conjunto-de-informações-de-previdência-de-coberturas-de-risco.-parameters">Parâmetros</h3>
+
+|Nome|Origem|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|page|query|integer(int32)|false|Número da página que está sendo requisitada (o valor da primeira página é 1).|
+|page-size|query|integer(int32)|false|Quantidade total de registros por páginas.|
+
 > O comando acima retorna uma estrutura json como essa:
 
 > 200 Response
@@ -1628,29 +1650,77 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
           },
           "indemnifiablePeriods": [
             "QUANTIDADE_DETERMINADA_PARCELAS"
+  "data": [
+    {
+      "participant": {
+        "brand": "Organização",
+        "name": "Organização A1",
+        "cnpjNumber": "13456789000112",
+        "urlComplementaryList": "https://empresaa1.com/companies"
+      },
+      "society": {
+        "name": "Society A1",
+        "cnpjNumber": "13456789000112"
+      },
+      "name": "Produto A",
+      "code": "0001",
+      "category": "TRADICIONAL",
+      "modality": "FUNERAL",
+      "coverages": [
+        {
+          "type": "MORTE",
+          "additionalInfos": [
+            "string"
           ],
-          "maximumQtyIndemnifiableInstallments": 10,
-          "gracePeriod": {
-            "amount": 90,
-            "unit": "MESES"
-          },
-          "differentiatedGracePeriod": {
-            "amount": 90,
-            "unit": "MESES"
-          },
-          "deductibleDays": 10,
-          "differentiatedDeductibleDays": 15,
-          "deductible": {
-            "currencyValue": {
-              "amount": "0.01",
-              "currency": "BRL"
-            }
-          },
-          "differentiatedDeductible": {
-            "currencyValue": {
-              "amount": "0.01",
-              "currency": "BRL"
-            }
+          "attributes": {
+            "indemnityPaymentMethods": [
+              "PAGAMENTO_CAPITAL_SEGURADO_VALOR_MONETARIO"
+            ],
+            "indemnityPaymentFrequencies": [
+              "INDENIZACAO_UNICA"
+            ],
+            "indemnifiableDeadline": 48,
+            "minValue": {
+              "currencyValue": {
+                "amount": "0.01",
+                "currency": "BRL"
+              }
+            },
+            "maxValue": {
+              "currencyValue": {
+                "amount": "0.01",
+                "currency": "BRL"
+              }
+            },
+            "indemnifiablePeriods": [
+              "QUANTIDADE_DETERMINADA_PARCELAS"
+            ],
+            "maximumQtyIndemnifiableInstallments": 10,
+            "gracePeriod": {
+              "amount": 90,
+              "unit": "MESES"
+            },
+            "differentiatedGracePeriod": {
+              "amount": 90,
+              "unit": "MESES"
+            },
+            "deductibleDays": 10,
+            "differentiatedDeductibleDays": 15,
+            "deductible": {
+              "currencyValue": {
+                "amount": "0.01",
+                "currency": "BRL"
+              }
+            },
+            "differentiatedDeductible": {
+              "currencyValue": {
+                "amount": "0.01",
+                "currency": "BRL"
+              }
+            },
+            "excludedRisks": "ATO_RECONHECIMENTO_PERIGOSO",
+            "excludedRisksURL": "https://openinsurance.com.br/aaa",
+            "allowApartPurchase": true
           },
           "excludedRisks": "ATO_RECONHECIMENTO_PERIGOSO",
           "excludedRisksURL": "https://openinsurance.com.br/aaa",
@@ -1731,18 +1801,94 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
     "premiumPayment": {
       "paymentMethods": [
         "CARTAO_CREDITO"
+          "coveragePeriod": "TEMPORARIA"
+        }
       ],
-      "frequencies": [
-        "DIARIA"
-      ]
-    },
-    "contributionTax": "string",
-    "minimumRequirement": {
-      "contractType": "COLETIVO_AVERBADO",
-      "contractingMinRequirement": "https://openinsurance.com.br/aaa"
-    },
-    "targetAudience": "PESSOA_NATURAL"
-  },
+      "assistanceTypes": [
+        "PET",
+        "FUNERAL"
+      ],
+      "assistanceAdditionalInfos": [
+        "string"
+      ],
+      "additionals": [
+        "SORTEIO",
+        "OUTROS"
+      ],
+      "termsAndConditions": {
+        "susepProcessNumber": "15414.622222/2222-22",
+        "detail": "https://openinsurance.com.br/aaa"
+      },
+      "globalCapital": true,
+      "terms": [
+        "VITALICIA"
+      ],
+      "pmbacRemuneration": {
+        "interestRate": "14.2521",
+        "updateIndexes": [
+          "IPCA"
+        ]
+      },
+      "benefitRecalculation": {
+        "criterias": [
+          "INDICE"
+        ],
+        "updateIndexes": [
+          "IPCA"
+        ]
+      },
+      "ageAdjustment": {
+        "criterias": [
+          "APOS_PERIODO_EM_ANOS"
+        ],
+        "frequency": 10
+      },
+      "financialRegimeContractTypes": [
+        "REPARTICAO_SIMPLES"
+      ],
+      "reclaim": {
+        "table": {
+          "initialMonthRange": 1,
+          "finalMonthRange": 1,
+          "percentage": "0.5000"
+        },
+        "differentiatedPercentage": "https://openinsurance.com.br/aaa’\nObs.: Exceção de cobertura ou critério definido acima será descrito aqui na URL\nExemplo: Cobertura X: a partir de 25 meses = 100%\n",
+        "gracePeriod": {
+          "amount": 90,
+          "unit": "MESES"
+        }
+      },
+      "otherGuaranteedValues": [
+        "SALDAMENTO"
+      ],
+      "profitModality": "SOB_FORMA_DE_RENDA",
+      "allowPortability": true,
+      "portabilityGraceTime": {
+        "amount": 90,
+        "unit": "MESES"
+      },
+      "indemnityPaymentMethods": [
+        "UNICO"
+      ],
+      "indemnityPaymentIncomes": [
+        "CERTA"
+      ],
+      "premiumPayment": {
+        "paymentMethods": [
+          "CARTAO_CREDITO"
+        ],
+        "frequencies": [
+          "DIARIA"
+        ]
+      },
+      "contributionTax": "string",
+      "minimumRequirement": {
+        "contractType": "COLETIVO_AVERBADO",
+        "contractingMinRequirement": "https://openinsurance.com.br/aaa"
+      },
+      "targetAudience": "PESSOA_NATURAL"
+    }
+  ],
   "links": {
     "self": "https://api.banco.com.br/open-banking/api/v1/resource",
     "first": "https://api.banco.com.br/open-banking/api/v1/resource",
@@ -1826,113 +1972,122 @@ Campos de resposta do endpoint de `/survival-coverages`
 
 Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
 
+<h3 id="conjunto-de-informações-de-previdência-de-coberturas-de-sobrevivência.-parameters">Parâmetros</h3>
+
+|Nome|Origem|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|page|query|integer(int32)|false|Número da página que está sendo requisitada (o valor da primeira página é 1).|
+|page-size|query|integer(int32)|false|Quantidade total de registros por páginas.|
+
 > O comando acima retorna uma estrutura json como essa:
 
 > 200 Response
 
 ```json
 {
-  "data": {
-    "participant": {
-      "brand": "Organização",
-      "name": "Organização A1",
-      "cnpjNumber": "13456789000112",
-      "urlComplementaryList": "https://empresaa1.com/companies"
-    },
-    "society": {
-      "name": "Society A1",
-      "cnpjNumber": "13456789000112"
-    },
-    "name": "Produto A",
-    "code": "0001",
-    "segment": "PREVIDENCIA",
-    "modality": "BENEFICIO_DEFINIDO",
-    "adittionalInfo": "https://openinsurance.com.br/aaa",
-    "termsAndConditions": [
-      {
-        "susepProcessNumber": "15414.622222/2222-22",
-        "detail": "https://openinsurance.com.br/aaa"
-      }
-    ],
-    "type": "PGBL",
-    "defferalPeriod": {
-      "interestRate": "0.251231",
-      "updateIndex": "IPCA",
-      "otherMinimumPerformanceGarantees": "SELIC",
-      "reversalFinancialResults": "0.051230",
-      "minimumPremium": {
-        "currency": "BRL",
-        "periodicity": "MENSAL",
-        "amount": "250.00"
+  "data": [
+    {
+      "participant": {
+        "brand": "Organização",
+        "name": "Organização A1",
+        "cnpjNumber": "13456789000112",
+        "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "premiumPaymentMethods": [
-        "CARTAO_CREDITO"
-      ],
-      "permissionExtraordinaryContributions": true,
-      "permissionScheduledFinancialPayments": true,
-      "gracePeriod": {
-        "redemption": 100,
-        "betweenRedemptionRequests": 30,
-        "portability": 12,
-        "betweenPortabilityRequests": 15
+      "society": {
+        "name": "Society A1",
+        "cnpjNumber": "13456789000112"
       },
-      "redemptionPaymentTerm": 10,
-      "portabilityPaymentTerm": 20,
-      "investmentFunds": [
+      "name": "Produto A",
+      "code": "0001",
+      "segment": "PREVIDENCIA",
+      "modality": "BENEFICIO_DEFINIDO",
+      "adittionalInfo": "https://openinsurance.com.br/aaa",
+      "termsAndConditions": [
         {
-          "cnpjNumber": "13456789000112",
-          "name": "EMPRESAAPREV",
-          "maximumAdministrationFee": "0.201000",
-          "typePerformanceFee": "DIRETAMENTE",
-          "maximumPerformanceFee": "0.201000",
-          "eligibilityRule": true,
-          "minimumContributionAmount": "1000.00",
-          "minimumMathematicalProvisionAmount": "1000.00",
-          "currency": "BRL"
+          "susepProcessNumber": "15414.622222/2222-22",
+          "detail": "https://openinsurance.com.br/aaa"
         }
-      ]
-    },
-    "grantPeriodBenefit": {
-      "incomeModalities": [
-        "PAGAMENTO_UNICO"
       ],
-      "biometricTable": [
-        "AT_2000_MALE"
-      ],
-      "interestRate": "0.225222",
-      "updateIndex": "IPCA",
-      "reversalFinancialResults": "1.252111",
-      "investmentFunds": [
-        {
-          "cnpjNumber": "13456789000112",
-          "name": "EMPRESAAPREV",
-          "maximumAdministrationFee": "0.201000",
-          "typePerformanceFee": "DIRETAMENTE",
-          "maximumPerformanceFee": "0.201000",
-          "eligibilityRule": true,
-          "minimumContributionAmount": "1000.00",
-          "minimumMathematicalProvisionAmount": "1000.00",
-          "currency": "BRL"
-        }
-      ]
-    },
-    "costs": {
-      "loadingAntecipated": {
-        "minValue": "0.000000",
-        "maxValue": "0.100000"
+      "type": "PGBL",
+      "defferalPeriod": {
+        "interestRate": "0.251231",
+        "updateIndex": "IPCA",
+        "otherMinimumPerformanceGarantees": "SELIC",
+        "reversalFinancialResults": "0.051230",
+        "minimumPremium": {
+          "currency": "BRL",
+          "periodicity": "MENSAL",
+          "amount": "250.00"
+        },
+        "premiumPaymentMethods": [
+          "CARTAO_CREDITO"
+        ],
+        "permissionExtraordinaryContributions": true,
+        "permissionScheduledFinancialPayments": true,
+        "gracePeriod": {
+          "redemption": 100,
+          "betweenRedemptionRequests": 30,
+          "portability": 12,
+          "betweenPortabilityRequests": 15
+        },
+        "redemptionPaymentTerm": 10,
+        "portabilityPaymentTerm": 20,
+        "investmentFunds": [
+          {
+            "cnpjNumber": "13456789000112",
+            "name": "EMPRESAAPREV",
+            "maximumAdministrationFee": "0.201000",
+            "typePerformanceFee": "DIRETAMENTE",
+            "maximumPerformanceFee": "0.201000",
+            "eligibilityRule": true,
+            "minimumContributionAmount": "1000.00",
+            "minimumMathematicalProvisionAmount": "1000.00",
+            "currency": "BRL"
+          }
+        ]
       },
-      "loadingLate": {
-        "minValue": "0.000000",
-        "maxValue": "0.100000"
-      }
-    },
-    "minimumRequirements": {
-      "contractType": "COLETIVO",
-      "participantQualified": true,
-      "contractingMinRequirement": "https://openinsurance.com.br/aaa"
-    },
-    "targetAudience": "PESSOA_NATURAL"
-  },
+      "grantPeriodBenefit": {
+        "incomeModalities": [
+          "PAGAMENTO_UNICO"
+        ],
+        "biometricTable": [
+          "AT_2000_MALE"
+        ],
+        "interestRate": "0.225222",
+        "updateIndex": "IPCA",
+        "reversalFinancialResults": "1.252111",
+        "investmentFunds": [
+          {
+            "cnpjNumber": "13456789000112",
+            "name": "EMPRESAAPREV",
+            "maximumAdministrationFee": "0.201000",
+            "typePerformanceFee": "DIRETAMENTE",
+            "maximumPerformanceFee": "0.201000",
+            "eligibilityRule": true,
+            "minimumContributionAmount": "1000.00",
+            "minimumMathematicalProvisionAmount": "1000.00",
+            "currency": "BRL"
+          }
+        ]
+      },
+      "costs": {
+        "loadingAntecipated": {
+          "minValue": "0.000000",
+          "maxValue": "0.100000"
+        },
+        "loadingLate": {
+          "minValue": "0.000000",
+          "maxValue": "0.100000"
+        }
+      },
+      "minimumRequirements": {
+        "contractType": "COLETIVO",
+        "participantQualified": true,
+        "contractingMinRequirement": "https://openinsurance.com.br/aaa"
+      },
+      "targetAudience": "PESSOA_NATURAL"
+    }
+  ],
   "links": {
     "self": "https://api.banco.com.br/open-banking/api/v1/resource",
     "first": "https://api.banco.com.br/open-banking/api/v1/resource",
@@ -2024,7 +2179,7 @@ Método para obter a lista de todos os seguros automotivos de uma instituição
 
 ### Dicionário de dados
 
-Campos de resposta do endpoint de `/car`
+Campos de resposta do endpoint de `/cars`
 
 <a href='dictionary/getCarInsurance_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
 
@@ -2103,7 +2258,7 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
                 "description": "0001"
               }
             },
-            "geographicScope": [
+            "geographicScopes": [
               {
                 "coverages": [
                   "NACIONAL"
@@ -2653,43 +2808,39 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 ```json
 {
   "data": {
-    "participantIdentification": {
+    "participant": {
       "brand": "Organização",
       "name": "Organização A1",
       "cnpjNumber": "13456789000112",
       "urlComplementaryList": "https://empresaa1.com/companies"
     },
-    "feesAndRatesForService": [
+    "feeName": "TAXA_DE_DESCONTO_NA_MODALIDADE_CREDITO",
+    "code": "MDR_CREDITO",
+    "prices": [
       {
-        "feeName": "TAXA_DE_DESCONTO_NA_MODALIDADE_CREDITO",
-        "code": "MDR_CREDITO",
-        "prices": [
-          {
-            "interval": "1_FAIXA",
-            "value": "0.0203",
-            "customerRate": "0.5000"
-          },
-          {
-            "interval": "2_FAIXA",
-            "value": "0.0306",
-            "customerRate": "0.1000"
-          },
-          {
-            "interval": "3_FAIXA",
-            "value": "0.0343",
-            "customerRate": "0.3000"
-          },
-          {
-            "interval": "4_FAIXA",
-            "value": "0.2468",
-            "customerRate": "0.1000"
-          }
-        ],
-        "chargingTriggerInfo": "NA",
-        "minimum": "2.0",
-        "maximum": "5.0"
+        "interval": "1_FAIXA",
+        "value": "0.0203",
+        "customerRate": "0.5000"
+      },
+      {
+        "interval": "2_FAIXA",
+        "value": "0.0306",
+        "customerRate": "0.1000"
+      },
+      {
+        "interval": "3_FAIXA",
+        "value": "0.0343",
+        "customerRate": "0.3000"
+      },
+      {
+        "interval": "4_FAIXA",
+        "value": "0.2468",
+        "customerRate": "0.1000"
       }
-    ]
+    ],
+    "chargingTriggerInfo": "NA",
+    "minimum": "2.0",
+    "maximum": "5.0"
   },
   "links": {
     "self": "https://api.banco.com.br/open-banking/api/v1/resource",
@@ -2724,43 +2875,39 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 
 ```json
 {
-  "participantIdentification": {
+  "participant": {
     "brand": "Organização",
     "name": "Organização A1",
     "cnpjNumber": "13456789000112",
     "urlComplementaryList": "https://empresaa1.com/companies"
   },
-  "feesAndRatesForService": [
+  "feeName": "TAXA_DE_DESCONTO_NA_MODALIDADE_CREDITO",
+  "code": "MDR_CREDITO",
+  "prices": [
     {
-      "feeName": "TAXA_DE_DESCONTO_NA_MODALIDADE_CREDITO",
-      "code": "MDR_CREDITO",
-      "prices": [
-        {
-          "interval": "1_FAIXA",
-          "value": "0.0203",
-          "customerRate": "0.5000"
-        },
-        {
-          "interval": "2_FAIXA",
-          "value": "0.0306",
-          "customerRate": "0.1000"
-        },
-        {
-          "interval": "3_FAIXA",
-          "value": "0.0343",
-          "customerRate": "0.3000"
-        },
-        {
-          "interval": "4_FAIXA",
-          "value": "0.2468",
-          "customerRate": "0.1000"
-        }
-      ],
-      "chargingTriggerInfo": "NA",
-      "minimum": "2.0",
-      "maximum": "5.0"
+      "interval": "1_FAIXA",
+      "value": "0.0203",
+      "customerRate": "0.5000"
+    },
+    {
+      "interval": "2_FAIXA",
+      "value": "0.0306",
+      "customerRate": "0.1000"
+    },
+    {
+      "interval": "3_FAIXA",
+      "value": "0.0343",
+      "customerRate": "0.3000"
+    },
+    {
+      "interval": "4_FAIXA",
+      "value": "0.2468",
+      "customerRate": "0.1000"
     }
-  ]
+  ],
+  "chargingTriggerInfo": "NA",
+  "minimum": "2.0",
+  "maximum": "5.0"
 }
 
 ```
@@ -2771,8 +2918,13 @@ Conjunto de informações referentes às informações de credenciamento
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|participantIdentification|[ParticipantIdentification](#schemaparticipantidentification)|true|Conjunto de informações relativas ao participante do produto de open banking|
-|feesAndRatesForService|[[AcquiringServicesFeesAndRatesForService](#schemaacquiringservicesfeesandratesforservice)]|false||
+|participant|[ParticipantIdentification](#schemaparticipantidentification)|true|Conjunto de informações relativas ao participante do produto de open banking|
+|feeName|[EnumAcquiringServicesFeeName](#schemaenumacquiringservicesfeename)|true|Nome da tarifa cobrada sobre o serviço de credenciamento, para pessoa física/jurídica.<br>  1. Taxa de Desconto na Modalidade Crédito<br>  2. Taxa de Desconto na Modalidade Débito|
+|code|[EnumAcquiringServicesCode](#schemaenumacquiringservicescode)|true|Sigla da Tarifa cobrada sobre o Serviço de Credenciamento informado.|
+|prices|[[Price](#schemaprice)]|true|[4 Faixas de igual tamanho, com suas respectivas medianas e percentuais de clientes.]|
+|chargingTriggerInfo|string|true|Recebimento através de transação de cartão.|
+|minimum|string|true|Valor mínimo|
+|maximum|string|true|Valor máximo|
 
 <h2 id="tocS_OkResponseGetRiskPension">OkResponseGetRiskPension</h2>
 
@@ -2904,9 +3056,141 @@ Conjunto de informações referentes às informações de credenciamento
         "initialMonthRange": 1,
         "finalMonthRange": 1,
         "percentage": "0.5000"
+  "data": [
+    {
+      "participant": {
+        "brand": "Organização",
+        "name": "Organização A1",
+        "cnpjNumber": "13456789000112",
+        "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "differentiatedPercentage": "https://openinsurance.com.br/aaa’\nObs.: Exceção de cobertura ou critério definido acima será descrito aqui na URL\nExemplo: Cobertura X: a partir de 25 meses = 100%\n",
-      "gracePeriod": {
+      "society": {
+        "name": "Society A1",
+        "cnpjNumber": "13456789000112"
+      },
+      "name": "Produto A",
+      "code": "0001",
+      "category": "TRADICIONAL",
+      "modality": "FUNERAL",
+      "coverages": [
+        {
+          "type": "MORTE",
+          "additionalInfos": [
+            "string"
+          ],
+          "attributes": {
+            "indemnityPaymentMethods": [
+              "PAGAMENTO_CAPITAL_SEGURADO_VALOR_MONETARIO"
+            ],
+            "indemnityPaymentFrequencies": [
+              "INDENIZACAO_UNICA"
+            ],
+            "indemnifiableDeadline": 48,
+            "minValue": {
+              "currencyValue": {
+                "amount": "0.01",
+                "currency": "BRL"
+              }
+            },
+            "maxValue": {
+              "currencyValue": {
+                "amount": "0.01",
+                "currency": "BRL"
+              }
+            },
+            "indemnifiablePeriods": [
+              "QUANTIDADE_DETERMINADA_PARCELAS"
+            ],
+            "maximumQtyIndemnifiableInstallments": 10,
+            "gracePeriod": {
+              "amount": 90,
+              "unit": "MESES"
+            },
+            "differentiatedGracePeriod": {
+              "amount": 90,
+              "unit": "MESES"
+            },
+            "deductibleDays": 10,
+            "differentiatedDeductibleDays": 15,
+            "deductible": {
+              "currencyValue": {
+                "amount": "0.01",
+                "currency": "BRL"
+              }
+            },
+            "differentiatedDeductible": {
+              "currencyValue": {
+                "amount": "0.01",
+                "currency": "BRL"
+              }
+            },
+            "excludedRisks": "ATO_RECONHECIMENTO_PERIGOSO",
+            "excludedRisksURL": "https://openinsurance.com.br/aaa",
+            "allowApartPurchase": true
+          },
+          "coveragePeriod": "TEMPORARIA"
+        }
+      ],
+      "assistanceTypes": [
+        "PET",
+        "FUNERAL"
+      ],
+      "assistanceAdditionalInfos": [
+        "string"
+      ],
+      "additionals": [
+        "SORTEIO",
+        "OUTROS"
+      ],
+      "termsAndConditions": {
+        "susepProcessNumber": "15414.622222/2222-22",
+        "detail": "https://openinsurance.com.br/aaa"
+      },
+      "globalCapital": true,
+      "terms": [
+        "VITALICIA"
+      ],
+      "pmbacRemuneration": {
+        "interestRate": "14.2521",
+        "updateIndexes": [
+          "IPCA"
+        ]
+      },
+      "benefitRecalculation": {
+        "criterias": [
+          "INDICE"
+        ],
+        "updateIndexes": [
+          "IPCA"
+        ]
+      },
+      "ageAdjustment": {
+        "criterias": [
+          "APOS_PERIODO_EM_ANOS"
+        ],
+        "frequency": 10
+      },
+      "financialRegimeContractTypes": [
+        "REPARTICAO_SIMPLES"
+      ],
+      "reclaim": {
+        "table": {
+          "initialMonthRange": 1,
+          "finalMonthRange": 1,
+          "percentage": "0.5000"
+        },
+        "differentiatedPercentage": "https://openinsurance.com.br/aaa’\nObs.: Exceção de cobertura ou critério definido acima será descrito aqui na URL\nExemplo: Cobertura X: a partir de 25 meses = 100%\n",
+        "gracePeriod": {
+          "amount": 90,
+          "unit": "MESES"
+        }
+      },
+      "otherGuaranteedValues": [
+        "SALDAMENTO"
+      ],
+      "profitModality": "SOB_FORMA_DE_RENDA",
+      "allowPortability": true,
+      "portabilityGraceTime": {
         "amount": 90,
         "unit": "MESES"
       }
@@ -2929,18 +3213,29 @@ Conjunto de informações referentes às informações de credenciamento
     "premiumPayment": {
       "paymentMethods": [
         "CARTAO_CREDITO"
+      },
+      "indemnityPaymentMethods": [
+        "UNICO"
       ],
-      "frequencies": [
-        "DIARIA"
-      ]
-    },
-    "contributionTax": "string",
-    "minimumRequirement": {
-      "contractType": "COLETIVO_AVERBADO",
-      "contractingMinRequirement": "https://openinsurance.com.br/aaa"
-    },
-    "targetAudience": "PESSOA_NATURAL"
-  },
+      "indemnityPaymentIncomes": [
+        "CERTA"
+      ],
+      "premiumPayment": {
+        "paymentMethods": [
+          "CARTAO_CREDITO"
+        ],
+        "frequencies": [
+          "DIARIA"
+        ]
+      },
+      "contributionTax": "string",
+      "minimumRequirement": {
+        "contractType": "COLETIVO_AVERBADO",
+        "contractingMinRequirement": "https://openinsurance.com.br/aaa"
+      },
+      "targetAudience": "PESSOA_NATURAL"
+    }
+  ],
   "links": {
     "self": "https://api.banco.com.br/open-banking/api/v1/resource",
     "first": "https://api.banco.com.br/open-banking/api/v1/resource",
@@ -2961,7 +3256,7 @@ Conjunto de informações referentes às informações de credenciamento
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|data|[GetRiskPensionContractData](#schemagetriskpensioncontractdata)|true||
+|data|[[GetRiskPensionContractData](#schemagetriskpensioncontractdata)]|true||
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
 |meta|[Meta](#schemameta)|true|Meta informações referente à API requisitada.|
 
@@ -3656,6 +3951,7 @@ Resgate
 |---|---|---|---|---|
 |criterias|[string]|false||
 |updateIndexes|[[EnumPersonalUpdateIndex](#schemaenumpersonalupdateindex)]|false|[Índice utilizado na atualização da PMBaC:<br>  1. IPCA (IBGE)<br>  2. IGP-M (FGV)<br>  3. INPC (IBGE)<br>]|
+|updateIndexes|[[EnumPersonalUpdateIndex](#schemaenumpersonalupdateindex)]|true|[Índice utilizado na atualização da PMBaC:<br>  1. IPCA (IBGE)<br>  2. IGP-M (FGV)<br>  3. INPC (IBGE)<br>]|
 
 <h2 id="tocS_AgeAdjustment">AgeAdjustment</h2>
 
@@ -3712,57 +4008,6 @@ A considerar os domínios abaixo:
 |**|PESSOA_NATURAL|
 |**|PESSOA_JURIDICA|
 |**|PESSOA_NATURAL_JURIDICA|
-
-<h2 id="tocS_AcquiringServicesFeesAndRatesForService">AcquiringServicesFeesAndRatesForService</h2>
-
-<a id="schemaacquiringservicesfeesandratesforservice"></a>
-<a id="schema_AcquiringServicesFeesAndRatesForService"></a>
-<a id="tocSacquiringservicesfeesandratesforservice"></a>
-<a id="tocsacquiringservicesfeesandratesforservice"></a>
-
-```json
-{
-  "feeName": "TAXA_DE_DESCONTO_NA_MODALIDADE_CREDITO",
-  "code": "MDR_CREDITO",
-  "prices": [
-    {
-      "interval": "1_FAIXA",
-      "value": "0.0203",
-      "customerRate": "0.5000"
-    },
-    {
-      "interval": "2_FAIXA",
-      "value": "0.0306",
-      "customerRate": "0.1000"
-    },
-    {
-      "interval": "3_FAIXA",
-      "value": "0.0343",
-      "customerRate": "0.3000"
-    },
-    {
-      "interval": "4_FAIXA",
-      "value": "0.2468",
-      "customerRate": "0.1000"
-    }
-  ],
-  "chargingTriggerInfo": "NA",
-  "minimum": "2.0",
-  "maximum": "5.0"
-}
-
-```
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|feeName|[EnumAcquiringServicesFeeName](#schemaenumacquiringservicesfeename)|true|Nome da tarifa cobrada sobre o serviço de credenciamento, para pessoa física/jurídica.<br>  1. Taxa de Desconto na Modalidade Crédito<br>  2. Taxa de Desconto na Modalidade Débito|
-|code|[EnumAcquiringServicesCode](#schemaenumacquiringservicescode)|true|Sigla da Tarifa cobrada sobre o Serviço de Credenciamento informado.|
-|prices|[[Price](#schemaprice)]|true|[4 Faixas de igual tamanho, com suas respectivas medianas e percentuais de clientes.]|
-|chargingTriggerInfo|string|true|Recebimento através de transação de cartão.|
-|minimum|string|true|Valor mínimo|
-|maximum|string|true|Valor máximo|
 
 <h2 id="tocS_Price">Price</h2>
 
@@ -3914,32 +4159,30 @@ Conjunto de informações relativas ao participante do produto de open banking
 {
   "data": [
     {
-      "participantIdentification": {
+      "participant": {
         "brand": "Organização",
         "name": "Organização A1",
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "onlineRate": {
-        "values": [
-          {
-            "foreignCurrency": "USD",
-            "deliveryForeignCurrency": "ESPECIE",
-            "transactionType": "COMPRA",
-            "targetAudience": "PF",
-            "value": "5.5023"
-          },
-          {
-            "foreignCurrency": "EUR",
-            "deliveryForeignCurrency": "CARTAO_PRE_PAGO",
-            "transactionType": "VENDA",
-            "targetAudience": "PJ",
-            "value": "2.7045"
-          }
-        ],
-        "timestamp": "2017-07-21T17:32:28Z",
-        "disclaimer": "Informamos que esta taxa é estimada e exclusiva para fins de Open Finance,  não sendo válida para a contratação de operações de câmbio. Para obter a taxa para fechamento do câmbio, pedimos consultar os canais disponíveis para contratação."
-      }
+      "values": [
+        {
+          "foreignCurrency": "USD",
+          "deliveryForeignCurrency": "ESPECIE",
+          "transactionType": "COMPRA",
+          "targetAudience": "PF",
+          "value": "5.5023"
+        },
+        {
+          "foreignCurrency": "EUR",
+          "deliveryForeignCurrency": "CARTAO_PRE_PAGO",
+          "transactionType": "VENDA",
+          "targetAudience": "PJ",
+          "value": "2.7045"
+        }
+      ],
+      "timestamp": "2017-07-21T17:32:28Z",
+      "disclaimer": "Informamos que esta taxa é estimada e exclusiva para fins de Open Finance,  não sendo válida para a contratação de operações de câmbio. Para obter a taxa para fechamento do câmbio, pedimos consultar os canais disponíveis para contratação."
     }
   ],
   "links": {
@@ -3977,14 +4220,14 @@ Conjunto de informações relativas ao participante do produto de open banking
 {
   "data": [
     {
-      "participantIdentification": {
+      "participant": {
         "brand": "Organização",
         "name": "Organização A1",
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
       "transactionType": "COMPRA",
-      "foreignCurrency": "USD",
+      "foreignCurrency": "BRL",
       "transactionCategory": "COMERCIO_EXTERIOR",
       "deliveryForeignCurrency": "CARTAO_PRE_PAGO",
       "rangeTransactionCategory": "0,01_200",
@@ -4025,32 +4268,30 @@ Conjunto de informações relativas ao participante do produto de open banking
 
 ```json
 {
-  "participantIdentification": {
+  "participant": {
     "brand": "Organização",
     "name": "Organização A1",
     "cnpjNumber": "13456789000112",
     "urlComplementaryList": "https://empresaa1.com/companies"
   },
-  "onlineRate": {
-    "values": [
-      {
-        "foreignCurrency": "USD",
-        "deliveryForeignCurrency": "ESPECIE",
-        "transactionType": "COMPRA",
-        "targetAudience": "PF",
-        "value": "5.5023"
-      },
-      {
-        "foreignCurrency": "EUR",
-        "deliveryForeignCurrency": "CARTAO_PRE_PAGO",
-        "transactionType": "VENDA",
-        "targetAudience": "PJ",
-        "value": "2.7045"
-      }
-    ],
-    "timestamp": "2017-07-21T17:32:28Z",
-    "disclaimer": "Informamos que esta taxa é estimada e exclusiva para fins de Open Finance,  não sendo válida para a contratação de operações de câmbio. Para obter a taxa para fechamento do câmbio, pedimos consultar os canais disponíveis para contratação."
-  }
+  "values": [
+    {
+      "foreignCurrency": "USD",
+      "deliveryForeignCurrency": "ESPECIE",
+      "transactionType": "COMPRA",
+      "targetAudience": "PF",
+      "value": "5.5023"
+    },
+    {
+      "foreignCurrency": "EUR",
+      "deliveryForeignCurrency": "CARTAO_PRE_PAGO",
+      "transactionType": "VENDA",
+      "targetAudience": "PJ",
+      "value": "2.7045"
+    }
+  ],
+  "timestamp": "2017-07-21T17:32:28Z",
+  "disclaimer": "Informamos que esta taxa é estimada e exclusiva para fins de Open Finance,  não sendo válida para a contratação de operações de câmbio. Para obter a taxa para fechamento do câmbio, pedimos consultar os canais disponíveis para contratação."
 }
 
 ```
@@ -4061,11 +4302,10 @@ Conjunto de informações referentes às informações de câmbio
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|participantIdentification|[ParticipantIdentification](#schemaparticipantidentification)|true|Conjunto de informações relativas ao participante do produto de open banking|
-|onlineRate|object|true|Taxa disponibilizada (taxa online) pelas instituições no formato D+2 (valor U$ 100.000-operações cambio pronto) separado por moeda dólar e euro compra e venda PF/PJ.<br><ul><li>Não entra operações de cambio futuro, ACC/ACE, futuros, trava</li><li>Deve ser adicionado um timestamp no momento da consulta no formato hh:mm:ss</li><li>Adicionar disclaimer informando que a taxa apresentada é somente informativa, para a contratação de uma operação, deverá ser consultado o canal correspondente de cada instituição</li></ul>|
-|» values|[[OnlineRate](#schemaonlinerate)]|true|[Taxa disponibilizada (taxa online) pelas instituições no formato D+0/D+2 (valor U$100.000 operações câmbio pronto) separado por moeda dólar e euro compra e venda PF/PJ.]|
-|» timestamp|string(date-time)|true|Timestamp do momento da consulta|
-|» disclaimer|string|true|Disclaimer informando que a taxa apresentada é somente informativa, para a contratação de uma operação, deverá ser consultado o canal correspondente de cada instituição.|
+|participant|[ParticipantIdentification](#schemaparticipantidentification)|true|Conjunto de informações relativas ao participante do produto de open banking|
+|values|[[OnlineRate](#schemaonlinerate)]|true|[Taxa disponibilizada (taxa online) pelas instituições no formato D+0/D+2 (valor U$100.000 operações câmbio pronto) separado por moeda dólar e euro compra e venda PF/PJ.]|
+|timestamp|string(date-time)|true|Timestamp do momento da consulta|
+|disclaimer|string|true|Disclaimer informando que a taxa apresentada é somente informativa, para a contratação de uma operação, deverá ser consultado o canal correspondente de cada instituição.|
 
 <h2 id="tocS_ExchangeVetValue">ExchangeVetValue</h2>
 
@@ -4076,14 +4316,14 @@ Conjunto de informações referentes às informações de câmbio
 
 ```json
 {
-  "participantIdentification": {
+  "participant": {
     "brand": "Organização",
     "name": "Organização A1",
     "cnpjNumber": "13456789000112",
     "urlComplementaryList": "https://empresaa1.com/companies"
   },
   "transactionType": "COMPRA",
-  "foreignCurrency": "USD",
+  "foreignCurrency": "BRL",
   "transactionCategory": "COMERCIO_EXTERIOR",
   "deliveryForeignCurrency": "CARTAO_PRE_PAGO",
   "rangeTransactionCategory": "0,01_200",
@@ -4099,9 +4339,9 @@ Conjunto de informações referentes às informações de câmbio
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|participantIdentification|[ParticipantIdentification](#schemaparticipantidentification)|true|Conjunto de informações relativas ao participante do produto de open banking|
+|participant|[ParticipantIdentification](#schemaparticipantidentification)|true|Conjunto de informações relativas ao participante do produto de open banking|
 |transactionType|[EnumExchangeTransactionType](#schemaenumexchangetransactiontype)|true|Determina se o Banco está comprando ou vendendo a moeda estrangeira nas operações<br>spot,  que se liquidam em até dois dias (não aplica-se a operações futuras. (Vide Enum)<br>- Compra<br>- Venda|
-|foreignCurrency|[EnumExchangeForeignCurrency](#schemaenumexchangeforeigncurrency)|true|É a moeda estrangeira, segundo modelo ISO 4217. (Vide Enum)<br>- USD<br>- EUR|
+|foreignCurrency|[CurrencyCode](#schemacurrencycode)|true|Moeda referente ao valor da transação, segundo modelo ISO-4217. p.ex. 'BRL'<br>Todos os saldos informados estão representados com a moeda vigente do Brasil|
 |transactionCategory|[EnumExchangeTransactionCategory](#schemaenumexchangetransactioncategory)|true|A classificação do tipo de operação, conforme a circular BCB nº 3690 de 16/12/2013.|
 |deliveryForeignCurrency|[EnumExchangeDeliveryForeignCurrency](#schemaenumexchangedeliveryforeigncurrency)|true|A classificação do tipo de operação, conforme a circular BCB nº 3690 de 16/12/2013. (Vide Enum)<br><ul><li>ESPECIE</li><li>CARTAO_PRE_PAGO</li><li>TELETRANSMISSAO_SWIFT</li></ul>|
 |rangeTransactionCategory|[EnumExchangeRangeTransactionCategory](#schemaenumexchangerangetransactioncategory)|true|A classificação conforme a circular BCB nº 4015.|
@@ -4117,7 +4357,7 @@ Conjunto de informações referentes às informações de câmbio
 
 ```json
 {
-  "foreignCurrency": "USD",
+  "foreignCurrency": "BRL",
   "deliveryForeignCurrency": "CARTAO_PRE_PAGO",
   "transactionType": "COMPRA",
   "targetAudience": "PF",
@@ -4132,7 +4372,7 @@ Taxa disponibilizada (taxa online) pelas instituições no formato D+0/D+2 (valo
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|foreignCurrency|[EnumExchangeForeignCurrency](#schemaenumexchangeforeigncurrency)|true|É a moeda estrangeira, segundo modelo ISO 4217. (Vide Enum)<br>- USD<br>- EUR|
+|foreignCurrency|[CurrencyCode](#schemacurrencycode)|true|Moeda referente ao valor da transação, segundo modelo ISO-4217. p.ex. 'BRL'<br>Todos os saldos informados estão representados com a moeda vigente do Brasil|
 |deliveryForeignCurrency|[EnumExchangeDeliveryForeignCurrency](#schemaenumexchangedeliveryforeigncurrency)|true|A classificação do tipo de operação, conforme a circular BCB nº 3690 de 16/12/2013. (Vide Enum)<br><ul><li>ESPECIE</li><li>CARTAO_PRE_PAGO</li><li>TELETRANSMISSAO_SWIFT</li></ul>|
 |transactionType|[EnumExchangeTransactionType](#schemaenumexchangetransactiontype)|true|Determina se o Banco está comprando ou vendendo a moeda estrangeira nas operações<br>spot,  que se liquidam em até dois dias (não aplica-se a operações futuras. (Vide Enum)<br>- Compra<br>- Venda|
 |targetAudience|[ExchangeEnumDistinctTargetAudience](#schemaexchangeenumdistincttargetaudience)|false|Público alvo (ou PF ou PJ).|
@@ -4165,35 +4405,6 @@ A classificação do tipo de operação, conforme a circular BCB nº 3690 de 16/
 |**|ESPECIE|
 |**|CARTAO_PRE_PAGO|
 |**|TELETRANSMISSAO_SWIFT|
-
-<h2 id="tocS_EnumExchangeForeignCurrency">EnumExchangeForeignCurrency</h2>
-
-<a id="schemaenumexchangeforeigncurrency"></a>
-<a id="schema_EnumExchangeForeignCurrency"></a>
-<a id="tocSenumexchangeforeigncurrency"></a>
-<a id="tocsenumexchangeforeigncurrency"></a>
-
-```json
-"USD"
-
-```
-
-É a moeda estrangeira, segundo modelo ISO 4217. (Vide Enum)
-- USD
-- EUR
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|**|string|false|É a moeda estrangeira, segundo modelo ISO 4217. (Vide Enum)<br>- USD<br>- EUR|
-
-#### Enumerated Values
-
-|Nome|Código|
-|---|---|
-|**|USD|
-|**|EUR|
 
 <h2 id="tocS_EnumExchangeRangeTransactionCategory">EnumExchangeRangeTransactionCategory</h2>
 
@@ -4367,22 +4578,20 @@ Público alvo (ou PF ou PJ).
 {
   "data": [
     {
-      "participantIdentification": {
+      "participant": {
         "brand": "Organização",
         "name": "Organização A1",
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "insuranceCompanyIdentification": {
-        "name": "ACME cap da ACME seguros",
-        "cnpjNumber": "50685362000135"
+      "society": {
+        "name": "Society A1",
+        "cnpjNumber": "13456789000112"
       },
-      "product": {
-        "name": "ACMEcap",
-        "code": "01234589_cap",
-        "modality": "TRADICIONAL",
-        "costType": "PAGAMENTO_UNICO"
-      },
+      "name": "ACMEcap",
+      "code": "01234589_cap",
+      "modality": "TRADICIONAL",
+      "costType": "PAGAMENTO_UNICO",
       "termsAndConditions": {
         "susepProcessNumber": "15414.622222/2222-22",
         "termsRegulations": "https://ACME.exemplo/capitalizacao/tradicional/pdf/condicoes_gerais.pdf"
@@ -4425,12 +4634,13 @@ Público alvo (ou PF ou PJ).
         "adjustmentIndexAdditionalInfo": ""
       },
       "redemptionPercentageEndTerm": "1.51",
+      "finalRedemptionRate": "1.51",
       "draws": [
         {
           "timeInterval": "UNICO",
-          "periodicityAdditionalInfo": "",
+          "timeIntervalAdditionalInfo": "",
           "quantity": 10000,
-          "prizeMultiplier": 999999,
+          "prizeMultiplier": 5,
           "earlySettlementRaffle": true,
           "mandatoryContemplation": true,
           "ruleDescription": "Sorteio aos Sábados",
@@ -4439,9 +4649,7 @@ Público alvo (ou PF ou PJ).
       ],
       "additionalInfo": "https://ACME.exemplo/capitalizacao/tradicional/pdf/condicoes_gerais",
       "minimumRequirementDetails": "https://ACME.exemplo/capitalizacao/tradicional/pdf/condicoes_gerais",
-      "targetAudiences": [
-        "PESSOA_NATURAL"
-      ]
+      "targetAudience": "PESSOA_NATURAL"
     }
   ],
   "links": {
@@ -4467,32 +4675,6 @@ Público alvo (ou PF ou PJ).
 |data|[[CapitalizationBondsProductIdentificationData](#schemacapitalizationbondsproductidentificationdata)]|true|Conjunto de informações do Título de Capitalização|
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
 |meta|[Meta](#schemameta)|true|Meta informações referente à API requisitada.|
-
-<h2 id="tocS_CapitalizationBondsProduct">CapitalizationBondsProduct</h2>
-
-<a id="schemacapitalizationbondsproduct"></a>
-<a id="schema_CapitalizationBondsProduct"></a>
-<a id="tocScapitalizationbondsproduct"></a>
-<a id="tocscapitalizationbondsproduct"></a>
-
-```json
-{
-  "name": "ACMEcap",
-  "code": "01234589_cap",
-  "modality": "TRADICIONAL",
-  "costType": "PAGAMENTO_UNICO"
-}
-
-```
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|name|string|true|Nome comercial do produto, pelo qual é identificado nos canais de distribuição e atendimento da sociedade.|
-|code|string|true|Código único a ser definido pela sociedade.|
-|modality|[EnumCapitalizationBondsProductModality](#schemaenumcapitalizationbondsproductmodality)|true|1. Tradicional: A modalidade tradicional tem por objetivo restituir ao titular, ao final do prazo de vigência, no mínimo, o valor total das contribuições efetuadas pelo subscritor, desde que todas as contribuições previstas tenham sido realizadas nas datas programadas. (Res CNSP 384/20)<br>2. Instrumento de Garantia: A modalidade tem por objetivo propiciar que a provisão matemática para capitalização do título de capitalização seja utilizada para assegurar o cumprimento de obrigação assumida em contrato principal pelo titular perante terceiro. (Res CNSP 384/20)<br>3. Compra Programada: A modalidade compra programada garante o valor de resgate em moeda corrente nacional, sendo disponibilizada ao assim desejar e sem qualquer outro custo, pelo recebimento do bem e/ou serviço referenciado no subsidiado por acordos comerciais celebrados com indústrias, atacadistas, empresas comerciais ou prestadores de serviço. (Res CNSP 384/20)<br>4. Popular: A modalidade popular tem por objetivo propiciar a capitalização da contribuição e a participação do titular em sorteios, sem que haja devolução integral do valor pago. (Res CNSP 384/20)<br>5. Incentivo: A modalidade incentivo tem por objetivo a vinculação a um evento promocional de caráter comercial instituído pelo subscritor para alavancar a venda de seu(s) produto(s) ou serviços ou para fidelizar seus clientes. (Res CNSP 384/20)<br>6. Filantropia Premiável: A modalidade filantropia premiável é destinada ao subscritor interessado em contribuir com entidades beneficentes de assistências sociais, certificadas nos termos da legislação vigente, e participar de sorteio(s). (Res CNSP 384/20)|
-|costType|[EnumCapitalizationBondsProductPaymentFrequency](#schemaenumcapitalizationbondsproductpaymentfrequency)|true|Pagamento efetuado ao subscritor à sociedade de capitalização para aquisição do título de capitalização, podendo ser única, periódica ou mensal.<br>1. Pagamento Único<br>2. Pagamento Mensal<br>3. Pagamento Periódico|
 
 <h2 id="tocS_CapitalizationBondsProductEarlyRedemption">CapitalizationBondsProductEarlyRedemption</h2>
 
@@ -4592,22 +4774,20 @@ Pagamento efetuado ao subscritor à sociedade de capitalização para aquisiçã
 
 ```json
 {
-  "participantIdentification": {
+  "participant": {
     "brand": "Organização",
     "name": "Organização A1",
     "cnpjNumber": "13456789000112",
     "urlComplementaryList": "https://empresaa1.com/companies"
   },
-  "insuranceCompanyIdentification": {
-    "name": "ACME cap da ACME seguros",
-    "cnpjNumber": "50685362000135"
+  "society": {
+    "name": "Society A1",
+    "cnpjNumber": "13456789000112"
   },
-  "product": {
-    "name": "ACMEcap",
-    "code": "01234589_cap",
-    "modality": "TRADICIONAL",
-    "costType": "PAGAMENTO_UNICO"
-  },
+  "name": "ACMEcap",
+  "code": "01234589_cap",
+  "modality": "TRADICIONAL",
+  "costType": "PAGAMENTO_UNICO",
   "termsAndConditions": {
     "susepProcessNumber": "15414.622222/2222-22",
     "termsRegulations": "https://ACME.exemplo/capitalizacao/tradicional/pdf/condicoes_gerais.pdf"
@@ -4650,12 +4830,13 @@ Pagamento efetuado ao subscritor à sociedade de capitalização para aquisiçã
     "adjustmentIndexAdditionalInfo": ""
   },
   "redemptionPercentageEndTerm": "1.51",
+  "finalRedemptionRate": "1.51",
   "draws": [
     {
       "timeInterval": "UNICO",
-      "periodicityAdditionalInfo": "",
+      "timeIntervalAdditionalInfo": "",
       "quantity": 10000,
-      "prizeMultiplier": 999999,
+      "prizeMultiplier": 5,
       "earlySettlementRaffle": true,
       "mandatoryContemplation": true,
       "ruleDescription": "Sorteio aos Sábados",
@@ -4664,9 +4845,7 @@ Pagamento efetuado ao subscritor à sociedade de capitalização para aquisiçã
   ],
   "additionalInfo": "https://ACME.exemplo/capitalizacao/tradicional/pdf/condicoes_gerais",
   "minimumRequirementDetails": "https://ACME.exemplo/capitalizacao/tradicional/pdf/condicoes_gerais",
-  "targetAudiences": [
-    "PESSOA_NATURAL"
-  ]
+  "targetAudience": "PESSOA_NATURAL"
 }
 
 ```
@@ -4675,11 +4854,12 @@ Pagamento efetuado ao subscritor à sociedade de capitalização para aquisiçã
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|participantIdentification|[ParticipantIdentification](#schemaparticipantidentification)|true|Conjunto de informações relativas ao participante do produto de open banking|
-|insuranceCompanyIdentification|object|true||
-|» name|string|true|Nome da Sociedade Seguradora.<br>p. ex. ‘Sociedade A'|
-|» cnpjNumber|string|true|Número completo do CNPJ da instituição. O CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara.|
-|product|[CapitalizationBondsProduct](#schemacapitalizationbondsproduct)|true||
+|participant|[ParticipantIdentification](#schemaparticipantidentification)|true|Conjunto de informações relativas ao participante do produto de open banking|
+|society|[SocietyIdentification](#schemasocietyidentification)|true|Conjunto de informações relativas à seguradora do produto de open insurance|
+|name|string|true|Nome comercial do produto, pelo qual é identificado nos canais de distribuição e atendimento da sociedade.|
+|code|string|true|Código único a ser definido pela sociedade.|
+|modality|[EnumCapitalizationBondsProductModality](#schemaenumcapitalizationbondsproductmodality)|true|1. Tradicional: A modalidade tradicional tem por objetivo restituir ao titular, ao final do prazo de vigência, no mínimo, o valor total das contribuições efetuadas pelo subscritor, desde que todas as contribuições previstas tenham sido realizadas nas datas programadas. (Res CNSP 384/20)<br>2. Instrumento de Garantia: A modalidade tem por objetivo propiciar que a provisão matemática para capitalização do título de capitalização seja utilizada para assegurar o cumprimento de obrigação assumida em contrato principal pelo titular perante terceiro. (Res CNSP 384/20)<br>3. Compra Programada: A modalidade compra programada garante o valor de resgate em moeda corrente nacional, sendo disponibilizada ao assim desejar e sem qualquer outro custo, pelo recebimento do bem e/ou serviço referenciado no subsidiado por acordos comerciais celebrados com indústrias, atacadistas, empresas comerciais ou prestadores de serviço. (Res CNSP 384/20)<br>4. Popular: A modalidade popular tem por objetivo propiciar a capitalização da contribuição e a participação do titular em sorteios, sem que haja devolução integral do valor pago. (Res CNSP 384/20)<br>5. Incentivo: A modalidade incentivo tem por objetivo a vinculação a um evento promocional de caráter comercial instituído pelo subscritor para alavancar a venda de seu(s) produto(s) ou serviços ou para fidelizar seus clientes. (Res CNSP 384/20)<br>6. Filantropia Premiável: A modalidade filantropia premiável é destinada ao subscritor interessado em contribuir com entidades beneficentes de assistências sociais, certificadas nos termos da legislação vigente, e participar de sorteio(s). (Res CNSP 384/20)|
+|costType|[EnumCapitalizationBondsProductPaymentFrequency](#schemaenumcapitalizationbondsproductpaymentfrequency)|true|Pagamento efetuado ao subscritor à sociedade de capitalização para aquisição do título de capitalização, podendo ser única, periódica ou mensal.<br>1. Pagamento Único<br>2. Pagamento Mensal<br>3. Pagamento Periódico|
 |termsAndConditions|[CapitalizationBondsProductTermsAndConditions](#schemacapitalizationbondsproducttermsandconditions)|true||
 |quotas|[[CapitalizationBondsProductQuota](#schemacapitalizationbondsproductquota)]|true|Informações relativas às taxas da Quotas praticadas para cada Parcela|
 |validity|integer(int32)|true|Período entre a data de início e a data final para constituição do capital a ser pago ao(s) titular(es) do direito de resgate. Prazo de vigência do título de capitalização em meses (Resolução CNSP 384/20). Em meses.|
@@ -4687,11 +4867,12 @@ Pagamento efetuado ao subscritor à sociedade de capitalização para aquisiçã
 |capitalizationPeriod|[CapitalizationPeriod](#schemacapitalizationperiod)|true||
 |latePayment|[LatePayment](#schemalatepayment)|true||
 |contributionPayment|[CapitalizationBondsProductContributionPayment](#schemacapitalizationbondsproductcontributionpayment)|true||
-|redemptionPercentageEndTerm|string|true|Valor percentual (%) de resgate final permitido.|
+|redemptionPercentageEndTerm|string|true|Percentual mínimo da soma das contribuições efetuadas que poderá ser resgatado ao final da vigência, tendo como condição os pagamentos das parcelas nos respectivos vencimentos.|
+|finalRedemptionRate|string|true|Valor percentual (%) de resgate final permitido.|
 |draws|[[PrizeDraw](#schemaprizedraw)]|true|Informações relativas aos Sorteios|
 |additionalInfo|string|true|Campo aberto (possibilidade de incluir URL) Observação: As URLs são limitadas a 2048 caracteres mas, para o contexto do Open Insurance , foi adotado a metade deste tamanho (1024). tamanho p.ex.  ‘https://ACME.exemplo/capitalizacao/tradicional/pdf/condicoes_gerais.|
 |minimumRequirementDetails|string|true|Campo aberto (possibilidade de incluir URL).<br>Observação: As URLs são limitadas a 2048 caracteres mas, para o contexto do Open Insurance , foi adotado a metade deste tamanho (1024).<br>tamanho. p.ex. ‘https://ACME.exemplo/capitalizacao/tradicional/pdf/condicoes_gerais.’|
-|targetAudiences|[[CapitalizationBondsProductEnumTargetAudience](#schemacapitalizationbondsproductenumtargetaudience)]|true|Público a quem se destina o produto, podendo ser Pessoa Natural ou Pessoa Jurídica.|
+|targetAudience|[EnumTargetAudience](#schemaenumtargetaudience)|true|A considerar os domínios abaixo:<br><br>  1. Pessoa Natural<br>  2. Pessoa Jurídica<br>  3. Ambas (Pessoa Natural e Jurídica)|
 
 <h2 id="tocS_CapitalizationBondsProductTermsAndConditions">CapitalizationBondsProductTermsAndConditions</h2>
 
@@ -4898,9 +5079,9 @@ Meio de Pagamento utilizado para pagamento da contribuição. A considerar os do
 ```json
 {
   "timeInterval": "UNICO",
-  "periodicityAdditionalInfo": "",
+  "timeIntervalAdditionalInfo": "",
   "quantity": 10000,
-  "prizeMultiplier": 999999,
+  "prizeMultiplier": 5,
   "earlySettlementRaffle": true,
   "mandatoryContemplation": true,
   "ruleDescription": "Sorteio aos Sábados",
@@ -4914,7 +5095,7 @@ Meio de Pagamento utilizado para pagamento da contribuição. A considerar os do
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
 |timeInterval|string|true|Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:<br>  - UNICO<br>  - DIÁRIO<br>  - SEMANAL<br>  - QUINZENAL<br>  - MENSAL<br>  - BIMESTRAL<br>  - TRIMESTRAL<br>  - QUADRIMESTRAL<br>  - SEMESTRAL<br>  - ANUAL<br>  - OUTROS|
-|periodicityAdditionalInfo|string|false|Restrição: Campo obrigatório para complementar a informação quando selecionada a opção 'OUTROS'|
+|timeIntervalAdditionalInfo|string|false|Restrição: Campo obrigatório para complementar a informação quando selecionada a opção 'OUTROS'|
 |quantity|number(integer)|true|Número da quantidade de sorteios previstos ao longo da vigência.|
 |prizeMultiplier|number(integer)|true|Valor dos sorteios representado por múltiplo do valor de contribuição. Por exemplo: 5 vezes valor da contribuição|
 |earlySettlementRaffle|boolean|true|Modelo de sorteio que acarreta, ao título contemplado, o seu resgate total obrigatório (Resolução Normativa 384/20). Conforme os domínios:<br> 1. true<br> 2. false|
@@ -4970,33 +5151,6 @@ Em todas as situações indicar para qual periodicidade de pagamento se aplicam 
 |**|PAGAMENTO_UNICO|
 |**|PERIODICO|
 
-<h2 id="tocS_CapitalizationBondsProductEnumTargetAudience">CapitalizationBondsProductEnumTargetAudience</h2>
-
-<a id="schemacapitalizationbondsproductenumtargetaudience"></a>
-<a id="schema_CapitalizationBondsProductEnumTargetAudience"></a>
-<a id="tocScapitalizationbondsproductenumtargetaudience"></a>
-<a id="tocscapitalizationbondsproductenumtargetaudience"></a>
-
-```json
-"PESSOA_NATURAL"
-
-```
-
-Público a quem se destina o produto, podendo ser Pessoa Natural ou Pessoa Jurídica.
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|**|string|false|Público a quem se destina o produto, podendo ser Pessoa Natural ou Pessoa Jurídica.|
-
-#### Enumerated Values
-
-|Nome|Código|
-|---|---|
-|**|PESSOA_NATURAL|
-|**|PESSOA_JURIDICA|
-
 <h2 id="tocS_OKResponseInvestmentsFund">OKResponseInvestmentsFund</h2>
 
 <a id="schemaokresponseinvestmentsfund"></a>
@@ -5008,41 +5162,49 @@ Público a quem se destina o produto, podendo ser Pessoa Natural ou Pessoa Jurí
 {
   "data": [
     {
-      "participantIdentification": {
+      "participant": {
         "brand": "Organização",
         "name": "Organização A1",
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "product": {
-        "name": "FUNDO DE INVESTIMENTO EM COTAS DE FUNDOS DE INVESTIMENTO",
-        "cnpjNumber": "64108803000191",
-        "isinCode": "BRAAAAAAA000",
-        "admin": "ADM OPEN BANKING DTVM S.A.",
-        "adminCnpjNumber": "14511732000150",
-        "fundManager": "GESTOR OPEN BANKING DTVM S.A.",
-        "fundManagerCnpjNumber": "16332711000101",
-        "anbimaCategory": "MULTIMERCADO"
+      "name": "FUNDO DE INVESTIMENTO EM COTAS DE FUNDOS DE INVESTIMENTO",
+      "cnpjNumber": "64108803000191",
+      "isinCode": "BRAAAAAAA000",
+      "admin": {
+        "name": "ADM OPEN BANKING DTVM S.A.",
+        "cnpjNumber": "14511732000150"
       },
+      "fundManager": {
+        "name": "GESTOR OPEN BANKING DTVM S.A.",
+        "cnpjNumber": "16332711000101"
+      },
+      "anbimaCategory": "MULTIMERCADO",
       "fees": {
         "maxAdminFee": "0.020000",
         "entryFee": "0.010000",
-        "performanceFeeMethod": "PASSIVO",
-        "performanceFeeBenchmark": "CDI",
-        "performanceFeeBenchmarkAdditionalInfo": "string",
-        "performanceFeeAmount": "0.050000",
+        "performanceFee": {
+          "method": "PASSIVO",
+          "benchmark": "CDI",
+          "benchmarkAdditionalInfo": "string",
+          "amount": "0.050000"
+        },
         "exitFee": "0.030000"
       },
       "generalConditions": {
         "minimumAmount": "100000.12",
         "currency": "BRL",
-        "redemptionQuotationDays": 3,
-        "redemptionQuotationTerm": "DIAS_CORRIDOS",
-        "redemptionPaymentTerm": 3,
-        "redemptionGraceDays": "DIAS_CORRIDOS",
-        "applicationQuotationDays": 60,
-        "applicationQuotationTerm": 3,
-        "applicationQuotationPeriod": "DIAS_CORRIDOS",
+        "redemption": {
+          "quotationDays": 3,
+          "quotationTerm": "DIAS_CORRIDOS",
+          "paymentTerm": 3,
+          "graceDays": "DIAS_CORRIDOS"
+        },
+        "application": {
+          "quotationDays": 60,
+          "quotationTerm": 3,
+          "quotationPeriod": "DIAS_CORRIDOS"
+        },
         "fundQuotaType": "COTA_DE_ABERTURA"
       },
       "taxation": "CURTO_PRAZO"
@@ -5083,16 +5245,14 @@ Público a quem se destina o produto, podendo ser Pessoa Natural ou Pessoa Jurí
 {
   "data": [
     {
-      "participantIdentification": {
+      "participant": {
         "brand": "Organização",
         "name": "Organização A1",
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "productIdentification": {
-        "issuerInstitutionCNPJ": "45086338000178",
-        "productType": "CDB"
-      },
+      "issuerInstitutionCNPJ": "45086338000178",
+      "investimentType": "CDB",
       "index": {
         "indexer": "CDI",
         "indexerAdditionalInfo": "Dólar",
@@ -5171,72 +5331,70 @@ Público a quem se destina o produto, podendo ser Pessoa Natural ou Pessoa Jurí
 {
   "data": [
     {
-      "participantIdentification": {
+      "participant": {
         "brand": "Organização",
         "name": "Organização A1",
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "fees": {
-        "investmentType": "CRI",
-        "custodyFee": {
-          "name": "NA",
-          "code": "NA",
-          "chargingTriggerInfo": "NA",
-          "prices": [
-            {
-              "interval": "1_FAIXA",
-              "value": "0.020300",
-              "customerRate": "0.500000"
-            },
-            {
-              "interval": "2_FAIXA",
-              "value": "0.030600",
-              "customerRate": "0.100000"
-            },
-            {
-              "interval": "3_FAIXA",
-              "value": "0.034300",
-              "customerRate": "0.300000"
-            },
-            {
-              "interval": "4_FAIXA",
-              "value": "0.246800",
-              "customerRate": "0.100000"
-            }
-          ],
-          "minimum": "0.010000",
-          "maximum": "0.300000"
-        },
-        "loadingRate": {
-          "name": "NA",
-          "code": "NA",
-          "chargingTriggerInfo": "NA",
-          "prices": [
-            {
-              "interval": "1_FAIXA",
-              "value": "0.020300",
-              "customerRate": "0.500000"
-            },
-            {
-              "interval": "2_FAIXA",
-              "value": "0.030600",
-              "customerRate": "0.100000"
-            },
-            {
-              "interval": "3_FAIXA",
-              "value": "0.034300",
-              "customerRate": "0.300000"
-            },
-            {
-              "interval": "4_FAIXA",
-              "value": "0.246800",
-              "customerRate": "0.100000"
-            }
-          ],
-          "minimum": "0.010000",
-          "maximum": "0.300000"
-        }
+      "investmentType": "CRI",
+      "custodyFee": {
+        "name": "NA",
+        "code": "NA",
+        "chargingTriggerInfo": "NA",
+        "prices": [
+          {
+            "interval": "1_FAIXA",
+            "value": "0.020300",
+            "customerRate": "0.500000"
+          },
+          {
+            "interval": "2_FAIXA",
+            "value": "0.030600",
+            "customerRate": "0.100000"
+          },
+          {
+            "interval": "3_FAIXA",
+            "value": "0.034300",
+            "customerRate": "0.300000"
+          },
+          {
+            "interval": "4_FAIXA",
+            "value": "0.246800",
+            "customerRate": "0.100000"
+          }
+        ],
+        "minimum": "0.010000",
+        "maximum": "0.300000"
+      },
+      "loadingRate": {
+        "name": "NA",
+        "code": "NA",
+        "chargingTriggerInfo": "NA",
+        "prices": [
+          {
+            "interval": "1_FAIXA",
+            "value": "0.020300",
+            "customerRate": "0.500000"
+          },
+          {
+            "interval": "2_FAIXA",
+            "value": "0.030600",
+            "customerRate": "0.100000"
+          },
+          {
+            "interval": "3_FAIXA",
+            "value": "0.034300",
+            "customerRate": "0.300000"
+          },
+          {
+            "interval": "4_FAIXA",
+            "value": "0.246800",
+            "customerRate": "0.100000"
+          }
+        ],
+        "minimum": "0.010000",
+        "maximum": "0.300000"
       }
     }
   ],
@@ -5275,72 +5433,70 @@ Público a quem se destina o produto, podendo ser Pessoa Natural ou Pessoa Jurí
 {
   "data": [
     {
-      "participantIdentification": {
+      "participant": {
         "brand": "Organização",
         "name": "Organização A1",
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "fees": {
-        "investmentType": "ACOES",
-        "custodyFee": {
-          "name": "NA",
-          "code": "NA",
-          "chargingTriggerInfo": "NA",
-          "prices": [
-            {
-              "interval": "1_FAIXA",
-              "value": "0.020300",
-              "customerRate": "0.500000"
-            },
-            {
-              "interval": "2_FAIXA",
-              "value": "0.030600",
-              "customerRate": "0.100000"
-            },
-            {
-              "interval": "3_FAIXA",
-              "value": "0.034300",
-              "customerRate": "0.300000"
-            },
-            {
-              "interval": "4_FAIXA",
-              "value": "0.246800",
-              "customerRate": "0.100000"
-            }
-          ],
-          "minimum": "0.010000",
-          "maximum": "0.300000"
-        },
-        "loadingRate": {
-          "name": "NA",
-          "code": "NA",
-          "chargingTriggerInfo": "NA",
-          "prices": [
-            {
-              "interval": "1_FAIXA",
-              "value": "0.020300",
-              "customerRate": "0.500000"
-            },
-            {
-              "interval": "2_FAIXA",
-              "value": "0.030600",
-              "customerRate": "0.100000"
-            },
-            {
-              "interval": "3_FAIXA",
-              "value": "0.034300",
-              "customerRate": "0.300000"
-            },
-            {
-              "interval": "4_FAIXA",
-              "value": "0.246800",
-              "customerRate": "0.100000"
-            }
-          ],
-          "minimum": "0.010000",
-          "maximum": "0.300000"
-        }
+      "investmentType": "ACOES",
+      "custodyFee": {
+        "name": "NA",
+        "code": "NA",
+        "chargingTriggerInfo": "NA",
+        "prices": [
+          {
+            "interval": "1_FAIXA",
+            "value": "0.020300",
+            "customerRate": "0.500000"
+          },
+          {
+            "interval": "2_FAIXA",
+            "value": "0.030600",
+            "customerRate": "0.100000"
+          },
+          {
+            "interval": "3_FAIXA",
+            "value": "0.034300",
+            "customerRate": "0.300000"
+          },
+          {
+            "interval": "4_FAIXA",
+            "value": "0.246800",
+            "customerRate": "0.100000"
+          }
+        ],
+        "minimum": "0.010000",
+        "maximum": "0.300000"
+      },
+      "loadingRate": {
+        "name": "NA",
+        "code": "NA",
+        "chargingTriggerInfo": "NA",
+        "prices": [
+          {
+            "interval": "1_FAIXA",
+            "value": "0.020300",
+            "customerRate": "0.500000"
+          },
+          {
+            "interval": "2_FAIXA",
+            "value": "0.030600",
+            "customerRate": "0.100000"
+          },
+          {
+            "interval": "3_FAIXA",
+            "value": "0.034300",
+            "customerRate": "0.300000"
+          },
+          {
+            "interval": "4_FAIXA",
+            "value": "0.246800",
+            "customerRate": "0.100000"
+          }
+        ],
+        "minimum": "0.010000",
+        "maximum": "0.300000"
       }
     }
   ],
@@ -5379,72 +5535,70 @@ Público a quem se destina o produto, podendo ser Pessoa Natural ou Pessoa Jurí
 {
   "data": [
     {
-      "participantIdentification": {
+      "participant": {
         "brand": "Organização",
         "name": "Organização A1",
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "fees": {
-        "investmentType": "TESOURO_DIRETO",
-        "custodyFee": {
-          "name": "NA",
-          "code": "NA",
-          "chargingTriggerInfo": "NA",
-          "prices": [
-            {
-              "interval": "1_FAIXA",
-              "value": "0.020300",
-              "customerRate": "0.500000"
-            },
-            {
-              "interval": "2_FAIXA",
-              "value": "0.030600",
-              "customerRate": "0.100000"
-            },
-            {
-              "interval": "3_FAIXA",
-              "value": "0.034300",
-              "customerRate": "0.300000"
-            },
-            {
-              "interval": "4_FAIXA",
-              "value": "0.246800",
-              "customerRate": "0.100000"
-            }
-          ],
-          "minimum": "0.010000",
-          "maximum": "0.300000"
-        },
-        "loadingRate": {
-          "name": "NA",
-          "code": "NA",
-          "chargingTriggerInfo": "NA",
-          "prices": [
-            {
-              "interval": "1_FAIXA",
-              "value": "0.020300",
-              "customerRate": "0.500000"
-            },
-            {
-              "interval": "2_FAIXA",
-              "value": "0.030600",
-              "customerRate": "0.100000"
-            },
-            {
-              "interval": "3_FAIXA",
-              "value": "0.034300",
-              "customerRate": "0.300000"
-            },
-            {
-              "interval": "4_FAIXA",
-              "value": "0.246800",
-              "customerRate": "0.100000"
-            }
-          ],
-          "minimum": "0.010000",
-          "maximum": "0.300000"
-        }
+      "investmentType": "TESOURO_DIRETO",
+      "custodyFee": {
+        "name": "NA",
+        "code": "NA",
+        "chargingTriggerInfo": "NA",
+        "prices": [
+          {
+            "interval": "1_FAIXA",
+            "value": "0.020300",
+            "customerRate": "0.500000"
+          },
+          {
+            "interval": "2_FAIXA",
+            "value": "0.030600",
+            "customerRate": "0.100000"
+          },
+          {
+            "interval": "3_FAIXA",
+            "value": "0.034300",
+            "customerRate": "0.300000"
+          },
+          {
+            "interval": "4_FAIXA",
+            "value": "0.246800",
+            "customerRate": "0.100000"
+          }
+        ],
+        "minimum": "0.010000",
+        "maximum": "0.300000"
+      },
+      "loadingRate": {
+        "name": "NA",
+        "code": "NA",
+        "chargingTriggerInfo": "NA",
+        "prices": [
+          {
+            "interval": "1_FAIXA",
+            "value": "0.020300",
+            "customerRate": "0.500000"
+          },
+          {
+            "interval": "2_FAIXA",
+            "value": "0.030600",
+            "customerRate": "0.100000"
+          },
+          {
+            "interval": "3_FAIXA",
+            "value": "0.034300",
+            "customerRate": "0.300000"
+          },
+          {
+            "interval": "4_FAIXA",
+            "value": "0.246800",
+            "customerRate": "0.100000"
+          }
+        ],
+        "minimum": "0.010000",
+        "maximum": "0.300000"
       }
     }
   ],
@@ -5537,16 +5691,14 @@ Distribuição por frequência.
 
 ```json
 {
-  "participantIdentification": {
+  "participant": {
     "brand": "Organização",
     "name": "Organização A1",
     "cnpjNumber": "13456789000112",
     "urlComplementaryList": "https://empresaa1.com/companies"
   },
-  "productIdentification": {
-    "issuerInstitutionCNPJ": "45086338000178",
-    "productType": "CDB"
-  },
+  "issuerInstitutionCNPJ": "45086338000178",
+  "investimentType": "CDB",
   "index": {
     "indexer": "CDI",
     "indexerAdditionalInfo": "Dólar",
@@ -5596,8 +5748,9 @@ Distribuição por frequência.
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|participantIdentification|[ParticipantIdentification](#schemaparticipantidentification)|false|Conjunto de informações relativas ao participante do produto de open banking|
-|productIdentification|[InvestmentsFixedIncomeBankProductIdentification](#schemainvestmentsfixedincomebankproductidentification)|true||
+|participant|[ParticipantIdentification](#schemaparticipantidentification)|true|Conjunto de informações relativas ao participante do produto de open banking|
+|issuerInstitutionCNPJ|string|true|CNPJ da instituição emissora.|
+|investimentType|[EnumInvestmentsFixedIncomeBankProductType](#schemaenuminvestmentsfixedincomebankproducttype)|true|Especificação do ativo em questão.<br><ol><li>CDB</li><li>RDB</li><li>LCI</li><li>LCA</li></ol>|
 |index|[InvestmentsFixedIncomeBankIndex](#schemainvestmentsfixedincomebankindex)|true||
 |investmentConditions|[InvestmentsFixedIncomeBankInvestmentConditions](#schemainvestmentsfixedincomebankinvestmentconditions)|true||
 
@@ -5683,28 +5836,6 @@ Distribuição por frequência.
 |minimumGracePeriod|number(int32)|true|Prazo mínimo da carência, ou seja, quando passa a ser possível resgatar o investimento|
 |maximumGracePeriod|number(int32)|true|Prazo máximo da carência, ou seja, quando passa a ser possível resgatar o investimento|
 
-<h2 id="tocS_InvestmentsFixedIncomeBankProductIdentification">InvestmentsFixedIncomeBankProductIdentification</h2>
-
-<a id="schemainvestmentsfixedincomebankproductidentification"></a>
-<a id="schema_InvestmentsFixedIncomeBankProductIdentification"></a>
-<a id="tocSinvestmentsfixedincomebankproductidentification"></a>
-<a id="tocsinvestmentsfixedincomebankproductidentification"></a>
-
-```json
-{
-  "issuerInstitutionCNPJ": "45086338000178",
-  "productType": "CDB"
-}
-
-```
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|issuerInstitutionCNPJ|string|true|CNPJ da instituição emissora.|
-|productType|[EnumInvestmentsFixedIncomeBankProductType](#schemaenuminvestmentsfixedincomebankproducttype)|true|Especificação do ativo em questão.<br><ol><li>CDB</li><li>RDB</li><li>LCI</li><li>LCA</li></ol>|
-
 <h2 id="tocS_InvestmentsFixedIncomeCredit">InvestmentsFixedIncomeCredit</h2>
 
 <a id="schemainvestmentsfixedincomecredit"></a>
@@ -5714,93 +5845,12 @@ Distribuição por frequência.
 
 ```json
 {
-  "participantIdentification": {
+  "participant": {
     "brand": "Organização",
     "name": "Organização A1",
     "cnpjNumber": "13456789000112",
     "urlComplementaryList": "https://empresaa1.com/companies"
   },
-  "fees": {
-    "investmentType": "CRI",
-    "custodyFee": {
-      "name": "NA",
-      "code": "NA",
-      "chargingTriggerInfo": "NA",
-      "prices": [
-        {
-          "interval": "1_FAIXA",
-          "value": "0.020300",
-          "customerRate": "0.500000"
-        },
-        {
-          "interval": "2_FAIXA",
-          "value": "0.030600",
-          "customerRate": "0.100000"
-        },
-        {
-          "interval": "3_FAIXA",
-          "value": "0.034300",
-          "customerRate": "0.300000"
-        },
-        {
-          "interval": "4_FAIXA",
-          "value": "0.246800",
-          "customerRate": "0.100000"
-        }
-      ],
-      "minimum": "0.010000",
-      "maximum": "0.300000"
-    },
-    "loadingRate": {
-      "name": "NA",
-      "code": "NA",
-      "chargingTriggerInfo": "NA",
-      "prices": [
-        {
-          "interval": "1_FAIXA",
-          "value": "0.020300",
-          "customerRate": "0.500000"
-        },
-        {
-          "interval": "2_FAIXA",
-          "value": "0.030600",
-          "customerRate": "0.100000"
-        },
-        {
-          "interval": "3_FAIXA",
-          "value": "0.034300",
-          "customerRate": "0.300000"
-        },
-        {
-          "interval": "4_FAIXA",
-          "value": "0.246800",
-          "customerRate": "0.100000"
-        }
-      ],
-      "minimum": "0.010000",
-      "maximum": "0.300000"
-    }
-  }
-}
-
-```
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|participantIdentification|[ParticipantIdentification](#schemaparticipantidentification)|false|Conjunto de informações relativas ao participante do produto de open banking|
-|fees|[InvestmentsFixedIncomeCreditFees](#schemainvestmentsfixedincomecreditfees)|true||
-
-<h2 id="tocS_InvestmentsFixedIncomeCreditFees">InvestmentsFixedIncomeCreditFees</h2>
-
-<a id="schemainvestmentsfixedincomecreditfees"></a>
-<a id="schema_InvestmentsFixedIncomeCreditFees"></a>
-<a id="tocSinvestmentsfixedincomecreditfees"></a>
-<a id="tocsinvestmentsfixedincomecreditfees"></a>
-
-```json
-{
   "investmentType": "CRI",
   "custodyFee": {
     "name": "NA",
@@ -5868,6 +5918,7 @@ Distribuição por frequência.
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
+|participant|[ParticipantIdentification](#schemaparticipantidentification)|false|Conjunto de informações relativas ao participante do produto de open banking|
 |investmentType|[EnumInvestmentsFixedIncomeCreditInvestmentType](#schemaenuminvestmentsfixedincomecreditinvestmenttype)|true|Especifica o tipo de ativo negociado&#58;<br><br><ol><li>Debêntures</li><li>CRI</li><li>CRA</li></ol>|
 |custodyFee|[FrequencyDistribution](#schemafrequencydistribution)|true|Distribuição por frequência.|
 |loadingRate|[FrequencyDistribution](#schemafrequencydistribution)|true|Distribuição por frequência.|
@@ -5881,41 +5932,49 @@ Distribuição por frequência.
 
 ```json
 {
-  "participantIdentification": {
+  "participant": {
     "brand": "Organização",
     "name": "Organização A1",
     "cnpjNumber": "13456789000112",
     "urlComplementaryList": "https://empresaa1.com/companies"
   },
-  "product": {
-    "name": "FUNDO DE INVESTIMENTO EM COTAS DE FUNDOS DE INVESTIMENTO",
-    "cnpjNumber": "64108803000191",
-    "isinCode": "BRAAAAAAA000",
-    "admin": "ADM OPEN BANKING DTVM S.A.",
-    "adminCnpjNumber": "14511732000150",
-    "fundManager": "GESTOR OPEN BANKING DTVM S.A.",
-    "fundManagerCnpjNumber": "16332711000101",
-    "anbimaCategory": "MULTIMERCADO"
+  "name": "FUNDO DE INVESTIMENTO EM COTAS DE FUNDOS DE INVESTIMENTO",
+  "cnpjNumber": "64108803000191",
+  "isinCode": "BRAAAAAAA000",
+  "admin": {
+    "name": "ADM OPEN BANKING DTVM S.A.",
+    "cnpjNumber": "14511732000150"
   },
+  "fundManager": {
+    "name": "GESTOR OPEN BANKING DTVM S.A.",
+    "cnpjNumber": "16332711000101"
+  },
+  "anbimaCategory": "MULTIMERCADO",
   "fees": {
     "maxAdminFee": "0.020000",
     "entryFee": "0.010000",
-    "performanceFeeMethod": "PASSIVO",
-    "performanceFeeBenchmark": "CDI",
-    "performanceFeeBenchmarkAdditionalInfo": "string",
-    "performanceFeeAmount": "0.050000",
+    "performanceFee": {
+      "method": "PASSIVO",
+      "benchmark": "CDI",
+      "benchmarkAdditionalInfo": "string",
+      "amount": "0.050000"
+    },
     "exitFee": "0.030000"
   },
   "generalConditions": {
     "minimumAmount": "100000.12",
     "currency": "BRL",
-    "redemptionQuotationDays": 3,
-    "redemptionQuotationTerm": "DIAS_CORRIDOS",
-    "redemptionPaymentTerm": 3,
-    "redemptionGraceDays": "DIAS_CORRIDOS",
-    "applicationQuotationDays": 60,
-    "applicationQuotationTerm": 3,
-    "applicationQuotationPeriod": "DIAS_CORRIDOS",
+    "redemption": {
+      "quotationDays": 3,
+      "quotationTerm": "DIAS_CORRIDOS",
+      "paymentTerm": 3,
+      "graceDays": "DIAS_CORRIDOS"
+    },
+    "application": {
+      "quotationDays": 60,
+      "quotationTerm": 3,
+      "quotationPeriod": "DIAS_CORRIDOS"
+    },
     "fundQuotaType": "COTA_DE_ABERTURA"
   },
   "taxation": "CURTO_PRAZO"
@@ -5927,8 +5986,17 @@ Distribuição por frequência.
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|participantIdentification|[ParticipantIdentification](#schemaparticipantidentification)|true|Conjunto de informações relativas ao participante do produto de open banking|
-|product|[InvestmentsFundProduct](#schemainvestmentsfundproduct)|true||
+|participant|[ParticipantIdentification](#schemaparticipantidentification)|true|Conjunto de informações relativas ao participante do produto de open banking|
+|name|string|true|Nome oficial do fundo de investimento.|
+|cnpjNumber|string|true|CNPJ do fundo de investimento.|
+|isinCode|string|false|Código universal que identifica cada valor mobiliário ou instrumento financeiro, conforme Norma ISO 6166.<br><br>DEFINIÇÃO&#58;O ISIN (International Securities Identification Number) é um código que identifica um valor mobiliário, conforme a norma ISO 6166.<br>ESTRUTURA<br>O ISIN é um código alfanumérico que possui 12 caracteres com a seguinte estrutura&#58;<ul><li>um prefixo, composto de 2 caracteres alfa, que identifica o código do país (Norma ISO 3166);</li><li>o número básico, composto de 9 caracteres alfabéticos ou numéricos em sua extensão;</li><li>um dígito numérico de controle.</li></ul>|
+|admin|object|true||
+|» name|string|true|Razão social da pessoa jurídica autorizada pela CVM para o exercício de administrador de carteiras de valores mobiliários e responsável pela administração do fundo.|
+|» cnpjNumber|string|true|CNPJ do administrador.|
+|fundManager|object|true||
+|» name|string|true|Pessoa natural ou jurídica responsável pela gestão profissional dos ativos da carteira de valores mobiliários autorizado pela CVM.|
+|» cnpjNumber|string|true|CNPJ do gestor do fundo de investimento.|
+|anbimaCategory|[EnumInvestmentsFundProductAnbimaCategory](#schemaenuminvestmentsfundproductanbimacategory)|true|Conforme classificação ANBIMA, que segue a deliberação 77 da ANBIMA.<br><ol><li>Renda Fixa</li><li>Ações</li><li>Multimercado</li><li>Cambial</li></ol><br><br> [https://www.anbima.com.br/data/files/5A/44/2C/B7/8411B510CD3B4DA568A80AC2/DeliberacaoN77-Diretriz-de-Classificacao-de-Fundos.pdf](https://www.anbima.com.br/data/files/5A/44/2C/B7/8411B510CD3B4DA568A80AC2/DeliberacaoN77-Diretriz-de-Classificacao-de-Fundos.pdf)|
 |fees|[InvestmentsFundFees](#schemainvestmentsfundfees)|true||
 |generalConditions|[InvestmentsFundGeneralConditions](#schemainvestmentsfundgeneralconditions)|true||
 |taxation|[EnumInvestmentsFundTaxation](#schemaenuminvestmentsfundtaxation)|true|Indica o tipo de tributação, podendo ser&#58;<br><ol><li>Curto prazo</li><li>Longo prazo</li><li>Variável</li></ol>|
@@ -5944,10 +6012,12 @@ Distribuição por frequência.
 {
   "maxAdminFee": "0.020000",
   "entryFee": "0.010000",
-  "performanceFeeMethod": "PASSIVO",
-  "performanceFeeBenchmark": "CDI",
-  "performanceFeeBenchmarkAdditionalInfo": "string",
-  "performanceFeeAmount": "0.050000",
+  "performanceFee": {
+    "method": "PASSIVO",
+    "benchmark": "CDI",
+    "benchmarkAdditionalInfo": "string",
+    "amount": "0.050000"
+  },
   "exitFee": "0.030000"
 }
 
@@ -5959,10 +6029,11 @@ Distribuição por frequência.
 |---|---|---|---|---|
 |maxAdminFee|string|false|Taxa máxima cobrada para remunerar o administrador e os demais prestadores de serviços do fundo. Caso não haja a difererença de Máximo e Mínimo, considerar a taxa de administração do fundo.|
 |entryFee|string|false|Taxa cobrada no momento da aplicação, que incide sobre o valor investido no fundo.|
-|performanceFeeMethod|[EnumInvestmentsFundFeesPerformanceFeeMethod](#schemaenuminvestmentsfundfeesperformancefeemethod)|false|Metodologia do campo para taxa de performance.<br><ol><li>Passivo</li><li>Ativo</li><li>Ajuste</li><li>Outros</li></ol>|
-|performanceFeeBenchmark|[EnumInvestmentsFundFeesPerformanceFeeBenchmark](#schemaenuminvestmentsfundfeesperformancefeebenchmark)|false|Índice utilizado como referência para avaliação de desempenho do fundo de investimento.<br><br>Em linha com padronização na listagem de fundos da ANBIMA, com opção “outros”, permitindo campo livre caso a opção não seja previamente fornecida. Listagem de benchmark disponível no link https://data.anbima.com.br/fundos , opção Características > Benchmark|
-|performanceFeeBenchmarkAdditionalInfo|string|false|Campo a ser preenchido pelas participantes quando houver ‘Outros’ no campo ‘Taxa de Performance - Benchmark’.|
-|performanceFeeAmount|string|false|Taxa cobrada do fundo em função de resultado conforme regras dispostas no regulamento do fundo.|
+|performanceFee|object|false||
+|» method|[EnumInvestmentsFundFeesPerformanceFeeMethod](#schemaenuminvestmentsfundfeesperformancefeemethod)|false|Metodologia do campo para taxa de performance.<br><ol><li>Passivo</li><li>Ativo</li><li>Ajuste</li><li>Outros</li></ol>|
+|» benchmark|[EnumInvestmentsFundFeesPerformanceFeeBenchmark](#schemaenuminvestmentsfundfeesperformancefeebenchmark)|false|Índice utilizado como referência para avaliação de desempenho do fundo de investimento.<br><br>Em linha com padronização na listagem de fundos da ANBIMA, com opção “outros”, permitindo campo livre caso a opção não seja previamente fornecida. Listagem de benchmark disponível no link https://data.anbima.com.br/fundos , opção Características > Benchmark|
+|» benchmarkAdditionalInfo|string|false|Campo a ser preenchido pelas participantes quando houver ‘Outros’ no campo ‘Taxa de Performance - Benchmark’.|
+|» amount|string|false|Taxa cobrada do fundo em função de resultado conforme regras dispostas no regulamento do fundo.|
 |exitFee|string|false|Taxa paga pelo cotista ao resgatar recursos de um fundo.|
 
 <h2 id="tocS_InvestmentsFundGeneralConditions">InvestmentsFundGeneralConditions</h2>
@@ -5976,13 +6047,17 @@ Distribuição por frequência.
 {
   "minimumAmount": "100000.12",
   "currency": "BRL",
-  "redemptionQuotationDays": 3,
-  "redemptionQuotationTerm": "DIAS_CORRIDOS",
-  "redemptionPaymentTerm": 3,
-  "redemptionGraceDays": "DIAS_CORRIDOS",
-  "applicationQuotationDays": 60,
-  "applicationQuotationTerm": 3,
-  "applicationQuotationPeriod": "DIAS_CORRIDOS",
+  "redemption": {
+    "quotationDays": 3,
+    "quotationTerm": "DIAS_CORRIDOS",
+    "paymentTerm": 3,
+    "graceDays": "DIAS_CORRIDOS"
+  },
+  "application": {
+    "quotationDays": 60,
+    "quotationTerm": 3,
+    "quotationPeriod": "DIAS_CORRIDOS"
+  },
   "fundQuotaType": "COTA_DE_ABERTURA"
 }
 
@@ -5993,49 +6068,17 @@ Distribuição por frequência.
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
 |minimumAmount|string|true|Valor mínimo do primeiro aporte.|
-|currency|string|true|Moeda referente ao valor mínimo de aplicação, segundo modelo ISO-4217. p.ex.'BRL'.|
-|redemptionQuotationDays|integer(int32)|true|Prazo em dias indicada no regulamento do fundo para a conversão das cotas em dinheiro.|
-|redemptionQuotationTerm|[EnumInvestmentsFundGeneralConditionsTermType](#schemaenuminvestmentsfundgeneralconditionstermtype)|true|Período em dias corridos ou dias úteis do prazo de cotização de resgate.<br><br><ol><li>Dias corridos</li><li>Dias úteis</li></ol>|
-|redemptionPaymentTerm|integer(int32)|true|Prazo em dias do efetivo pagamento, pelo fundo, do valor líquido devido ao cotista que efetuou pedido de resgate.|
-|redemptionGraceDays|[EnumInvestmentsFundGeneralConditionsTermType](#schemaenuminvestmentsfundgeneralconditionstermtype)|true|Período em dias corridos ou dias úteis do prazo de cotização de resgate.<br><br><ol><li>Dias corridos</li><li>Dias úteis</li></ol>|
-|applicationQuotationDays|integer(int32)|false|Indica se o fundo estabelece um período em que o investidor não pode resgatar os recursos aplicados no fundo. Caso ocorra resgate antes do período, o investidor perderá a rentabilidade do período.|
-|applicationQuotationTerm|integer(int32)|true|Prazo em dias de cotização da aplicação.|
-|applicationQuotationPeriod|[EnumInvestmentsFundGeneralConditionsTermType](#schemaenuminvestmentsfundgeneralconditionstermtype)|true|Período em dias corridos ou dias úteis do prazo de cotização de resgate.<br><br><ol><li>Dias corridos</li><li>Dias úteis</li></ol>|
+|currency|[CurrencyCode](#schemacurrencycode)|true|Moeda referente ao valor da transação, segundo modelo ISO-4217. p.ex. 'BRL'<br>Todos os saldos informados estão representados com a moeda vigente do Brasil|
+|redemption|object|true||
+|» quotationDays|integer(int32)|true|Prazo em dias indicada no regulamento do fundo para a conversão das cotas em dinheiro.|
+|» quotationTerm|[EnumInvestmentsFundGeneralConditionsTermType](#schemaenuminvestmentsfundgeneralconditionstermtype)|true|Período em dias corridos ou dias úteis do prazo de cotização de resgate.<br><br><ol><li>Dias corridos</li><li>Dias úteis</li></ol>|
+|» paymentTerm|integer(int32)|true|Prazo em dias do efetivo pagamento, pelo fundo, do valor líquido devido ao cotista que efetuou pedido de resgate.|
+|» graceDays|[EnumInvestmentsFundGeneralConditionsTermType](#schemaenuminvestmentsfundgeneralconditionstermtype)|true|Período em dias corridos ou dias úteis do prazo de cotização de resgate.<br><br><ol><li>Dias corridos</li><li>Dias úteis</li></ol>|
+|application|object|false||
+|» quotationDays|integer(int32)|false|Indica se o fundo estabelece um período em que o investidor não pode resgatar os recursos aplicados no fundo. Caso ocorra resgate antes do período, o investidor perderá a rentabilidade do período.|
+|» quotationTerm|integer(int32)|true|Prazo em dias de cotização da aplicação.|
+|» quotationPeriod|[EnumInvestmentsFundGeneralConditionsTermType](#schemaenuminvestmentsfundgeneralconditionstermtype)|true|Período em dias corridos ou dias úteis do prazo de cotização de resgate.<br><br><ol><li>Dias corridos</li><li>Dias úteis</li></ol>|
 |fundQuotaType|[EnumInvestmentsFundGeneralConditionsFundQuotaType](#schemaenuminvestmentsfundgeneralconditionsfundquotatype)|true|Referente a incidência de tributos sobre o produto de investimento&#58;<br><br><ol><li>Cota de abertura</li><li>Cota de fechamento</li></ol>|
-
-<h2 id="tocS_InvestmentsFundProduct">InvestmentsFundProduct</h2>
-
-<a id="schemainvestmentsfundproduct"></a>
-<a id="schema_InvestmentsFundProduct"></a>
-<a id="tocSinvestmentsfundproduct"></a>
-<a id="tocsinvestmentsfundproduct"></a>
-
-```json
-{
-  "name": "FUNDO DE INVESTIMENTO EM COTAS DE FUNDOS DE INVESTIMENTO",
-  "cnpjNumber": "64108803000191",
-  "isinCode": "BRAAAAAAA000",
-  "admin": "ADM OPEN BANKING DTVM S.A.",
-  "adminCnpjNumber": "14511732000150",
-  "fundManager": "GESTOR OPEN BANKING DTVM S.A.",
-  "fundManagerCnpjNumber": "16332711000101",
-  "anbimaCategory": "MULTIMERCADO"
-}
-
-```
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|name|string|true|Nome oficial do fundo de investimento.|
-|cnpjNumber|string|true|CNPJ do fundo de investimento.|
-|isinCode|string|false|Código universal que identifica cada valor mobiliário ou instrumento financeiro, conforme Norma ISO 6166.<br><br>DEFINIÇÃO&#58;O ISIN (International Securities Identification Number) é um código que identifica um valor mobiliário, conforme a norma ISO 6166.<br>ESTRUTURA<br>O ISIN é um código alfanumérico que possui 12 caracteres com a seguinte estrutura&#58;<ul><li>um prefixo, composto de 2 caracteres alfa, que identifica o código do país (Norma ISO 3166);</li><li>o número básico, composto de 9 caracteres alfabéticos ou numéricos em sua extensão;</li><li>um dígito numérico de controle.</li></ul>|
-|admin|string|true|Razão social da pessoa jurídica autorizada pela CVM para o exercício de administrador de carteiras de valores mobiliários e responsável pela administração do fundo.|
-|adminCnpjNumber|string|true|CNPJ do administrador.|
-|fundManager|string|true|Pessoa natural ou jurídica responsável pela gestão profissional dos ativos da carteira de valores mobiliários autorizado pela CVM.|
-|fundManagerCnpjNumber|string|true|CNPJ do gestor do fundo de investimento.|
-|anbimaCategory|[EnumInvestmentsFundProductAnbimaCategory](#schemaenuminvestmentsfundproductanbimacategory)|true|Conforme classificação ANBIMA, que segue a deliberação 77 da ANBIMA.<br><ol><li>Renda Fixa</li><li>Ações</li><li>Multimercado</li><li>Cambial</li></ol><br><br> [https://www.anbima.com.br/data/files/5A/44/2C/B7/8411B510CD3B4DA568A80AC2/DeliberacaoN77-Diretriz-de-Classificacao-de-Fundos.pdf](https://www.anbima.com.br/data/files/5A/44/2C/B7/8411B510CD3B4DA568A80AC2/DeliberacaoN77-Diretriz-de-Classificacao-de-Fundos.pdf)|
 
 <h2 id="tocS_InvestmentsTreasure">InvestmentsTreasure</h2>
 
@@ -6046,93 +6089,12 @@ Distribuição por frequência.
 
 ```json
 {
-  "participantIdentification": {
+  "participant": {
     "brand": "Organização",
     "name": "Organização A1",
     "cnpjNumber": "13456789000112",
     "urlComplementaryList": "https://empresaa1.com/companies"
   },
-  "fees": {
-    "investmentType": "TESOURO_DIRETO",
-    "custodyFee": {
-      "name": "NA",
-      "code": "NA",
-      "chargingTriggerInfo": "NA",
-      "prices": [
-        {
-          "interval": "1_FAIXA",
-          "value": "0.020300",
-          "customerRate": "0.500000"
-        },
-        {
-          "interval": "2_FAIXA",
-          "value": "0.030600",
-          "customerRate": "0.100000"
-        },
-        {
-          "interval": "3_FAIXA",
-          "value": "0.034300",
-          "customerRate": "0.300000"
-        },
-        {
-          "interval": "4_FAIXA",
-          "value": "0.246800",
-          "customerRate": "0.100000"
-        }
-      ],
-      "minimum": "0.010000",
-      "maximum": "0.300000"
-    },
-    "loadingRate": {
-      "name": "NA",
-      "code": "NA",
-      "chargingTriggerInfo": "NA",
-      "prices": [
-        {
-          "interval": "1_FAIXA",
-          "value": "0.020300",
-          "customerRate": "0.500000"
-        },
-        {
-          "interval": "2_FAIXA",
-          "value": "0.030600",
-          "customerRate": "0.100000"
-        },
-        {
-          "interval": "3_FAIXA",
-          "value": "0.034300",
-          "customerRate": "0.300000"
-        },
-        {
-          "interval": "4_FAIXA",
-          "value": "0.246800",
-          "customerRate": "0.100000"
-        }
-      ],
-      "minimum": "0.010000",
-      "maximum": "0.300000"
-    }
-  }
-}
-
-```
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|participantIdentification|[ParticipantIdentification](#schemaparticipantidentification)|false|Conjunto de informações relativas ao participante do produto de open banking|
-|fees|[InvestmentsTreasureFees](#schemainvestmentstreasurefees)|true||
-
-<h2 id="tocS_InvestmentsTreasureFees">InvestmentsTreasureFees</h2>
-
-<a id="schemainvestmentstreasurefees"></a>
-<a id="schema_InvestmentsTreasureFees"></a>
-<a id="tocSinvestmentstreasurefees"></a>
-<a id="tocsinvestmentstreasurefees"></a>
-
-```json
-{
   "investmentType": "TESOURO_DIRETO",
   "custodyFee": {
     "name": "NA",
@@ -6200,6 +6162,7 @@ Distribuição por frequência.
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
+|participant|[ParticipantIdentification](#schemaparticipantidentification)|false|Conjunto de informações relativas ao participante do produto de open banking|
 |investmentType|[EnumInvestmentsTreasureInvestmentType](#schemaenuminvestmentstreasureinvestmenttype)|true|Especifica o tipo de ativo negociado&#58;<br><br><ol><li>Tesouro direto</li></ol>|
 |custodyFee|[FrequencyDistribution](#schemafrequencydistribution)|true|Distribuição por frequência.|
 |loadingRate|[FrequencyDistribution](#schemafrequencydistribution)|true|Distribuição por frequência.|
@@ -6213,93 +6176,12 @@ Distribuição por frequência.
 
 ```json
 {
-  "participantIdentification": {
+  "participant": {
     "brand": "Organização",
     "name": "Organização A1",
     "cnpjNumber": "13456789000112",
     "urlComplementaryList": "https://empresaa1.com/companies"
   },
-  "fees": {
-    "investmentType": "ACOES",
-    "custodyFee": {
-      "name": "NA",
-      "code": "NA",
-      "chargingTriggerInfo": "NA",
-      "prices": [
-        {
-          "interval": "1_FAIXA",
-          "value": "0.020300",
-          "customerRate": "0.500000"
-        },
-        {
-          "interval": "2_FAIXA",
-          "value": "0.030600",
-          "customerRate": "0.100000"
-        },
-        {
-          "interval": "3_FAIXA",
-          "value": "0.034300",
-          "customerRate": "0.300000"
-        },
-        {
-          "interval": "4_FAIXA",
-          "value": "0.246800",
-          "customerRate": "0.100000"
-        }
-      ],
-      "minimum": "0.010000",
-      "maximum": "0.300000"
-    },
-    "loadingRate": {
-      "name": "NA",
-      "code": "NA",
-      "chargingTriggerInfo": "NA",
-      "prices": [
-        {
-          "interval": "1_FAIXA",
-          "value": "0.020300",
-          "customerRate": "0.500000"
-        },
-        {
-          "interval": "2_FAIXA",
-          "value": "0.030600",
-          "customerRate": "0.100000"
-        },
-        {
-          "interval": "3_FAIXA",
-          "value": "0.034300",
-          "customerRate": "0.300000"
-        },
-        {
-          "interval": "4_FAIXA",
-          "value": "0.246800",
-          "customerRate": "0.100000"
-        }
-      ],
-      "minimum": "0.010000",
-      "maximum": "0.300000"
-    }
-  }
-}
-
-```
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|participantIdentification|[ParticipantIdentification](#schemaparticipantidentification)|false|Conjunto de informações relativas ao participante do produto de open banking|
-|fees|[InvestmentsVariableIncomeFees](#schemainvestmentsvariableincomefees)|true||
-
-<h2 id="tocS_InvestmentsVariableIncomeFees">InvestmentsVariableIncomeFees</h2>
-
-<a id="schemainvestmentsvariableincomefees"></a>
-<a id="schema_InvestmentsVariableIncomeFees"></a>
-<a id="tocSinvestmentsvariableincomefees"></a>
-<a id="tocsinvestmentsvariableincomefees"></a>
-
-```json
-{
   "investmentType": "ACOES",
   "custodyFee": {
     "name": "NA",
@@ -6367,6 +6249,7 @@ Distribuição por frequência.
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
+|participant|[ParticipantIdentification](#schemaparticipantidentification)|false|Conjunto de informações relativas ao participante do produto de open banking|
 |investmentType|[EnumInvestmentsVariableIncomeInvestmentType](#schemaenuminvestmentsvariableincomeinvestmenttype)|true|Especifica o tipo de ativo negociado&#58;<br><br><ol><li>Ações</li><li>Fundo de índices</li></ol>|
 |custodyFee|[FrequencyDistribution](#schemafrequencydistribution)|true|Distribuição por frequência.|
 |loadingRate|[FrequencyDistribution](#schemafrequencydistribution)|true|Distribuição por frequência.|
@@ -6887,107 +6770,109 @@ Meta informações referente à API requisitada.
 
 ```json
 {
-  "data": {
-    "participant": {
-      "brand": "Organização",
-      "name": "Organização A1",
-      "cnpjNumber": "13456789000112",
-      "urlComplementaryList": "https://empresaa1.com/companies"
-    },
-    "society": {
-      "name": "Society A1",
-      "cnpjNumber": "13456789000112"
-    },
-    "name": "Produto A",
-    "code": "0001",
-    "segment": "PREVIDENCIA",
-    "modality": "BENEFICIO_DEFINIDO",
-    "adittionalInfo": "https://openinsurance.com.br/aaa",
-    "termsAndConditions": [
-      {
-        "susepProcessNumber": "15414.622222/2222-22",
-        "detail": "https://openinsurance.com.br/aaa"
-      }
-    ],
-    "type": "PGBL",
-    "defferalPeriod": {
-      "interestRate": "0.251231",
-      "updateIndex": "IPCA",
-      "otherMinimumPerformanceGarantees": "SELIC",
-      "reversalFinancialResults": "0.051230",
-      "minimumPremium": {
-        "currency": "BRL",
-        "periodicity": "MENSAL",
-        "amount": "250.00"
+  "data": [
+    {
+      "participant": {
+        "brand": "Organização",
+        "name": "Organização A1",
+        "cnpjNumber": "13456789000112",
+        "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "premiumPaymentMethods": [
-        "CARTAO_CREDITO"
-      ],
-      "permissionExtraordinaryContributions": true,
-      "permissionScheduledFinancialPayments": true,
-      "gracePeriod": {
-        "redemption": 100,
-        "betweenRedemptionRequests": 30,
-        "portability": 12,
-        "betweenPortabilityRequests": 15
+      "society": {
+        "name": "Society A1",
+        "cnpjNumber": "13456789000112"
       },
-      "redemptionPaymentTerm": 10,
-      "portabilityPaymentTerm": 20,
-      "investmentFunds": [
+      "name": "Produto A",
+      "code": "0001",
+      "segment": "PREVIDENCIA",
+      "modality": "BENEFICIO_DEFINIDO",
+      "adittionalInfo": "https://openinsurance.com.br/aaa",
+      "termsAndConditions": [
         {
-          "cnpjNumber": "13456789000112",
-          "name": "EMPRESAAPREV",
-          "maximumAdministrationFee": "0.201000",
-          "typePerformanceFee": "DIRETAMENTE",
-          "maximumPerformanceFee": "0.201000",
-          "eligibilityRule": true,
-          "minimumContributionAmount": "1000.00",
-          "minimumMathematicalProvisionAmount": "1000.00",
-          "currency": "BRL"
+          "susepProcessNumber": "15414.622222/2222-22",
+          "detail": "https://openinsurance.com.br/aaa"
         }
-      ]
-    },
-    "grantPeriodBenefit": {
-      "incomeModalities": [
-        "PAGAMENTO_UNICO"
       ],
-      "biometricTable": [
-        "AT_2000_MALE"
-      ],
-      "interestRate": "0.225222",
-      "updateIndex": "IPCA",
-      "reversalFinancialResults": "1.252111",
-      "investmentFunds": [
-        {
-          "cnpjNumber": "13456789000112",
-          "name": "EMPRESAAPREV",
-          "maximumAdministrationFee": "0.201000",
-          "typePerformanceFee": "DIRETAMENTE",
-          "maximumPerformanceFee": "0.201000",
-          "eligibilityRule": true,
-          "minimumContributionAmount": "1000.00",
-          "minimumMathematicalProvisionAmount": "1000.00",
-          "currency": "BRL"
-        }
-      ]
-    },
-    "costs": {
-      "loadingAntecipated": {
-        "minValue": "0.000000",
-        "maxValue": "0.100000"
+      "type": "PGBL",
+      "defferalPeriod": {
+        "interestRate": "0.251231",
+        "updateIndex": "IPCA",
+        "otherMinimumPerformanceGarantees": "SELIC",
+        "reversalFinancialResults": "0.051230",
+        "minimumPremium": {
+          "currency": "BRL",
+          "periodicity": "MENSAL",
+          "amount": "250.00"
+        },
+        "premiumPaymentMethods": [
+          "CARTAO_CREDITO"
+        ],
+        "permissionExtraordinaryContributions": true,
+        "permissionScheduledFinancialPayments": true,
+        "gracePeriod": {
+          "redemption": 100,
+          "betweenRedemptionRequests": 30,
+          "portability": 12,
+          "betweenPortabilityRequests": 15
+        },
+        "redemptionPaymentTerm": 10,
+        "portabilityPaymentTerm": 20,
+        "investmentFunds": [
+          {
+            "cnpjNumber": "13456789000112",
+            "name": "EMPRESAAPREV",
+            "maximumAdministrationFee": "0.201000",
+            "typePerformanceFee": "DIRETAMENTE",
+            "maximumPerformanceFee": "0.201000",
+            "eligibilityRule": true,
+            "minimumContributionAmount": "1000.00",
+            "minimumMathematicalProvisionAmount": "1000.00",
+            "currency": "BRL"
+          }
+        ]
       },
-      "loadingLate": {
-        "minValue": "0.000000",
-        "maxValue": "0.100000"
-      }
-    },
-    "minimumRequirements": {
-      "contractType": "COLETIVO",
-      "participantQualified": true,
-      "contractingMinRequirement": "https://openinsurance.com.br/aaa"
-    },
-    "targetAudience": "PESSOA_NATURAL"
-  },
+      "grantPeriodBenefit": {
+        "incomeModalities": [
+          "PAGAMENTO_UNICO"
+        ],
+        "biometricTable": [
+          "AT_2000_MALE"
+        ],
+        "interestRate": "0.225222",
+        "updateIndex": "IPCA",
+        "reversalFinancialResults": "1.252111",
+        "investmentFunds": [
+          {
+            "cnpjNumber": "13456789000112",
+            "name": "EMPRESAAPREV",
+            "maximumAdministrationFee": "0.201000",
+            "typePerformanceFee": "DIRETAMENTE",
+            "maximumPerformanceFee": "0.201000",
+            "eligibilityRule": true,
+            "minimumContributionAmount": "1000.00",
+            "minimumMathematicalProvisionAmount": "1000.00",
+            "currency": "BRL"
+          }
+        ]
+      },
+      "costs": {
+        "loadingAntecipated": {
+          "minValue": "0.000000",
+          "maxValue": "0.100000"
+        },
+        "loadingLate": {
+          "minValue": "0.000000",
+          "maxValue": "0.100000"
+        }
+      },
+      "minimumRequirements": {
+        "contractType": "COLETIVO",
+        "participantQualified": true,
+        "contractingMinRequirement": "https://openinsurance.com.br/aaa"
+      },
+      "targetAudience": "PESSOA_NATURAL"
+    }
+  ],
   "links": {
     "self": "https://api.banco.com.br/open-banking/api/v1/resource",
     "first": "https://api.banco.com.br/open-banking/api/v1/resource",
@@ -7008,7 +6893,7 @@ Meta informações referente à API requisitada.
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|data|[GetSurvivalPensionContractData](#schemagetsurvivalpensioncontractdata)|true||
+|data|[[GetSurvivalPensionContractData](#schemagetsurvivalpensioncontractdata)]|true||
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
 |meta|[Meta](#schemameta)|true|Meta informações referente à API requisitada.|
 
@@ -8124,7 +8009,7 @@ O CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. De
                 "description": "0001"
               }
             },
-            "geographicScope": [
+            "geographicScopes": [
               {
                 "coverages": [
                   "NACIONAL"
@@ -8313,7 +8198,7 @@ O CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. De
             "description": "0001"
           }
         },
-        "geographicScope": [
+        "geographicScopes": [
           {
             "coverages": [
               "NACIONAL"
@@ -8465,7 +8350,7 @@ O CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. De
         "description": "0001"
       }
     },
-    "geographicScope": [
+    "geographicScopes": [
       {
         "coverages": [
           "NACIONAL"
@@ -8641,7 +8526,7 @@ O CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. De
       "description": "0001"
     }
   },
-  "geographicScope": [
+  "geographicScopes": [
     {
       "coverages": [
         "NACIONAL"
@@ -8684,7 +8569,7 @@ Atributos da cobertura
 |fullIndemnityDeductible|boolean|true|(Circular 269/2004). A considerar os domínios abaixo:<br>1. true<br>2. false|
 |deductiblePaymentByCoverage|boolean|false|Mudança do campo com a sinalização para cada cobertura se a seguradora exige pagamento de franquia.<br> 1. true<br> 2. false|
 |mandatoryParticipation|[CoverageItemMandatoryParticipation](#schemacoverageitemmandatoryparticipation)|false||
-|geographicScope|[[CarGeoGraphicScope](#schemacargeographicscope)]|true||
+|geographicScopes|[[CarGeoGraphicScope](#schemacargeographicscope)]|true||
 |contractBase|[ContractBase](#schemacontractbase)|false|Base de contratação|
 
 <h2 id="tocS_ContractBase">ContractBase</h2>
@@ -8805,7 +8690,7 @@ Conjunto de informações relativas à seguradora do produto de open insurance
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|name|string|true|Nome da seguradora.|
+|name|string|true|Nome da Sociedade Seguradora.|
 |cnpjNumber|[CnpjNumber](#schemacnpjnumber)|true|O CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara.|
 
 <h2 id="tocS_EnumCoverageItemDeductibleType">EnumCoverageItemDeductibleType</h2>
@@ -10170,8 +10055,8 @@ A considerar os seguintes domínios abaixo:
 |otherGuaranteedValues|[[EnumPersonalInsuranceOtherGuaranteedValues](#schemaenumpersonalinsuranceotherguaranteedvalues)]|false|[1. Saldamento<br>2. Benefício Prolongado<br>3. Não se aplica<br>]|
 |allowPortability|boolean|false|1. true<br>2. false|
 |portabilityGraceTime|[GracePeriod](#schemagraceperiod)|true||
-|indemnityPaymentMethods|[[EnumPersonalInsuranceIndemnityPaymentMethod](#schemaenumpersonalinsuranceindemnitypaymentmethod)]|false|[Modalidade de pagamento da indenização, a considerar os domínios abaixo:<br>  1. Único<br>  2. Sob a forma de renda<br>]|
-|indemnityPaymentIncomes|[[EnumPersonalInsuranceIndemnityPaymentIncome](#schemaenumpersonalinsuranceindemnitypaymentincome)]|false|[Tipo de renda ou pensão, caso modalidade de pagamento de indenização seja sob a forma de renda:<br>  1. Certa<br>  2. Temporária<br>  3. Temporária reversível<br>  4. Temporário com mínimo garantido<br>  5. Temporária reversível com mínimo garantido<br>  6. Vitalícia<br>  7. Vitalícia reversível<br>  8. Vitalícia com o mínimo garantido<br>  9. Vitalícia reversível como mínimo garantido<br>]|
+|indemnityPaymentMethods|[[EnumPersonalInsuranceIndemnityPaymentMethod](#schemaenumpersonalinsuranceindemnitypaymentmethod)]|true|[Modalidade de pagamento da indenização, a considerar os domínios abaixo:<br>  1. Único<br>  2. Sob a forma de renda<br>]|
+|indemnityPaymentIncomes|[[EnumPersonalInsuranceIndemnityPaymentIncome](#schemaenumpersonalinsuranceindemnitypaymentincome)]|true|[Tipo de renda ou pensão, caso modalidade de pagamento de indenização seja sob a forma de renda:<br>  1. Certa<br>  2. Temporária<br>  3. Temporária reversível<br>  4. Temporário com mínimo garantido<br>  5. Temporária reversível com mínimo garantido<br>  6. Vitalícia<br>  7. Vitalícia reversível<br>  8. Vitalícia com o mínimo garantido<br>  9. Vitalícia reversível como mínimo garantido<br>]|
 |premiumPayment|[PersonalInsurancePremiumPayment](#schemapersonalinsurancepremiumpayment)|true||
 |minimumRequirement|[MinimumRequirement](#schemaminimumrequirement)|true||
 |targetAudience|[EnumTargetAudience](#schemaenumtargetaudience)|true|A considerar os domínios abaixo:<br><br>  1. Pessoa Natural<br>  2. Pessoa Jurídica<br>  3. Ambas (Pessoa Natural e Jurídica)|
@@ -10381,7 +10266,7 @@ A considerar os seguintes domínios abaixo:
 |» currencyValue|[CurrencyValue](#schemacurrencyvalue)|false||
 |maxValue|object|false|Listagem do valor máximo de cobertura (Capital Segurado), diária ou parcela aceito pela sociedade para cada combinação de modalidade/cobertura do produto.<br>Conforme moeda.|
 |» currencyValue|[CurrencyValue](#schemacurrencyvalue)|false||
-|indemnfiablePeriods|[[EnumPersonalIndemnfiablePeriodType](#schemaenumpersonalindemnfiableperiodtype)]|false|[Listagem do pagamento para cada benefício:<br>  1. Quantidade determinada de parcelas;<br>  2. Até o fim de ciclo determinado.<br>Se for pagamento único, esse campo não se aplica (retorna vazio).<br>]|
+|indemnfiablePeriods|[[EnumPersonalIndemnfiablePeriodType](#schemaenumpersonalindemnfiableperiodtype)]|true|[Listagem do pagamento para cada benefício:<br>  1. Quantidade determinada de parcelas;<br>  2. Até o fim de ciclo determinado.<br>Se for pagamento único, esse campo não se aplica (retorna vazio).<br>]|
 |maximumQtyIndemnifiableInstallments|integer|true|Caso o período indenizável seja relacionado a parcelas, listagem de número máximo de parcelas indenizáveis para cada combinação de modalidade/ cobertura do produto.|
 |gracePeriod|[GracePeriod](#schemagraceperiod)|true||
 |differentiatedGracePeriod|[GracePeriod](#schemagraceperiod)|false||

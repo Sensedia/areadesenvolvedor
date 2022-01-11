@@ -79,7 +79,9 @@ components:
         - meta
       properties:
         data:
-          $ref: '#/components/schemas/GetRiskPensionContractData'
+          type: array
+          items:
+            $ref: '#/components/schemas/GetRiskPensionContractData'
         links:
           $ref: '#/components/schemas/Links'
         meta:
@@ -111,7 +113,7 @@ components:
           properties:
             name:
               type: string
-              description: Nome da seguradora.
+              description: Nome da Sociedade Seguradora.
               maxLength: 80
               example: Society A1
             cnpjNumber:
@@ -346,7 +348,9 @@ components:
         - meta
       properties:
         data:
-          $ref: '#/components/schemas/GetSurvivalPensionContractData'
+          type: array
+          items:
+            $ref: '#/components/schemas/GetSurvivalPensionContractData'
         links:
           $ref: '#/components/schemas/Links'
         meta:
@@ -1205,7 +1209,7 @@ components:
       type: object
       required:
         - criteria
-        - updateIndex
+        - updateIndexes
       properties:
         criterias:
           type: array
