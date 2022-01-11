@@ -411,6 +411,8 @@ components:
       $ref: ./schemas/payments_apis/422ResponseErrorCreateConsent.yaml
     422ResponseErrorCreatePixPayment:
       $ref: ./schemas/payments_apis/422ResponseErrorCreatePixPayment.yaml
+    422ResponseErrorPatchConsent:
+      $ref: ./schemas/payments_apis/422ResponseErrorPatchConsent.yaml
     BusinessEntity:
       $ref: ./schemas/payments_apis/BusinessEntity.yaml
     CreatePaymentConsent:

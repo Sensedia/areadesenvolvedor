@@ -21,12 +21,12 @@ properties:
           pattern: \w*\W*
           example: Motivo de revogação não permitido.
           description: |
-            Título específico do erro reportado, de acordo com o código enviado:
-            • USER_INFORMATION_REQUIRED: Operação não permitida.
-            • OPERATION_NOT_ALLOWED_BY_STATUS: Operação não permitida.
-            • OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Valor da transação incompatível.
-            • REVOCATION_TIME_LIMIT_EXCEEDED: Prazo limite para revogação excedido.
-            • REVOCATION_REASON_NOT_ALLOWED: Motivo de revogação não permitido.
+            Título específico do erro reportado, de acordo com o código enviado:  
+            • USER_INFORMATION_REQUIRED: Informação do usuário requerida.  
+            • OPERATION_NOT_ALLOWED_BY_STATUS: Operação não permitida.  
+            • OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Operação não permitida.  
+            • REVOCATION_TIME_LIMIT_EXCEEDED: Prazo limite para revogação excedido.  
+            • REVOCATION_REASON_NOT_ALLOWED: Motivo de revogação não permitido.  
             • REVOCATION_ADDITIONAL_INFORMATION_REQUIRED: Informação adicional requerida.
         detail:
           type: string
@@ -34,12 +34,12 @@ properties:
           pattern: \w*\W*
           example: Operação não suportada pelo tipo de consentimento.
           description: |
-            Descrição específica do erro de acordo com o código reportado:
-            • USER_INFORMATION_REQUIRED: Informação do usuário requerida.
-            • OPERATION_NOT_ALLOWED_BY_STATUS: Operação não permitida devido ao status atual do consentimento.
-            • OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Operação não suportada pelo tipo de consentimento.
-            • REVOCATION_TIME_LIMIT_EXCEEDED: Prazo limite para revogação excedido.
-            • REVOCATION_REASON_NOT_ALLOWED: Motivo de revogação não permitido.
+            Descrição específica do erro de acordo com o código reportado:  
+            • USER_INFORMATION_REQUIRED: Informação do usuário requerida.  
+            • OPERATION_NOT_ALLOWED_BY_STATUS: Operação não permitida devido ao status atual do consentimento.  
+            • OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Operação não suportada pelo tipo de consentimento.  
+            • REVOCATION_TIME_LIMIT_EXCEEDED: Prazo limite para revogação excedido.  
+            • REVOCATION_REASON_NOT_ALLOWED: Motivo de revogação não permitido.  
             • REVOCATION_ADDITIONAL_INFORMATION_REQUIRED: Informação adicional requerida.
       additionalProperties: false
   meta:
