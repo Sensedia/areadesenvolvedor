@@ -838,7 +838,7 @@ components:
                   • FORMA_PGTO_INVALIDA – Meio de pagamento inválido.  
                   • DATA_PGTO_INVALIDA – Data de pagamento inválida no contexto, por exemplo, data no passado. Para pagamentos únicos deve ser informada a data atual, do dia corrente.  
                   • DETALHE_PGTO_INVALIDO: O campo [nome_campo] não atende os requisitos de preenchimento.  
-                  • NAO_INFORMADO – Não reportado/identificado pela instituição detentora de conta.
+                  • NAO_INFORMADO – Não reportado identificado pela instituição detentora de conta.  
                   • INVALID_SCHEDULE – O campo data.payment.schedule.single.date deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília. O campo data.payment.schedule.single.date deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.
             additionalProperties: false
         meta:
@@ -1631,21 +1631,22 @@ components:
             - single
           properties:
             single:
-              type: object
-              description: Define a política de agendamento único.
-              additionalProperties: false
-              required:
-                - date
-              properties:
-                date:
-                  type: string
-                  format: date
-                  maxLength: 10
-                  pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
-                  example: '2021-01-01'
-                  description: |
-                    Define a data alvo da liquidação do pagamento. O fuso horário de Brasilia deve ser utilizado para criação e racionalização sobre os dados deste campo.  
-                    OBS:Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.
+              oneOf:
+                - type: object
+                  description: Define a política de agendamento único.
+                  additionalProperties: false
+                  required:
+                    - date
+                  properties:
+                    date:
+                      type: string
+                      format: date
+                      maxLength: 10
+                      pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                      example: '2021-01-01'
+                      description: |
+                        Define a data alvo da liquidação do pagamento. O fuso horário de Brasilia deve ser utilizado para criação e racionalização sobre os dados deste campo.  
+                        OBS:Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.
         date:
           type: string
           format: date
@@ -1872,7 +1873,9 @@ components:
       additionalProperties: false
     Revocation:
       type: object
-      description: "Objeto que contém as informações das circunstância da revogação.\nO campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo\_data.revocation.revoked_by\_estiver com o valor\_USER.\n"
+      description: |
+        Objeto que contém as informações das circunstância da revogação.
+        O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.
       required:
         - revokedBy
         - reason
@@ -2055,7 +2058,15 @@ components:
       name: consentId
       in: path
       description: |
-        O consentId é o identificador único do consentimento a ser revogado e deverá ser um URN - Uniform Resource Name.
+        O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
+        Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+        Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+        seja um identificador de recurso persistente e independente da localização.  
+        Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+        - o namespace(urn)
+        - o identificador associado ao namespace da instituição transnmissora (bancoex) 
+        - o identificador específico dentro do namespace (C1DD33123).  
+        Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
       required: true
       schema:
         type: string
