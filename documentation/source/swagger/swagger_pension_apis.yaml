@@ -166,7 +166,7 @@ components:
           type: boolean
           description: A considerar os seguintes domínios&#58;<br><ol><li>true</li><li>false</li></ol>
           example: true
-        term:
+        terms:
           type: array
           items:
             $ref: '#/components/schemas/EnumTerm'
@@ -176,7 +176,7 @@ components:
           $ref: '#/components/schemas/BenefitRecalculation'
         ageAdjustment:
           $ref: '#/components/schemas/AgeAdjustment'
-        financialRegimeContractType:
+        financialRegimeContractTypes:
           type: array
           items:
             type: string
@@ -210,7 +210,7 @@ components:
           description: <ol><li>true</li><li>false</li></ol>
         portabilityGraceTime:
           $ref: '#/components/schemas/GracePeriod'
-        indemnityPaymentMethod:
+        indemnityPaymentMethods:
           type: array
           items:
             type: string
@@ -223,7 +223,7 @@ components:
               - UNICO
               - SOB_FORMA_DE_RENDA
             example: UNICO
-        indemnityPaymentIncome:
+        indemnityPaymentIncomes:
           type: array
           items:
             type: string
@@ -974,7 +974,7 @@ components:
       properties:
         type:
           $ref: '#/components/schemas/EnumRiskPensionCoverageType'
-        additionalInfo:
+        additionalInfos:
           type: array
           items:
             type: string
@@ -1047,7 +1047,7 @@ components:
           properties:
             currencyValue:
               $ref: '#/components/schemas/CurrencyValue'
-        IndemnifiablePeriod:
+        indemnifiablePeriods:
           type: array
           items:
             $ref: '#/components/schemas/EnumRiskPensionIndemnifiablePeriod'
@@ -1207,7 +1207,7 @@ components:
         - criteria
         - updateIndex
       properties:
-        criteria:
+        criterias:
           type: array
           items:
             type: string
@@ -1216,7 +1216,7 @@ components:
               - VINCULADO_SALDO_DEVEDOR
               - VARIAVEL_ACORDO_CRITERIO_ESPECIFICO
             maxLength: 35
-        updateIndex:
+        updateIndexes:
           type: array
           items:
             $ref: '#/components/schemas/PmbacRemuneration/properties/updateIndexes/items'
@@ -1227,7 +1227,7 @@ components:
         - criteria
         - frequency
       properties:
-        criteria:
+        criterias:
           type: array
           items:
             type: string
