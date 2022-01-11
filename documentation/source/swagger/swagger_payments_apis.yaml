@@ -1,4 +1,4 @@
-﻿openapi: 3.0.0
+openapi: 3.0.0
 info:
   title: API Payment Initiation - Open Banking Brasil
   description: |
@@ -347,7 +347,7 @@ paths:
         - OAuth2AuthorizationCode:
             - 'consent:consentId'
             - payments
-  '/pix/ted-tef/{paymentId}':
+  '/ted-tef/payments/{paymentId}':
     get:
       tags:
         - Pagamentos
@@ -407,31 +407,36 @@ components:
       required:
         - payment
       properties:
-        localInstrument:
-          $ref: '#/components/schemas/CreatePixPaymentData/properties/localInstrument'
         payment:
-          $ref: '#/components/schemas/PaymentPix'
+          $ref: '#/components/schemas/Payment'
         creditorAccount:
           $ref: '#/components/schemas/TedTefCreditorAccount'
         purpose:
           $ref: '#/components/schemas/EnumPurposeTedTef'
+        purposeAdditionalInfo:
+          type: string
+          maxLength: 100
+          pattern: \w*\W*
+          example: Informações adicionais
+          description: |
+            Texto livre para complementar informação relativa ao campo purpose. 
+            [Restrição] Preencher quando purpose for igual OUTROS.
         scheduledPaymentDateTime:
           type: string
           format: date-time
           example: '2021-05-21T08:30:00Z'
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
           maxLength: 20
-          description: Aguardando definições do GT Especificações a respeito de Pix
+          description: Define o agendamento do pagamento. Utilizado somente na funcionalidade de agendamento de pagamentos.
         firstPaymentDateTime:
           type: string
           format: date-time
           example: '2021-05-21T08:30:00Z'
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
           maxLength: 20
-          description: Aguardando definições do GT Especificações a respeito de Pix
+          description: Define a primeira data alvo do pagamento. O fuso horário de Brasília deve ser utilizado para criação e racionalização sobre os dados deste campo.
         installmentNumber:
           type: integer
-          description: Aguardando definições do GT Especificações a respeito de Pix
           example: 9
       additionalProperties: false
     EnumPurposeTedTef:
@@ -708,11 +713,8 @@ components:
           pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
           example: TXpRMU9UQTROMWhZV2xSU1FUazJSMDl
           description: |
-            Código ou identificador único informado pela instituição detentora da conta para representar
-            a iniciação de pagamento individual. O `paymentId` deve ser diferente do `endToEndId`.
+            Código ou identificador único informado pela instituição detentora da conta para representar a iniciação de pagamento individual.
             Este é o identificador que deverá ser utilizado na consulta ao status da iniciação de pagamento efetuada.
-        endToEndId:
-          $ref: '#/components/schemas/EndToEndId'
         consentId:
           type: string
           maxLength: 256
@@ -748,10 +750,8 @@ components:
             sempre com a utilização de timezone UTC(UTC time format).
         status:
           $ref: '#/components/schemas/EnumPaymentStatusType'
-        localInstrument:
-          $ref: '#/components/schemas/CreatePixPaymentData/properties/localInstrument'
         payment:
-          $ref: '#/components/schemas/PaymentPix'
+          $ref: '#/components/schemas/Payment'
         creditorAccount:
           $ref: '#/components/schemas/TedTefCreditorAccount'
         rejectionReason:
@@ -960,7 +960,7 @@ components:
             - QRES - QR code estático
             - INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido.
         payment:
-          $ref: '#/components/schemas/PaymentPix'
+          $ref: '#/components/schemas/Payment'
         creditorAccount:
           $ref: '#/components/schemas/CreditorAccount'
         remittanceInformation:
@@ -1630,7 +1630,7 @@ components:
             revocation:
               $ref: '#/components/schemas/Revocation'
       additionalProperties: false
-    PaymentPix:
+    Payment:
       type: object
       description: Objeto contendo dados do pagameto como moeda e valor.
       required:
@@ -1894,7 +1894,7 @@ components:
           example: '50685362000135'
           description: CNPJ do Iniciador de Pagamento devidamente habilitado para a prestação de Serviço de Iniciação no Pix.
         payment:
-          $ref: '#/components/schemas/PaymentPix'
+          $ref: '#/components/schemas/Payment'
         transactionIdentification:
           type: string
           pattern: '^[a-zA-Z0-9][a-zA-Z0-9]{0,24}$'
@@ -2244,18 +2244,6 @@ components:
         application/jwt:
           schema:
             $ref: '#/components/schemas/ResponsePixPayment'
-    201PaymentsInitiationTedTefPaymentCreated:
-      description: Iniciação de pagamento ted-tef criada com sucesso.
-      headers:
-        x-fapi-interaction-id:
-          description: |
-            Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
-          schema:
-            $ref: '#/components/schemas/XFapiInteractionId'
-      content:
-        application/jwt:
-          schema:
-            $ref: '#/components/schemas/ResponseTedTefPayment'
     200PaymentsInitiationPixPaymentIdRead:
       description: Dados de iniciação de pagamento Pix obtidos com sucesso.
       headers:
@@ -2268,6 +2256,18 @@ components:
         application/jwt:
           schema:
             $ref: '#/components/schemas/ResponsePixPayment'
+    201PaymentsInitiationTedTefPaymentCreated:
+      description: Iniciação de pagamento ted-tef criada com sucesso.
+      headers:
+        x-fapi-interaction-id:
+          description: |
+            Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+          schema:
+            $ref: '#/components/schemas/XFapiInteractionId'
+      content:
+        application/jwt:
+          schema:
+            $ref: '#/components/schemas/ResponseTedTefPayment'
     200PaymentsInitiationTedTefPaymentIdRead:
       description: Dados de iniciação de pagamento ted-tef obtidos com sucesso.
       headers:
