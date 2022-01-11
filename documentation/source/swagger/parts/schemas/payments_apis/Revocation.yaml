@@ -1,7 +1,7 @@
 type: object
 description: |
   Objeto que contém as informações das circunstância da revogação.
-  O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revoked_by estiver com o valor USER.
+  O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.
 required:
   - revokedBy
   - reason
