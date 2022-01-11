@@ -1,19 +1,15 @@
 type: object
 required:
   - participant
+  - society
   - name
   - code
   - coverages
   - assistanceTypes
   - additionals
   - termsAndConditions
-  - globalCapital
   - terms
-  - pmbacRemuneration
   - benefitRecalculation
-  - ageAdjustment
-  - financialRegimes
-  - reclaim
   - portabilityGraceTime
   - indemnityPaymentMethods
   - indemnityPaymentIncomes
@@ -48,7 +44,7 @@ properties:
     type: array
     items:
       $ref: ../../enum/EnumPersonalInsuranceAssistanceType.yaml
-  assistanceAdittionalInfos:
+  assistanceAdditionalInfos:
     description: Lista a ser preenchido pelas participantes quando houver ‘Outros’ no campo ‘Tipo de Assistência’
     type: array
     items:
