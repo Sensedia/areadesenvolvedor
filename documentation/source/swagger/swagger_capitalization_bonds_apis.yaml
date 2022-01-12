@@ -68,7 +68,7 @@ components:
         - targetAudience
       properties:
         participant:
-          $ref: '#/components/schemas/CapitalizationBondsParticipantIdentification'
+          $ref: '#/components/schemas/Participant'
         society:
           type: object
           description: Conjunto de informações relativas à seguradora do produto de open insurance
@@ -82,7 +82,7 @@ components:
               maxLength: 80
               example: Society A1
             cnpjNumber:
-              $ref: '#/components/schemas/CapitalizationBondsParticipantIdentification/properties/cnpjNumber'
+              $ref: '#/components/schemas/Participant/properties/cnpjNumber'
           additionalProperties: false
         name:
           type: string
@@ -169,7 +169,7 @@ components:
             - PESSOA_NATURAL_JURIDICA
           example: PESSOA_NATURAL
       additionalProperties: false
-    CapitalizationBondsParticipantIdentification:
+    Participant:
       type: object
       description: Conjunto de informações relativas ao participante do produto de open banking
       required:
