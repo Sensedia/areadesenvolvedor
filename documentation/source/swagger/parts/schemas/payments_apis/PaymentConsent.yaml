@@ -17,8 +17,7 @@ properties:
     pattern: ^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$
     example: "2021-01-01"
     description: |
-      Data do pagamento, conforme especificação RFC-3339.
-      [Restrição] Deve obrigatoriamente ser enviado caso o campo schedule não seja informado (cenários de PIX).
+      Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.
   currency:
     type: string
     maxLength: 3

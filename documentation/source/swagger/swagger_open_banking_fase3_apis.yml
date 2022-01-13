@@ -177,7 +177,7 @@ paths:
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
         '422':
-          $ref: '#/components/responses/UnprocessableEntityPixPayments'
+          $ref: '#/components/responses/UnprocessableEntityPatchConsent'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
@@ -896,6 +896,71 @@ components:
                   • JANELA_OPER_INVALIDA: Requisição está fora da janela de funcionamento.
                   • NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.
                   • PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+            additionalProperties: false
+        meta:
+          $ref: '#/components/schemas/Meta'
+      additionalProperties: false
+    422ResponseErrorPatchConsent:
+      type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          maxItems: 9
+          items:
+            type: object
+            required:
+              - code
+              - title
+              - detail
+            properties:
+              code:
+                type: string
+                maxLength: 50
+                enum:
+                  - USER_INFORMATION_REQUIRED
+                  - OPERATION_NOT_ALLOWED_BY_STATUS
+                  - OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE
+                  - REVOCATION_TIME_LIMIT_EXCEEDED
+                  - REVOCATION_REASON_NOT_ALLOWED
+                  - REVOCATION_ADDITIONAL_INFORMATION_REQUIRED
+                example: OPERATION_NOT_ALLOWED_BY_STATUS
+                description: |
+                  Códigos de erros previstos na revogação do consentimento de pagamento:  
+                  • USER_INFORMATION_REQUIRED - O campo data.revocation.loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor USER.  
+                  • OPERATION_NOT_ALLOWED_BY_STATUS: O consentimento só pode ser revogado nos status CONSUMED.  
+                  • OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Somente consentimentos para pagamentos agendados podem ser revogados, ou seja, que possuam o campo data.payment.schedule preenchido.  
+                  • REVOCATION_TIME_LIMIT_EXCEEDED: O consentimento só pode ser revogado até o dia anterior, ou seja, a meia noite no fuso horário de Brasília do dia imediatamente anterior a data alvo da liquidação do pagamento.  
+                  • REVOCATION_REASON_NOT_ALLOWED: Os motivos de revogação do consentimento: FRAUD e ACCOUNT_CLOSURE só podem ser usados caso o campo: data.revocation.revokedBy tenha o valor TPP ou ASPSP, ou seja, somente no caso de revogação unilateral pela iniciadora ou detentora.  
+                  • REVOCATION_ADDITIONAL_INFORMATION_REQUIRED: O campo data.revocation.reason.additionalInformation é obrigatório quando a revogação for feita pela iniciadora ou pela detentora unilateralmente, ou seja, o campo revokedBy igual a TPP ou ASPSP e o motivo de revogação for OTHER.
+              title:
+                type: string
+                maxLength: 255
+                pattern: \w*\W*
+                example: Motivo de revogação não permitido.
+                description: |
+                  Título específico do erro reportado, de acordo com o código enviado:  
+                  • USER_INFORMATION_REQUIRED: Informação do usuário requerida.  
+                  • OPERATION_NOT_ALLOWED_BY_STATUS: Operação não permitida.  
+                  • OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Operação não permitida.  
+                  • REVOCATION_TIME_LIMIT_EXCEEDED: Prazo limite para revogação excedido.  
+                  • REVOCATION_REASON_NOT_ALLOWED: Motivo de revogação não permitido.  
+                  • REVOCATION_ADDITIONAL_INFORMATION_REQUIRED: Informação adicional requerida.
+              detail:
+                type: string
+                maxLength: 2048
+                pattern: \w*\W*
+                example: Operação não suportada pelo tipo de consentimento.
+                description: |
+                  Descrição específica do erro de acordo com o código reportado:  
+                  • USER_INFORMATION_REQUIRED: Informação do usuário requerida.  
+                  • OPERATION_NOT_ALLOWED_BY_STATUS: Operação não permitida devido ao status atual do consentimento.  
+                  • OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Operação não suportada pelo tipo de consentimento.  
+                  • REVOCATION_TIME_LIMIT_EXCEEDED: Prazo limite para revogação excedido.  
+                  • REVOCATION_REASON_NOT_ALLOWED: Motivo de revogação não permitido.  
+                  • REVOCATION_ADDITIONAL_INFORMATION_REQUIRED: Informação adicional requerida.
             additionalProperties: false
         meta:
           $ref: '#/components/schemas/Meta'
@@ -1625,8 +1690,7 @@ components:
         schedule:
           type: object
           description: |
-            Define o agendamento do pagamento. Utilizado somente na funcionalidade de agendamento de pagamentos.
-            [Restrição] Deve obrigatoriamente ser enviado caso o campo date não seja informado (cenários de PIX Agendamento).
+            Mutuamente exclusivo com o campo date. Este campo é obrigatório no caso de agendamento. Neste caso, o campo date não deve ser informado.
           required:
             - single
           properties:
@@ -1654,8 +1718,7 @@ components:
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-01-01'
           description: |
-            Data do pagamento, conforme especificação RFC-3339.
-            [Restrição] Deve obrigatoriamente ser enviado caso o campo schedule não seja informado (cenários de PIX).
+            Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.
         currency:
           type: string
           maxLength: 3
@@ -2269,6 +2332,30 @@ components:
                   - code: SALDO_INSUFICIENTE
                     title: Saldo insuficiente.
                     detail: A conta selecionada não possui saldo suficiente para realizar o pagamento.
+                meta:
+                  totalRecords: 1
+                  totalPages: 1
+                  requestDateTime: '2021-05-21T08:30:00Z'
+      headers:
+        x-fapi-interaction-id:
+          description: |
+            Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+          schema:
+            $ref: '#/components/responses/200PatchPaymentsConsent/headers/x-fapi-interaction-id/schema'
+    UnprocessableEntityPatchConsent:
+      description: 'A solicitação foi bem formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.'
+      content:
+        application/jwt:
+          schema:
+            $ref: '#/components/schemas/422ResponseErrorPatchConsent'
+          examples:
+            Motivo de revogação não permitido:
+              summary: Motivo de revogação não permitido
+              value:
+                errors:
+                  - code: REVOCATION_REASON_NOT_ALLOWED
+                    title: Motivo de revogação não permitido.
+                    detail: Motivo de revogação não permitido.
                 meta:
                   totalRecords: 1
                   totalPages: 1
