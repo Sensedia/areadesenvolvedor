@@ -1199,7 +1199,7 @@ Informações mais detalhadas sobre a construção de namespaces devem ser consu
 |405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
 |406|[Not Acceptable](https://tools.ietf.org/html/rfc7231#section-6.5.6)|A solicitação continha um cabeçalho Accept diferente dos tipos de mídia permitidos ou um conjunto de caracteres diferente de UTF-8|[ResponseError](#schemaresponseerror)|
 |415|[Unsupported Media Type](https://tools.ietf.org/html/rfc7231#section-6.5.13)|O formato do payload não é um formato suportado.|[ResponseError](#schemaresponseerror)|
-|422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|A solicitação foi bem formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.|[422ResponseErrorCreatePixPayment](#schema422responseerrorcreatepixpayment)|
+|422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|A solicitação foi bem formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.|[422ResponseErrorPatchConsent](#schema422responseerrorpatchconsent)|
 |429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
 |default|Default|Erro inesperado.|[ResponseError](#schemaresponseerror)|
@@ -2420,6 +2420,52 @@ Objeto contendo dados do pagamento e da conta do recebedor (creditor).
 |» detail|string|true|Descrição específica do erro de acordo com o código reportado:<br>• SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento.<br>• BENEFICIARIO_INCOMPATIVEL: O beneficiário informado no consentimento não é o mesmo do esperado pelo DICT.<br>• VALOR_INCOMPATIVEL: O valor informado no consentimento não é o mesmo valor do informado no payload de pagamento.<br>• VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.<br>• VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.<br>• COBRANCA_INVALIDA: Validação de expiração, validação de vencimento ou Status Válido.<br>• CONSENTIMENTO_INVALIDO: Consentimento inválido (status diferente de "AUTHORISED" ou está expirado).<br>• JANELA_OPER_INVALIDA: Requisição está fora da janela de funcionamento.<br>• NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.<br>• PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.|
 |meta|[Meta](#schemameta)|false|Meta informações referente à API requisitada.|
 
+<h2 id="tocS_422ResponseErrorPatchConsent">422ResponseErrorPatchConsent</h2>
+
+<a id="schema422responseerrorpatchconsent"></a>
+<a id="schema_422ResponseErrorPatchConsent"></a>
+<a id="tocS422responseerrorpatchconsent"></a>
+<a id="tocs422responseerrorpatchconsent"></a>
+
+```json
+{
+  "errors": [
+    {
+      "code": "OPERATION_NOT_ALLOWED_BY_STATUS",
+      "title": "Motivo de revogação não permitido.",
+      "detail": "Operação não suportada pelo tipo de consentimento."
+    }
+  ],
+  "meta": {
+    "totalRecords": 1,
+    "totalPages": 1,
+    "requestDateTime": "2021-05-21T08:30:00Z"
+  }
+}
+
+```
+
+### Propriedades
+
+|Nome|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|errors|[object]|true||
+|» code|string|true|Códigos de erros previstos na revogação do consentimento de pagamento:  <br>• USER_INFORMATION_REQUIRED - O campo data.revocation.loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor USER.  <br>• OPERATION_NOT_ALLOWED_BY_STATUS: O consentimento só pode ser revogado nos status CONSUMED.  <br>• OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Somente consentimentos para pagamentos agendados podem ser revogados, ou seja, que possuam o campo data.payment.schedule preenchido.  <br>• REVOCATION_TIME_LIMIT_EXCEEDED: O consentimento só pode ser revogado até o dia anterior, ou seja, a meia noite no fuso horário de Brasília do dia imediatamente anterior a data alvo da liquidação do pagamento.  <br>• REVOCATION_REASON_NOT_ALLOWED: Os motivos de revogação do consentimento: FRAUD e ACCOUNT_CLOSURE só podem ser usados caso o campo: data.revocation.revokedBy tenha o valor TPP ou ASPSP, ou seja, somente no caso de revogação unilateral pela iniciadora ou detentora.  <br>• REVOCATION_ADDITIONAL_INFORMATION_REQUIRED: O campo data.revocation.reason.additionalInformation é obrigatório quando a revogação for feita pela iniciadora ou pela detentora unilateralmente, ou seja, o campo revokedBy igual a TPP ou ASPSP e o motivo de revogação for OTHER.|
+|» title|string|true|Título específico do erro reportado, de acordo com o código enviado:  <br>• USER_INFORMATION_REQUIRED: Informação do usuário requerida.  <br>• OPERATION_NOT_ALLOWED_BY_STATUS: Operação não permitida.  <br>• OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Operação não permitida.  <br>• REVOCATION_TIME_LIMIT_EXCEEDED: Prazo limite para revogação excedido.  <br>• REVOCATION_REASON_NOT_ALLOWED: Motivo de revogação não permitido.  <br>• REVOCATION_ADDITIONAL_INFORMATION_REQUIRED: Informação adicional requerida.|
+|» detail|string|true|Descrição específica do erro de acordo com o código reportado:  <br>• USER_INFORMATION_REQUIRED: Informação do usuário requerida.  <br>• OPERATION_NOT_ALLOWED_BY_STATUS: Operação não permitida devido ao status atual do consentimento.  <br>• OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Operação não suportada pelo tipo de consentimento.  <br>• REVOCATION_TIME_LIMIT_EXCEEDED: Prazo limite para revogação excedido.  <br>• REVOCATION_REASON_NOT_ALLOWED: Motivo de revogação não permitido.  <br>• REVOCATION_ADDITIONAL_INFORMATION_REQUIRED: Informação adicional requerida.|
+|meta|[Meta](#schemameta)|false|Meta informações referente à API requisitada.|
+
+#### Enumerated Values
+
+|Nome|Código|
+|---|---|
+|code|USER_INFORMATION_REQUIRED|
+|code|OPERATION_NOT_ALLOWED_BY_STATUS|
+|code|OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE|
+|code|REVOCATION_TIME_LIMIT_EXCEEDED|
+|code|REVOCATION_REASON_NOT_ALLOWED|
+|code|REVOCATION_ADDITIONAL_INFORMATION_REQUIRED|
+
 <h2 id="tocS_Account">Account</h2>
 
 <a id="schemaaccount"></a>
@@ -3314,10 +3360,10 @@ Objeto contendo dados de pagamento para consentimento.
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
 |type|[EnumPaymentType](#schemaenumpaymenttype)|true|Este campo define o tipo de pagamento que será iniciado após a autorização do consentimento.|
-|schedule|object|false|Define o agendamento do pagamento. Utilizado somente na funcionalidade de agendamento de pagamentos.<br>[Restrição] Deve obrigatoriamente ser enviado caso o campo date não seja informado (cenários de PIX Agendamento).|
+|schedule|object|false|Mutuamente exclusivo com o campo date. Este campo é obrigatório no caso de agendamento. Neste caso, o campo date não deve ser informado.|
 |» single|object|true|Define a política de agendamento único.|
 |»» date|string(date)|true|Define a data alvo da liquidação do pagamento. O fuso horário de Brasilia deve ser utilizado para criação e racionalização sobre os dados deste campo.  <br>OBS:Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.|
-|date|string(date)|false|Data do pagamento, conforme especificação RFC-3339.<br>[Restrição] Deve obrigatoriamente ser enviado caso o campo schedule não seja informado (cenários de PIX).|
+|date|string(date)|false|Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.|
 |currency|string|true|Código da moeda nacional segundo modelo ISO-4217, ou seja, 'BRL'.<br>Todos os valores monetários informados estão representados com a moeda vigente do Brasil.|
 |amount|string|true|Valor da transação com 2 casas decimais.|
 |ibgeTownCode|string|false|Traz o código da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatística).<br>Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientação do arranjo da forma de pagamento.<br>O preenchimento do campo tanto em pix/payments quanto /consents deve ser igual. Caso haja divergência dos valores, a instituição deve retornar HTTP 422 com o código de erro PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO.<br>Este campo faz referência ao campo CodMun do arranjo Pix.|
