@@ -676,7 +676,7 @@ paths:
         "415":
           $ref: "#/components/responses/UnsupportedMediaType"
         "422":
-          $ref: "#/components/responses/UnprocessableEntityPixPayments"
+          $ref: "#/components/responses/UnprocessableEntityPatchConsent"
         "429":
           $ref: "#/components/responses/TooManyRequests"
         "500":
@@ -936,6 +936,8 @@ components:
       $ref: ./schemas/payments_apis/422ResponseErrorCreateConsent.yaml
     422ResponseErrorCreatePixPayment:
       $ref: ./schemas/payments_apis/422ResponseErrorCreatePixPayment.yaml
+    422ResponseErrorPatchConsent:
+      $ref: ./schemas/payments_apis/422ResponseErrorPatchConsent.yaml
     Account:
       $ref: ./schemas/business_commons/Account.yaml
     BusinessEntity:
@@ -1038,6 +1040,8 @@ components:
       $ref: ./schemas/payments_apis/UnprocessableEntityConsents.yaml
     UnprocessableEntityPixPayments:
       $ref: ./schemas/payments_apis/UnprocessableEntityPixPayments.yaml
+    UnprocessableEntityPatchConsent:
+      $ref: ./schemas/payments_apis/UnprocessableEntityPatchConsent.yaml
     Unauthorized:
       $ref: ./responses/payments_apis/Unauthorized.yaml
     UnsupportedMediaType:

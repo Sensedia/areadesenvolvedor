@@ -1618,8 +1618,7 @@ components:
         schedule:
           type: object
           description: |
-            Define o agendamento do pagamento. Utilizado somente na funcionalidade de agendamento de pagamentos.
-            [Restrição] Deve obrigatoriamente ser enviado caso o campo date não seja informado (cenários de PIX Agendamento).
+            Mutuamente exclusivo com o campo date. Este campo é obrigatório no caso de agendamento. Neste caso, o campo date não deve ser informado.
           required:
             - single
           properties:
@@ -1647,8 +1646,7 @@ components:
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-01-01'
           description: |
-            Data do pagamento, conforme especificação RFC-3339.
-            [Restrição] Deve obrigatoriamente ser enviado caso o campo schedule não seja informado (cenários de PIX).
+            Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.
         currency:
           type: string
           maxLength: 3
