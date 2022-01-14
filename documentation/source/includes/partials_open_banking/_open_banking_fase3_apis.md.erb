@@ -2370,9 +2370,9 @@ Objeto contendo dados do pagamento e da conta do recebedor (creditor).
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
 |errors|[object]|true||
-|» code|string|true|Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:  <br>• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  <br>• DATA_PGTO_INVALIDA: Data de pagamento inválida.  <br>• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.  <br>• NAO_INFORMADO: Não informado.   <br>• INVALID_SCHEDULE: Agendamento inválido.|
-|» title|string|true|Título específico do erro reportado, de acordo com o código enviado:  <br>• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  <br>• DATA_PGTO_INVALIDA: Data de pagamento inválida. <br>• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.<br>• NAO_INFORMADO: Não informado.    <br>• INVALID_SCHEDULE: Agendamento inválido.|
-|» detail|string|true|Descrição específica do erro de acordo com o código reportado:  <br>• FORMA_PGTO_INVALIDA – Meio de pagamento inválido.  <br>• DATA_PGTO_INVALIDA – Data de pagamento inválida no contexto, por exemplo, data no passado. Para pagamentos únicos deve ser informada a data atual, do dia corrente.  <br>• DETALHE_PGTO_INVALIDO: O campo [nome_campo] não atende os requisitos de preenchimento.  <br>• NAO_INFORMADO – Não reportado/identificado pela instituição detentora de conta.  <br>• INVALID_SCHEDULE – O campo data.payment.schedule.single.date deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília. O campo data.payment.schedule.single.date deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.|
+|» code|string|true|Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:  <br>• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  <br>• DATA_PGTO_INVALIDA: Data de pagamento inválida.  <br>• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.  <br>• NAO_INFORMADO: Não informado.   <br>• AGENDAMENTO_INVALIDO: Agendamento inválido.|
+|» title|string|true|Título específico do erro reportado, de acordo com o código enviado:  <br>• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  <br>• DATA_PGTO_INVALIDA: Data de pagamento inválida. <br>• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.<br>• NAO_INFORMADO: Não informado.    <br>• AGENDAMENTO_INVALIDO: Agendamento inválido.|
+|» detail|string|true|Descrição específica do erro de acordo com o código reportado:  <br>• FORMA_PGTO_INVALIDA – Meio de pagamento inválido.  <br>• DATA_PGTO_INVALIDA – Data de pagamento inválida no contexto, por exemplo, data no passado. Para pagamentos únicos deve ser informada a data atual, do dia corrente.  <br>• DETALHE_PGTO_INVALIDO: O campo [nome_campo] não atende os requisitos de preenchimento.  <br>• NAO_INFORMADO – Não reportado/identificado pela instituição detentora de conta.  <br>• AGENDAMENTO_INVALIDO – O campo data.payment.schedule.single.date deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília. O campo data.payment.schedule.single.date deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.|
 |meta|[Meta](#schemameta)|false|Meta informações referente à API requisitada.|
 
 #### Enumerated Values
@@ -2383,7 +2383,7 @@ Objeto contendo dados do pagamento e da conta do recebedor (creditor).
 |code|DATA_PGTO_INVALIDA|
 |code|DETALHE_PGTO_INVALIDO|
 |code|NAO_INFORMADO|
-|code|INVALID_SCHEDULE|
+|code|AGENDAMENTO_INVALIDO|
 
 <h2 id="tocS_422ResponseErrorCreatePixPayment">422ResponseErrorCreatePixPayment</h2>
 
