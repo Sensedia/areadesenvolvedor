@@ -1690,15 +1690,15 @@ components:
         type:
           $ref: '#/components/schemas/EnumPaymentType'
         schedule:
-          type: object
-          description: |
-            Mutuamente exclusivo com o campo date. Este campo é obrigatório no caso de agendamento. Neste caso, o campo date não deve ser informado.
-          required:
-            - single
-          properties:
-            single:
-              oneOf:
-                - type: object
+          oneOf:
+            - type: object
+              description: |
+                Mutuamente exclusivo com o campo date. Este campo é obrigatório no caso de agendamento. Neste caso, o campo date não deve ser informado.
+              required:
+                - single
+              properties:
+                single:
+                  type: object
                   description: Define a política de agendamento único.
                   additionalProperties: false
                   required:
