@@ -722,7 +722,7 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
     "creationDateTime": "2021-05-21T08:30:00Z",
     "expirationDateTime": "2021-05-21T08:30:00Z",
     "statusUpdateDateTime": "2021-05-21T08:30:00Z",
-    "status": "AWAITING_AUTHORISATION",
+    "status": "REVOKED",
     "revocation": {
       "loggedUser": {
         "document": {
@@ -943,7 +943,7 @@ Informações mais detalhadas sobre a construção de namespaces devem ser consu
     "creationDateTime": "2021-05-21T08:30:00Z",
     "expirationDateTime": "2021-05-21T08:30:00Z",
     "statusUpdateDateTime": "2021-05-21T08:30:00Z",
-    "status": "AWAITING_AUTHORISATION",
+    "status": "REVOKED",
     "revocation": {
       "loggedUser": {
         "document": {
@@ -1059,7 +1059,7 @@ openid,consent:consentId,payments
 > Exemplo de código
 
 ```javascript
-const data = "{\"data\":{\"status\":\"AWAITING_AUTHORISATION\",\"revocation\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"revokedBy\":\"USER\",\"reason\":{\"code\":\"OTHER\",\"additionalInformation\":\"Não quero mais o serviço\"}}}}";
+const data = "{\"data\":{\"status\":\"REVOKED\",\"revocation\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"revokedBy\":\"USER\",\"reason\":{\"code\":\"OTHER\",\"additionalInformation\":\"Não quero mais o serviço\"}}}}";
 
 const xhr = new XMLHttpRequest();
 xhr.withCredentials = true;
@@ -1088,7 +1088,7 @@ import http.client
 
 conn = http.client.HTTPSConnection("example.com")
 
-payload = "{\"data\":{\"status\":\"AWAITING_AUTHORISATION\",\"revocation\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"revokedBy\":\"USER\",\"reason\":{\"code\":\"OTHER\",\"additionalInformation\":\"Não quero mais o serviço\"}}}}"
+payload = "{\"data\":{\"status\":\"REVOKED\",\"revocation\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"revokedBy\":\"USER\",\"reason\":{\"code\":\"OTHER\",\"additionalInformation\":\"Não quero mais o serviço\"}}}}"
 
 headers = {
     'Content-Type': "application/jwt",
@@ -1119,7 +1119,7 @@ HttpResponse<String> response = Unirest.patch("https://example.com/payments/v1/c
   .header("x-fapi-interaction-id", "string")
   .header("x-customer-user-agent", "string")
   .header("x-idempotency-key", "string")
-  .body("{\"data\":{\"status\":\"AWAITING_AUTHORISATION\",\"revocation\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"revokedBy\":\"USER\",\"reason\":{\"code\":\"OTHER\",\"additionalInformation\":\"Não quero mais o serviço\"}}}}")
+  .body("{\"data\":{\"status\":\"REVOKED\",\"revocation\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"revokedBy\":\"USER\",\"reason\":{\"code\":\"OTHER\",\"additionalInformation\":\"Não quero mais o serviço\"}}}}")
   .asString();
 ```
 
@@ -2850,7 +2850,7 @@ TRAN - TransactingAccount - Conta de Pagamento pré-paga.
 <a id="tocsenumauthorisationstatustype"></a>
 
 ```json
-"AWAITING_AUTHORISATION"
+"REVOKED"
 
 ```
 
@@ -3379,7 +3379,7 @@ Objeto contendo dados de pagamento para consentimento.
 ```json
 {
   "data": {
-    "status": "AWAITING_AUTHORISATION",
+    "status": "REVOKED",
     "revocation": {
       "loggedUser": {
         "document": {
@@ -3479,7 +3479,7 @@ Objeto contendo dados do pagameto como moeda e valor.
     "creationDateTime": "2021-05-21T08:30:00Z",
     "expirationDateTime": "2021-05-21T08:30:00Z",
     "statusUpdateDateTime": "2021-05-21T08:30:00Z",
-    "status": "AWAITING_AUTHORISATION",
+    "status": "REVOKED",
     "revocation": {
       "loggedUser": {
         "document": {
@@ -3573,7 +3573,7 @@ Objeto contendo dados do pagameto como moeda e valor.
   "creationDateTime": "2021-05-21T08:30:00Z",
   "expirationDateTime": "2021-05-21T08:30:00Z",
   "statusUpdateDateTime": "2021-05-21T08:30:00Z",
-  "status": "AWAITING_AUTHORISATION",
+  "status": "REVOKED",
   "revocation": {
     "loggedUser": {
       "document": {
