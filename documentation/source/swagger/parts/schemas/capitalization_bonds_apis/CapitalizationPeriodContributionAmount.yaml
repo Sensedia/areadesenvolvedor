@@ -5,9 +5,10 @@ description: |
   Para as demais modalidades, informar a lista com os valores permitidos de contribuição ao plano.
   Em todas as situações indicar para qual periodicidade de pagamento se aplicam os valores: pagamento mensal, pagamento único ou periódico.
 required:
+  - periodicity
   - minimum
   - maximum
-  - allowed
+  - allowedValue
 properties:
   periodicity:
     $ref: ../enum/EnumContributionAmountPeriodicity.yaml
@@ -32,7 +33,7 @@ properties:
       Valor máximo correspondente ao pagamento efetuado pelo subscritor à sociedade de capitalização.
     maxLength: 21
     example: '1.2222'
-  allowed:
+  allowedValue:
     type: number
     format: double
     description: |
