@@ -691,6 +691,8 @@ paths:
         - OAuth2AuthorizationCode:
             - "consent:consentId"
             - payments
+        - OAuth2ClientCredentials:
+            - payments
   /payments/v1/pix/payments:
     post:
       tags:
