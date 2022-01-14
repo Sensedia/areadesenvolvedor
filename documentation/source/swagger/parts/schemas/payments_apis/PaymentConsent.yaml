@@ -9,7 +9,8 @@ properties:
   type:
     $ref: "../enum/EnumPaymentType.yaml"
   schedule:
-    $ref: Schedule.yaml
+    oneOf:
+      - $ref: Schedule.yaml
   date:
     type: string
     format: date

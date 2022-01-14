@@ -5,5 +5,4 @@ required:
   - single
 properties:
   single:
-    oneOf:
-      - $ref: Single.yaml
+    $ref: Single.yaml

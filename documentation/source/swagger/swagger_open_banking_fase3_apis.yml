@@ -809,7 +809,7 @@ components:
                   - DATA_PGTO_INVALIDA
                   - DETALHE_PGTO_INVALIDO
                   - NAO_INFORMADO
-                  - INVALID_SCHEDULE
+                  - AGENDAMENTO_INVALIDO
                 example: FORMA_PGTO_INVALIDA
                 description: |
                   Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:  
@@ -817,7 +817,7 @@ components:
                   • DATA_PGTO_INVALIDA: Data de pagamento inválida.  
                   • DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.  
                   • NAO_INFORMADO: Não informado.   
-                  • INVALID_SCHEDULE: Agendamento inválido.
+                  • AGENDAMENTO_INVALIDO: Agendamento inválido.
               title:
                 type: string
                 maxLength: 255
@@ -829,7 +829,7 @@ components:
                   • DATA_PGTO_INVALIDA: Data de pagamento inválida. 
                   • DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.
                   • NAO_INFORMADO: Não informado.    
-                  • INVALID_SCHEDULE: Agendamento inválido.
+                  • AGENDAMENTO_INVALIDO: Agendamento inválido.
               detail:
                 type: string
                 maxLength: 2048
@@ -841,7 +841,7 @@ components:
                   • DATA_PGTO_INVALIDA – Data de pagamento inválida no contexto, por exemplo, data no passado. Para pagamentos únicos deve ser informada a data atual, do dia corrente.  
                   • DETALHE_PGTO_INVALIDO: O campo [nome_campo] não atende os requisitos de preenchimento.  
                   • NAO_INFORMADO – Não reportado/identificado pela instituição detentora de conta.  
-                  • INVALID_SCHEDULE – O campo data.payment.schedule.single.date deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília. O campo data.payment.schedule.single.date deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.
+                  • AGENDAMENTO_INVALIDO – O campo data.payment.schedule.single.date deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília. O campo data.payment.schedule.single.date deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.
             additionalProperties: false
         meta:
           $ref: '#/components/schemas/Meta'
@@ -1690,15 +1690,15 @@ components:
         type:
           $ref: '#/components/schemas/EnumPaymentType'
         schedule:
-          type: object
-          description: |
-            Mutuamente exclusivo com o campo date. Este campo é obrigatório no caso de agendamento. Neste caso, o campo date não deve ser informado.
-          required:
-            - single
-          properties:
-            single:
-              oneOf:
-                - type: object
+          oneOf:
+            - type: object
+              description: |
+                Mutuamente exclusivo com o campo date. Este campo é obrigatório no caso de agendamento. Neste caso, o campo date não deve ser informado.
+              required:
+                - single
+              properties:
+                single:
+                  type: object
                   description: Define a política de agendamento único.
                   additionalProperties: false
                   required:
