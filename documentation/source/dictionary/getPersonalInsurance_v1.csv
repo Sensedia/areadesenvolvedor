@@ -33,12 +33,12 @@ PENSAO_CONJUGE_TEMPORARIA";0;1;"";Não permitido;string;FUNERAL
 /data/coverages/type;type;É o conjunto dos riscos cobertos elencados na apólice. (RESOLUÇÃO CNSP Nº 341/2016). Listagem de coberturas incluídas no produto que deve observar a relação discriminada de coberturas, conforme Tabela Tipo de Cobertura;Texto;62;Obrigatório;;"ADIANTAMENTO_DOENCA_ESTAGIO_TERMINAL 
 AUXILIO_CESTA_BASICA 
 AUXILIO_FINANCEIRO_IMEDIATO 
-CANCELAMENTO_DE_VIAGEM 
+CANCELAMENTO_VIAGEM 
 CIRURGIA 
 COBERTURA_PARA_HERNIA 
 COBERTURA_PARA_LER_DORT 
 CUIDADOS_PROLONGADOS_ACIDENTE 
-DESEMPREGO_PERDA_DE_RENDA 
+DESEMPREGO_PERDA_RENDA 
 DESPESAS_EXTRA_INVALIDEZ_PERMANENTE_TOTAL_PARCIAL_ACIDENTE_DEI 
 DESPESAS_EXTRA_MORTE_DEM 
 DESPESAS_MEDICAS_HOSPITALARES_ODONTOLOGICAS 
@@ -63,7 +63,7 @@ MORTE_CONJUGE
 MORTE_FILHOS 
 MORTE_ADIATAMENTO_DOENCA_ESTAGIO_TERMINAL 
 PAGAMENTO_ANTECIPADO_ESPECIAL_DOENCA_PROFISSIONAL_PAED 
-PERDA_DA_AUTONOMIA_PESSOAL 
+PERDA_AUTONOMIA_PESSOAL 
 PERDA_INVOLUNTARIA_EMPREGO 
 QUEIMADURA_GRAVE 
 REGRESSO_ANTECIPADO_SANITARIO 
@@ -118,7 +118,7 @@ NAO_APLICA";1;1;"";Não permitido;string;MESES
 /data/coverages/attributes/differentiatedDeductible/currencyValue/currency;currency;Moeda referente ao valor da transação, segundo modelo ISO-4217. p.ex. 'BRL'<br>Todos os saldos informados estão representados com a moeda vigente do Brasil;Texto;;Obrigatório;^[A-Z]{3}$;;1;1;"";Não permitido;string;BRL
 /data/coverages/attributes/excludedRisks;excludedRisks;"";Lista;40;Opcional;;"ATO_RECONHECIMENTO_PERIGOSO 
 ATO_ILICITO_DOLOSO_PRATICADO_SEGURADO 
-OPERACOES_DE_GUERRA 
+OPERACOES_GUERRA 
 FURACOES_CICLONES_TERREMOTOS 
 MATERIAL_NUCLEAR 
 DOENCAS_LESOES_PREEXISTENTES 
@@ -246,7 +246,7 @@ NAO_APLICA";0;N;"";Não permitido;array;SALDAMENTO
 MESES 
 NAO_APLICA";1;1;"";Não permitido;string;MESES
 /data/indemnityPaymentMethods;indemnityPaymentMethods;"";Lista;18;Obrigatório;;"UNICO 
-SOB_FORMA_DE_RENDA";1;N;"";Não permitido;array;UNICO
+SOB_FORMA_RENDA";1;N;"";Não permitido;array;UNICO
 /data/indemnityPaymentIncomes;indemnityPaymentIncomes;"";Lista;38;Obrigatório;;"CERTA 
 TEMPORARIA 
 TEMPORARIA_REVERSIVEL 
