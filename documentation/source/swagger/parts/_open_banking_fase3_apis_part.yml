@@ -497,6 +497,31 @@ info:
 
     As validações referentes a assinatura de mensagens devem preceder as validações de idempotência.
 
+    ### Orientações
+
+    **Agendamento de Pagamento**
+
+    - **Mecanismo de retentativas de liquidação de pagamentos agendados**
+
+    No momento de liquidação de pagamentos agendados é possível ter falhas sistêmicas ou violações de regras de negócio passiveis de recuperação em segundo momento como, por exemplo, ausência de saldo na conta do pagador para realizar a liquidação. Neste contexto poderia ser interessante as detentoras de conta a adoção de políticas de retentativas de liquidação.   
+    O arranjo PIX não define nada a respeito deste tema, então por consequência o Open Banking deixa livre para cada detentora adotar a política de retentativa que mais fazer sentido para ela.
+
+    - **Revogação do consentimento**
+
+    Com a inclusão da funcionalidade agendamento é interessante facultar para as partes envolvidas na transação a possibilidade de cancelamento do pagamento agendado antes da sua liquidação futura.   
+    Esse mecanismo de cancelamento do pagamento agendado será oferecido a partir da revogação de consentimentos para pagamentos agendados. Considerando a diretriz do controle do agendamento pela detentora de conta e as necessidades dos envolvidos na transação e possível as seguintes possibilidades de jornadas de revogação.
+
+        1. Revogação **pelo usuário na iniciadora** na área de gestão de pagamentos do open banking (Consulte o guia de UX do Open Banking para maiores detalhes).   
+        2. Revogação **pelo usuário na detentora** na área de gestão de pagamentos do open banking (Consulte o guia de UX do Open Banking para maiores detalhes).   
+        3. Revogação **pelo usuário na detentora** na área de gestão do PIX (Consulte o guia de UX do arranjo PIX para maiores detalhes).   
+        4. Revogação pela iniciadora sem a presença do usuário.   
+        5. Revogação pela detentora sem a presença do usuário.
+
+    - **Regras funcionais**
+
+    |Código|Descrição                                                                                                                                                                                                                          |Endpoint                                                                |
+    |------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+    |RN001 |Ao revogar um consentimento o pagamento associado deverá ir para o status **RJCT** e campo **rejectionReason** deverá ter o valor **CONSENT_REVOKED**. Schema: <a href="#tocS_EnumRejectionReasonType">EnumRejectionReasonType</a> |<a href="#revogar-consentimento-de-pagamento">Revogar consentimento</a> |
   version: 1.1.0
 tags:
   - name: API - Pagamentos
