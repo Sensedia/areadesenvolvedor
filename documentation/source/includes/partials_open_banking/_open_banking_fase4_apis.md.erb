@@ -157,7 +157,7 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
       "draws": [
         {
           "timeInterval": "UNICO",
-          "timeIntervalAdditionalInfo": "",
+          "timeIntervalAdditionalInfo": "5",
           "quantity": 10000,
           "prizeMultiplier": 5,
           "earlySettlementRaffle": true,
@@ -321,9 +321,9 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
           "quotationDays": 3,
           "quotationTerm": "DIAS_CORRIDOS",
           "paymentDays": 3,
-          "paymentTerm": "DIAS_CORRIDOS"
+          "paymentTerm": "DIAS_CORRIDOS",
+          "graceDays": 60
         },
-        "graceDays": 60,
         "application": {
           "quotationDays": 60,
           "quotationTerm": "DIAS_CORRIDOS"
@@ -437,15 +437,12 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "issuerInstitutionCNPJ": "45086338000178",
+      "issuerInstitutionCnpjNumber": "45086338000178",
       "investimentType": "CDB",
       "index": {
         "indexer": "CDI",
         "indexerAdditionalInfo": "Dólar",
         "issueRemunerationRate": {
-          "name": "NA",
-          "code": "NA",
-          "chargingTriggerInfo": "NA",
           "prices": [
             {
               "interval": "1_FAIXA",
@@ -588,9 +585,6 @@ Campos de resposta do endpoint de `/credit-fixed-incomes`
       },
       "investmentType": "CRI",
       "custodyFee": {
-        "name": "NA",
-        "code": "NA",
-        "chargingTriggerInfo": "NA",
         "prices": [
           {
             "interval": "1_FAIXA",
@@ -617,9 +611,6 @@ Campos de resposta do endpoint de `/credit-fixed-incomes`
         "maximum": "0.300000"
       },
       "loadingRate": {
-        "name": "NA",
-        "code": "NA",
-        "chargingTriggerInfo": "NA",
         "prices": [
           {
             "interval": "1_FAIXA",
@@ -753,9 +744,6 @@ Campos de resposta do endpoint de `/variable-incomes`
       },
       "investmentType": "ACOES",
       "custodyFee": {
-        "name": "NA",
-        "code": "NA",
-        "chargingTriggerInfo": "NA",
         "prices": [
           {
             "interval": "1_FAIXA",
@@ -782,9 +770,6 @@ Campos de resposta do endpoint de `/variable-incomes`
         "maximum": "0.300000"
       },
       "loadingRate": {
-        "name": "NA",
-        "code": "NA",
-        "chargingTriggerInfo": "NA",
         "prices": [
           {
             "interval": "1_FAIXA",
@@ -918,9 +903,6 @@ Campos de resposta do endpoint de `/treasure-titles`
       },
       "investmentType": "TESOURO_DIRETO",
       "custodyFee": {
-        "name": "NA",
-        "code": "NA",
-        "chargingTriggerInfo": "NA",
         "prices": [
           {
             "interval": "1_FAIXA",
@@ -947,9 +929,6 @@ Campos de resposta do endpoint de `/treasure-titles`
         "maximum": "0.300000"
       },
       "loadingRate": {
-        "name": "NA",
-        "code": "NA",
-        "chargingTriggerInfo": "NA",
         "prices": [
           {
             "interval": "1_FAIXA",
@@ -4656,7 +4635,7 @@ Público alvo (ou PF ou PJ).
       "draws": [
         {
           "timeInterval": "UNICO",
-          "timeIntervalAdditionalInfo": "",
+          "timeIntervalAdditionalInfo": "5",
           "quantity": 10000,
           "prizeMultiplier": 5,
           "earlySettlementRaffle": true,
@@ -4857,7 +4836,7 @@ Pagamento efetuado ao subscritor à sociedade de capitalização para aquisiçã
   "draws": [
     {
       "timeInterval": "UNICO",
-      "timeIntervalAdditionalInfo": "",
+      "timeIntervalAdditionalInfo": "5",
       "quantity": 10000,
       "prizeMultiplier": 5,
       "earlySettlementRaffle": true,
@@ -5133,7 +5112,7 @@ Meio de Pagamento utilizado para pagamento da contribuição. A considerar os do
 ```json
 {
   "timeInterval": "UNICO",
-  "timeIntervalAdditionalInfo": "",
+  "timeIntervalAdditionalInfo": "5",
   "quantity": 10000,
   "prizeMultiplier": 5,
   "earlySettlementRaffle": true,
@@ -5269,9 +5248,9 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
           "quotationDays": 3,
           "quotationTerm": "DIAS_CORRIDOS",
           "paymentDays": 3,
-          "paymentTerm": "DIAS_CORRIDOS"
+          "paymentTerm": "DIAS_CORRIDOS",
+          "graceDays": 60
         },
-        "graceDays": 60,
         "application": {
           "quotationDays": 60,
           "quotationTerm": "DIAS_CORRIDOS"
@@ -5322,15 +5301,12 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
         "cnpjNumber": "13456789000112",
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
-      "issuerInstitutionCNPJ": "45086338000178",
+      "issuerInstitutionCnpjNumber": "45086338000178",
       "investimentType": "CDB",
       "index": {
         "indexer": "CDI",
         "indexerAdditionalInfo": "Dólar",
         "issueRemunerationRate": {
-          "name": "NA",
-          "code": "NA",
-          "chargingTriggerInfo": "NA",
           "prices": [
             {
               "interval": "1_FAIXA",
@@ -5410,9 +5386,6 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
       },
       "investmentType": "CRI",
       "custodyFee": {
-        "name": "NA",
-        "code": "NA",
-        "chargingTriggerInfo": "NA",
         "prices": [
           {
             "interval": "1_FAIXA",
@@ -5439,9 +5412,6 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
         "maximum": "0.300000"
       },
       "loadingRate": {
-        "name": "NA",
-        "code": "NA",
-        "chargingTriggerInfo": "NA",
         "prices": [
           {
             "interval": "1_FAIXA",
@@ -5512,9 +5482,6 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
       },
       "investmentType": "ACOES",
       "custodyFee": {
-        "name": "NA",
-        "code": "NA",
-        "chargingTriggerInfo": "NA",
         "prices": [
           {
             "interval": "1_FAIXA",
@@ -5541,9 +5508,6 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
         "maximum": "0.300000"
       },
       "loadingRate": {
-        "name": "NA",
-        "code": "NA",
-        "chargingTriggerInfo": "NA",
         "prices": [
           {
             "interval": "1_FAIXA",
@@ -5614,9 +5578,6 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
       },
       "investmentType": "TESOURO_DIRETO",
       "custodyFee": {
-        "name": "NA",
-        "code": "NA",
-        "chargingTriggerInfo": "NA",
         "prices": [
           {
             "interval": "1_FAIXA",
@@ -5643,9 +5604,6 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
         "maximum": "0.300000"
       },
       "loadingRate": {
-        "name": "NA",
-        "code": "NA",
-        "chargingTriggerInfo": "NA",
         "prices": [
           {
             "interval": "1_FAIXA",
@@ -5744,9 +5702,9 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
       "quotationDays": 3,
       "quotationTerm": "DIAS_CORRIDOS",
       "paymentDays": 3,
-      "paymentTerm": "DIAS_CORRIDOS"
+      "paymentTerm": "DIAS_CORRIDOS",
+      "graceDays": 60
     },
-    "graceDays": 60,
     "application": {
       "quotationDays": 60,
       "quotationTerm": "DIAS_CORRIDOS"
@@ -5886,7 +5844,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
   "quotationDays": 3,
   "quotationTerm": "DIAS_CORRIDOS",
   "paymentDays": 3,
-  "paymentTerm": "DIAS_CORRIDOS"
+  "paymentTerm": "DIAS_CORRIDOS",
+  "graceDays": 60
 }
 
 ```
@@ -5899,6 +5858,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |quotationTerm|[EnumInvestmentsFundGeneralConditionsTermType](#schemaenuminvestmentsfundgeneralconditionstermtype)|true|Período em dias corridos ou dias úteis do prazo de cotização.<br><br><ol><li>Dias corridos</li><li>Dias úteis</li></ol>|
 |paymentDays|integer(int32)|true|Prazo em dias do efetivo pagamento, pelo fundo, do valor líquido devido ao cotista que efetuou pedido de resgate.|
 |paymentTerm|[EnumInvestmentsFundGeneralConditionsTermType](#schemaenuminvestmentsfundgeneralconditionstermtype)|true|Período em dias corridos ou dias úteis do prazo de cotização.<br><br><ol><li>Dias corridos</li><li>Dias úteis</li></ol>|
+|graceDays|integer(int32)|false|Estabelece um período em quantidade de dias corridos em que o investidor não pode resgatar os recursos aplicados no fundo. Caso ocorra resgate antes do período, o investidor perderá a rentabilidade do período. Caso não exista, não informe o campo.|
 
 <h2 id="tocS_InvestmentsFundGeneralConditionsApplication">InvestmentsFundGeneralConditionsApplication</h2>
 
@@ -5919,7 +5879,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|quotationDays|integer(int32)|false|Indica se o fundo estabelece um período em que o investidor não pode resgatar os recursos aplicados no fundo. Caso ocorra resgate antes do período, o investidor perderá a rentabilidade do período.|
+|quotationDays|integer(int32)|true|Indica se o fundo estabelece um período em que o investidor não pode resgatar os recursos aplicados no fundo. Caso ocorra resgate antes do período, o investidor perderá a rentabilidade do período.|
 |quotationTerm|[EnumInvestmentsFundGeneralConditionsTermType](#schemaenuminvestmentsfundgeneralconditionstermtype)|true|Período em dias corridos ou dias úteis do prazo de cotização.<br><br><ol><li>Dias corridos</li><li>Dias úteis</li></ol>|
 
 <h2 id="tocS_InvestimentsFrequencyDistribution">InvestimentsFrequencyDistribution</h2>
@@ -5931,9 +5891,6 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 
 ```json
 {
-  "name": "NA",
-  "code": "NA",
-  "chargingTriggerInfo": "NA",
   "prices": [
     {
       "interval": "1_FAIXA",
@@ -5968,9 +5925,6 @@ Distribuição por frequência.
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|name|string|true|Nome do serviço|
-|code|string|true|Código de identificação do serviço.|
-|chargingTriggerInfo|string|true|Fatos geradores de cobrança.|
 |prices|[[InvestimentsFrequencyDistributionPrice](#schemainvestimentsfrequencydistributionprice)]|true|Distribuição dos preços.|
 |minimum|string|true|Valor mínimo.|
 |maximum|string|true|Valor máximo.|
@@ -6012,15 +5966,12 @@ Distribuição por frequência.
     "cnpjNumber": "13456789000112",
     "urlComplementaryList": "https://empresaa1.com/companies"
   },
-  "issuerInstitutionCNPJ": "45086338000178",
+  "issuerInstitutionCnpjNumber": "45086338000178",
   "investimentType": "CDB",
   "index": {
     "indexer": "CDI",
     "indexerAdditionalInfo": "Dólar",
     "issueRemunerationRate": {
-      "name": "NA",
-      "code": "NA",
-      "chargingTriggerInfo": "NA",
       "prices": [
         {
           "interval": "1_FAIXA",
@@ -6064,7 +6015,7 @@ Distribuição por frequência.
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
 |participant|[Participant](#schemaparticipant)|true|Conjunto de informações relativas ao participante do produto de open banking|
-|issuerInstitutionCNPJ|string|true|CNPJ da instituição emissora.|
+|issuerInstitutionCnpjNumber|string|true|CNPJ da instituição emissora.|
 |investimentType|[EnumInvestmentsFixedIncomeBankProductType](#schemaenuminvestmentsfixedincomebankproducttype)|true|Especificação do ativo em questão.<br><ol><li>CDB</li><li>RDB</li><li>LCI</li><li>LCA</li></ol>|
 |index|[InvestmentsFixedIncomeBankIndex](#schemainvestmentsfixedincomebankindex)|true||
 |investmentConditions|[InvestmentsFixedIncomeBankInvestmentConditions](#schemainvestmentsfixedincomebankinvestmentconditions)|true||
@@ -6081,9 +6032,6 @@ Distribuição por frequência.
   "indexer": "CDI",
   "indexerAdditionalInfo": "Dólar",
   "issueRemunerationRate": {
-    "name": "NA",
-    "code": "NA",
-    "chargingTriggerInfo": "NA",
     "prices": [
       {
         "interval": "1_FAIXA",
@@ -6168,9 +6116,6 @@ Distribuição por frequência.
   },
   "investmentType": "CRI",
   "custodyFee": {
-    "name": "NA",
-    "code": "NA",
-    "chargingTriggerInfo": "NA",
     "prices": [
       {
         "interval": "1_FAIXA",
@@ -6197,9 +6142,6 @@ Distribuição por frequência.
     "maximum": "0.300000"
   },
   "loadingRate": {
-    "name": "NA",
-    "code": "NA",
-    "chargingTriggerInfo": "NA",
     "prices": [
       {
         "interval": "1_FAIXA",
@@ -6255,9 +6197,9 @@ Distribuição por frequência.
     "quotationDays": 3,
     "quotationTerm": "DIAS_CORRIDOS",
     "paymentDays": 3,
-    "paymentTerm": "DIAS_CORRIDOS"
+    "paymentTerm": "DIAS_CORRIDOS",
+    "graceDays": 60
   },
-  "graceDays": 60,
   "application": {
     "quotationDays": 60,
     "quotationTerm": "DIAS_CORRIDOS"
@@ -6273,7 +6215,6 @@ Distribuição por frequência.
 |---|---|---|---|---|
 |minimumAmount|[InvestimentFundMinimumAmount](#schemainvestimentfundminimumamount)|true||
 |redemption|[InvestmentsFundGeneralConditionsRedemption](#schemainvestmentsfundgeneralconditionsredemption)|true||
-|graceDays|integer(int32)|false|Indica se o fundo estabelece um período em que o investidor não pode resgatar os recursos aplicados no fundo. Caso ocorra resgate antes do período, o investidor perderá a rentabilidade do período.|
 |application|[InvestmentsFundGeneralConditionsApplication](#schemainvestmentsfundgeneralconditionsapplication)|true||
 |fundQuotaType|[EnumInvestmentsFundGeneralConditionsFundQuotaType](#schemaenuminvestmentsfundgeneralconditionsfundquotatype)|true|Referente a incidência de tributos sobre o produto de investimento&#58;<br><br><ol><li>Cota de abertura</li><li>Cota de fechamento</li></ol>|
 
@@ -6318,9 +6259,6 @@ Distribuição por frequência.
   },
   "investmentType": "TESOURO_DIRETO",
   "custodyFee": {
-    "name": "NA",
-    "code": "NA",
-    "chargingTriggerInfo": "NA",
     "prices": [
       {
         "interval": "1_FAIXA",
@@ -6347,9 +6285,6 @@ Distribuição por frequência.
     "maximum": "0.300000"
   },
   "loadingRate": {
-    "name": "NA",
-    "code": "NA",
-    "chargingTriggerInfo": "NA",
     "prices": [
       {
         "interval": "1_FAIXA",
@@ -6405,9 +6340,6 @@ Distribuição por frequência.
   },
   "investmentType": "ACOES",
   "custodyFee": {
-    "name": "NA",
-    "code": "NA",
-    "chargingTriggerInfo": "NA",
     "prices": [
       {
         "interval": "1_FAIXA",
@@ -6434,9 +6366,6 @@ Distribuição por frequência.
     "maximum": "0.300000"
   },
   "loadingRate": {
-    "name": "NA",
-    "code": "NA",
-    "chargingTriggerInfo": "NA",
     "prices": [
       {
         "interval": "1_FAIXA",
