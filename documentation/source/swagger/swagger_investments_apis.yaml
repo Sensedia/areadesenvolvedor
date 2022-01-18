@@ -669,7 +669,7 @@ components:
       enum:
         - DIARIA
         - DATA_VENCIMENTO
-        - DIARIA_APOS_PRAZO_DE_CARENCIA
+        - DIARIA_PRAZO_CARENCIA
       example: DIARIA
     EnumInvestmentsFixedIncomeCreditInvestmentType:
       type: string
