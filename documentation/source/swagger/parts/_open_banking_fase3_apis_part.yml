@@ -509,9 +509,9 @@ info:
 
     - **Revogação do consentimento**
 
-    Com a inclusão da funcionalidade agendamento é interessante facultar para as partes envolvidas na transação a possibilidade de cancelamento do pagamento agendado antes da sua liquidação futura. Esse mecanismo de cancelamento do pagamento agendado será oferecido a partir da revogação de consentimentos para pagamentos agendados. 
+    Com a inclusão da funcionalidade de agendamento do pagamento é interessante facultar às partes envolvidas na transação a possibilidade de cancelamento do mesmo, desde que até um dia antes da sua liquidação. Esse mecanismo será oferecido a partir da revogação de consentimentos para pagamentos agendados. 
 
-    Considerando a diretriz do controle do agendamento pela detentora de conta e as necessidades dos envolvidos na transação e possível as seguintes possibilidades de jornadas de revogação:
+    Considerando a diretriz do controle do agendamento pela detentora de conta e as necessidades dos envolvidos na transação é possível os seguintes cenários de jornadas de revogação:
 
         1. **Revogação pelo usuário na iniciadora** através da área de gestão de pagamentos do open banking (Consulte o guia de UX do Open Banking para maiores detalhes);   
         2. **Revogação pelo usuário na detentora** através da área de gestão de pagamentos do open banking (Consulte o guia de UX do Open Banking para maiores detalhes);   
