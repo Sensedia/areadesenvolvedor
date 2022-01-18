@@ -503,9 +503,9 @@ info:
 
     - **Mecanismo de retentativas de liquidação de pagamentos agendados**
 
-    No momento de liquidação de pagamentos agendados é possível ter falhas sistêmicas ou violações de regras de negócio passiveis de recuperação em segundo momento como, por exemplo, ausência de saldo na conta do pagador para realizar a liquidação. Neste contexto poderia ser interessante às detentoras de conta a adoção de políticas de retentativas de liquidação.   
+    No momento de liquidação de pagamento agendado é possível ter falhas sistêmicas ou violações de regras de negócio. Como por exemplo, ausência de saldo na conta do pagador para realizar a liquidação. Neste contexto é interessante às detentoras de conta a adoção de políticas de retentativas de liquidação.   
 
-    O arranjo PIX não define nada a respeito deste tema, então por consequência o Open Banking deixa livre para cada detentora adotar a política de retentativa que mais fazer sentido para ela.
+    O arranjo PIX não define nada a respeito deste tema, por consequência, o Open Banking deixa livre para cada detentora adote a política de retentativa que mais fizer sentido para ela.
 
     - **Revogação do consentimento**
 
