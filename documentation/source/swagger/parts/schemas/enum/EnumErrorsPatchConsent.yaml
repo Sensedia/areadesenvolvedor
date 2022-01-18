@@ -1,18 +1,18 @@
 type: string
 maxLength: 50
 enum:
-  - USER_INFORMATION_REQUIRED
-  - OPERATION_NOT_ALLOWED_BY_STATUS
-  - OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE
-  - REVOCATION_TIME_LIMIT_EXCEEDED
-  - REVOCATION_REASON_NOT_ALLOWED
-  - REVOCATION_ADDITIONAL_INFORMATION_REQUIRED
-example: OPERATION_NOT_ALLOWED_BY_STATUS
+  - INFORMACAO_USUARIO_REQUERIDA
+  - OPERACAO_NAO_PERMITIDA_STATUS
+  - OPERACAO_NAO_SUPORTADA_TIPO_CONSENTIMENTO
+  - TEMPO_LIMITE_REVOGACAO_EXCEDIDO
+  - MOTIVO_REVOGACAO_NAO_PERMITIDO
+  - INFORMACAO_ADICIONAL_REVOGACAO_REQUERIDA
+example: OPERACAO_NAO_PERMITIDA_STATUS
 description: |
   Códigos de erros previstos na revogação do consentimento de pagamento:  
-  • USER_INFORMATION_REQUIRED - O campo data.revocation.loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor USER.  
-  • OPERATION_NOT_ALLOWED_BY_STATUS: O consentimento só pode ser revogado nos status CONSUMED.  
-  • OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Somente consentimentos para pagamentos agendados podem ser revogados, ou seja, que possuam o campo data.payment.schedule preenchido.  
-  • REVOCATION_TIME_LIMIT_EXCEEDED: O consentimento só pode ser revogado até o dia anterior, ou seja, a meia noite no fuso horário de Brasília do dia imediatamente anterior a data alvo da liquidação do pagamento.  
-  • REVOCATION_REASON_NOT_ALLOWED: Os motivos de revogação do consentimento: FRAUD e ACCOUNT_CLOSURE só podem ser usados caso o campo: data.revocation.revokedBy tenha o valor TPP ou ASPSP, ou seja, somente no caso de revogação unilateral pela iniciadora ou detentora.  
-  • REVOCATION_ADDITIONAL_INFORMATION_REQUIRED: O campo data.revocation.reason.additionalInformation é obrigatório quando a revogação for feita pela iniciadora ou pela detentora unilateralmente, ou seja, o campo revokedBy igual a TPP ou ASPSP e o motivo de revogação for OTHER.
+  • INFORMACAO_USUARIO_REQUERIDA - O campo data.revocation.loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor USER.  
+  • OPERACAO_NAO_PERMITIDA_STATUS: O consentimento só pode ser revogado nos status CONSUMED.  
+  • OPERACAO_NAO_SUPORTADA_TIPO_CONSENTIMENTO: Somente consentimentos para pagamentos agendados podem ser revogados, ou seja, que possuam o campo data.payment.schedule preenchido.  
+  • TEMPO_LIMITE_REVOGACAO_EXCEDIDO: O consentimento só pode ser revogado até o dia anterior, ou seja, a meia noite no fuso horário de Brasília do dia imediatamente anterior a data alvo da liquidação do pagamento.  
+  • MOTIVO_REVOGACAO_NAO_PERMITIDO: Os motivos de revogação do consentimento: FRAUD e ACCOUNT_CLOSURE só podem ser usados caso o campo: data.revocation.revokedBy tenha o valor TPP ou ASPSP, ou seja, somente no caso de revogação unilateral pela iniciadora ou detentora.  
+  • INFORMACAO_ADICIONAL_REVOGACAO_REQUERIDA: O campo data.revocation.reason.additionalInformation é obrigatório quando a revogação for feita pela iniciadora ou pela detentora unilateralmente, ou seja, o campo revokedBy igual a TPP ou ASPSP e o motivo de revogação for OTHER.

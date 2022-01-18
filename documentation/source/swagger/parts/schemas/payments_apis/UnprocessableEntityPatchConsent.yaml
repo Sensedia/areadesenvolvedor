@@ -11,7 +11,7 @@ content:
             "errors":
               [
                 {
-                  "code": "REVOCATION_REASON_NOT_ALLOWED",
+                  "code": "MOTIVO_REVOGACAO_NAO_PERMITIDO",
                   "title": "Motivo de revogação não permitido.",
                   "detail": "Motivo de revogação não permitido.",
                 },

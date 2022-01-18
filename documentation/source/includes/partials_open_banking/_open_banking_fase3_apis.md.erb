@@ -2459,7 +2459,7 @@ Objeto contendo dados do pagamento e da conta do recebedor (creditor).
 {
   "errors": [
     {
-      "code": "OPERATION_NOT_ALLOWED_BY_STATUS",
+      "code": "OPERACAO_NAO_PERMITIDA_STATUS",
       "title": "Motivo de revogação não permitido.",
       "detail": "Operação não suportada pelo tipo de consentimento."
     }
@@ -2478,21 +2478,21 @@ Objeto contendo dados do pagamento e da conta do recebedor (creditor).
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
 |errors|[object]|true||
-|» code|string|true|Códigos de erros previstos na revogação do consentimento de pagamento:  <br>• USER_INFORMATION_REQUIRED - O campo data.revocation.loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor USER.  <br>• OPERATION_NOT_ALLOWED_BY_STATUS: O consentimento só pode ser revogado nos status CONSUMED.  <br>• OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Somente consentimentos para pagamentos agendados podem ser revogados, ou seja, que possuam o campo data.payment.schedule preenchido.  <br>• REVOCATION_TIME_LIMIT_EXCEEDED: O consentimento só pode ser revogado até o dia anterior, ou seja, a meia noite no fuso horário de Brasília do dia imediatamente anterior a data alvo da liquidação do pagamento.  <br>• REVOCATION_REASON_NOT_ALLOWED: Os motivos de revogação do consentimento: FRAUD e ACCOUNT_CLOSURE só podem ser usados caso o campo: data.revocation.revokedBy tenha o valor TPP ou ASPSP, ou seja, somente no caso de revogação unilateral pela iniciadora ou detentora.  <br>• REVOCATION_ADDITIONAL_INFORMATION_REQUIRED: O campo data.revocation.reason.additionalInformation é obrigatório quando a revogação for feita pela iniciadora ou pela detentora unilateralmente, ou seja, o campo revokedBy igual a TPP ou ASPSP e o motivo de revogação for OTHER.|
-|» title|string|true|Título específico do erro reportado, de acordo com o código enviado:  <br>• USER_INFORMATION_REQUIRED: Informação do usuário requerida.  <br>• OPERATION_NOT_ALLOWED_BY_STATUS: Operação não permitida.  <br>• OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Operação não permitida.  <br>• REVOCATION_TIME_LIMIT_EXCEEDED: Prazo limite para revogação excedido.  <br>• REVOCATION_REASON_NOT_ALLOWED: Motivo de revogação não permitido.  <br>• REVOCATION_ADDITIONAL_INFORMATION_REQUIRED: Informação adicional requerida.|
-|» detail|string|true|Descrição específica do erro de acordo com o código reportado:  <br>• USER_INFORMATION_REQUIRED: Informação do usuário requerida.  <br>• OPERATION_NOT_ALLOWED_BY_STATUS: Operação não permitida devido ao status atual do consentimento.  <br>• OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE: Operação não suportada pelo tipo de consentimento.  <br>• REVOCATION_TIME_LIMIT_EXCEEDED: Prazo limite para revogação excedido.  <br>• REVOCATION_REASON_NOT_ALLOWED: Motivo de revogação não permitido.  <br>• REVOCATION_ADDITIONAL_INFORMATION_REQUIRED: Informação adicional requerida.|
+|» code|string|true|Códigos de erros previstos na revogação do consentimento de pagamento:  <br>• INFORMACAO_USUARIO_REQUERIDA - O campo data.revocation.loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor USER.  <br>• OPERACAO_NAO_PERMITIDA_STATUS: O consentimento só pode ser revogado nos status CONSUMED.  <br>• OPERACAO_NAO_SUPORTADA_TIPO_CONSENTIMENTO: Somente consentimentos para pagamentos agendados podem ser revogados, ou seja, que possuam o campo data.payment.schedule preenchido.  <br>• TEMPO_LIMITE_REVOGACAO_EXCEDIDO: O consentimento só pode ser revogado até o dia anterior, ou seja, a meia noite no fuso horário de Brasília do dia imediatamente anterior a data alvo da liquidação do pagamento.  <br>• MOTIVO_REVOGACAO_NAO_PERMITIDO: Os motivos de revogação do consentimento: FRAUD e ACCOUNT_CLOSURE só podem ser usados caso o campo: data.revocation.revokedBy tenha o valor TPP ou ASPSP, ou seja, somente no caso de revogação unilateral pela iniciadora ou detentora.  <br>• INFORMACAO_ADICIONAL_REVOGACAO_REQUERIDA: O campo data.revocation.reason.additionalInformation é obrigatório quando a revogação for feita pela iniciadora ou pela detentora unilateralmente, ou seja, o campo revokedBy igual a TPP ou ASPSP e o motivo de revogação for OTHER.|
+|» title|string|true|Título específico do erro reportado, de acordo com o código enviado:  <br>• INFORMACAO_USUARIO_REQUERIDA: Informação do usuário requerida.  <br>• OPERACAO_NAO_PERMITIDA_STATUS: Operação não permitida.  <br>• OPERACAO_NAO_SUPORTADA_TIPO_CONSENTIMENTO: Operação não permitida.  <br>• TEMPO_LIMITE_REVOGACAO_EXCEDIDO: Prazo limite para revogação excedido.  <br>• MOTIVO_REVOGACAO_NAO_PERMITIDO: Motivo de revogação não permitido.  <br>• INFORMACAO_ADICIONAL_REVOGACAO_REQUERIDA: Informação adicional requerida.|
+|» detail|string|true|Descrição específica do erro de acordo com o código reportado:  <br>• INFORMACAO_USUARIO_REQUERIDA: Informação do usuário requerida.  <br>• OPERACAO_NAO_PERMITIDA_STATUS: Operação não permitida devido ao status atual do consentimento.  <br>• OPERACAO_NAO_SUPORTADA_TIPO_CONSENTIMENTO: Operação não suportada pelo tipo de consentimento.  <br>• TEMPO_LIMITE_REVOGACAO_EXCEDIDO: Prazo limite para revogação excedido.  <br>• MOTIVO_REVOGACAO_NAO_PERMITIDO: Motivo de revogação não permitido.  <br>• INFORMACAO_ADICIONAL_REVOGACAO_REQUERIDA: Informação adicional requerida.|
 |meta|[Meta](#schemameta)|false|Meta informações referente à API requisitada.|
 
 #### Enumerated Values
 
 |Nome|Código|
 |---|---|
-|code|USER_INFORMATION_REQUIRED|
-|code|OPERATION_NOT_ALLOWED_BY_STATUS|
-|code|OPERATION_NOT_SUPPORTED_BY_CONSENT_TYPE|
-|code|REVOCATION_TIME_LIMIT_EXCEEDED|
-|code|REVOCATION_REASON_NOT_ALLOWED|
-|code|REVOCATION_ADDITIONAL_INFORMATION_REQUIRED|
+|code|INFORMACAO_USUARIO_REQUERIDA|
+|code|OPERACAO_NAO_PERMITIDA_STATUS|
+|code|OPERACAO_NAO_SUPORTADA_TIPO_CONSENTIMENTO|
+|code|TEMPO_LIMITE_REVOGACAO_EXCEDIDO|
+|code|MOTIVO_REVOGACAO_NAO_PERMITIDO|
+|code|INFORMACAO_ADICIONAL_REVOGACAO_REQUERIDA|
 
 <h2 id="tocS_Account">Account</h2>
 
