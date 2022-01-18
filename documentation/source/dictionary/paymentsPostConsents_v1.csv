@@ -22,7 +22,7 @@ REVOKED - Revogado";Texto;22;Obrigatório;;"AWAITING_AUTHORISATION
 AUTHORISED 
 REJECTED 
 CONSUMED 
-REVOKED";1;1;"";Não permitido;string;AWAITING_AUTHORISATION
+REVOKED";1;1;"";Não permitido;string;REVOKED
 /data/revocation;revocation;"Objeto que contém as informações das circunstância da revogação.
 O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.";Objeto;;Opcional;;;0;1;"";Não permitido;object;
 /data/revocation/loggedUser;loggedUser;Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.;Objeto;;Condicional;;;0;1;" Deve obrigatoriamente ser enviado quando a revogação for feita pelo usuário final, ou seja, se o campo revokedBy estiver com o valor 'USER'.
@@ -70,11 +70,8 @@ Em caso de pessoa jurídica deve ser informada a razão social ou o nome fantasi
 /data/payment/type;type;Este campo define o tipo de pagamento que será iniciado após a autorização do consentimento.;Texto;3;Obrigatório;;"PIX 
 TED 
 TEF";1;1;"";Não permitido;string;PIX
-/data/payment/schedule;schedule;Define o agendamento do pagamento. Utilizado somente na funcionalidade de agendamento de pagamentos.;Objeto;;Condicional;;;0;1;" Deve obrigatoriamente ser enviado caso o campo date não seja informado (cenários de PIX Agendamento).
-";Não permitido;object;
-/data/payment/schedule/single;single;"";"";;Obrigatório;;;1;1;"";Não permitido;;
-/data/payment/date;date;Data do pagamento, conforme especificação RFC-3339.;Data;10;Condicional;^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$;;0;1;" Deve obrigatoriamente ser enviado caso o campo schedule não seja informado (cenários de PIX).
-";Não permitido;string;2021-01-01
+/data/payment/schedule;schedule;"";"";;Opcional;;;0;1;"";Não permitido;;
+/data/payment/date;date;Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.;Data;10;Opcional;^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$;;0;1;"";Não permitido;string;2021-01-01
 /data/payment/currency;currency;"Código da moeda nacional segundo modelo ISO-4217, ou seja, 'BRL'.
 Todos os valores monetários informados estão representados com a moeda vigente do Brasil.";Texto;3;Obrigatório;^([A-Z]{3})$;;1;1;"";Não permitido;string;BRL
 /data/payment/amount;amount;Valor da transação com 2 casas decimais.;Texto;19;Obrigatório;^((\d{1,16}\.\d{2}))$;;1;1;"";Não permitido;string;100000.12
