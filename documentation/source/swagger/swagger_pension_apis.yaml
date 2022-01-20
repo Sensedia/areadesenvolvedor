@@ -983,7 +983,7 @@ components:
       properties:
         type:
           $ref: '#/components/schemas/EnumRiskPensionCoverageType'
-        additionalInfos:
+        typeAdditionalInfos:
           type: array
           items:
             type: string
