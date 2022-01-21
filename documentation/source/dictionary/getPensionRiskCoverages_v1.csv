@@ -32,7 +32,7 @@ PENSAO_CONJUGE_TEMPORARIA";0;1;"";Não permitido;string;FUNERAL
 /data/coverages;coverages;"";Lista;;Obrigatório;;;1;N;"";Não permitido;array;
 /data/coverages/type;type;É o conjunto dos riscos cobertos elencados na apólice. (RESOLUÇÃO CNSP Nº 341/2016). Listagem de coberturas incluídas no produto que deve observar a relação discriminada de coberturas, conforme Tabela Tipo de Cobertura.;Texto;9;Obrigatório;;"MORTE 
 INVALIDEZ";1;1;"";Não permitido;string;MORTE
-/data/coverages/additionalInfos;additionalInfos;Lista a ser preenchida pelas participantes quando houver 'Outras' (permitir a publicação de uma nova cobertura que não esteja na lista básica).;Lista;;Opcional;;;0;N;"";Não permitido;array;
+/data/coverages/typeAdditionalInfos;typeAdditionalInfos;Lista a ser preenchida pelas participantes quando houver 'Outras' (permitir a publicação de uma nova cobertura que não esteja na lista básica).;Lista;;Opcional;;;0;N;"";Não permitido;array;
 /data/coverages/attributes;attributes;Atributos da cobertura;Objeto;;Obrigatório;;;1;1;"";Não permitido;object;
 /data/coverages/attributes/indemnityPaymentMethods;indemnityPaymentMethods;Listagem da forma de pagamento da indenização para cada combinação de modalidade/cobertura do produto;Lista;42;Opcional;;"PAGAMENTO_CAPITAL_SEGURADO_VALOR_MONETARIO 
 REEMBOLSO_DESPESAS 

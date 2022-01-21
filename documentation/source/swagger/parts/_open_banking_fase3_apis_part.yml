@@ -524,6 +524,160 @@ info:
     |Código|Descrição                                                                                                                                                                                                                          |Endpoint                                                                |
     |------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
     |RN001 |Ao revogar um consentimento o pagamento associado deverá ir para o status **RJCT** e campo **rejectionReason** deverá ter o valor **CONSENT_REVOKED**. Schema: <a href="#tocS_EnumRejectionReasonType">EnumRejectionReasonType</a> |<a href="#revogar-consentimento-de-pagamento">Revogar consentimento</a> |
+
+    **Post/Consents**
+
+    - **Exemplo -  PIX normal**
+
+    {   
+      "alg": "PS256",   
+      "typ": "JWT",   
+      "kid": "PWAi5ruQcHfzPzq2JFdpY7nAUh6LzTTQtDBUpOM37JQ"   
+    }   
+    {   
+      "aud": "3449bf21-0b07-48e6-b6fc-13eb161a9901",   
+      "iss": "ca1b98e1-97a2-43db-947f-8a08054c342e",   
+      "jti": "a2fd393c-107a-4ad4-be22-3cfeeea90efe",   
+      "iat": 1628257737",   
+      "data": {   
+        "consentId": "urn:bancoex:C1DD33123",   
+        "creationDateTime": "2021-05-21T08:30:00Z",   
+        "expirationDateTime": "2021-05-21T08:30:00Z",   
+        "statusUpdateDateTime": "2021-05-21T08:30:00Z",   
+        "status": "AWAITING_AUTHORISATION",   
+        "loggedUser": {   
+          "document": {   
+            "identification": "11111111111",   
+            "rel": "CPF"   
+          }   
+        },   
+        "businessEntity": {,   
+          "document": {   
+            "identification": "11111111111111",   
+            "rel": "CNPJ",   
+          }   
+        },   
+        "creditor": {   
+          "personType": "PESSOA_NATURAL",   
+          "cpfCnpj": "58764789000137",   
+          "name": "Marco Antonio de Brito"   
+        },   
+        "payment": {   
+          "type": "PIX",   
+          "date": "2021-01-01",   
+          "currency": "BRL",   
+          "amount": "100000.12",   
+          "ibgeTownCode": "5300108",   
+          "details": {   
+            "localInstrument": "DICT",   
+            "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6   
+            D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008   
+            BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.08045   
+            0014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.ABC   
+            D.3456.WXYZ6304EB76\n",   
+            "proxy": "12345678901",   
+            "creditorAccount": {   
+              "ispb": "12345678",   
+              "issuer": "1774",   
+              "number": "1234567890",   
+              "accountType": "CACC",   
+            }   
+          }   
+        },   
+        "debtorAccount": {   
+          "ispb": "12345678",   
+          "issuer": "1774",   
+          "number": "1234567890",   
+          "accountType": "CACC",   
+        }   
+      },   
+      "links": {   
+        "self": "https://api.banco.com.br/open-banking/payments/v1/consents",   
+      },   
+      "meta": {   
+        "totalRecords": 1,   
+        "totalPages": 1,   
+        "requestDateTime": "2021-05-21T08:30:00Z",   
+      }   
+    }
+
+    - **Exemplo -  PIX agendado**
+
+    {   
+      "alg": "PS256",   
+      "typ": "JWT",   
+      "kid": "PWAi5ruQcHfzPzq2JFdpY7nAUh6LzTTQtDBUpOM37JQ"   
+    }   
+    {   
+      "aud": "3449bf21-0b07-48e6-b6fc-13eb161a9901",   
+      "iss": "ca1b98e1-97a2-43db-947f-8a08054c342e",   
+      "jti": "a2fd393c-107a-4ad4-be22-3cfeeea90efe",   
+      "iat": 1628257737",   
+      "data": {   
+        "consentId": "urn:bancoex:C1DD33123",   
+        "creationDateTime": "2021-05-21T08:30:00Z",   
+        "expirationDateTime": "2021-05-21T08:30:00Z",   
+        "statusUpdateDateTime": "2021-05-21T08:30:00Z",   
+        "status": "AWAITING_AUTHORISATION",   
+        "loggedUser": {   
+          "document": {   
+            "identification": "11111111111",   
+            "rel": "CPF"   
+          }   
+        },   
+        "businessEntity": {,   
+          "document": {   
+            "identification": "11111111111111",   
+            "rel": "CNPJ",   
+          }   
+        },   
+        "creditor": {   
+          "personType": "PESSOA_NATURAL",   
+          "cpfCnpj": "58764789000137",   
+          "name": "Marco Antonio de Brito"   
+        },   
+        "payment": {   
+          "type": "PIX",   
+          "schedule": {   
+            "single": {   
+              "date": "2021-01-01"   
+            }   
+          },   
+          "currency": "BRL",   
+          "amount": "100000.12",   
+          "ibgeTownCode": "5300108",   
+          "details": {   
+            "localInstrument": "DICT",   
+            "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6   
+            D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008   
+            BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.08045   
+            0014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.AB   
+            CD.3456.WXYZ6304EB76\n",   
+            "proxy": "12345678901",   
+            "creditorAccount": {   
+              "ispb": "12345678",   
+              "issuer": "1774",   
+              "number": "1234567890",   
+              "accountType": "CACC",   
+            }   
+          }   
+        },   
+        "debtorAccount": {   
+          "ispb": "12345678",   
+          "issuer": "1774",   
+          "number": "1234567890",   
+          "accountType": "CACC",   
+        }   
+      },   
+      "links": {   
+        "self": "https://api.banco.com.br/open-banking/payments/v1/consents",   
+      },   
+      "meta": {   
+        "totalRecords": 1,   
+        "totalPages": 1,   
+        "requestDateTime": "2021-05-21T08:30:00Z",   
+      }   
+    }
   version: 1.1.0
 tags:
   - name: API - Pagamentos
@@ -551,6 +705,8 @@ paths:
       operationId: paymentsPostConsents
       description: |
         Método para a criação do consentimento para iniciação de pagamento.
+
+        Para consultar os payloads correspondentes ao tipo do pagamento PIX, <a href='#orientacoes' target="_blank">acesse aqui.</a>
 
         ### Dicionário de dados
 
