@@ -285,57 +285,6 @@ Para evitar vazamento de informação, a detentora deve validar que o pagamento 
 
 ### Como assinar o payload
 
-No contexto da API Payment Initiation, os payloads de mensagem de consentimento e de pagamento que trafegam tanto por parte da instituição iniciadora de transação de pagamento quanto por parte da instituição detentora de conta devem estar assinados. Abaixo temos as orientações para assinatura das mensagens JWS.
-
-Informações complementares de segurança podem ser consultadas em <a href="https://github.com/OpenBanking-Brasil/specs-seguranca/blob/main/open-banking-brasil-financial-api-1_ID3-ptbr.md"> https://github.com/OpenBanking-Brasil/specs-seguranca/blob/main/open-banking-brasil-financial-api-1_ID3-ptbr.md</a>.
-
-- **Passo 1** - Identifique a chave privada e o certificado de assinatura correspondente a serem usados para assinatura:
-
-As assinaturas devem ser realizadas com uso do certificado digital de assinatura especificado no <a href="https://github.com/OpenBanking-Brasil/specs-seguranca/blob/main/open-banking-brasil-certificate-standards-1_ID1-ptbr.md#certificado-de-assinatura-certificadoassinatura" target="_blank">Padrão de Certificados Open Banking Brasil</a>.
-
-O certificado de assinatura deve ser válido no momento da criação do JWS.
-
-- **Passo 2** - Geração do JOSE Header
-
-O JOSE Header deve conter os seguintes campos:
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|alg|string|true|O algoritmo que será usado para assinar o JWS. Deve ser preenchido com o valor `PS256`.|
-|kid|string|true|Deve ser obrigatoriamente preenchido com o valor do identificador da chave utilizado para a assinatura.|
-|typ|string|true|É o tipo de conteúdo usado para trafegar mensagens na API. Deve ser preenchido com o valor `JWT`.|
-
-- **Passo 3** - Montando a mensagem JWS
-
-Para garantir a integridade e o não-repúdio das informações tramitadas em *API´s sensíveis e que indicam essa necessidade na sua documentação*, deve ser adotado a estrutura no padrão JWS definida na [<a href="https://datatracker.ietf.org/doc/html/rfc7515" target="_blank">RFC7515</a>] e que inclui:
-
-**Cabeçalho** (_JSON Object Signing and Encryption – JOSE Header_), onde se define o algoritmo utilizado e inclui informações sobre a chave pública ou certificado que podem ser utilizadas para validar a assinatura;
-
-**Payload** (_JWS Payload_): conteúdo propriamente dito e detalhado na especificação da API além de informações sobre `claims` JWT ;
-
-**Assinatura digital** (_JWS Signature_): assinatura digital, realizada conforme parâmetros do cabeçalho.
-
-O payload das mensagens (requisição e resposta _JWT_) assinadas devem incluir as seguintes `claims` presentes na [<a href="https://datatracker.ietf.org/doc/html/rfc7519#section-4.1" target="_blank">RFC7519</a>] (JWT):
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|aud|string|true|(***requisição JWT***): o Provedor do Recurso (p. ex. a instituição Detentora da Conta) deverá validar se o valor do campo **aud** coincide com o endpoint sendo acionado.<br>(***resposta JWT***): o cliente da API (p. ex. instituição Iniciadora) deverá validar se o valor do campo **aud** coincide com o seu próprio `organisationId` listado no diretório.|
-|iss|string|true|(***requisição JWT*** e ***resposta JWT***): o receptor da mensagem deverá validar se o valor do campo **iss** coincide com o `organisationId` da outra parte listado no diretório.|
-|jti|string|true|(***requisição JWT*** e ***resposta JWT***): o valor do campo **jti** deverá ser preenchido com o UUID definido pela instituição de acordo com a <a href="https://datatracker.ietf.org/doc/html/rfc4122" target="_blank">RFC 4122</a> usando o versão 4.|
-|iat|NumericDate|true|(***requisição JWT*** e ***resposta JWT***): o valor do campo **iat** deverá ser preenchido com o horário da geração da mensagem e de acordo com o padrão estabelecido na <a href="https://datatracker.ietf.org/doc/html/rfc7519#section-2" target="_blank">RFC7519</a> para o formato _NumericDate_. A claim iat deverá ser gerada no Unix Time GMT +0 e sua verificação deverá possuir uma tolerância de +/- 60 segundos para cobrir pequenas diferenças nos relógios dos servidores dos participantes.|
-
-- **A claim do “jti” deve ser única para um clientId dentro de um intervalo de tempo de 86.400 segundos, não podendo ser reutilizada neste período. Em caso de reutilização, deverá ser retornado o código de erro HTTP 403.**
-
-- **As validações referentes as claims do JWT devem preceder a validação de idempotência (e.g. “jti”, “iat” e “iss”)**
-
-Cada elemento acima deve ser codificado utilizando o padrão Base64url [<a href="https://datatracker.ietf.org/doc/html/rfc4648#section-5" target="_blank">RFC4648</a>] e, feito isso, os elementos devem ser concatenados com “.” (método JWS Compact Serialization, conforme definido na [<a href="https://datatracker.ietf.org/doc/html/rfc7515#section-3.1" target="_blank">RFC7515</a>]).
-
-Formato da mensagem JWS:
-
-<span style="background: #e9e8e8; padding: 3px;">**payload** = Base64url(**JOSEHeader**)  +  "." + Base64url(**payload JWT**)  +  "."  +  Base64url(**digital signature**)</span>
-
-Veja ao lado exemplo de mensagem JWS assinada e codificada e um exemplo de mensagem JWS decodificada.
-
 > Exemplo de requisição - JWS assinada e codificada
 
 ```json
@@ -483,6 +432,57 @@ Veja ao lado exemplo de mensagem JWS assinada e codificada e um exemplo de mensa
 
 * "Assinatura omitida por questões de brevidade"
 ```
+
+No contexto da API Payment Initiation, os payloads de mensagem de consentimento e de pagamento que trafegam tanto por parte da instituição iniciadora de transação de pagamento quanto por parte da instituição detentora de conta devem estar assinados. Abaixo temos as orientações para assinatura das mensagens JWS.
+
+Informações complementares de segurança podem ser consultadas em <a href="https://github.com/OpenBanking-Brasil/specs-seguranca/blob/main/open-banking-brasil-financial-api-1_ID3-ptbr.md"> https://github.com/OpenBanking-Brasil/specs-seguranca/blob/main/open-banking-brasil-financial-api-1_ID3-ptbr.md</a>.
+
+- **Passo 1** - Identifique a chave privada e o certificado de assinatura correspondente a serem usados para assinatura:
+
+As assinaturas devem ser realizadas com uso do certificado digital de assinatura especificado no <a href="https://github.com/OpenBanking-Brasil/specs-seguranca/blob/main/open-banking-brasil-certificate-standards-1_ID1-ptbr.md#certificado-de-assinatura-certificadoassinatura" target="_blank">Padrão de Certificados Open Banking Brasil</a>.
+
+O certificado de assinatura deve ser válido no momento da criação do JWS.
+
+- **Passo 2** - Geração do JOSE Header
+
+O JOSE Header deve conter os seguintes campos:
+
+|Nome|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|alg|string|true|O algoritmo que será usado para assinar o JWS. Deve ser preenchido com o valor `PS256`.|
+|kid|string|true|Deve ser obrigatoriamente preenchido com o valor do identificador da chave utilizado para a assinatura.|
+|typ|string|true|É o tipo de conteúdo usado para trafegar mensagens na API. Deve ser preenchido com o valor `JWT`.|
+
+- **Passo 3** - Montando a mensagem JWS
+
+Para garantir a integridade e o não-repúdio das informações tramitadas em *API´s sensíveis e que indicam essa necessidade na sua documentação*, deve ser adotado a estrutura no padrão JWS definida na [<a href="https://datatracker.ietf.org/doc/html/rfc7515" target="_blank">RFC7515</a>] e que inclui:
+
+**Cabeçalho** (_JSON Object Signing and Encryption – JOSE Header_), onde se define o algoritmo utilizado e inclui informações sobre a chave pública ou certificado que podem ser utilizadas para validar a assinatura;
+
+**Payload** (_JWS Payload_): conteúdo propriamente dito e detalhado na especificação da API além de informações sobre `claims` JWT ;
+
+**Assinatura digital** (_JWS Signature_): assinatura digital, realizada conforme parâmetros do cabeçalho.
+
+O payload das mensagens (requisição e resposta _JWT_) assinadas devem incluir as seguintes `claims` presentes na [<a href="https://datatracker.ietf.org/doc/html/rfc7519#section-4.1" target="_blank">RFC7519</a>] (JWT):
+
+|Nome|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|aud|string|true|(***requisição JWT***): o Provedor do Recurso (p. ex. a instituição Detentora da Conta) deverá validar se o valor do campo **aud** coincide com o endpoint sendo acionado.<br>(***resposta JWT***): o cliente da API (p. ex. instituição Iniciadora) deverá validar se o valor do campo **aud** coincide com o seu próprio `organisationId` listado no diretório.|
+|iss|string|true|(***requisição JWT*** e ***resposta JWT***): o receptor da mensagem deverá validar se o valor do campo **iss** coincide com o `organisationId` da outra parte listado no diretório.|
+|jti|string|true|(***requisição JWT*** e ***resposta JWT***): o valor do campo **jti** deverá ser preenchido com o UUID definido pela instituição de acordo com a <a href="https://datatracker.ietf.org/doc/html/rfc4122" target="_blank">RFC 4122</a> usando o versão 4.|
+|iat|NumericDate|true|(***requisição JWT*** e ***resposta JWT***): o valor do campo **iat** deverá ser preenchido com o horário da geração da mensagem e de acordo com o padrão estabelecido na <a href="https://datatracker.ietf.org/doc/html/rfc7519#section-2" target="_blank">RFC7519</a> para o formato _NumericDate_. A claim iat deverá ser gerada no Unix Time GMT +0 e sua verificação deverá possuir uma tolerância de +/- 60 segundos para cobrir pequenas diferenças nos relógios dos servidores dos participantes.|
+
+- **A claim do “jti” deve ser única para um clientId dentro de um intervalo de tempo de 86.400 segundos, não podendo ser reutilizada neste período. Em caso de reutilização, deverá ser retornado o código de erro HTTP 403.**
+
+- **As validações referentes as claims do JWT devem preceder a validação de idempotência (e.g. “jti”, “iat” e “iss”)**
+
+Cada elemento acima deve ser codificado utilizando o padrão Base64url [<a href="https://datatracker.ietf.org/doc/html/rfc4648#section-5" target="_blank">RFC4648</a>] e, feito isso, os elementos devem ser concatenados com “.” (método JWS Compact Serialization, conforme definido na [<a href="https://datatracker.ietf.org/doc/html/rfc7515#section-3.1" target="_blank">RFC7515</a>]).
+
+Formato da mensagem JWS:
+
+<span style="background: #e9e8e8; padding: 3px;">**payload** = Base64url(**JOSEHeader**)  +  "." + Base64url(**payload JWT**)  +  "."  +  Base64url(**digital signature**)</span>
+
+Veja ao lado exemplo de mensagem JWS assinada e codificada e um exemplo de mensagem JWS decodificada.
 
 **Em caso de erro**
 
@@ -818,7 +818,7 @@ HttpResponse<String> response = Unirest.post("https://example.com/payments/v1/co
 
 Método para a criação do consentimento para iniciação de pagamento.
 
-Para consultar os payloads correspondentes ao tipo do pagamento PIX, <a href='#orientacoes' target="_blank">acesse aqui.</a>
+Para consultar os payloads correspondentes ao tipo do pagamento PIX, <a href="#orientacoes">acesse aqui.</a>
 
 ### Dicionário de dados
 
@@ -3038,22 +3038,23 @@ TRAN - TransactingAccount - Conta de Pagamento pré-paga.
 
 ```
 
-Estado para o qual deve ir.
-
-[Restrição] O único valor válido é REVOKED. (caso contrário a detentora deve retornar erro HTTP 400)
-
-Estados possíveis:  
-AWAITING_AUTHORISATION - Aguardando autorização  
-AUTHORISED - Autorizado   
-REJECTED - Rejeitado  
-CONSUMED - Consumido   
+Retorna o estado do consentimento, o qual no momento de sua criação será AWAITING_AUTHORISATION.
+Este estado será alterado depois da autorização do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED, REJECTED ou REVOKED.
+O consentimento fica no estado CONSUMED após ocorrer a iniciação do pagamento referente ao consentimento.
+Em caso de consentimento expirado a detentora deverá retornar o status REJECTED.
+Em caso de revogação do consentimento a detentora deverá retornar o status REVOKED.
+Estados possíveis:
+AWAITING_AUTHORISATION - Aguardando autorização
+AUTHORISED - Autorizado
+REJECTED - Rejeitado
+CONSUMED - Consumido
 REVOKED - Revogado
 
 ### Propriedades
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|**|string|false|Estado para o qual deve ir.<br><br>[Restrição] O único valor válido é REVOKED. (caso contrário a detentora deve retornar erro HTTP 400)<br><br>Estados possíveis:  <br>AWAITING_AUTHORISATION - Aguardando autorização  <br>AUTHORISED - Autorizado   <br>REJECTED - Rejeitado  <br>CONSUMED - Consumido   <br>REVOKED - Revogado|
+|**|string|false|Retorna o estado do consentimento, o qual no momento de sua criação será AWAITING_AUTHORISATION.<br>Este estado será alterado depois da autorização do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED, REJECTED ou REVOKED.<br>O consentimento fica no estado CONSUMED após ocorrer a iniciação do pagamento referente ao consentimento.<br>Em caso de consentimento expirado a detentora deverá retornar o status REJECTED.<br>Em caso de revogação do consentimento a detentora deverá retornar o status REVOKED.<br>Estados possíveis:<br>AWAITING_AUTHORISATION - Aguardando autorização<br>AUTHORISED - Autorizado<br>REJECTED - Rejeitado<br>CONSUMED - Consumido<br>REVOKED - Revogado|
 
 #### Enumerated Values
 
@@ -3063,6 +3064,34 @@ REVOKED - Revogado
 |**|AUTHORISED|
 |**|REJECTED|
 |**|CONSUMED|
+|**|REVOKED|
+
+<h2 id="tocS_EnumAuthorisationPatchStatusType">EnumAuthorisationPatchStatusType</h2>
+
+<a id="schemaenumauthorisationpatchstatustype"></a>
+<a id="schema_EnumAuthorisationPatchStatusType"></a>
+<a id="tocSenumauthorisationpatchstatustype"></a>
+<a id="tocsenumauthorisationpatchstatustype"></a>
+
+```json
+"REVOKED"
+
+```
+
+Estado para o qual deve ir.
+
+[Restrição] O único valor válido é REVOKED. (caso contrário a detentora deve retornar erro HTTP 400)
+
+### Propriedades
+
+|Nome|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|**|string|false|Estado para o qual deve ir.<br><br>[Restrição] O único valor válido é REVOKED. (caso contrário a detentora deve retornar erro HTTP 400)|
+
+#### Enumerated Values
+
+|Nome|Código|
+|---|---|
 |**|REVOKED|
 
 <h2 id="tocS_EnumErrorsCreateConsent">EnumErrorsCreateConsent</h2>
@@ -3586,8 +3615,8 @@ Objeto contendo dados de pagamento para consentimento.
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
 |data|object|true|Objeto contendo dados do pagamento e do recebedor (creditor).|
-|» status|[EnumAuthorisationStatusType](#schemaenumauthorisationstatustype)|true|Estado para o qual deve ir.<br><br>[Restrição] O único valor válido é REVOKED. (caso contrário a detentora deve retornar erro HTTP 400)<br><br>Estados possíveis:  <br>AWAITING_AUTHORISATION - Aguardando autorização  <br>AUTHORISED - Autorizado   <br>REJECTED - Rejeitado  <br>CONSUMED - Consumido   <br>REVOKED - Revogado|
-|» revocation|[Revocation](#schemarevocation)|true|Objeto que contém as informações das circunstância da revogação   <br><br>[Restrição] O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.|
+|» status|[EnumAuthorisationPatchStatusType](#schemaenumauthorisationpatchstatustype)|true|Estado para o qual deve ir.<br><br>[Restrição] O único valor válido é REVOKED. (caso contrário a detentora deve retornar erro HTTP 400)|
+|» revocation|[Revocation](#schemarevocation)|true|Objeto que contém as informações das circunstância da revogação.   <br><br>[Restrição] O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.|
 
 <h2 id="tocS_PaymentPix">PaymentPix</h2>
 
@@ -3830,8 +3859,8 @@ Objeto contendo as informações de resposta do consentimento para a iniciação
 |creationDateTime|string(date-time)|true|Data e hora em que o consentimento foi criado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).|
 |expirationDateTime|string(date-time)|true|Data e hora em que o consentimento da iniciação de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).<br>O consentimento é criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expiração - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.<br>Para o cenário em que o status assumiu AUTHORISED, o tempo máximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este é o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. Não é possível prorrogar este tempo e a criação de um novo consentimento será necessária para os cenários de insucesso.<br>O tempo do expirationDateTime é garantido com os 15 minutos do access token, sendo possível utilizar mais três refresh tokens até totalizar 60 minutos.|
 |statusUpdateDateTime|string(date-time)|true|Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).|
-|status|[EnumAuthorisationStatusType](#schemaenumauthorisationstatustype)|true|Estado para o qual deve ir.<br><br>[Restrição] O único valor válido é REVOKED. (caso contrário a detentora deve retornar erro HTTP 400)<br><br>Estados possíveis:  <br>AWAITING_AUTHORISATION - Aguardando autorização  <br>AUTHORISED - Autorizado   <br>REJECTED - Rejeitado  <br>CONSUMED - Consumido   <br>REVOKED - Revogado|
-|revocation|[Revocation](#schemarevocation)|false|Objeto que contém as informações das circunstância da revogação   <br><br>[Restrição] O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.|
+|status|[EnumAuthorisationStatusType](#schemaenumauthorisationstatustype)|true|Retorna o estado do consentimento, o qual no momento de sua criação será AWAITING_AUTHORISATION.<br>Este estado será alterado depois da autorização do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED, REJECTED ou REVOKED.<br>O consentimento fica no estado CONSUMED após ocorrer a iniciação do pagamento referente ao consentimento.<br>Em caso de consentimento expirado a detentora deverá retornar o status REJECTED.<br>Em caso de revogação do consentimento a detentora deverá retornar o status REVOKED.<br>Estados possíveis:<br>AWAITING_AUTHORISATION - Aguardando autorização<br>AUTHORISED - Autorizado<br>REJECTED - Rejeitado<br>CONSUMED - Consumido<br>REVOKED - Revogado|
+|revocation|[Revocation](#schemarevocation)|false|Objeto que contém as informações das circunstância da revogação.   <br><br>[Restrição] O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.|
 |loggedUser|[LoggedUser](#schemaloggeduser)|true|Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.<br>[Restrição] Deve obrigatoriamente ser enviado quando a revogação for feita pelo usuário final, ou seja, se o campo revokedBy estiver com o valor 'USER'.|
 |businessEntity|[BusinessEntity](#schemabusinessentity)|false|Usuário (pessoa jurídica) que encontra-se logado na instituição Iniciadora de Pagamento. [Restrição] Preenchimento obrigatório se usuário logado na instituição Iniciadora de Pagamento for um CNPJ (pessoa jurídica).|
 |creditor|[Identification](#schemaidentification)|true|Objeto contendo os dados do recebedor (creditor).|
@@ -3917,7 +3946,7 @@ Objeto contendo as informações de resposta do consentimento para a iniciação
 
 ```
 
-Objeto que contém as informações das circunstância da revogação   
+Objeto que contém as informações das circunstância da revogação.   
 
 [Restrição] O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.
 

@@ -1270,16 +1270,27 @@ components:
         - REVOKED
       example: REVOKED
       description: |
+        Retorna o estado do consentimento, o qual no momento de sua criação será AWAITING_AUTHORISATION.
+        Este estado será alterado depois da autorização do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED, REJECTED ou REVOKED.
+        O consentimento fica no estado CONSUMED após ocorrer a iniciação do pagamento referente ao consentimento.
+        Em caso de consentimento expirado a detentora deverá retornar o status REJECTED.
+        Em caso de revogação do consentimento a detentora deverá retornar o status REVOKED.
+        Estados possíveis:
+        AWAITING_AUTHORISATION - Aguardando autorização
+        AUTHORISED - Autorizado
+        REJECTED - Rejeitado
+        CONSUMED - Consumido
+        REVOKED - Revogado
+    EnumAuthorisationPatchStatusType:
+      type: string
+      maxLength: 22
+      enum:
+        - REVOKED
+      example: REVOKED
+      description: |
         Estado para o qual deve ir.
 
         [Restrição] O único valor válido é REVOKED. (caso contrário a detentora deve retornar erro HTTP 400)
-
-        Estados possíveis:  
-        AWAITING_AUTHORISATION - Aguardando autorização  
-        AUTHORISED - Autorizado   
-        REJECTED - Rejeitado  
-        CONSUMED - Consumido   
-        REVOKED - Revogado
     EnumErrorsCreatePayment:
       type: string
       maxLength: 25
@@ -1498,7 +1509,7 @@ components:
     Revocation:
       type: object
       description: |
-        Objeto que contém as informações das circunstância da revogação   
+        Objeto que contém as informações das circunstância da revogação.   
 
         [Restrição] O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.
       required:
@@ -1692,7 +1703,7 @@ components:
             - revocation
           properties:
             status:
-              $ref: '#/components/schemas/EnumAuthorisationStatusType'
+              $ref: '#/components/schemas/EnumAuthorisationPatchStatusType'
             revocation:
               $ref: '#/components/schemas/Revocation'
       additionalProperties: false
