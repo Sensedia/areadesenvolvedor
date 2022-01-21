@@ -190,7 +190,7 @@ MENSAL_INTERMITENTE
 DIARIO 
 DIARIO_INTERMITENTE 
 OUTROS";1;N;"";Não permitido;array;ANUAL
-/data/termsAdditionalInfo;termsAdditionalInfo;Texto livre para complementar informação relativa ao terms, quando for selecionada a opção 'Outros';Texto;255;Opcional;;;0;1;"";Não permitido;string;
+/data/termsAdditionalInfo;termsAdditionalInfo;Texto livre para complementar informação relativa ao campo terms, quando for selecionada a opção 'Outros';Texto;255;Opcional;;;0;1;"";Não permitido;string;
 /data/customerService;customerService;"Rede de atendimento do seguro contratado. A considerar os domínios abaixo:
   1. Rede Referenciada
   2. Livre Escolha
