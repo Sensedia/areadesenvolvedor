@@ -435,6 +435,8 @@ components:
       $ref: ./schemas/enum/EnumAccountPaymentsType.yaml
     EnumAuthorisationStatusType:
       $ref: ./schemas/enum/EnumAuthorisationStatusType.yaml
+    EnumAuthorisationPatchStatusType:
+      $ref: ./schemas/enum/EnumAuthorisationPatchStatusType.yaml
     EnumErrorsCreatePayment:
       $ref: ./schemas/enum/EnumErrorsCreatePayment.yaml
     EnumLocalInstrument:
