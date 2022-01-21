@@ -1353,7 +1353,6 @@ components:
         AUTHORISED - Autorizado
         REJECTED - Rejeitado
         CONSUMED - Consumido
-        REVOKED - Revogado
     EnumAuthorisationPatchStatusType:
       type: string
       maxLength: 22
