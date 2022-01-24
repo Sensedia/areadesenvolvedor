@@ -310,7 +310,7 @@ components:
       required:
         - participant
         - issuerInstitutionCnpjNumber
-        - investimentType
+        - investmentType
         - index
         - investmentConditions
       properties:
@@ -322,7 +322,7 @@ components:
           maxLength: 14
           pattern: '^\d{14}$'
           example: '45086338000178'
-        investimentType:
+        investmentType:
           $ref: '#/components/schemas/EnumInvestmentsFixedIncomeBankProductType'
         index:
           $ref: '#/components/schemas/InvestmentsFixedIncomeBankIndex'
@@ -345,7 +345,7 @@ components:
         issueRemunerationRate:
           $ref: '#/components/schemas/NoIdentificationFrequencyDistribution'
       additionalProperties: false
-    InvestimentFundMinimumAmount:
+    InvestmentFundMinimumAmount:
       type: object
       required:
         - value
@@ -605,7 +605,7 @@ components:
         - fundQuotaType
       properties:
         minimumAmount:
-          $ref: '#/components/schemas/InvestimentFundMinimumAmount'
+          $ref: '#/components/schemas/InvestmentFundMinimumAmount'
         redemption:
           $ref: '#/components/schemas/InvestmentsFundGeneralConditionsRedemption'
         application:

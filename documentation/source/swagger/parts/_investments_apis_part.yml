@@ -165,7 +165,7 @@ components:
     InvestmentsFixedIncomeBankIndex:
       $ref: ./schemas/investments_apis/InvestmentsFixedIncomeBankIndex.yaml
     InvestmentFundMinimumAmount:
-      $ref: ./schemas/investments_apis/InvestimentFundMinimumAmount.yaml
+      $ref: ./schemas/investments_apis/InvestmentFundMinimumAmount.yaml
     InvestmentsFixedIncomeBankInvestmentConditions:
       $ref: ./schemas/investments_apis/InvestmentsFixedIncomeBankInvestmentConditions.yaml
     InvestmentsFixedIncomeCredit:

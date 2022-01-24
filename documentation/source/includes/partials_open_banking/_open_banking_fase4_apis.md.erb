@@ -453,7 +453,7 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
       "issuerInstitutionCnpjNumber": "45086338000178",
-      "investimentType": "CDB",
+      "investmentType": "CDB",
       "index": {
         "indexer": "CDI",
         "indexerAdditionalInfo": "Dólar",
@@ -4833,7 +4833,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
       "issuerInstitutionCnpjNumber": "45086338000178",
-      "investimentType": "CDB",
+      "investmentType": "CDB",
       "index": {
         "indexer": "CDI",
         "indexerAdditionalInfo": "Dólar",
@@ -5409,12 +5409,12 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |quotationDays|integer(int32)|true|Indica se o fundo estabelece um período em que o investidor não pode resgatar os recursos aplicados no fundo. Caso ocorra resgate antes do período, o investidor perderá a rentabilidade do período.|
 |quotationTerm|[EnumInvestmentsFundGeneralConditionsTermType](#schemaenuminvestmentsfundgeneralconditionstermtype)|true|Período em dias corridos ou dias úteis do prazo de cotização.<br><br><ol><li>Dias corridos</li><li>Dias úteis</li></ol>|
 
-<h2 id="tocS_InvestimentFundMinimumAmount">InvestimentFundMinimumAmount</h2>
+<h2 id="tocS_InvestmentFundMinimumAmount">InvestmentFundMinimumAmount</h2>
 
-<a id="schemainvestimentfundminimumamount"></a>
-<a id="schema_InvestimentFundMinimumAmount"></a>
-<a id="tocSinvestimentfundminimumamount"></a>
-<a id="tocsinvestimentfundminimumamount"></a>
+<a id="schemainvestmentfundminimumamount"></a>
+<a id="schema_InvestmentFundMinimumAmount"></a>
+<a id="tocSinvestmentfundminimumamount"></a>
+<a id="tocsinvestmentfundminimumamount"></a>
 
 ```json
 {
@@ -5447,7 +5447,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
     "urlComplementaryList": "https://empresaa1.com/companies"
   },
   "issuerInstitutionCnpjNumber": "45086338000178",
-  "investimentType": "CDB",
+  "investmentType": "CDB",
   "index": {
     "indexer": "CDI",
     "indexerAdditionalInfo": "Dólar",
@@ -5496,7 +5496,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |---|---|---|---|---|
 |participant|[Participant](#schemaparticipant)|true|Conjunto de informações relativas ao participante do produto de open banking|
 |issuerInstitutionCnpjNumber|string|true|CNPJ da instituição emissora.|
-|investimentType|[EnumInvestmentsFixedIncomeBankProductType](#schemaenuminvestmentsfixedincomebankproducttype)|true|Especificação do ativo em questão.<br><ol><li>CDB</li><li>RDB</li><li>LCI</li><li>LCA</li></ol>|
+|investmentType|[EnumInvestmentsFixedIncomeBankProductType](#schemaenuminvestmentsfixedincomebankproducttype)|true|Especificação do ativo em questão.<br><ol><li>CDB</li><li>RDB</li><li>LCI</li><li>LCA</li></ol>|
 |index|[InvestmentsFixedIncomeBankIndex](#schemainvestmentsfixedincomebankindex)|true||
 |investmentConditions|[InvestmentsFixedIncomeBankInvestmentConditions](#schemainvestmentsfixedincomebankinvestmentconditions)|true||
 
@@ -5693,7 +5693,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|minimumAmount|[InvestimentFundMinimumAmount](#schemainvestimentfundminimumamount)|true||
+|minimumAmount|[InvestmentFundMinimumAmount](#schemainvestmentfundminimumamount)|true||
 |redemption|[InvestmentsFundGeneralConditionsRedemption](#schemainvestmentsfundgeneralconditionsredemption)|true||
 |application|[InvestmentsFundGeneralConditionsApplication](#schemainvestmentsfundgeneralconditionsapplication)|true||
 |fundQuotaType|[EnumInvestmentsFundGeneralConditionsFundQuotaType](#schemaenuminvestmentsfundgeneralconditionsfundquotatype)|true|Referente a incidência de tributos sobre o produto de investimento&#58;<br><br><ol><li>Cota de abertura</li><li>Cota de fechamento</li></ol>|
@@ -6644,12 +6644,12 @@ Meta informações referente à API requisitada.
 |modality|CONTRIBUICAO_VARIAVEL|
 |modality|BENEFICIO_DEFINIDO|
 
-<h2 id="tocS_SurvivalPensionInvestimentFund">SurvivalPensionInvestimentFund</h2>
+<h2 id="tocS_SurvivalPensionInvestmentFund">SurvivalPensionInvestmentFund</h2>
 
-<a id="schemasurvivalpensioninvestimentfund"></a>
-<a id="schema_SurvivalPensionInvestimentFund"></a>
-<a id="tocSsurvivalpensioninvestimentfund"></a>
-<a id="tocssurvivalpensioninvestimentfund"></a>
+<a id="schemasurvivalpensioninvestmentfund"></a>
+<a id="schema_SurvivalPensionInvestmentFund"></a>
+<a id="tocSsurvivalpensioninvestmentfund"></a>
+<a id="tocssurvivalpensioninvestmentfund"></a>
 
 ```json
 {
@@ -6789,7 +6789,7 @@ Período de Diferimento
 |gracePeriod|[SurvivalPensionGracePeriod](#schemasurvivalpensiongraceperiod)|false|Prazo de carência|
 |redemptionPaymentTerm|integer|false|Prazo em dias para pagamento do resgate|
 |portabilityPaymentTerm|number|false|Prazo em dias para pagamento da portabilidade (entre empresas diferentes).|
-|investmentFunds|[[SurvivalPensionInvestimentFund](#schemasurvivalpensioninvestimentfund)]|false|[Fundos de Investimento (por fundo).]|
+|investmentFunds|[[SurvivalPensionInvestmentFund](#schemasurvivalpensioninvestmentfund)]|false|[Fundos de Investimento (por fundo).]|
 
 <h2 id="tocS_SurvivalPensionType">SurvivalPensionType</h2>
 
@@ -7033,7 +7033,7 @@ Período de concessão do benefício
 |interestRate|string|false|Taxa de juros garantida utilizada para conversão em renda. Em %|
 |updateIndex|[UpdateIndex](#schemaupdateindex)|false|Índice utilizado na atualização do prêmio e do capital segurado, caso critério de atualização por meio de índice:<br>1. IPCA (IBGE);<br>2. IGP-M (FGV);<br>3. INPC (IBGE).|
 |reversalFinancialResults|string|false|Percentual de reversão de excedente financeiro na concessão. Em %.|
-|investmentFunds|[[SurvivalPensionInvestimentFund](#schemasurvivalpensioninvestimentfund)]|false|[Fundos de Investimento (por fundo).]|
+|investmentFunds|[[SurvivalPensionInvestmentFund](#schemasurvivalpensioninvestmentfund)]|false|[Fundos de Investimento (por fundo).]|
 
 <h2 id="tocS_GracePeriod">GracePeriod</h2>
 

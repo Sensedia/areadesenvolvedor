@@ -399,7 +399,7 @@ components:
         targetAudience:
           $ref: '#/components/schemas/EnumTargetAudience'
       additionalProperties: false
-    SurvivalPensionInvestimentFund:
+    SurvivalPensionInvestmentFund:
       type: object
       description: Fundos de Investimento (por fundo).
       properties:
@@ -583,7 +583,7 @@ components:
         investmentFunds:
           type: array
           items:
-            $ref: '#/components/schemas/SurvivalPensionInvestimentFund'
+            $ref: '#/components/schemas/SurvivalPensionInvestmentFund'
       additionalProperties: false
     SurvivalPensionType:
       type: string
@@ -809,7 +809,7 @@ components:
         investmentFunds:
           type: array
           items:
-            $ref: '#/components/schemas/SurvivalPensionInvestimentFund'
+            $ref: '#/components/schemas/SurvivalPensionInvestmentFund'
       additionalProperties: false
     Links:
       type: object
