@@ -31,7 +31,7 @@ properties:
   investmentFunds:
     type: array
     items:
-      $ref: ./SurvivalPensionInvestimentFund.yaml
+      $ref: ./SurvivalPensionInvestmentFund.yaml
 additionalProperties: false
 
 
