@@ -79,8 +79,8 @@ components:
       $ref: './schemas/pension_apis/survival/OkResponseGetSurvivalPensionContract.yaml'
     GetSurvivalPensionContractData:
       $ref: './schemas/pension_apis/survival/GetSurvivalPensionContractData.yaml'
-    SurvivalPensionInvestimentFund:
-      $ref: './schemas/pension_apis/survival/SurvivalPensionInvestimentFund.yaml'
+    SurvivalPensionInvestmentFund:
+      $ref: './schemas/pension_apis/survival/SurvivalPensionInvestmentFund.yaml'
     SurvivalPensionMinimumRequirements:
       $ref: ./schemas/pension_apis/survival/SurvivalPensionMinimumRequirements.yaml
     SusepProcessNumber:
