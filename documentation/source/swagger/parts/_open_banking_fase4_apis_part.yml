@@ -696,8 +696,8 @@ components:
       $ref: ./schemas/investments_apis/Redemption.yaml
     InvestmentsFundGeneralConditionsApplication:
       $ref: ./schemas/investments_apis/Application.yaml
-    InvestimentFundMinimumAmount:
-      $ref: ./schemas/investments_apis/InvestimentFundMinimumAmount.yaml
+    InvestmentFundMinimumAmount:
+      $ref: ./schemas/investments_apis/InvestmentFundMinimumAmount.yaml
     InvestmentsFixedIncomeBank:
       $ref: ./schemas/investments_apis/InvestmentsFixedIncomeBank.yaml
     InvestmentsFixedIncomeBankIndex:
@@ -748,8 +748,8 @@ components:
       $ref: ./schemas/pension_apis/survival/OkResponseGetSurvivalPensionContract.yaml
     GetSurvivalPensionContractData:
       $ref: ./schemas/pension_apis/survival/GetSurvivalPensionContractData.yaml
-    SurvivalPensionInvestimentFund:
-      $ref: ./schemas/pension_apis/survival/SurvivalPensionInvestimentFund.yaml
+    SurvivalPensionInvestmentFund:
+      $ref: ./schemas/pension_apis/survival/SurvivalPensionInvestmentFund.yaml
     SurvivalPensionMinimumRequirements:
       $ref: ./schemas/pension_apis/survival/SurvivalPensionMinimumRequirements.yaml
     SurvivalPensionDefferalPeriod:
