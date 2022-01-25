@@ -138,8 +138,6 @@ components:
       $ref: ./schemas/business_commons/InsurancePensionReclaim.yaml
     InsurancePensionReclaimTableItem:
       $ref: ./schemas/business_commons/InsurancePensionReclaimTableItem.yaml
-    NoIdentificationFrequencyDistribution:
-      $ref: ./schemas/business_commons/NoIdentificationFrequencyDistribution.yaml
     EnumPersonalIndemnifiablePeriodType:
       $ref: ./schemas/business_commons/InsurancePensionEnumIndemnifiablePeriodType.yaml
     # Fim schemas comuns

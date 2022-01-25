@@ -2,16 +2,16 @@ description: A solicitação foi bem formada, mas não pôde ser processada devi
 content:
   application/jwt:
     schema:
-      $ref: ./422ResponseErrorCreatePixPayment.yaml
-    examples:
-      Saldo insuficiente:
-        summary: Saldo insuficiente
+      $ref: ./422ResponseErrorCreateTedTefPayment.yaml
+    examples: 
+      Acima do limite estabelecido:
+        summary: Acima do limite estabelecido
         value:  {
                   "errors": [
                     {
-                      "code": "SALDO_INSUFICIENTE",
-                      "title": "Saldo insuficiente.",
-                      "detail": "A conta selecionada não possui saldo suficiente para realizar o pagamento."
+                      "code": "VALOR_ACIMA_LIMITE", 
+                      "title": "Acima do limite estabelecido.", 
+                      "detail": "Acima do limite estabelecido."
                     }
                   ],
                   "meta": {
