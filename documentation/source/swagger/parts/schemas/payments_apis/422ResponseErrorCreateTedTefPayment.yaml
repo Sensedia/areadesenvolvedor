@@ -29,6 +29,8 @@ properties:
             • JANELA_OPER_INVALIDA: Janela de operação inválida.
             • LIQUIDACAO_ERRO_INESPERADO: Erro na liquidação do pagamento no arranjo.
             • NAO_INFORMADO: Não informado.
+            • AGENCIA_REQUERIDA: Pagamento inválido.
+            • FINALIDADE_REQUERIDA: Pagamento inválido.
         detail:
           type: string
           maxLength: 2048
@@ -43,6 +45,8 @@ properties:
             • JANELA_OPER_INVALIDA: Requisição está fora da janela de funcionamento.
             • LIQUIDACAO_ERRO_INESPERADO: Erro na liquidação do pagamento no arranjo alvo.
             • NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.
+            • AGENCIA_REQUERIDA: O tipo de conta alvo requer as informações de agência.
+            • FINALIDADE_REQUERIDA: Finalidade é requerida para o pagamento no arranjo alvo.
       additionalProperties: false
   meta:
     $ref: ../Meta.yaml

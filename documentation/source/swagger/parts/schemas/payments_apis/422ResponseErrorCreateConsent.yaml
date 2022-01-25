@@ -21,22 +21,29 @@ properties:
           pattern: \w*\W*
           example: Forma de pagamento inválida.
           description: |
-            Título específico do erro reportado, de acordo com o código enviado:  
-            • FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  
-            • DATA_PGTO_INVALIDA: Data de pagamento inválida. 
+            Título específico do erro reportado, de acordo com o código enviado:
+            • FORMA_PGTO_INVALIDA: Forma de pagamento inválida.
+            • DATA_PGTO_INVALIDA: Data de pagamento inválida.
             • DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.
-            • NAO_INFORMADO: Não informado.    
+            • NAO_INFORMADO: Não informado.
+            • TIPO_CONTA_NAO_SUPORTADO: Consentimento inválido.
+            • JANELA_HORARIO_NAO_PERMITIDA: Consentimento inválido.
+            • VALOR_ACIMA_LIMITE: Consentimento inválido.
+
         detail:
           type: string
           maxLength: 2048
           pattern: \w*\W*
           example: Meio de pagamento inválido.
           description: |
-            Descrição específica do erro de acordo com o código reportado:  
-            • FORMA_PGTO_INVALIDA – Meio de pagamento inválido.  
-            • DATA_PGTO_INVALIDA – Data de pagamento inválida no contexto, por exemplo, data no passado. Para pagamentos únicos deve ser informada a data atual, do dia corrente.  
-            • DETALHE_PGTO_INVALIDO: O campo [nome_campo] não atende os requisitos de preenchimento.  
-            • NAO_INFORMADO – Não reportado/identificado pela instituição detentora de conta.  
+            Descrição específica do erro de acordo com o código reportado:
+            • FORMA_PGTO_INVALIDA – Meio de pagamento inválido.
+            • DATA_PGTO_INVALIDA – Data de pagamento inválida no contexto, por exemplo, data no passado. Para pagamentos únicos deve ser informada a data atual, do dia corrente.
+            • DETALHE_PGTO_INVALIDO: O campo [nome_campo] não atende os requisitos de preenchimento.
+            • NAO_INFORMADO – Não reportado/identificado pela instituição detentora de conta.
+            • TIPO_CONTA_NAO_SUPORTADO: Tipo de conta não suportado pelo arranjo alvo.
+            • JANELA_HORARIO_NAO_PERMITIDA: Janela de horário do arranjo de pagamento alvo não permitida.
+            • VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
       additionalProperties: false
   meta:
     $ref: ../Meta.yaml
