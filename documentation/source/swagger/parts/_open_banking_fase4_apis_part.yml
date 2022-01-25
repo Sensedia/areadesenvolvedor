@@ -22,7 +22,7 @@ info:
     <i>“Visando refletir uma padronização de mercado, foi proposto que a classificação de papéis do SINACOR seja utilizada para definir o preenchimento do campo denominação”.</i>
     
     ![Classificação denominação](images/extras/tabela_api_investimentos_classificacao_denominacao.png)
-    <a href="images/extras/tabela_api_investimentos_classificacao_denominacao.xlsx" target="_blank">Download da Tabela de Classificação de Denominação</a>
+    <a href="documents/tabela_api_investimentos_classificacao_denominacao.xlsx" target="_blank">Download da Tabela de Classificação de Denominação</a>
   version: 1.0.0-rc1.0
 tags:
   - name: API - Títulos de Capitalização

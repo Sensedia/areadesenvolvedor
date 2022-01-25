@@ -10,7 +10,7 @@ características entre as Instituições Financeiras participantes do Open Banki
 
 <strong>API de Investimentos</strong>
 
-O compartilhamento de dados relacionados aos produtos de títulos financeiros se restringe ao mercado primário
+O compartilhamento de dados relacionados aos produtos de títulos financeiros se restringe ao mercado primário.
 
 A tabela abaixo atende aos seguintes produtos: 
 
@@ -23,7 +23,7 @@ A tabela abaixo atende aos seguintes produtos:
 <i>“Visando refletir uma padronização de mercado, foi proposto que a classificação de papéis do SINACOR seja utilizada para definir o preenchimento do campo denominação”.</i>
 
 ![Classificação denominação](images/extras/tabela_api_investimentos_classificacao_denominacao.png)
-<a href="images/extras/tabela_api_investimentos_classificacao_denominacao.xlsx" target="_blank">Download da Tabela de Classificação de Denominação</a>
+<a href="documents/tabela_api_investimentos_classificacao_denominacao.xlsx" target="_blank">Download da Tabela de Classificação de Denominação</a>
 
 <h1 id="fase-4-apis-do-open-banking-brasil-api-t-tulos-de-capitaliza-o">API - Títulos de Capitalização - v1.0.0-rc1.0</h1>
 
@@ -489,10 +489,8 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
       "investmentConditions": {
         "minimumAmount": "100.00",
         "redemptionTerm": "DIARIA",
-        "minimumExpirationTerm": 30,
-        "maximumExpirationTerm": 720,
-        "minimumGracePeriod": 5,
-        "maximumGracePeriod": 180
+        "expirationPeriod": "1081+",
+        "gracePeriod": "1081+"
       }
     }
   ],
@@ -4869,10 +4867,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
       "investmentConditions": {
         "minimumAmount": "100.00",
         "redemptionTerm": "DIARIA",
-        "minimumExpirationTerm": 30,
-        "maximumExpirationTerm": 720,
-        "minimumGracePeriod": 5,
-        "maximumGracePeriod": 180
+        "expirationPeriod": "1081+",
+        "gracePeriod": "1081+"
       }
     }
   ],
@@ -5483,10 +5479,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
   "investmentConditions": {
     "minimumAmount": "100.00",
     "redemptionTerm": "DIARIA",
-    "minimumExpirationTerm": 30,
-    "maximumExpirationTerm": 720,
-    "minimumGracePeriod": 5,
-    "maximumGracePeriod": 180
+    "expirationPeriod": "1081+",
+    "gracePeriod": "1081+"
   }
 }
 
@@ -5562,10 +5556,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 {
   "minimumAmount": "100.00",
   "redemptionTerm": "DIARIA",
-  "minimumExpirationTerm": 30,
-  "maximumExpirationTerm": 720,
-  "minimumGracePeriod": 5,
-  "maximumGracePeriod": 180
+  "expirationPeriod": "1081+",
+  "gracePeriod": "1081+"
 }
 
 ```
@@ -5576,10 +5568,16 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |---|---|---|---|---|
 |minimumAmount|string|true|Valor mínimo de aplicação no ativo.|
 |redemptionTerm|[EnumInvestmentsFixedIncomeBankRedemptionTerm](#schemaenuminvestmentsfixedincomebankredemptionterm)|true|Capacidade de conversão do título em dinheiro (resgate ou recompra).<br><br><ol><li>diária</li><li>na data de vencimento</li><li>diária após prazo de carência</li></ol>|
-|minimumExpirationTerm|number(int32)|true|Prazo mínimo referente ao vencimento do título|
-|maximumExpirationTerm|number(int32)|true|Prazo máximo referente ao vencimento do título|
-|minimumGracePeriod|number(int32)|true|Prazo mínimo da carência, ou seja, quando passa a ser possível resgatar o investimento|
-|maximumGracePeriod|number(int32)|true|Prazo máximo da carência, ou seja, quando passa a ser possível resgatar o investimento|
+|expirationPeriod|[InvestmentsFixedIncomeBankInvestmentConditions/properties/gracePeriod](#schemainvestmentsfixedincomebankinvestmentconditions/properties/graceperiod)|true|Faixa de valores para prazos de vencimento e carência.|
+|gracePeriod|string|true|Faixa de valores para prazos de vencimento e carência.|
+
+#### Enumerated Values
+
+|Nome|Código|
+|---|---|
+|gracePeriod|1_360|
+|gracePeriod|361_1080|
+|gracePeriod|1081+|
 
 <h2 id="tocS_InvestmentsFixedIncomeCredit">InvestmentsFixedIncomeCredit</h2>
 

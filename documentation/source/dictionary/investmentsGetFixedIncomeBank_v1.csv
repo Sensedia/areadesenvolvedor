@@ -38,7 +38,9 @@ OUTROS";1;1;"";Não permitido;string;CDI
 /data/investmentConditions/redemptionTerm;redemptionTerm;Capacidade de conversão do título em dinheiro (resgate ou recompra).<br><br><ol><li>diária</li><li>na data de vencimento</li><li>diária após prazo de carência</li></ol>;Texto;29;Obrigatório;;"DIARIA 
 DATA_VENCIMENTO 
 DIARIA_PRAZO_CARENCIA";1;1;"";Não permitido;string;DIARIA
-/data/investmentConditions/minimumExpirationTerm;minimumExpirationTerm;Prazo mínimo referente ao vencimento do título;Número;;Obrigatório;;;1;1;"";Não permitido;number;30
-/data/investmentConditions/maximumExpirationTerm;maximumExpirationTerm;Prazo máximo referente ao vencimento do título;Número;;Obrigatório;;;1;1;"";Não permitido;number;720
-/data/investmentConditions/minimumGracePeriod;minimumGracePeriod;Prazo mínimo da carência, ou seja, quando passa a ser possível resgatar o investimento;Número;;Obrigatório;;;1;1;"";Não permitido;number;5
-/data/investmentConditions/maximumGracePeriod;maximumGracePeriod;Prazo máximo da carência, ou seja, quando passa a ser possível resgatar o investimento;Número;;Obrigatório;;;1;1;"";Não permitido;number;180
+/data/investmentConditions/expirationPeriod;expirationPeriod;Faixa de valores para prazos de vencimento e carência.;Texto;8;Obrigatório;;"1_360 
+361_1080 
+1081+";1;1;"";Não permitido;string;1081+
+/data/investmentConditions/gracePeriod;gracePeriod;Faixa de valores para prazos de vencimento e carência.;Texto;8;Obrigatório;;"1_360 
+361_1080 
+1081+";1;1;"";Não permitido;string;1081+

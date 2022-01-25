@@ -369,10 +369,8 @@ components:
       required:
         - minimumAmount
         - redemptionTerm
-        - minimumExpirationTerm
-        - maximumExpirationTerm
-        - minimumGracePeriod
-        - maximumGracePeriod
+        - expirationPeriod
+        - gracePeriod
       properties:
         minimumAmount:
           type: string
@@ -383,30 +381,18 @@ components:
           example: '100.00'
         redemptionTerm:
           $ref: '#/components/schemas/EnumInvestmentsFixedIncomeBankRedemptionTerm'
-        minimumExpirationTerm:
-          type: number
-          format: int32
-          description: Prazo mínimo referente ao vencimento do título
-          minimum: 1
-          example: 30
-        maximumExpirationTerm:
-          type: number
-          format: int32
-          description: Prazo máximo referente ao vencimento do título
-          minimum: 1
-          example: 720
-        minimumGracePeriod:
-          type: number
-          format: int32
-          description: 'Prazo mínimo da carência, ou seja, quando passa a ser possível resgatar o investimento'
-          minimum: 0
-          example: 5
-        maximumGracePeriod:
-          type: number
-          format: int32
-          description: 'Prazo máximo da carência, ou seja, quando passa a ser possível resgatar o investimento'
-          minimum: 0
-          example: 180
+        expirationPeriod:
+          $ref: '#/components/schemas/InvestmentsFixedIncomeBankInvestmentConditions/properties/gracePeriod'
+        gracePeriod:
+          type: string
+          maxLength: 8
+          enum:
+            - '1_360'
+            - '361_1080'
+            - 1081+
+          example: 1081+
+          description: |
+            Faixa de valores para prazos de vencimento e carência. 
       additionalProperties: false
     InvestmentsFixedIncomeCredit:
       type: object
