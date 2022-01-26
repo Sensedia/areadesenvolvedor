@@ -1,12 +1,13 @@
+allOf:
+  - $ref: ./PaymentConsent.yaml
 type: object
-description: Objeto contendo dados do pagamento e do recebedor (creditor).
+description: Objeto contendo dados de pagamento para consentimento.
 required:
-  - payment
+  - creditorAccount
+  - purpose
 properties:
-  payment:
-    $ref: ./Payment.yaml
   creditorAccount:
-    $ref: ./CreditorAccountTedTef.yaml
+    $ref: ../business_commons/CreditorAccount.yaml
   purpose:
     $ref: ./EnumPurposeTed.yaml
   purposeAdditionalInfo:

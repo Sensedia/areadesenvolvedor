@@ -59,7 +59,7 @@ properties:
   creditorAccount:
     $ref: ../payments_apis/CreditorAccountTedTef.yaml
   purpose:
-    $ref: ./EnumPurposeTedTef.yaml
+    $ref: ./EnumPurposeTed.yaml
   purposeAdditionalInfo:
     type: string
     maxLength: 100

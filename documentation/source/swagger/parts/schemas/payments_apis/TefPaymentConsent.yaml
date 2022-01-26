@@ -1,0 +1,10 @@
+allOf:
+  - $ref: ./PaymentConsent.yaml
+type: object
+description: Objeto contendo dados de pagamento para consentimento.
+required:
+  - creditorAccount
+properties:
+  creditorAccount:
+    $ref: ../business_commons/CreditorAccount.yaml
+additionalProperties: false

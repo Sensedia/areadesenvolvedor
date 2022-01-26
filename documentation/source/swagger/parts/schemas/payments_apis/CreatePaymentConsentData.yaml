@@ -11,8 +11,13 @@ properties:
     $ref: ./BusinessEntity.yaml
   creditor:
     $ref: ../payments_apis/PaymentIdentification.yaml
-  payment:
-    $ref: ./PaymentConsent.yaml
   debtorAccount:
     $ref: ../business_commons/DebtorAccount.yaml
+  payment:
+    oneOf:
+      - $ref: PixPaymentConsent.yaml
+      - $ref: TedPaymentConsent.yaml
+      - $ref: TefPaymentConsent.yaml
+    discriminator:
+      propertyName: PaymentConsent.yaml
 additionalProperties: false

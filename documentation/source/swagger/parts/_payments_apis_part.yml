@@ -406,8 +406,20 @@ components:
       $ref: ./schemas/enum/EnumErrorsCreateTedTefPayment.yaml
     BusinessEntity:
       $ref: ./schemas/payments_apis/BusinessEntity.yaml
+
     CreatePaymentConsent:
       $ref: ./schemas/payments_apis/CreatePaymentConsent.yaml
+    CreatePaymentConsentData:
+      $ref: ./schemas/payments_apis/CreatePaymentConsentData.yaml
+    PaymentConsent:
+      $ref: ./schemas/payments_apis/PaymentConsent.yaml
+    PixPaymentConsent:
+      $ref: ./schemas/payments_apis/PixPaymentConsent.yaml
+    TedPaymentConsent:
+      $ref: ./schemas/payments_apis/TedPaymentConsent.yaml
+    TefPaymentConsent:
+      $ref: ./schemas/payments_apis/TefPaymentConsent.yaml
+
     CreatePixPayment:
       $ref: ./schemas/payments_apis/CreatePixPayment.yaml
     CreatePixPaymentData:
@@ -444,8 +456,6 @@ components:
       $ref: ./schemas/payments_apis/LoggedUser.yaml
     Meta:
       $ref: ./schemas/Meta.yaml
-    PaymentConsent:
-      $ref: ./schemas/payments_apis/PaymentConsent.yaml
     Schedule:
       $ref: ./schemas/payments_apis/Schedule.yaml
     Single:
@@ -483,9 +493,7 @@ components:
     CreateTedTefPaymentData:
       $ref: ./schemas/payments_apis/CreateTedTefPaymentData.yaml
     EnumPurposeTedTef:
-      $ref: ./schemas/payments_apis/EnumPurposeTedTef.yaml
-    TedTefCreditorAccount:
-      $ref: ./schemas/payments_apis/CreditorAccountTedTef.yaml
+      $ref: ./schemas/payments_apis/EnumPurposeTed.yaml
     ResponseTedTefPayment:
       $ref: ./schemas/payments_apis/ResponseTedTefPayment.yaml
     ResponseTedTefPaymentData:
