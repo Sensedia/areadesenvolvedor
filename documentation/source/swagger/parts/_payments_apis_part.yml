@@ -335,7 +335,7 @@ paths:
         "415":
           $ref: "#/components/responses/UnsupportedMediaType"
         "422":
-          $ref: "#/components/responses/UnprocessableEntityPixPayments"
+          $ref: "#/components/responses/UnprocessableEntityTedTefPayments"
         "429":
           $ref: "#/components/responses/TooManyRequests"
         "500":
@@ -396,29 +396,30 @@ paths:
             - payments
 components:
   schemas:
-    CreateTedTefPayment:
-      $ref: ./schemas/payments_apis/CreateTedTefPayment.yaml
-    CreateTedTefPaymentData:
-      $ref: ./schemas/payments_apis/CreateTedTefPaymentData.yaml
-    EnumPurposeTedTef:
-      $ref: ./schemas/payments_apis/EnumPurposeTedTef.yaml
-    TedTefCreditorAccount:
-      $ref: ./schemas/payments_apis/CreditorAccountTedTef.yaml
-    ResponseTedTefPayment:
-      $ref: ./schemas/payments_apis/ResponseTedTefPayment.yaml
-    ResponseTedTefPaymentData:
-      $ref: ./schemas/payments_apis/ResponseTedTefPaymentData.yaml
-
     422ResponseErrorCreateConsent:
       $ref: ./schemas/payments_apis/422ResponseErrorCreateConsent.yaml
     422ResponseErrorCreatePixPayment:
       $ref: ./schemas/payments_apis/422ResponseErrorCreatePixPayment.yaml
-    422ResponseErrorPatchConsent:
-      $ref: ./schemas/payments_apis/422ResponseErrorPatchConsent.yaml
+    422ResponseErrorCreateTedTefPayment:
+      $ref: ./schemas/payments_apis/422ResponseErrorCreateTedTefPayment.yaml
+    EnumErrorsCreateTedTefPayment:
+      $ref: ./schemas/enum/EnumErrorsCreateTedTefPayment.yaml
     BusinessEntity:
       $ref: ./schemas/payments_apis/BusinessEntity.yaml
+
     CreatePaymentConsent:
       $ref: ./schemas/payments_apis/CreatePaymentConsent.yaml
+    CreatePaymentConsentData:
+      $ref: ./schemas/payments_apis/CreatePaymentConsentData.yaml
+    PaymentConsent:
+      $ref: ./schemas/payments_apis/PaymentConsent.yaml
+    PixPaymentConsent:
+      $ref: ./schemas/payments_apis/PixPaymentConsent.yaml
+    TedPaymentConsent:
+      $ref: ./schemas/payments_apis/TedPaymentConsent.yaml
+    TefPaymentConsent:
+      $ref: ./schemas/payments_apis/TefPaymentConsent.yaml
+
     CreatePixPayment:
       $ref: ./schemas/payments_apis/CreatePixPayment.yaml
     CreatePixPaymentData:
@@ -438,7 +439,7 @@ components:
     EnumAuthorisationPatchStatusType:
       $ref: ./schemas/enum/EnumAuthorisationPatchStatusType.yaml
     EnumErrorsCreatePayment:
-      $ref: ./schemas/enum/EnumErrorsCreatePayment.yaml
+      $ref: ./schemas/enum/EnumErrorsCreatePixPayment.yaml
     EnumLocalInstrument:
       $ref: ./schemas/enum/EnumLocalInstrument.yaml
     EnumPaymentPersonType:
@@ -451,17 +452,15 @@ components:
       $ref: ./schemas/enum/EnumRejectionReasonType.yaml
     Identification:
       $ref: ./schemas/payments_apis/PaymentIdentification.yaml
-    Revocation:
-      $ref: ./schemas/payments_apis/Revocation.yaml
     LoggedUser:
       $ref: ./schemas/payments_apis/LoggedUser.yaml
     Meta:
       $ref: ./schemas/Meta.yaml
-    PaymentConsent:
-      $ref: ./schemas/payments_apis/PaymentConsent.yaml
-    PatchPaymentsConsent:
-      $ref: ./schemas/payments_apis/PatchPaymentsConsent.yaml
-    Payment:
+    Schedule:
+      $ref: ./schemas/payments_apis/Schedule.yaml
+    Single:
+      $ref: ./schemas/payments_apis/Single.yaml
+    PaymentPix:
       $ref: ./schemas/payments_apis/Payment.yaml
     ResponseError:
       $ref: ./schemas/ResponseError.yaml
@@ -473,7 +472,32 @@ components:
       $ref: ./schemas/payments_apis/ResponsePixPaymentData.yaml
     XFapiInteractionId:
       $ref: ./headers/XFapiInteractionId.yaml
-
+    PatchPaymentsConsent:
+      $ref: ./schemas/payments_apis/PatchPaymentsConsent.yaml
+    PatchPaymentsConsentData:
+      $ref: ./schemas/payments_apis/PatchPaymentsConsentData.yaml
+    Revocation:
+      $ref: ./schemas/payments_apis/Revocation.yaml
+    EnumRevokedBy:
+      $ref: ./schemas/payments_apis/EnumRevokedBy.yaml
+    Reason:
+      $ref: ./schemas/payments_apis/Reason.yaml
+    EnumRevocationReason:
+      $ref: ./schemas/enum/EnumRevocationReason.yaml
+    422ResponseErrorPatchConsent:
+      $ref: ./schemas/payments_apis/422ResponseErrorPatchConsent.yaml
+    EnumErrorsPatchConsent:
+      $ref: ./schemas/enum/EnumErrorsPatchConsent.yaml
+    CreateTedTefPayment:
+      $ref: ./schemas/payments_apis/CreateTedTefPayment.yaml
+    CreateTedTefPaymentData:
+      $ref: ./schemas/payments_apis/CreateTedTefPaymentData.yaml
+    EnumPurposeTedTef:
+      $ref: ./schemas/payments_apis/EnumPurposeTed.yaml
+    ResponseTedTefPayment:
+      $ref: ./schemas/payments_apis/ResponseTedTefPayment.yaml
+    ResponseTedTefPaymentData:
+      $ref: ./schemas/payments_apis/ResponseTedTefPaymentData.yaml
   parameters:
     consentId:
       $ref: ./parameters/ConsentId.yaml
@@ -491,7 +515,6 @@ components:
       $ref: ./parameters/XFapiInteractionId.yaml
     XIdempotencyKey:
       $ref: ./parameters/XIdempotencyKey.yaml
-
   securitySchemes:
     OpenId:
       type: openIdConnect
@@ -513,7 +536,6 @@ components:
           tokenUrl: "https://authserver.example/token"
           scopes:
             payments: Escopo necessário para acesso à API Payment Initiation.
-
   responses:
     BadRequest:
       $ref: ./responses/payments_apis/BadRequest.yaml
@@ -533,12 +555,14 @@ components:
       $ref: ./schemas/payments_apis/UnprocessableEntityConsents.yaml
     UnprocessableEntityPixPayments:
       $ref: ./schemas/payments_apis/UnprocessableEntityPixPayments.yaml
-    UnprocessableEntityPatchConsent:
-      $ref: ./schemas/payments_apis/UnprocessableEntityPatchConsent.yaml
+    UnprocessableEntityTedTefPayments:
+      $ref: ./schemas/payments_apis/UnprocessableEntityTedTefPayments.yaml
     Unauthorized:
       $ref: ./responses/payments_apis/Unauthorized.yaml
     UnsupportedMediaType:
       $ref: ./responses/payments_apis/UnsupportedMediaType.yaml
+    UnprocessableEntityPatchConsent:
+      $ref: ./schemas/payments_apis/UnprocessableEntityPatchConsent.yaml
     201PaymentsConsentsConsentCreated:
       description: Consentimento de pagamento criado com sucesso.
       headers:
@@ -553,18 +577,6 @@ components:
             $ref: "#/components/schemas/ResponsePaymentConsent"
     200PaymentsConsentsConsentIdRead:
       description: Dados do consentimento de pagamento obtidos com sucesso.
-      headers:
-        x-fapi-interaction-id:
-          description: |
-            Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
-          schema:
-            $ref: "#/components/schemas/XFapiInteractionId"
-      content:
-        application/jwt:
-          schema:
-            $ref: "#/components/schemas/ResponsePaymentConsent"
-    200PatchPaymentsConsent:
-      description: Revogação do Consentimento informado com sucesso.
       headers:
         x-fapi-interaction-id:
           description: |
@@ -599,6 +611,18 @@ components:
         application/jwt:
           schema:
             $ref: "#/components/schemas/ResponsePixPayment"
+    200PatchPaymentsConsent:
+      description: Revogação do Consentimento informado com sucesso.
+      headers:
+        x-fapi-interaction-id:
+          description: |
+            Um UUID RFC4122 usado como um ID de correlação. O transmissor deve usar o mesmo valor recebido na requisição para o cabeçalho de resposta recebido na requisição, caso não tenha sido fornecido, deve se usar um UUID RFC4122.
+          schema:
+            $ref: "#/components/schemas/XFapiInteractionId"
+      content:
+        application/jwt:
+          schema:
+            $ref: "#/components/schemas/ResponsePaymentConsent"
     201PaymentsInitiationTedTefPaymentCreated:
       description: Iniciação de pagamento ted-tef criada com sucesso.
       headers:

@@ -502,20 +502,20 @@ info:
 
     - **Mecanismo de retentativas de liquidação de pagamentos agendados**
 
-    No momento de liquidação de pagamento agendado é possível ter falhas sistêmicas ou violações de regras de negócio. Como por exemplo, ausência de saldo na conta do pagador para realizar a liquidação. Neste contexto é interessante às detentoras de conta a adoção de políticas de retentativas de liquidação.   
+    No momento de liquidação de pagamento agendado é possível ter falhas sistêmicas ou violações de regras de negócio. Como por exemplo, ausência de saldo na conta do pagador para realizar a liquidação. Neste contexto é interessante às detentoras de conta a adoção de políticas de retentativas de liquidação.
 
     O arranjo PIX não define nada a respeito deste tema, por consequência, o Open Banking deixa livre para cada detentora adote a política de retentativa que mais fizer sentido para ela.
 
     - **Revogação do consentimento**
 
-    Com a inclusão da funcionalidade de agendamento do pagamento é interessante facultar às partes envolvidas na transação a possibilidade de cancelamento do mesmo, desde que até um dia antes da sua liquidação. Esse mecanismo será oferecido a partir da revogação de consentimentos para pagamentos agendados. 
+    Com a inclusão da funcionalidade de agendamento do pagamento é interessante facultar às partes envolvidas na transação a possibilidade de cancelamento do mesmo, desde que até um dia antes da sua liquidação. Esse mecanismo será oferecido a partir da revogação de consentimentos para pagamentos agendados.
 
     Considerando a diretriz do controle do agendamento pela detentora de conta e as necessidades dos envolvidos na transação é possível os seguintes cenários de jornadas de revogação:
 
-        1. **Revogação pelo usuário na iniciadora** através da área de gestão de pagamentos do open banking (Consulte o guia de UX do Open Banking para maiores detalhes);   
-        2. **Revogação pelo usuário na detentora** através da área de gestão de pagamentos do open banking (Consulte o guia de UX do Open Banking para maiores detalhes);   
-        3. **Revogação pelo usuário na detentora** através da área de gestão do PIX (Consulte o guia de UX do arranjo PIX para maiores detalhes);   
-        4. **Revogação pela iniciadora** sem a presença do usuário;   
+        1. **Revogação pelo usuário na iniciadora** através da área de gestão de pagamentos do open banking (Consulte o guia de UX do Open Banking para maiores detalhes);
+        2. **Revogação pelo usuário na detentora** através da área de gestão de pagamentos do open banking (Consulte o guia de UX do Open Banking para maiores detalhes);
+        3. **Revogação pelo usuário na detentora** através da área de gestão do PIX (Consulte o guia de UX do arranjo PIX para maiores detalhes);
+        4. **Revogação pela iniciadora** sem a presença do usuário;
         5. **Revogação pela detentora** sem a presença do usuário.
 
     - **Regras funcionais**
@@ -528,154 +528,154 @@ info:
 
     - **Exemplo -  PIX normal**
 
-    {   
-      "alg": "PS256",   
-      "typ": "JWT",   
-      "kid": "PWAi5ruQcHfzPzq2JFdpY7nAUh6LzTTQtDBUpOM37JQ"   
-    }   
-    {   
-      "aud": "3449bf21-0b07-48e6-b6fc-13eb161a9901",   
-      "iss": "ca1b98e1-97a2-43db-947f-8a08054c342e",   
-      "jti": "a2fd393c-107a-4ad4-be22-3cfeeea90efe",   
-      "iat": 1628257737",   
-      "data": {   
-        "consentId": "urn:bancoex:C1DD33123",   
-        "creationDateTime": "2021-05-21T08:30:00Z",   
-        "expirationDateTime": "2021-05-21T08:30:00Z",   
-        "statusUpdateDateTime": "2021-05-21T08:30:00Z",   
-        "status": "AWAITING_AUTHORISATION",   
-        "loggedUser": {   
-          "document": {   
-            "identification": "11111111111",   
-            "rel": "CPF"   
-          }   
-        },   
-        "businessEntity": {,   
-          "document": {   
-            "identification": "11111111111111",   
-            "rel": "CNPJ",   
-          }   
-        },   
-        "creditor": {   
-          "personType": "PESSOA_NATURAL",   
-          "cpfCnpj": "58764789000137",   
-          "name": "Marco Antonio de Brito"   
-        },   
-        "payment": {   
-          "type": "PIX",   
-          "date": "2021-01-01",   
-          "currency": "BRL",   
-          "amount": "100000.12",   
-          "ibgeTownCode": "5300108",   
-          "details": {   
-            "localInstrument": "DICT",   
-            "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6   
-            D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008   
-            BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.08045   
-            0014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.ABC   
-            D.3456.WXYZ6304EB76\n",   
-            "proxy": "12345678901",   
-            "creditorAccount": {   
-              "ispb": "12345678",   
-              "issuer": "1774",   
-              "number": "1234567890",   
-              "accountType": "CACC",   
-            }   
-          }   
-        },   
-        "debtorAccount": {   
-          "ispb": "12345678",   
-          "issuer": "1774",   
-          "number": "1234567890",   
-          "accountType": "CACC",   
-        }   
-      },   
-      "links": {   
-        "self": "https://api.banco.com.br/open-banking/payments/v1/consents",   
-      },   
-      "meta": {   
-        "totalRecords": 1,   
-        "totalPages": 1,   
-        "requestDateTime": "2021-05-21T08:30:00Z",   
-      }   
+    {
+      "alg": "PS256",
+      "typ": "JWT",
+      "kid": "PWAi5ruQcHfzPzq2JFdpY7nAUh6LzTTQtDBUpOM37JQ"
+    }
+    {
+      "aud": "3449bf21-0b07-48e6-b6fc-13eb161a9901",
+      "iss": "ca1b98e1-97a2-43db-947f-8a08054c342e",
+      "jti": "a2fd393c-107a-4ad4-be22-3cfeeea90efe",
+      "iat": 1628257737",
+      "data": {
+        "consentId": "urn:bancoex:C1DD33123",
+        "creationDateTime": "2021-05-21T08:30:00Z",
+        "expirationDateTime": "2021-05-21T08:30:00Z",
+        "statusUpdateDateTime": "2021-05-21T08:30:00Z",
+        "status": "AWAITING_AUTHORISATION",
+        "loggedUser": {
+          "document": {
+            "identification": "11111111111",
+            "rel": "CPF"
+          }
+        },
+        "businessEntity": {,
+          "document": {
+            "identification": "11111111111111",
+            "rel": "CNPJ",
+          }
+        },
+        "creditor": {
+          "personType": "PESSOA_NATURAL",
+          "cpfCnpj": "58764789000137",
+          "name": "Marco Antonio de Brito"
+        },
+        "payment": {
+          "type": "PIX",
+          "date": "2021-01-01",
+          "currency": "BRL",
+          "amount": "100000.12",
+          "ibgeTownCode": "5300108",
+          "details": {
+            "localInstrument": "DICT",
+            "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6
+            D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008
+            BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.08045
+            0014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.ABC
+            D.3456.WXYZ6304EB76\n",
+            "proxy": "12345678901",
+            "creditorAccount": {
+              "ispb": "12345678",
+              "issuer": "1774",
+              "number": "1234567890",
+              "accountType": "CACC",
+            }
+          }
+        },
+        "debtorAccount": {
+          "ispb": "12345678",
+          "issuer": "1774",
+          "number": "1234567890",
+          "accountType": "CACC",
+        }
+      },
+      "links": {
+        "self": "https://api.banco.com.br/open-banking/payments/v1/consents",
+      },
+      "meta": {
+        "totalRecords": 1,
+        "totalPages": 1,
+        "requestDateTime": "2021-05-21T08:30:00Z",
+      }
     }
 
     - **Exemplo -  PIX agendado**
 
-    {   
-      "alg": "PS256",   
-      "typ": "JWT",   
-      "kid": "PWAi5ruQcHfzPzq2JFdpY7nAUh6LzTTQtDBUpOM37JQ"   
-    }   
-    {   
-      "aud": "3449bf21-0b07-48e6-b6fc-13eb161a9901",   
-      "iss": "ca1b98e1-97a2-43db-947f-8a08054c342e",   
-      "jti": "a2fd393c-107a-4ad4-be22-3cfeeea90efe",   
-      "iat": 1628257737",   
-      "data": {   
-        "consentId": "urn:bancoex:C1DD33123",   
-        "creationDateTime": "2021-05-21T08:30:00Z",   
-        "expirationDateTime": "2021-05-21T08:30:00Z",   
-        "statusUpdateDateTime": "2021-05-21T08:30:00Z",   
-        "status": "AWAITING_AUTHORISATION",   
-        "loggedUser": {   
-          "document": {   
-            "identification": "11111111111",   
-            "rel": "CPF"   
-          }   
-        },   
-        "businessEntity": {,   
-          "document": {   
-            "identification": "11111111111111",   
-            "rel": "CNPJ",   
-          }   
-        },   
-        "creditor": {   
-          "personType": "PESSOA_NATURAL",   
-          "cpfCnpj": "58764789000137",   
-          "name": "Marco Antonio de Brito"   
-        },   
-        "payment": {   
-          "type": "PIX",   
-          "schedule": {   
-            "single": {   
-              "date": "2021-01-01"   
-            }   
-          },   
-          "currency": "BRL",   
-          "amount": "100000.12",   
-          "ibgeTownCode": "5300108",   
-          "details": {   
-            "localInstrument": "DICT",   
-            "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6   
-            D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008   
-            BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.08045   
-            0014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.AB   
-            CD.3456.WXYZ6304EB76\n",   
-            "proxy": "12345678901",   
-            "creditorAccount": {   
-              "ispb": "12345678",   
-              "issuer": "1774",   
-              "number": "1234567890",   
-              "accountType": "CACC",   
-            }   
-          }   
-        },   
-        "debtorAccount": {   
-          "ispb": "12345678",   
-          "issuer": "1774",   
-          "number": "1234567890",   
-          "accountType": "CACC",   
-        }   
-      },   
-      "links": {   
-        "self": "https://api.banco.com.br/open-banking/payments/v1/consents",   
-      },   
-      "meta": {   
-        "totalRecords": 1,   
-        "totalPages": 1,   
-        "requestDateTime": "2021-05-21T08:30:00Z",   
-      }   
+    {
+      "alg": "PS256",
+      "typ": "JWT",
+      "kid": "PWAi5ruQcHfzPzq2JFdpY7nAUh6LzTTQtDBUpOM37JQ"
+    }
+    {
+      "aud": "3449bf21-0b07-48e6-b6fc-13eb161a9901",
+      "iss": "ca1b98e1-97a2-43db-947f-8a08054c342e",
+      "jti": "a2fd393c-107a-4ad4-be22-3cfeeea90efe",
+      "iat": 1628257737",
+      "data": {
+        "consentId": "urn:bancoex:C1DD33123",
+        "creationDateTime": "2021-05-21T08:30:00Z",
+        "expirationDateTime": "2021-05-21T08:30:00Z",
+        "statusUpdateDateTime": "2021-05-21T08:30:00Z",
+        "status": "AWAITING_AUTHORISATION",
+        "loggedUser": {
+          "document": {
+            "identification": "11111111111",
+            "rel": "CPF"
+          }
+        },
+        "businessEntity": {,
+          "document": {
+            "identification": "11111111111111",
+            "rel": "CNPJ",
+          }
+        },
+        "creditor": {
+          "personType": "PESSOA_NATURAL",
+          "cpfCnpj": "58764789000137",
+          "name": "Marco Antonio de Brito"
+        },
+        "payment": {
+          "type": "PIX",
+          "schedule": {
+            "single": {
+              "date": "2021-01-01"
+            }
+          },
+          "currency": "BRL",
+          "amount": "100000.12",
+          "ibgeTownCode": "5300108",
+          "details": {
+            "localInstrument": "DICT",
+            "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6
+            D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008
+            BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.08045
+            0014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.AB
+            CD.3456.WXYZ6304EB76\n",
+            "proxy": "12345678901",
+            "creditorAccount": {
+              "ispb": "12345678",
+              "issuer": "1774",
+              "number": "1234567890",
+              "accountType": "CACC",
+            }
+          }
+        },
+        "debtorAccount": {
+          "ispb": "12345678",
+          "issuer": "1774",
+          "number": "1234567890",
+          "accountType": "CACC",
+        }
+      },
+      "links": {
+        "self": "https://api.banco.com.br/open-banking/payments/v1/consents",
+      },
+      "meta": {
+        "totalRecords": 1,
+        "totalPages": 1,
+        "requestDateTime": "2021-05-21T08:30:00Z",
+      }
     }
   version: 1.1.0-rc1.0
 tags:
@@ -1034,7 +1034,7 @@ paths:
         "415":
           $ref: "#/components/responses/UnsupportedMediaType"
         "422":
-          $ref: "#/components/responses/UnprocessableEntityPixPayments"
+          $ref: "#/components/responses/UnprocessableEntityTedTefPayments"
         "429":
           $ref: "#/components/responses/TooManyRequests"
         "500":
@@ -1104,30 +1104,32 @@ paths:
             - payments
 components:
   schemas:
-    CreateTedTefPayment:
-      $ref: ./schemas/payments_apis/CreateTedTefPayment.yaml
-    CreateTedTefPaymentData:
-      $ref: ./schemas/payments_apis/CreateTedTefPaymentData.yaml
-    EnumPurposeTedTef:
-      $ref: ./schemas/payments_apis/EnumPurposeTedTef.yaml
-    TedTefCreditorAccount:
-      $ref: ./schemas/payments_apis/CreditorAccountTedTef.yaml
-    ResponseTedTefPayment:
-      $ref: ./schemas/payments_apis/ResponseTedTefPayment.yaml
-    ResponseTedTefPaymentData:
-      $ref: ./schemas/payments_apis/ResponseTedTefPaymentData.yaml
     422ResponseErrorCreateConsent:
       $ref: ./schemas/payments_apis/422ResponseErrorCreateConsent.yaml
     422ResponseErrorCreatePixPayment:
       $ref: ./schemas/payments_apis/422ResponseErrorCreatePixPayment.yaml
-    422ResponseErrorPatchConsent:
-      $ref: ./schemas/payments_apis/422ResponseErrorPatchConsent.yaml
+    422ResponseErrorCreateTedTefPayment:
+      $ref: ./schemas/payments_apis/422ResponseErrorCreateTedTefPayment.yaml
+    EnumErrorsCreateTedTefPayment:
+      $ref: ./schemas/enum/EnumErrorsCreateTedTefPayment.yaml
     Account:
       $ref: ./schemas/business_commons/Account.yaml
     BusinessEntity:
       $ref: ./schemas/payments_apis/BusinessEntity.yaml
+
     CreatePaymentConsent:
       $ref: ./schemas/payments_apis/CreatePaymentConsent.yaml
+    CreatePaymentConsentData:
+      $ref: ./schemas/payments_apis/CreatePaymentConsentData.yaml
+    PaymentConsent:
+      $ref: ./schemas/payments_apis/PaymentConsent.yaml
+    PixPaymentConsent:
+      $ref: ./schemas/payments_apis/PixPaymentConsent.yaml
+    TedPaymentConsent:
+      $ref: ./schemas/payments_apis/TedPaymentConsent.yaml
+    TefPaymentConsent:
+      $ref: ./schemas/payments_apis/TefPaymentConsent.yaml
+
     CreatePixPayment:
       $ref: ./schemas/payments_apis/CreatePixPayment.yaml
     CreatePixPaymentData:
@@ -1149,7 +1151,7 @@ components:
     EnumErrorsCreateConsent:
       $ref: ./schemas/enum/EnumErrorsCreateConsent.yaml
     EnumErrorsCreatePayment:
-      $ref: ./schemas/enum/EnumErrorsCreatePayment.yaml
+      $ref: ./schemas/enum/EnumErrorsCreatePixPayment.yaml
     EnumLocalInstrument:
       $ref: ./schemas/enum/EnumLocalInstrument.yaml
     EnumPaymentPersonType:
@@ -1168,27 +1170,42 @@ components:
       $ref: ./schemas/payments_apis/LoggedUser.yaml
     Meta:
       $ref: ./schemas/Meta.yaml
-    PaymentConsent:
-      $ref: ./schemas/payments_apis/PaymentConsent.yaml
-    PatchPaymentsConsent:
-      $ref: ./schemas/payments_apis/PatchPaymentsConsent.yaml
     PaymentPix:
       $ref: ./schemas/payments_apis/Payment.yaml
     ResponseError:
       $ref: ./schemas/ResponseError.yaml
     ResponsePaymentConsent:
       $ref: ./schemas/payments_apis/ResponsePaymentConsent.yaml
-    ResponsePaymentConsentData:
-      $ref: ./schemas/payments_apis/ResponsePaymentConsentData.yaml
     ResponsePixPayment:
       $ref: ./schemas/payments_apis/ResponsePixPayment.yaml
-    Revocation:
-      $ref: ./schemas/payments_apis/Revocation.yaml
-    Reason:
-      $ref: ./schemas/payments_apis/Reason.yaml
     ResponsePixPaymentData:
       $ref: ./schemas/payments_apis/ResponsePixPaymentData.yaml
-
+    PatchPaymentsConsent:
+      $ref: ./schemas/payments_apis/PatchPaymentsConsent.yaml
+    PatchPaymentsConsentData:
+      $ref: ./schemas/payments_apis/PatchPaymentsConsentData.yaml
+    Revocation:
+      $ref: ./schemas/payments_apis/Revocation.yaml
+    EnumRevokedBy:
+      $ref: ./schemas/payments_apis/EnumRevokedBy.yaml
+    Reason:
+      $ref: ./schemas/payments_apis/Reason.yaml
+    EnumRevocationReason:
+      $ref: ./schemas/enum/EnumRevocationReason.yaml
+    422ResponseErrorPatchConsent:
+      $ref: ./schemas/payments_apis/422ResponseErrorPatchConsent.yaml
+    EnumErrorsPatchConsent:
+      $ref: ./schemas/enum/EnumErrorsPatchConsent.yaml
+    CreateTedTefPayment:
+      $ref: ./schemas/payments_apis/CreateTedTefPayment.yaml
+    CreateTedTefPaymentData:
+      $ref: ./schemas/payments_apis/CreateTedTefPaymentData.yaml
+    EnumPurposeTedTef:
+      $ref: ./schemas/payments_apis/EnumPurposeTed.yaml
+    ResponseTedTefPayment:
+      $ref: ./schemas/payments_apis/ResponseTedTefPayment.yaml
+    ResponseTedTefPaymentData:
+      $ref: ./schemas/payments_apis/ResponseTedTefPaymentData.yaml
   parameters:
     consentId:
       $ref: ./parameters/ConsentId.yaml
@@ -1206,7 +1223,6 @@ components:
       $ref: ./parameters/XFapiInteractionId.yaml
     XIdempotencyKey:
       $ref: ./parameters/XIdempotencyKey.yaml
-
   responses:
     BadRequest:
       $ref: ./responses/payments_apis/BadRequest.yaml
@@ -1228,6 +1244,8 @@ components:
       $ref: ./schemas/payments_apis/UnprocessableEntityPixPayments.yaml
     UnprocessableEntityPatchConsent:
       $ref: ./schemas/payments_apis/UnprocessableEntityPatchConsent.yaml
+    UnprocessableEntityTedTefPayments:
+      $ref: ./schemas/payments_apis/UnprocessableEntityTedTefPayments.yaml
     Unauthorized:
       $ref: ./responses/payments_apis/Unauthorized.yaml
     UnsupportedMediaType:
