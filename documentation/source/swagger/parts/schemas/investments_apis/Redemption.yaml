@@ -21,6 +21,6 @@ properties:
     minimum: 0
   paymentTerm:
     $ref: ../enum/EnumInvestmentsFundGeneralConditionsTermType.yaml
-  graceDays:
+  gracePeriod:
     $ref: ./EnumExpirationGracePeriod.yaml
 additionalProperties: false
