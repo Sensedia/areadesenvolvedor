@@ -7,7 +7,7 @@ properties:
   data:
     $ref: ./ResponseTedTefPaymentData.yaml
   links:
-    $ref: ../LinkSingle.yaml
+    $ref: ./LinkSingle.yaml
   meta:
     $ref: ../Meta.yaml
 additionalProperties: false
