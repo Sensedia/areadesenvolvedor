@@ -686,6 +686,8 @@ components:
       $ref: ./schemas/investments_apis/InvestmentsFund.yaml
     InvestmentsFundAdmin:
       $ref: ./schemas/investments_apis/Admin.yaml
+    InvestmentsFundEnumExpirationGracePeriod:
+      $ref: ./schemas/investments_apis/EnumExpirationGracePeriod.yaml
     InvestmentsFundFundManager:
       $ref: ./schemas/investments_apis/FundManager.yaml
     InvestmentsFundFees:
