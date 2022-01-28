@@ -132,8 +132,5 @@ jobs:
           type: ".json"
       - name: Output results
         run: |
-          echo "Found ${{ steps.pl.outputs.path_count }} file(s) with this extension:"
-          for i in ${{ steps.pl.outputs.paths }}; do
-          echo $i
           ls -la source/swagger
-          done
+          ls -la documentation/source/swagger
