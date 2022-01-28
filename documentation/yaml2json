@@ -16,21 +16,28 @@ files.each do |file_name|
       break
     end
   
-    if !file_name[/\.yaml/] && !file_name[/\.yml/]
-      puts "Must be a swagger file: #{file_name}"
-  
-      break
-    end
+    if file_name[/\.yaml/]
+      input =  JSON.pretty_generate(YAML.load_file(file_name))
+      parsedInput = JSON.parse(input)
+      unless parsedInput
+        puts "Failed to parse file: #{file_name}"
+        break
+      else
+        newFileName = "#{parsedInput['info']['version']}.json"
+        newApiDirectory =  "source/swagger/generated-jsons/#{file_name
+          .gsub(/^(source\/swagger\/swagger_)(.*)(.yaml)/,"\\2")
+          .gsub('_apis','')}"
+          .gsub('_','-')
+        newApiDirectory = "#{newApiDirectory}/doc"
+        FileUtils.mkdir_p newApiDirectory
 
-    input =  JSON.pretty_generate(YAML.load_file(file_name))
-    parsedInput = JSON.parse(input)
-    unless parsedInput
-      puts "Failed to parse file: #{file_name}"
-      break
-    else
-      newFileName = "-#{parsedInput['info']['version']}.json"
-      File.open("#{file_name.gsub(/\.yaml|\.yml/, newFileName).gsub('source/swagger','source/swagger/generated-jsons')}", 'w') do |out|
-        out.write input
+        # File.open("#{file_name.gsub(/\.yaml|\.yml/, newFileName).gsub('source/swagger', newApiDirectory)}", 'w') do |out|
+        #   out.write input
+        # end
+
+        File.open("#{newApiDirectory}/#{newFileName}", 'w') do |out|
+          out.write input
+        end
       end
     end
   end
