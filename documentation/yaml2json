@@ -28,7 +28,7 @@ files.each do |file_name|
       break
     else
       newFileName = "-#{parsedInput['info']['version']}.json"
-      File.open("#{file_name.gsub(/\.yaml|\.yml/, newFileName).gsub(/source\/swagger/,'source/generated-jsons')}", 'w') do |out|
+      File.open("#{file_name.gsub(/\.yaml|\.yml/, newFileName)}", 'w') do |out|
         out.write input
       end
     end
