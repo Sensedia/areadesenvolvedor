@@ -130,10 +130,11 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: 'documentation/source/swagger/*.json'
+          source_file: 'source/swagger/*.json'
           destination_repo: 'Sensedia/openapi'
           destination_folder: 'payments/doc'
-          destination_branch_create: ORB-486
+          destination_branch: 'ORB-486'
+          destination_branch_create: 'ORB-486'
           user_email: 'rodrigo.machado@sensedia.com'
           user_name: 'Rodrigo Machado'
           commit_message: 'Test JSON files'
