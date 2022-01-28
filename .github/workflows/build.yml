@@ -31,12 +31,12 @@ jobs:
           path: vendor/bundle
           key: gems-${{ runner.os }}-${{ env.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
 
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12'
+      # - uses: actions/setup-node@v1
+      #   with:
+      #     node-version: '12'
 
-      - run: npm install -g widdershins
-      - run: npm install -g @apidevtools/swagger-cli
+      # - run: npm install -g widdershins
+      # - run: npm install -g @apidevtools/swagger-cli
 
       ###
       #ATENÇÃO: não é parar ligar a automação da Fase 1 sem a autorização do comitê de Open Banking
@@ -118,7 +118,7 @@ jobs:
       #     file_glob: 'documentation/source/swagger/*_apis.yaml'
  
       # Run Sensedia Open Api Github Repo Integration 
-        if: github.ref == 'refs/heads/ORB-POC-CONFLUENCE-INTEGRATION'
+        if: github.ref == 'refs/heads/ORB-486'
       - name: Run Sensedia Open Api Github Repo Integration 
         run: ruby yaml2json
 
@@ -130,7 +130,7 @@ jobs:
       - uses: Rishabh510/Path-lister-action@master
         with:
           path: "documentation/source/swagger/"
-          type: ".yaml|.yml"
+          type: ".json"
       - name: Output results
         run: |
           echo "Found ${{ steps.pl.outputs.path_count }} file(s) with this extension:"
