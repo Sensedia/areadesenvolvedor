@@ -132,7 +132,7 @@ jobs:
         with:
           source_file: 'documentation/source/swagger/generated-jsons'
           destination_repo: 'Sensedia/openapi'
-          destination_folder: 'payments/doc'
+          destination_folder: 'documentation/gh-pages-contents/swagger/payments/doc'
           destination_branch: 'ORB-486'
           user_email: 'rodrigo.machado@sensedia.com'
           user_name: 'Rodrigo Machado'
