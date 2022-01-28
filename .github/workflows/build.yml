@@ -129,9 +129,11 @@ jobs:
       - uses: Rishabh510/Path-lister-action@master
         with:
           path: "source/swagger"
+          type: ".json"
       - name: Output results
         run: |
           echo "Found ${{ steps.pl.outputs.path_count }} file(s) with this extension:"
           for i in ${{ steps.pl.outputs.paths }}; do
           echo $i
+          ls -la source/swagger
           done
