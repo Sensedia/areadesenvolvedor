@@ -128,7 +128,7 @@ jobs:
       - name: Pushes test file
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           source_file: 'documentation/source/swagger/generated-jsons'
           destination_repo: 'Sensedia/openapi'
