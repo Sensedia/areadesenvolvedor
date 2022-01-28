@@ -739,7 +739,7 @@ const data = JSON.stringify({
           "accountType": "CACC"
         }
       },
-      "type": "PIX",
+      "type": "TED",
       "date": "2021-01-01",
       "schedule": {
         "single": {
@@ -779,7 +779,7 @@ import http.client
 
 conn = http.client.HTTPSConnection("example.com")
 
-payload = "{\"data\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"businessEntity\":{\"document\":{\"identification\":\"11111111111111\",\"rel\":\"CNPJ\"}},\"creditor\":{\"personType\":\"PESSOA_NATURAL\",\"cpfCnpj\":\"58764789000137\",\"name\":\"Marco Antonio de Brito\"},\"debtorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"},\"payment\":{\"ibgeTownCode\":\"5300108\",\"details\":{\"localInstrument\":\"DICT\",\"qrCode\":\"00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\\n\",\"proxy\":\"12345678901\",\"creditorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"}},\"type\":\"PIX\",\"date\":\"2021-01-01\",\"schedule\":{\"single\":{\"date\":\"2021-01-01\"}},\"currency\":\"BRL\",\"amount\":\"100000.12\"}}}"
+payload = "{\"data\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"businessEntity\":{\"document\":{\"identification\":\"11111111111111\",\"rel\":\"CNPJ\"}},\"creditor\":{\"personType\":\"PESSOA_NATURAL\",\"cpfCnpj\":\"58764789000137\",\"name\":\"Marco Antonio de Brito\"},\"debtorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"},\"payment\":{\"ibgeTownCode\":\"5300108\",\"details\":{\"localInstrument\":\"DICT\",\"qrCode\":\"00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\\n\",\"proxy\":\"12345678901\",\"creditorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"}},\"type\":\"TED\",\"date\":\"2021-01-01\",\"schedule\":{\"single\":{\"date\":\"2021-01-01\"}},\"currency\":\"BRL\",\"amount\":\"100000.12\"}}}"
 
 headers = {
     'Content-Type': "application/json",
@@ -810,7 +810,7 @@ HttpResponse<String> response = Unirest.post("https://example.com/payments/v1/co
   .header("x-fapi-interaction-id", "string")
   .header("x-customer-user-agent", "string")
   .header("x-idempotency-key", "string")
-  .body("{\"data\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"businessEntity\":{\"document\":{\"identification\":\"11111111111111\",\"rel\":\"CNPJ\"}},\"creditor\":{\"personType\":\"PESSOA_NATURAL\",\"cpfCnpj\":\"58764789000137\",\"name\":\"Marco Antonio de Brito\"},\"debtorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"},\"payment\":{\"ibgeTownCode\":\"5300108\",\"details\":{\"localInstrument\":\"DICT\",\"qrCode\":\"00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\\n\",\"proxy\":\"12345678901\",\"creditorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"}},\"type\":\"PIX\",\"date\":\"2021-01-01\",\"schedule\":{\"single\":{\"date\":\"2021-01-01\"}},\"currency\":\"BRL\",\"amount\":\"100000.12\"}}}")
+  .body("{\"data\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"businessEntity\":{\"document\":{\"identification\":\"11111111111111\",\"rel\":\"CNPJ\"}},\"creditor\":{\"personType\":\"PESSOA_NATURAL\",\"cpfCnpj\":\"58764789000137\",\"name\":\"Marco Antonio de Brito\"},\"debtorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"},\"payment\":{\"ibgeTownCode\":\"5300108\",\"details\":{\"localInstrument\":\"DICT\",\"qrCode\":\"00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\\n\",\"proxy\":\"12345678901\",\"creditorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"}},\"type\":\"TED\",\"date\":\"2021-01-01\",\"schedule\":{\"single\":{\"date\":\"2021-01-01\"}},\"currency\":\"BRL\",\"amount\":\"100000.12\"}}}")
   .asString();
 ```
 
@@ -869,7 +869,7 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
           "accountType": "CACC"
         }
       },
-      "type": "PIX",
+      "type": "TED",
       "date": "2021-01-01",
       "schedule": {
         "single": {
@@ -938,7 +938,7 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
       "name": "Marco Antonio de Brito"
     },
     "payment": {
-      "type": "PIX",
+      "type": "TED",
       "date": "2021-01-01",
       "schedule": {
         "single": {
@@ -1139,7 +1139,7 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
       "name": "Marco Antonio de Brito"
     },
     "payment": {
-      "type": "PIX",
+      "type": "TED",
       "date": "2021-01-01",
       "schedule": {
         "single": {
@@ -2330,7 +2330,7 @@ Usuário (pessoa jurídica) que encontra-se logado na instituição Iniciadora d
           "accountType": "CACC"
         }
       },
-      "type": "PIX",
+      "type": "TED",
       "date": "2021-01-01",
       "schedule": {
         "single": {
@@ -2396,7 +2396,7 @@ Usuário (pessoa jurídica) que encontra-se logado na instituição Iniciadora d
         "accountType": "CACC"
       }
     },
-    "type": "PIX",
+    "type": "TED",
     "date": "2021-01-01",
     "schedule": {
       "single": {
@@ -2449,7 +2449,7 @@ xor
 
 ```json
 {
-  "type": "PIX",
+  "type": "TED",
   "date": "2021-01-01",
   "schedule": {
     "single": {
@@ -2497,7 +2497,7 @@ Objeto contendo dados de pagamento para consentimento.
       "accountType": "CACC"
     }
   },
-  "type": "PIX",
+  "type": "TED",
   "date": "2021-01-01",
   "schedule": {
     "single": {
@@ -2536,7 +2536,7 @@ Objeto contendo dados de pagamento para consentimento.
   },
   "purpose": 1,
   "purposeAdditionalInfo": "Informações adicionais",
-  "type": "PIX",
+  "type": "TED",
   "date": "2021-01-01",
   "schedule": {
     "single": {
@@ -2577,7 +2577,7 @@ Objeto contendo dados de pagamento para consentimento.<br/><br/>
     "number": "1234567890",
     "accountType": "CACC"
   },
-  "type": "PIX",
+  "type": "TED",
   "date": "2021-01-01",
   "schedule": {
     "single": {
@@ -3104,7 +3104,7 @@ RJCT (REJECTED) - Instrução de pagamento rejeitada.
 <a id="tocsenumpaymenttype"></a>
 
 ```json
-"PIX"
+"TED"
 
 ```
 
@@ -3120,7 +3120,7 @@ Este campo define o tipo de pagamento que será iniciado após a autorização d
 
 |Nome|Código|
 |---|---|
-|**|PIX|
+|**|TED|
 
 <h2 id="tocS_EnumRejectionReasonType">EnumRejectionReasonType</h2>
 
@@ -3453,7 +3453,7 @@ Objeto contendo dados do pagameto como moeda e valor.
       "name": "Marco Antonio de Brito"
     },
     "payment": {
-      "type": "PIX",
+      "type": "TED",
       "date": "2021-01-01",
       "schedule": {
         "single": {
