@@ -1,13 +1,10 @@
 type: object
 description: Objeto contendo dados de pagamento para consentimento.
 required:
-  - type
   - currency
   - amount
   - details
 properties:
-  type:
-    $ref: "../enum/EnumPaymentType.yaml"
   date:
     type: string
     format: date

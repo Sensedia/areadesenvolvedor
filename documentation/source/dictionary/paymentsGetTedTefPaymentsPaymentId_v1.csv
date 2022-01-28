@@ -40,17 +40,18 @@ no exercício de atividades da instituição, não podendo ser móvel ou transit
 ";Não permitido;string;1774
 /data/creditorAccount/number;number;"Deve ser preenchido com o número da conta do usuário recebedor, com dígito verificador (se este existir),  
 se houver valor alfanumérico, este deve ser convertido para 0.";Texto;20;Obrigatório;^\d{3,20}$;;1;1;"";Não permitido;string;1234567890
-/data/creditorAccount/accountType;accountType;"Tipos de contas usadas para pagamento via Pix.  
-Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
-conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
-Segue descrição de cada valor do ENUM para o escopo do Pix.  
-CACC - Current - Conta Corrente.  
-SLRY - Salary - Conta-Salário.  
-SVGS - Savings - Conta de Poupança.  
-TRAN - TransactingAccount - Conta de Pagamento pré-paga.";Texto;4;Obrigatório;;"CACC 
+/data/creditorAccount/accountType;accountType;"Tipos de contas usadas para pagamento via Pix.
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
+Segue descrição de cada valor do ENUM para o escopo do Pix.
+CACC - Current - Conta Corrente.
+SLRY - Salary - Conta-Salário.
+SVGS - Savings - Conta de Poupança.
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.<br/<br/>";Texto;4;Condicional;;"CACC 
 SLRY 
 SVGS 
-TRAN";1;1;"";Não permitido;string;CACC
+TRAN";1;1;" O <b>campo data.payment.creditorAccount.accountType</b> quando o arranjo alvo for TED só suportará os tipos <b>CACC</b> (Conta corrente), <b>SVGS</b> (Poupança) e <b>TRAN</b> (Conta de Pagamento pré-paga).<br/><br/>
+";Não permitido;string;CACC
 /data/purpose;purpose;"Para o caso de TED o campo é obrigatório, para o caso de TEF não. É responsabilidade da iniciadora desenvolver esse condicionante de modo a garantir a usabilidade especificada pelo GT UX.
 
 1   - Pagamento de Impostos, Tributos e Taxas
