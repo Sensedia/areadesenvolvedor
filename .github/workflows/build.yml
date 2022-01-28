@@ -130,7 +130,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: 'source/swagger/*.json'
+          source_file: 'source/swagger/generated-jsons'
           destination_repo: 'Sensedia/openapi'
           destination_folder: 'payments/doc'
           destination_branch: 'ORB-486'
