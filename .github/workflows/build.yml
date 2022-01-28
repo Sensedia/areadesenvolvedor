@@ -135,5 +135,5 @@ jobs:
           destination_folder: 'documentation/gh-pages-contents/swagger/payments/doc'
           destination_branch: 'ORB-486'
           user_email: 'rodrigo.machado@sensedia.com'
-          user_name: 'Rodrigo Machado'
+          user_name: 'senseRmginner'
           commit_message: 'Test JSON files'
