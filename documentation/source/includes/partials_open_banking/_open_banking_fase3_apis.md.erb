@@ -1209,7 +1209,24 @@ openid,consent:consentId,payments
 > Exemplo de código
 
 ```javascript
-const data = "{\"data\":{\"status\":\"REVOKED\",\"revocation\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"revokedBy\":\"USER\",\"reason\":{\"code\":\"OTHER\",\"additionalInformation\":\"Não quero mais o serviço\"}}}}";
+const data = JSON.stringify({
+  "data": {
+    "status": "REVOKED",
+    "revocation": {
+      "loggedUser": {
+        "document": {
+          "identification": "11111111111",
+          "rel": "CPF"
+        }
+      },
+      "revokedBy": "USER",
+      "reason": {
+        "code": "OTHER",
+        "additionalInformation": "Não quero mais o serviço"
+      }
+    }
+  }
+});
 
 const xhr = new XMLHttpRequest();
 xhr.withCredentials = true;
@@ -1221,8 +1238,8 @@ xhr.addEventListener("readystatechange", function () {
 });
 
 xhr.open("PATCH", "https://example.com/payments/v1/consents/string");
-xhr.setRequestHeader("Content-Type", "application/jwt");
-xhr.setRequestHeader("Accept", "application/jwt");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "string");
 xhr.setRequestHeader("x-fapi-auth-date", "stringstringstringstringstrin");
 xhr.setRequestHeader("x-fapi-customer-ip-address", "string");
@@ -1241,8 +1258,8 @@ conn = http.client.HTTPSConnection("example.com")
 payload = "{\"data\":{\"status\":\"REVOKED\",\"revocation\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"revokedBy\":\"USER\",\"reason\":{\"code\":\"OTHER\",\"additionalInformation\":\"Não quero mais o serviço\"}}}}"
 
 headers = {
-    'Content-Type': "application/jwt",
-    'Accept': "application/jwt",
+    'Content-Type': "application/json",
+    'Accept': "application/json",
     'Authorization': "string",
     'x-fapi-auth-date': "stringstringstringstringstrin",
     'x-fapi-customer-ip-address': "string",
@@ -1261,8 +1278,8 @@ print(data.decode("utf-8"))
 
 ```java
 HttpResponse<String> response = Unirest.patch("https://example.com/payments/v1/consents/string")
-  .header("Content-Type", "application/jwt")
-  .header("Accept", "application/jwt")
+  .header("Content-Type", "application/json")
+  .header("Accept", "application/json")
   .header("Authorization", "string")
   .header("x-fapi-auth-date", "stringstringstringstringstrin")
   .header("x-fapi-customer-ip-address", "string")
@@ -1287,6 +1304,27 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 
 > Body parameter
 
+```json
+{
+  "data": {
+    "status": "REVOKED",
+    "revocation": {
+      "loggedUser": {
+        "document": {
+          "identification": "11111111111",
+          "rel": "CPF"
+        }
+      },
+      "revokedBy": "USER",
+      "reason": {
+        "code": "OTHER",
+        "additionalInformation": "Não quero mais o serviço"
+      }
+    }
+  }
+}
+```
+
 <h3 id="revogar-consentimento-de-pagamento.-parameters">Parâmetros</h3>
 
 |Nome|Origem|Tipo|Obrigatório|Descrição|
@@ -1308,17 +1346,64 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 
 > 200 Response
 
-> 400 Response
-
 ```json
 {
-  "errors": [
-    {
-      "code": "string",
-      "title": "string",
-      "detail": "string"
+  "data": {
+    "consentId": "urn:bancoex:C1DD33123",
+    "creationDateTime": "2021-05-21T08:30:00Z",
+    "expirationDateTime": "2021-05-21T08:30:00Z",
+    "statusUpdateDateTime": "2021-05-21T08:30:00Z",
+    "status": "REVOKED",
+    "revocation": {
+      "loggedUser": {
+        "document": {
+          "identification": "11111111111",
+          "rel": "CPF"
+        }
+      },
+      "revokedBy": "USER",
+      "reason": {
+        "code": "OTHER",
+        "additionalInformation": "Não quero mais o serviço"
+      }
+    },
+    "loggedUser": {
+      "document": {
+        "identification": "11111111111",
+        "rel": "CPF"
+      }
+    },
+    "businessEntity": {
+      "document": {
+        "identification": "11111111111111",
+        "rel": "CNPJ"
+      }
+    },
+    "creditor": {
+      "personType": "PESSOA_NATURAL",
+      "cpfCnpj": "58764789000137",
+      "name": "Marco Antonio de Brito"
+    },
+    "payment": {
+      "date": "2021-01-01",
+      "schedule": {
+        "single": {
+          "date": "2021-01-01"
+        }
+      },
+      "currency": "BRL",
+      "amount": "100000.12"
+    },
+    "debtorAccount": {
+      "ispb": "12345678",
+      "issuer": "1774",
+      "number": "1234567890",
+      "accountType": "CACC"
     }
-  ],
+  },
+  "links": {
+    "self": "https://api.banco.com.br/open-banking/api/v1/resource"
+  },
   "meta": {
     "totalRecords": 1,
     "totalPages": 1,
@@ -1764,7 +1849,22 @@ openid,consent:consentId,payments
 > Exemplo de código
 
 ```javascript
-const data = "{\"data\":{\"payment\":{\"amount\":\"100000.12\",\"currency\":\"BRL\"},\"creditorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"},\"purpose\":1,\"purposeAdditionalInfo\":\"Informações adicionais\"}}";
+const data = JSON.stringify({
+  "data": {
+    "payment": {
+      "amount": "100000.12",
+      "currency": "BRL"
+    },
+    "creditorAccount": {
+      "ispb": "12345678",
+      "issuer": "1774",
+      "number": "1234567890",
+      "accountType": "CACC"
+    },
+    "purpose": 1,
+    "purposeAdditionalInfo": "Informações adicionais"
+  }
+});
 
 const xhr = new XMLHttpRequest();
 xhr.withCredentials = true;
@@ -1776,8 +1876,8 @@ xhr.addEventListener("readystatechange", function () {
 });
 
 xhr.open("POST", "https://example.com/payments/v1/ted-tef/payments");
-xhr.setRequestHeader("Content-Type", "application/jwt");
-xhr.setRequestHeader("Accept", "application/jwt");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "string");
 xhr.setRequestHeader("x-fapi-auth-date", "stringstringstringstringstrin");
 xhr.setRequestHeader("x-fapi-customer-ip-address", "string");
@@ -1796,8 +1896,8 @@ conn = http.client.HTTPSConnection("example.com")
 payload = "{\"data\":{\"payment\":{\"amount\":\"100000.12\",\"currency\":\"BRL\"},\"creditorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"},\"purpose\":1,\"purposeAdditionalInfo\":\"Informações adicionais\"}}"
 
 headers = {
-    'Content-Type': "application/jwt",
-    'Accept': "application/jwt",
+    'Content-Type': "application/json",
+    'Accept': "application/json",
     'Authorization': "string",
     'x-fapi-auth-date': "stringstringstringstringstrin",
     'x-fapi-customer-ip-address': "string",
@@ -1816,8 +1916,8 @@ print(data.decode("utf-8"))
 
 ```java
 HttpResponse<String> response = Unirest.post("https://example.com/payments/v1/ted-tef/payments")
-  .header("Content-Type", "application/jwt")
-  .header("Accept", "application/jwt")
+  .header("Content-Type", "application/json")
+  .header("Accept", "application/json")
   .header("Authorization", "string")
   .header("x-fapi-auth-date", "stringstringstringstringstrin")
   .header("x-fapi-customer-ip-address", "string")
@@ -1842,6 +1942,25 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 
 > Body parameter
 
+```json
+{
+  "data": {
+    "payment": {
+      "amount": "100000.12",
+      "currency": "BRL"
+    },
+    "creditorAccount": {
+      "ispb": "12345678",
+      "issuer": "1774",
+      "number": "1234567890",
+      "accountType": "CACC"
+    },
+    "purpose": 1,
+    "purposeAdditionalInfo": "Informações adicionais"
+  }
+}
+```
+
 <h3 id="ted-tef---criar-iniciação-de-pagamento.-parameters">Parâmetros</h3>
 
 |Nome|Origem|Tipo|Obrigatório|Descrição|
@@ -1858,17 +1977,31 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 
 > 201 Response
 
-> 400 Response
-
 ```json
 {
-  "errors": [
-    {
-      "code": "string",
-      "title": "string",
-      "detail": "string"
-    }
-  ],
+  "data": {
+    "paymentId": "TXpRMU9UQTROMWhZV2xSU1FUazJSMDl",
+    "consentId": "urn:bancoex:C1DD33123",
+    "creationDateTime": "2020-07-21T08:30:00Z",
+    "statusUpdateDateTime": "2020-07-21T08:30:00Z",
+    "status": "PDNG",
+    "payment": {
+      "amount": "100000.12",
+      "currency": "BRL"
+    },
+    "creditorAccount": {
+      "ispb": "12345678",
+      "issuer": "1774",
+      "number": "1234567890",
+      "accountType": "CACC"
+    },
+    "purpose": 1,
+    "purposeAdditionalInfo": "Informações adicionais",
+    "rejectionReason": "USER_NOT_YET_ACTIVATED"
+  },
+  "links": {
+    "self": "https://api.banco.com.br/open-banking/api/v1/resource"
+  },
   "meta": {
     "totalRecords": 1,
     "totalPages": 1,
@@ -1938,7 +2071,7 @@ xhr.addEventListener("readystatechange", function () {
 });
 
 xhr.open("GET", "https://example.com/payments/v1/ted-tef/payments/string");
-xhr.setRequestHeader("Accept", "application/jwt");
+xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "string");
 xhr.setRequestHeader("x-fapi-auth-date", "stringstringstringstringstrin");
 xhr.setRequestHeader("x-fapi-customer-ip-address", "string");
@@ -1954,7 +2087,7 @@ import http.client
 conn = http.client.HTTPSConnection("example.com")
 
 headers = {
-    'Accept': "application/jwt",
+    'Accept': "application/json",
     'Authorization': "string",
     'x-fapi-auth-date': "stringstringstringstringstrin",
     'x-fapi-customer-ip-address': "string",
@@ -1972,7 +2105,7 @@ print(data.decode("utf-8"))
 
 ```java
 HttpResponse<String> response = Unirest.get("https://example.com/payments/v1/ted-tef/payments/string")
-  .header("Accept", "application/jwt")
+  .header("Accept", "application/json")
   .header("Authorization", "string")
   .header("x-fapi-auth-date", "stringstringstringstringstrin")
   .header("x-fapi-customer-ip-address", "string")
@@ -2008,17 +2141,31 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 
 > 200 Response
 
-> 400 Response
-
 ```json
 {
-  "errors": [
-    {
-      "code": "string",
-      "title": "string",
-      "detail": "string"
-    }
-  ],
+  "data": {
+    "paymentId": "TXpRMU9UQTROMWhZV2xSU1FUazJSMDl",
+    "consentId": "urn:bancoex:C1DD33123",
+    "creationDateTime": "2020-07-21T08:30:00Z",
+    "statusUpdateDateTime": "2020-07-21T08:30:00Z",
+    "status": "PDNG",
+    "payment": {
+      "amount": "100000.12",
+      "currency": "BRL"
+    },
+    "creditorAccount": {
+      "ispb": "12345678",
+      "issuer": "1774",
+      "number": "1234567890",
+      "accountType": "CACC"
+    },
+    "purpose": 1,
+    "purposeAdditionalInfo": "Informações adicionais",
+    "rejectionReason": "USER_NOT_YET_ACTIVATED"
+  },
+  "links": {
+    "self": "https://api.banco.com.br/open-banking/api/v1/resource"
+  },
   "meta": {
     "totalRecords": 1,
     "totalPages": 1,

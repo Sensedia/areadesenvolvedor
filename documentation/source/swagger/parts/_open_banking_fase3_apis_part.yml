@@ -839,7 +839,7 @@ paths:
         - $ref: "#/components/parameters/XIdempotencyKey"
       requestBody:
         content:
-          application/jwt:
+          application/json:
             schema:
               $ref: "#/components/schemas/PatchPaymentsConsent"
         description: Payload para revogação do consentimento.
@@ -1015,7 +1015,7 @@ paths:
         - $ref: "#/components/parameters/XIdempotencyKey"
       requestBody:
         content:
-          application/jwt:
+          application/json:
             schema:
               $ref: "#/components/schemas/CreateTedTefPayment"
         description: Payload para criação da iniciação do pagamento ted-tef.
@@ -1291,7 +1291,7 @@ components:
           schema:
             $ref: ./headers/XFapiInteractionId.yaml
       content:
-        application/jwt:
+        application/json:
           schema:
             $ref: "#/components/schemas/ResponsePaymentConsent"
     201PaymentsInitiationPixPaymentCreated:
@@ -1327,7 +1327,7 @@ components:
           schema:
             $ref: ./headers/XFapiInteractionId.yaml
       content:
-        application/jwt:
+        application/json:
           schema:
             $ref: "#/components/schemas/ResponseTedTefPayment"
     200PaymentsInitiationTedTefPaymentIdRead:
@@ -1339,6 +1339,6 @@ components:
           schema:
             $ref: ./headers/XFapiInteractionId.yaml
       content:
-        application/jwt:
+        application/json:
           schema:
             $ref: "#/components/schemas/ResponseTedTefPayment"
