@@ -125,15 +125,15 @@ jobs:
       - uses: actions/setup-python@v1
         with:
           python-version: "3.7"
-      - uses: Rishabh510/Path-lister-action@master
-        id: pl
+      - name: Pushes test file
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          path: "documentation/source/swagger"
-          type: ".json"
-      - name: Output results
-        run: |
-          echo "Found ${{ steps.pl.outputs.path_count }} file(s) with this extension:"
-          for i in ${{ steps.pl.outputs.paths }}; do
-          echo $i
-          
-          done
+          source_file: 'documentation/source/swagger/*.json'
+          destination_repo: 'Sensedia/openapi'
+          destination_folder: 'payments/doc'
+          destination_branch_create: ORB-486
+          user_email: 'rodrigo.machado@sensedia.com'
+          user_name: 'Rodrigo Machado'
+          commit_message: 'Test JSON files'
