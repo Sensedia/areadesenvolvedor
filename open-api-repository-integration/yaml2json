@@ -3,15 +3,24 @@ require 'json'
 require 'yaml'
 require 'fileutils'
 
-NEW_API_DIRECTORY = 'source/swagger/generated-jsons/swagger'
+NEW_API_DIRECTORY = './generated-sources/swagger-apis'
 
-files = ARGV.length() == 0 ? Dir["source/swagger/*"] : ARGV
+files = ARGV.length() == 0 ? Dir["../documentation/source/swagger/*"] : ARGV
 FileUtils.mkdir_p NEW_API_DIRECTORY
+
+# swaggerUrlsBundle = []
+# swaggerUrlsBundle << {
+#   :name : parsedInput['info']['version'],
+#   :url : "./#{parsedInput['info']['version']}.json"
+# }
+# fileContents =  File.read("#{newApiDirectory}/swagger-ui-template.html")
+# fileContents.gsub(/\{\{URLS_SWAGGER_BUNDLE\}\}/, JSON.generate(swaggerUrlsBundle))
+# FileUtils.cp 'open-api-repository-integration/swagger-ui-template.html' newApiDirectory
 
 files.each do |file_name|
   if !File.directory? file_name
-    file_name = file_name.gsub('source/swagger/','')
-    file_name = "source/swagger/#{file_name}"
+    file_name = file_name.gsub('../documentation/source/swagger/','')
+    file_name = "../documentation/source/swagger/#{file_name}"
   
     if !File.file? file_name
       puts "File doen't exist: #{file_name}"
@@ -27,16 +36,11 @@ files.each do |file_name|
       else
         newFileName = "#{parsedInput['info']['version']}.json"
         newApiDirectory =  "#{NEW_API_DIRECTORY}/#{file_name
-          .gsub(/^(source\/swagger\/swagger_)(.*)(.yaml)/,"\\2")
+          .gsub(/^(\.\.\/documentation\/source\/swagger\/swagger_)(.*)(.yaml)/,"\\2")
           .gsub('_apis','')}"
           .gsub('_','-')
-        newApiDirectory = "#{newApiDirectory}/doc"
+
         FileUtils.mkdir_p newApiDirectory
-
-        # File.open("#{file_name.gsub(/\.yaml|\.yml/, newFileName).gsub('source/swagger', newApiDirectory)}", 'w') do |out|
-        #   out.write input
-        # end
-
         File.open("#{newApiDirectory}/#{newFileName}", 'w') do |out|
           out.write input
         end
