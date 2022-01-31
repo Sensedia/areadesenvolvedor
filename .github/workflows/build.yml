@@ -130,9 +130,9 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
         with:
-          source_file: 'documentation/source/swagger/generated-jsons/swagger'
+          source_file: 'documentation/source/swagger/generated-jsons/swagger/accounts/doc'
           destination_repo: 'Sensedia/openapi'
-          destination_folder: 'documentation/gh-pages-contents'
+          destination_folder: 'documentation/gh-pages-contents/swagger/accounts/doc'
           destination_branch: 'ORB-486'
           user_email: 'rodrigo.machado@sensedia.com'
           user_name: 'senseRmginner'
