@@ -130,7 +130,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
         with:
-          source_file: 'documentation/source/swagger/generated-jsons'
+          source_file: 'documentation/source/swagger/generated-jsons/*'
           destination_repo: 'Sensedia/openapi'
           destination_folder: 'documentation/gh-pages-contents/swagger'
           destination_branch: 'ORB-486'
