@@ -134,7 +134,6 @@ jobs:
         with:
           source_file: 'open-api-repository-integration/generated-sources/swagger-apis'
           destination_repo: 'Sensedia/openapi'
-          destination_folder: 'swagger-apis'
           destination_branch: 'ORB-486'
           user_email: 'rodrigo.machado@sensedia.com'
           user_name: 'senseRmginner'
