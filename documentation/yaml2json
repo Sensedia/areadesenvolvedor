@@ -3,8 +3,10 @@ require 'json'
 require 'yaml'
 require 'fileutils'
 
+NEW_API_DIRECTORY = 'source/swagger/generated-jsons/swagger'
+
 files = ARGV.length() == 0 ? Dir["source/swagger/*"] : ARGV
-FileUtils.mkdir_p 'source/swagger/generated-jsons/swagger'
+FileUtils.mkdir_p NEW_API_DIRECTORY
 
 files.each do |file_name|
   if !File.directory? file_name
@@ -24,7 +26,7 @@ files.each do |file_name|
         break
       else
         newFileName = "#{parsedInput['info']['version']}.json"
-        newApiDirectory =  "source/swagger/generated-jsons/#{file_name
+        newApiDirectory =  "#{NEW_API_DIRECTORY}/#{file_name
           .gsub(/^(source\/swagger\/swagger_)(.*)(.yaml)/,"\\2")
           .gsub('_apis','')}"
           .gsub('_','-')
