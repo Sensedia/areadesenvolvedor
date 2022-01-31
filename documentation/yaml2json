@@ -4,7 +4,7 @@ require 'yaml'
 require 'fileutils'
 
 files = ARGV.length() == 0 ? Dir["source/swagger/*"] : ARGV
-FileUtils.mkdir_p 'source/swagger/generated-jsons'
+FileUtils.mkdir_p 'source/swagger/generated-jsons/swagger'
 
 files.each do |file_name|
   if !File.directory? file_name
