@@ -446,8 +446,12 @@ components:
       $ref: ./schemas/enum/EnumPaymentPersonType.yaml
     EnumPaymentStatusType:
       $ref: ./schemas/enum/EnumPaymentStatusType.yaml
-    EnumPaymentType:
-      $ref: ./schemas/enum/EnumPaymentType.yaml
+    EnumPixPaymentType:
+      $ref: ./schemas/enum/EnumPixPaymentType.yaml
+    EnumTedPaymentType:
+      $ref: ./schemas/enum/EnumTedPaymentType.yaml
+    EnumTefPaymentType:
+      $ref: ./schemas/enum/EnumTefPaymentType.yaml
     EnumRejectionReasonType:
       $ref: ./schemas/enum/EnumRejectionReasonType.yaml
     Identification:

@@ -677,6 +677,12 @@ info:
         "requestDateTime": "2021-05-21T08:30:00Z",
       }
     }
+
+
+    - **Estruturação do payload de Consentimento (requisição)**
+
+    ![Maquina de Estados](images/sequence-diagrams/diagramaDeClasseFase3_api_pagamento.png)
+
   version: 1.1.0-rc1.0
 tags:
   - name: API - Pagamentos
@@ -835,7 +841,7 @@ paths:
         - $ref: "#/components/parameters/XIdempotencyKey"
       requestBody:
         content:
-          application/jwt:
+          application/json:
             schema:
               $ref: "#/components/schemas/PatchPaymentsConsent"
         description: Payload para revogação do consentimento.
@@ -1011,7 +1017,7 @@ paths:
         - $ref: "#/components/parameters/XIdempotencyKey"
       requestBody:
         content:
-          application/jwt:
+          application/json:
             schema:
               $ref: "#/components/schemas/CreateTedTefPayment"
         description: Payload para criação da iniciação do pagamento ted-tef.
@@ -1158,8 +1164,12 @@ components:
       $ref: ./schemas/enum/EnumPaymentPersonType.yaml
     EnumPaymentStatusType:
       $ref: ./schemas/enum/EnumPaymentStatusType.yaml
-    EnumPaymentType:
-      $ref: ./schemas/enum/EnumPaymentType.yaml
+    EnumPixPaymentType:
+      $ref: ./schemas/enum/EnumPixPaymentType.yaml
+    EnumTedPaymentType:
+      $ref: ./schemas/enum/EnumTedPaymentType.yaml
+    EnumTefPaymentType:
+      $ref: ./schemas/enum/EnumTefPaymentType.yaml
     EnumRejectionReasonType:
       $ref: ./schemas/enum/EnumRejectionReasonType.yaml
     Identification:
@@ -1283,7 +1293,7 @@ components:
           schema:
             $ref: ./headers/XFapiInteractionId.yaml
       content:
-        application/jwt:
+        application/json:
           schema:
             $ref: "#/components/schemas/ResponsePaymentConsent"
     201PaymentsInitiationPixPaymentCreated:
@@ -1319,7 +1329,7 @@ components:
           schema:
             $ref: ./headers/XFapiInteractionId.yaml
       content:
-        application/jwt:
+        application/json:
           schema:
             $ref: "#/components/schemas/ResponseTedTefPayment"
     200PaymentsInitiationTedTefPaymentIdRead:
@@ -1331,6 +1341,6 @@ components:
           schema:
             $ref: ./headers/XFapiInteractionId.yaml
       content:
-        application/jwt:
+        application/json:
           schema:
             $ref: "#/components/schemas/ResponseTedTefPayment"

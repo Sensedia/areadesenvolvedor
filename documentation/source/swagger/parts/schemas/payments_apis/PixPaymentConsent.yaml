@@ -4,6 +4,7 @@ type: object
 description: Objeto contendo dados de pagamento para consentimento.
 required:
   - details
+  - type
 properties:
   ibgeTownCode:
     type: string
@@ -18,4 +19,6 @@ properties:
       Este campo faz referência ao campo CodMun do arranjo Pix.
   details:
     $ref: ./PaymentDetails.yaml
+  type:
+    $ref: ../enum/EnumPixPaymentType.yaml
 additionalProperties: false
