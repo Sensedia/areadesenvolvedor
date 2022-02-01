@@ -119,11 +119,9 @@ jobs:
       - name: Run Sensedia Open Api Github Repo Integration 
         run: |
           rm -rf ./open-api-repository-integration/generated-sources
-          ruby ./open-api-repository-integration/yaml2json
-          echo $(git --no-pager log --format=format:'%an' -n 1)
-          echo '^^^User'
-          echo $(git log -1)
-          echo '^^^Commit message'
+          cd open-api-repository-integration
+          ruby yaml2json
+          cd ..
 
       - uses: actions/setup-python@v1
         with:
@@ -136,6 +134,4 @@ jobs:
           source_file: 'open-api-repository-integration/generated-sources/swagger-apis'
           destination_repo: 'Sensedia/openapi'
           destination_branch: 'ORB-486'
-          user_email: 'rodrigo.machado@sensedia.com'
-          user_name: 'senseRmginner'
           commit_message: 'Test JSON filess'
