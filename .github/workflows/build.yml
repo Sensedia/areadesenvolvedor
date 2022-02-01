@@ -135,7 +135,4 @@ jobs:
           source_file: 'open-api-repository-integration/generated-sources/swagger-apis'
           destination_repo: 'Sensedia/openapi'
           destination_branch: 'ORB-486'
-          user_email: ${{ git --no-pager log --format=format:'%ae' -n 1 }}
-          user_name: ${{ git --no-pager log --format=format:'%an' -n 1 }}
-          # user_email: $(cut -d "<" -f 2 <<< $(git log -1) | cut -d ">" -f1)
           commit_message: 'Test JSON filess'
