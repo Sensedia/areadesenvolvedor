@@ -1,4 +1,6 @@
 type: object
+description: |
+  <b>[Regra negócio] A detentora de conta deve validar se o consentimento para pagamento de TED está dentro de sua grade funcionamento para o arranjo.</b>
 required:
   - errors
 properties:
