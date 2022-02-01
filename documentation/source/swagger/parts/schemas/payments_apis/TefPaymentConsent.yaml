@@ -2,9 +2,11 @@ allOf:
   - $ref: ./PaymentConsent.yaml
 type: object
 description: |
-  Objeto contendo dados de pagamento para consentimento.<br/><br/>
-  [Restrição] Tanto o arranjo TED quanto TEF podem apresentar restrições de limites para transferências estipuladas nas detentoras de conta, devendo isso ser considerado ao criar o consentimento.<br/><br/>
-  [Restrição] A detentora de conta deve validar se o consentimento para pagamento de TED ou TEF está com o valor dentro dos limites de transferência por ela estabelecidos.
+  Objeto contendo dados de pagamento para consentimento.   
+
+  [Regra de negócio] O arranjo TEF pode apresentar restrições de limites para transferências estipuladas nas detentoras de conta, devendo isso ser considerado ao criar o consentimento.   
+
+  [Regra de negócio] A detentora de conta deve validar se o consentimento para pagamento de TEF está com o valor dentro dos limites de transferência por ela estabelecidos.
 required:
   - creditorAccount
   - type
