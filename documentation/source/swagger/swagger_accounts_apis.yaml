@@ -142,7 +142,7 @@ paths:
     get:
       tags:
         - Accounts
-      summary: Obtém os saldos da conta identificada por accountId.
+      summary: Obtém os saldos da conta identificada por accountIdss.
       operationId: accountsGetAccountsAccountIdBalances
       description: 'Método para obter os saldos da conta de depósito à vista, poupança ou pagamento pré-paga identificada por accountId mantida pelo cliente na instituição transmissora.'
       parameters:

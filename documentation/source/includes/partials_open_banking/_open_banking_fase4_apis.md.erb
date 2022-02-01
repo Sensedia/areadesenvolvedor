@@ -340,7 +340,7 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
           "quotationTerm": "DIAS_CORRIDOS",
           "paymentDays": 3,
           "paymentTerm": "DIAS_CORRIDOS",
-          "graceDays": 60
+          "gracePeriod": "1081+"
         },
         "application": {
           "quotationDays": 60,
@@ -4781,7 +4781,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
           "quotationTerm": "DIAS_CORRIDOS",
           "paymentDays": 3,
           "paymentTerm": "DIAS_CORRIDOS",
-          "graceDays": 60
+          "gracePeriod": "1081+"
         },
         "application": {
           "quotationDays": 60,
@@ -5228,7 +5228,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
       "quotationTerm": "DIAS_CORRIDOS",
       "paymentDays": 3,
       "paymentTerm": "DIAS_CORRIDOS",
-      "graceDays": 60
+      "gracePeriod": "1081+"
     },
     "application": {
       "quotationDays": 60,
@@ -5277,6 +5277,34 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |---|---|---|---|---|
 |name|string|true|Razão social da pessoa jurídica autorizada pela CVM para o exercício de administrador de carteiras de valores mobiliários e responsável pela administração do fundo.|
 |cnpjNumber|string|true|CNPJ do administrador.|
+
+<h2 id="tocS_InvestmentsFundEnumExpirationGracePeriod">InvestmentsFundEnumExpirationGracePeriod</h2>
+
+<a id="schemainvestmentsfundenumexpirationgraceperiod"></a>
+<a id="schema_InvestmentsFundEnumExpirationGracePeriod"></a>
+<a id="tocSinvestmentsfundenumexpirationgraceperiod"></a>
+<a id="tocsinvestmentsfundenumexpirationgraceperiod"></a>
+
+```json
+"1081+"
+
+```
+
+Faixa de valores para prazos de vencimento e carência. 
+
+### Propriedades
+
+|Nome|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|**|string|false|Faixa de valores para prazos de vencimento e carência.|
+
+#### Enumerated Values
+
+|Nome|Código|
+|---|---|
+|**|1_360|
+|**|361_1080|
+|**|1081+|
 
 <h2 id="tocS_InvestmentsFundFundManager">InvestmentsFundFundManager</h2>
 
@@ -5370,7 +5398,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
   "quotationTerm": "DIAS_CORRIDOS",
   "paymentDays": 3,
   "paymentTerm": "DIAS_CORRIDOS",
-  "graceDays": 60
+  "gracePeriod": "1081+"
 }
 
 ```
@@ -5383,7 +5411,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |quotationTerm|[EnumInvestmentsFundGeneralConditionsTermType](#schemaenuminvestmentsfundgeneralconditionstermtype)|true|Período em dias corridos ou dias úteis do prazo de cotização.<br><br><ol><li>Dias corridos</li><li>Dias úteis</li></ol>|
 |paymentDays|integer(int32)|true|Prazo em dias do efetivo pagamento, pelo fundo, do valor líquido devido ao cotista que efetuou pedido de resgate.|
 |paymentTerm|[EnumInvestmentsFundGeneralConditionsTermType](#schemaenuminvestmentsfundgeneralconditionstermtype)|true|Período em dias corridos ou dias úteis do prazo de cotização.<br><br><ol><li>Dias corridos</li><li>Dias úteis</li></ol>|
-|graceDays|integer(int32)|false|Estabelece um período em quantidade de dias corridos em que o investidor não pode resgatar os recursos aplicados no fundo. Caso ocorra resgate antes do período, o investidor perderá a rentabilidade do período. Caso não exista, não informe o campo.|
+|gracePeriod|[InvestmentsFundEnumExpirationGracePeriod](#schemainvestmentsfundenumexpirationgraceperiod)|false|Faixa de valores para prazos de vencimento e carência.|
 
 <h2 id="tocS_InvestmentsFundGeneralConditionsApplication">InvestmentsFundGeneralConditionsApplication</h2>
 
@@ -5568,16 +5596,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |---|---|---|---|---|
 |minimumAmount|string|true|Valor mínimo de aplicação no ativo.|
 |redemptionTerm|[EnumInvestmentsFixedIncomeBankRedemptionTerm](#schemaenuminvestmentsfixedincomebankredemptionterm)|true|Capacidade de conversão do título em dinheiro (resgate ou recompra).<br><br><ol><li>diária</li><li>na data de vencimento</li><li>diária após prazo de carência</li></ol>|
-|expirationPeriod|[InvestmentsFixedIncomeBankInvestmentConditions/properties/gracePeriod](#schemainvestmentsfixedincomebankinvestmentconditions/properties/graceperiod)|true|Faixa de valores para prazos de vencimento e carência.|
-|gracePeriod|string|true|Faixa de valores para prazos de vencimento e carência.|
-
-#### Enumerated Values
-
-|Nome|Código|
-|---|---|
-|gracePeriod|1_360|
-|gracePeriod|361_1080|
-|gracePeriod|1081+|
+|expirationPeriod|[InvestmentsFundEnumExpirationGracePeriod](#schemainvestmentsfundenumexpirationgraceperiod)|true|Faixa de valores para prazos de vencimento e carência.|
+|gracePeriod|[InvestmentsFundEnumExpirationGracePeriod](#schemainvestmentsfundenumexpirationgraceperiod)|true|Faixa de valores para prazos de vencimento e carência.|
 
 <h2 id="tocS_InvestmentsFixedIncomeCredit">InvestmentsFixedIncomeCredit</h2>
 
@@ -5678,7 +5698,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
     "quotationTerm": "DIAS_CORRIDOS",
     "paymentDays": 3,
     "paymentTerm": "DIAS_CORRIDOS",
-    "graceDays": 60
+    "gracePeriod": "1081+"
   },
   "application": {
     "quotationDays": 60,

@@ -366,17 +366,9 @@ components:
         redemptionTerm:
           $ref: '#/components/schemas/EnumInvestmentsFixedIncomeBankRedemptionTerm'
         expirationPeriod:
-          $ref: '#/components/schemas/InvestmentsFixedIncomeBankInvestmentConditions/properties/gracePeriod'
+          $ref: '#/components/schemas/InvestmentsFundEnumExpirationGracePeriod'
         gracePeriod:
-          type: string
-          maxLength: 8
-          enum:
-            - '1_360'
-            - '361_1080'
-            - 1081+
-          example: 1081+
-          description: |
-            Faixa de valores para prazos de vencimento e carência. 
+          $ref: '#/components/schemas/InvestmentsFundEnumExpirationGracePeriod'
       additionalProperties: false
     InvestmentsFixedIncomeCredit:
       type: object
@@ -438,6 +430,16 @@ components:
         taxation:
           $ref: '#/components/schemas/EnumInvestmentsFundTaxation'
       additionalProperties: false
+    InvestmentsFundEnumExpirationGracePeriod:
+      type: string
+      maxLength: 8
+      enum:
+        - '1_360'
+        - '361_1080'
+        - 1081+
+      example: 1081+
+      description: |
+        Faixa de valores para prazos de vencimento e carência. 
     InvestmentsFundAdmin:
       type: object
       required:
@@ -543,12 +545,8 @@ components:
           minimum: 0
         paymentTerm:
           $ref: '#/components/schemas/EnumInvestmentsFundGeneralConditionsTermType'
-        graceDays:
-          type: integer
-          format: int32
-          description: 'Estabelece um período em quantidade de dias corridos em que o investidor não pode resgatar os recursos aplicados no fundo. Caso ocorra resgate antes do período, o investidor perderá a rentabilidade do período. Caso não exista, não informe o campo.'
-          minimum: 0
-          example: 60
+        gracePeriod:
+          $ref: '#/components/schemas/InvestmentsFundEnumExpirationGracePeriod'
       additionalProperties: false
     InvestmentsFundGeneralConditionsApplication:
       type: object
