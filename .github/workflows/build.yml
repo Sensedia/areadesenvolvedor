@@ -63,11 +63,7 @@ jobs:
       - run: swagger-cli bundle documentation/source/swagger/parts/_insurances_apis_part.yml --outfile documentation/source/swagger/swagger_insurances_apis.yaml --type=yaml
       - run: swagger-cli bundle documentation/source/swagger/parts/_open_banking_fase4_apis_part.yml --outfile documentation/source/swagger/swagger_open_banking_fase4_apis.yml --type=yaml
 
-      - run: ls -la 
-      - run: cd documentation
-      - run: ls -la 
-      - run: bash build-dictionary.sh
-      - run: cd ..
+      - run: cd documentation && bash build-dictionary.sh
       - run: sed -i '1s/^\(\xef\xbb\xbf\)\?/\xef\xbb\xbf/' documentation/source/swagger/swagger_*
 
       # Open Banking Fase 1
