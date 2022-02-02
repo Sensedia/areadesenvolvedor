@@ -105,9 +105,9 @@ jobs:
         with:
           path: build
           key: ${{ runner.os }}-${{ hashFiles('**/source') }}
-      - run: bundle config set deployment 'true'
-      - run: bundle install
-      - run: bundle exec middleman build
+      # - run: bundle config set deployment 'true'
+      # - run: bundle install
+      # - run: bundle exec middleman build
 
       # Run Spectral
       - uses: stoplightio/spectral-action@v0.7.0
