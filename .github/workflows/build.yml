@@ -136,6 +136,6 @@ jobs:
           source_file: 'open-api-repository-integration/generated-sources/swagger-apis'
           destination_repo: 'Sensedia/openapi'
           destination_branch: 'ORB-486'
-          user_email: "rodrigosapiranga@hotmail.com"
-          user_name: "rmGinner"
+          user_email: "rodrigo.machado@sensedia.com"
+          user_name: "Rodrigo Machado"
           commit_message: "Integração entre repositórios"
