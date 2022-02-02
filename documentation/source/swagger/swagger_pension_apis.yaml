@@ -85,7 +85,7 @@ components:
         links:
           $ref: '#/components/schemas/Links'
         meta:
-          $ref: '#/components/schemas/Phase4Meta'
+          $ref: '#/components/schemas/OpenDataMeta'
       additionalProperties: false
     GetRiskPensionContractData:
       type: object
@@ -218,7 +218,7 @@ components:
         links:
           $ref: '#/components/schemas/Links'
         meta:
-          $ref: '#/components/schemas/Phase4Meta'
+          $ref: '#/components/schemas/OpenDataMeta'
       additionalProperties: false
     GetSurvivalPensionContractData:
       type: object
@@ -769,7 +769,7 @@ components:
           format: date-time
           example: '2021-05-21T08:30:00Z'
       additionalProperties: false
-    Phase4Meta:
+    OpenDataMeta:
       type: object
       description: Meta informações referente à API requisitada.
       required:
@@ -1292,7 +1292,7 @@ components:
                       maxLength: 2048
                   additionalProperties: false
               meta:
-                $ref: '#/components/schemas/Meta'
+                $ref: '#/components/schemas/OpenDataMeta'
             additionalProperties: false
     MethodNotAllowed:
       description: O consumidor tentou acessar o recurso com um método não suportado
