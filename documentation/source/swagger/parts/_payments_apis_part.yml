@@ -496,8 +496,8 @@ components:
       $ref: ./schemas/payments_apis/CreateTedTefPayment.yaml
     CreateTedTefPaymentData:
       $ref: ./schemas/payments_apis/CreateTedTefPaymentData.yaml
-    EnumPurposeTed:
-      $ref: ./schemas/payments_apis/EnumPurposeTed.yaml
+    EnumPurposeTedTef:
+      $ref: ./schemas/payments_apis/EnumPurposeTedTef.yaml
     EnumTedTefRejectionReasonType:
       $ref: ./schemas/enum/EnumTedTefRejectionReasonType.yaml
     ResponseTedTefPayment:
