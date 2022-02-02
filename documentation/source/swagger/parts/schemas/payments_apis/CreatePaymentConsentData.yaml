@@ -18,4 +18,10 @@ properties:
       - $ref: PixPaymentConsent.yaml
       - $ref: TedPaymentConsent.yaml
       - $ref: TefPaymentConsent.yaml
+    discriminator:
+      propertyName: type
+      mapping:
+        PIX: PixPaymentConsent.yaml
+        TED: TedPaymentConsent.yaml
+        TEF: TefPaymentConsent.yaml
 additionalProperties: false
