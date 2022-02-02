@@ -17,7 +17,7 @@ jobs:
       ruby-version: 2.5
 
     steps:
-      - run: ruby -v
+      - run: sudo apt-get purge ruby 
       - uses: actions/checkout@v2
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
