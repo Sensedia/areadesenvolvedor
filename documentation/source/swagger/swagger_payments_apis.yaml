@@ -28,7 +28,7 @@ info:
     O endpoint de consulta de pagamento GET /pix/payments/{​​​paymentId}​​​ deve suportar acesso a partir de access_token emitido por meio de um grant_type do tipo `client credentials`, como opção do uso do token vinculado ao consentimento (hybrid flow).
 
     Para evitar vazamento de informação, a detentora deve validar que o pagamento consultado pertence ao ClientId que o criou e, caso haja divergências, retorne um erro HTTP 400.
-  version: 1.0.1
+  version: 1.1.0-rc1.0
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
@@ -750,6 +750,16 @@ components:
         REJECTED - Rejeitado
         CONSUMED - Consumido
         REVOKED - Revogado
+    EnumAuthorisationPatchStatusType:
+      type: string
+      maxLength: 22
+      enum:
+        - REVOKED
+      example: REVOKED
+      description: |
+        Estado para o qual deve ir.
+
+        [Restrição] O único valor válido é REVOKED. (caso contrário a detentora deve retornar erro HTTP 400)
     EnumErrorsCreatePayment:
       type: string
       maxLength: 25
@@ -883,6 +893,7 @@ components:
         - DENIED_MULTIPLE_AUTHORISATIONS
         - EXPIRED_MULTIPLE_AUTHORISATIONS
         - EXPIRED_BILL
+        - CONSENT_REVOKED
       example: USER_NOT_YET_ACTIVATED
       description: |
         Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.  
@@ -930,6 +941,7 @@ components:
         DENIED_MULTIPLE_AUTHORISATIONS - Um (ou mais) aprovadores na detentora recusaram a operação (OB04).  
         EXPIRED_MULTIPLE_AUTHORISATIONS - Um (ou mais) aprovadores na detentora não tomaram ação para aprovar a operação (OB05).  
         EXPIRED_BILL - O QR Code não é mais válido (OB06).   
+        CONSENT_REVOKED - Pagamento cancelado devido à revogação do consentimento.   
         [Restrição] Esse motivo deverá ser enviado quando o campo /data/status for igual a RJCT (REJECTED).
     Identification:
       type: object
@@ -1403,14 +1415,15 @@ components:
         - revocation
       properties:
         status:
-          $ref: '#/components/schemas/EnumAuthorisationStatusType'
+          $ref: '#/components/schemas/EnumAuthorisationPatchStatusType'
         revocation:
           $ref: '#/components/schemas/Revocation'
     Revocation:
       type: object
       description: |
-        Objeto que contém as informações das circunstância da revogação.
-        O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.
+        Objeto que contém as informações das circunstância da revogação.   
+
+        [Restrição] O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.
       required:
         - revokedBy
         - reason
