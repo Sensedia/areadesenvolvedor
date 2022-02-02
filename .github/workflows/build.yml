@@ -17,7 +17,7 @@ jobs:
       ruby-version: 2.5
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -64,7 +64,7 @@ jobs:
       - run: swagger-cli bundle documentation/source/swagger/parts/_open_banking_fase4_apis_part.yml --outfile documentation/source/swagger/swagger_open_banking_fase4_apis.yml --type=yaml
 
       - run: cd documentation
-      - run: ./build-dictionary.sh
+      - run: bash build-dictionary.sh
       - run: cd ..
       - run: sed -i '1s/^\(\xef\xbb\xbf\)\?/\xef\xbb\xbf/' documentation/source/swagger/swagger_*
 
