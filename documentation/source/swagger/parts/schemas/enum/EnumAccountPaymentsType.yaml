@@ -14,5 +14,6 @@ description: |
   CACC - Current - Conta Corrente.
   SLRY - Salary - Conta-Salário.
   SVGS - Savings - Conta de Poupança.
-  TRAN - TransactingAccount - Conta de Pagamento pré-paga.<br/<br/>
+  TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+
   [Restrição] O <b>campo data.payment.creditorAccount.accountType</b> quando o arranjo alvo for TED só suportará os tipos <b>CACC</b> (Conta corrente), <b>SVGS</b> (Poupança) e <b>TRAN</b> (Conta de Pagamento pré-paga).<br/><br/>
