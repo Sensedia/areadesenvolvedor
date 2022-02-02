@@ -66,6 +66,7 @@ jobs:
       - run: cd documentation
       - run: bash build-dictionary.sh
       - run: cd ..
+      - run: ls -la 
       - run: sed -i '1s/^\(\xef\xbb\xbf\)\?/\xef\xbb\xbf/' documentation/source/swagger/swagger_*
 
       # Open Banking Fase 1
