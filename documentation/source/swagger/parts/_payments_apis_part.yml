@@ -464,7 +464,7 @@ components:
       $ref: ./schemas/payments_apis/Schedule.yaml
     Single:
       $ref: ./schemas/payments_apis/Single.yaml
-    PaymentPix:
+    Payment:
       $ref: ./schemas/payments_apis/Payment.yaml
     ResponseError:
       $ref: ./schemas/ResponseError.yaml
