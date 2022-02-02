@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: API Seguros - Open Banking Brasilsss
+  title: API Seguros - Open Banking Brasil
   description: |
     As APIs descritas neste documento são referentes a API de Seguros da fase OpenInsurance do Open Banking Brasil.
   version: 1.0.0-rc1.0
