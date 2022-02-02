@@ -502,20 +502,20 @@ As validações referentes a assinatura de mensagens devem preceder as validaç�
 
 - **Mecanismo de retentativas de liquidação de pagamentos agendados**
 
-No momento de liquidação de pagamento agendado é possível ter falhas sistêmicas ou violações de regras de negócio. Como por exemplo, ausência de saldo na conta do pagador para realizar a liquidação. Neste contexto é interessante às detentoras de conta a adoção de políticas de retentativas de liquidação.
+No momento de liquidação de pagamento agendado é possível ter falhas sistêmicas ou violações de regras de negócio. Como por exemplo, ausência de saldo na conta do pagador para realizar a liquidação. Neste contexto é interessante às detentoras de conta a adoção de políticas de retentativas de liquidação.   
 
 O arranjo PIX não define nada a respeito deste tema, por consequência, o Open Banking deixa livre para cada detentora adote a política de retentativa que mais fizer sentido para ela.
 
 - **Revogação do consentimento**
 
-Com a inclusão da funcionalidade de agendamento do pagamento é interessante facultar às partes envolvidas na transação a possibilidade de cancelamento do mesmo, desde que até um dia antes da sua liquidação. Esse mecanismo será oferecido a partir da revogação de consentimentos para pagamentos agendados.
+Com a inclusão da funcionalidade de agendamento do pagamento é interessante facultar às partes envolvidas na transação a possibilidade de cancelamento do mesmo, desde que até um dia antes da sua liquidação. Esse mecanismo será oferecido a partir da revogação de consentimentos para pagamentos agendados. 
 
 Considerando a diretriz do controle do agendamento pela detentora de conta e as necessidades dos envolvidos na transação é possível os seguintes cenários de jornadas de revogação:
 
-    1. **Revogação pelo usuário na iniciadora** através da área de gestão de pagamentos do open banking (Consulte o guia de UX do Open Banking para maiores detalhes);
-    2. **Revogação pelo usuário na detentora** através da área de gestão de pagamentos do open banking (Consulte o guia de UX do Open Banking para maiores detalhes);
-    3. **Revogação pelo usuário na detentora** através da área de gestão do PIX (Consulte o guia de UX do arranjo PIX para maiores detalhes);
-    4. **Revogação pela iniciadora** sem a presença do usuário;
+    1. **Revogação pelo usuário na iniciadora** através da área de gestão de pagamentos do open banking (Consulte o guia de UX do Open Banking para maiores detalhes);   
+    2. **Revogação pelo usuário na detentora** através da área de gestão de pagamentos do open banking (Consulte o guia de UX do Open Banking para maiores detalhes);   
+    3. **Revogação pelo usuário na detentora** através da área de gestão do PIX (Consulte o guia de UX do arranjo PIX para maiores detalhes);   
+    4. **Revogação pela iniciadora** sem a presença do usuário;   
     5. **Revogação pela detentora** sem a presença do usuário.
 
 - **Regras funcionais**
@@ -528,154 +528,154 @@ Considerando a diretriz do controle do agendamento pela detentora de conta e as 
 
 - **Exemplo -  PIX normal**
 
-{
-  "alg": "PS256",
-  "typ": "JWT",
-  "kid": "PWAi5ruQcHfzPzq2JFdpY7nAUh6LzTTQtDBUpOM37JQ"
-}
-{
-  "aud": "3449bf21-0b07-48e6-b6fc-13eb161a9901",
-  "iss": "ca1b98e1-97a2-43db-947f-8a08054c342e",
-  "jti": "a2fd393c-107a-4ad4-be22-3cfeeea90efe",
-  "iat": 1628257737",
-  "data": {
-    "consentId": "urn:bancoex:C1DD33123",
-    "creationDateTime": "2021-05-21T08:30:00Z",
-    "expirationDateTime": "2021-05-21T08:30:00Z",
-    "statusUpdateDateTime": "2021-05-21T08:30:00Z",
-    "status": "AWAITING_AUTHORISATION",
-    "loggedUser": {
-      "document": {
-        "identification": "11111111111",
-        "rel": "CPF"
-      }
-    },
-    "businessEntity": {,
-      "document": {
-        "identification": "11111111111111",
-        "rel": "CNPJ",
-      }
-    },
-    "creditor": {
-      "personType": "PESSOA_NATURAL",
-      "cpfCnpj": "58764789000137",
-      "name": "Marco Antonio de Brito"
-    },
-    "payment": {
-      "type": "PIX",
-      "date": "2021-01-01",
-      "currency": "BRL",
-      "amount": "100000.12",
-      "ibgeTownCode": "5300108",
-      "details": {
-        "localInstrument": "DICT",
-        "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6
-        D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008
-        BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.08045
-        0014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.ABC
-        D.3456.WXYZ6304EB76\n",
-        "proxy": "12345678901",
-        "creditorAccount": {
-          "ispb": "12345678",
-          "issuer": "1774",
-          "number": "1234567890",
-          "accountType": "CACC",
-        }
-      }
-    },
-    "debtorAccount": {
-      "ispb": "12345678",
-      "issuer": "1774",
-      "number": "1234567890",
-      "accountType": "CACC",
-    }
-  },
-  "links": {
-    "self": "https://api.banco.com.br/open-banking/payments/v1/consents",
-  },
-  "meta": {
-    "totalRecords": 1,
-    "totalPages": 1,
-    "requestDateTime": "2021-05-21T08:30:00Z",
-  }
+{   
+  "alg": "PS256",   
+  "typ": "JWT",   
+  "kid": "PWAi5ruQcHfzPzq2JFdpY7nAUh6LzTTQtDBUpOM37JQ"   
+}   
+{   
+  "aud": "3449bf21-0b07-48e6-b6fc-13eb161a9901",   
+  "iss": "ca1b98e1-97a2-43db-947f-8a08054c342e",   
+  "jti": "a2fd393c-107a-4ad4-be22-3cfeeea90efe",   
+  "iat": 1628257737",   
+  "data": {   
+    "consentId": "urn:bancoex:C1DD33123",   
+    "creationDateTime": "2021-05-21T08:30:00Z",   
+    "expirationDateTime": "2021-05-21T08:30:00Z",   
+    "statusUpdateDateTime": "2021-05-21T08:30:00Z",   
+    "status": "AWAITING_AUTHORISATION",   
+    "loggedUser": {   
+      "document": {   
+        "identification": "11111111111",   
+        "rel": "CPF"   
+      }   
+    },   
+    "businessEntity": {,   
+      "document": {   
+        "identification": "11111111111111",   
+        "rel": "CNPJ",   
+      }   
+    },   
+    "creditor": {   
+      "personType": "PESSOA_NATURAL",   
+      "cpfCnpj": "58764789000137",   
+      "name": "Marco Antonio de Brito"   
+    },   
+    "payment": {   
+      "type": "PIX",   
+      "date": "2021-01-01",   
+      "currency": "BRL",   
+      "amount": "100000.12",   
+      "ibgeTownCode": "5300108",   
+      "details": {   
+        "localInstrument": "DICT",   
+        "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6   
+        D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008   
+        BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.08045   
+        0014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.ABC   
+        D.3456.WXYZ6304EB76\n",   
+        "proxy": "12345678901",   
+        "creditorAccount": {   
+          "ispb": "12345678",   
+          "issuer": "1774",   
+          "number": "1234567890",   
+          "accountType": "CACC",   
+        }   
+      }   
+    },   
+    "debtorAccount": {   
+      "ispb": "12345678",   
+      "issuer": "1774",   
+      "number": "1234567890",   
+      "accountType": "CACC",   
+    }   
+  },   
+  "links": {   
+    "self": "https://api.banco.com.br/open-banking/payments/v1/consents",   
+  },   
+  "meta": {   
+    "totalRecords": 1,   
+    "totalPages": 1,   
+    "requestDateTime": "2021-05-21T08:30:00Z",   
+  }   
 }
 
 - **Exemplo -  PIX agendado**
 
-{
-  "alg": "PS256",
-  "typ": "JWT",
-  "kid": "PWAi5ruQcHfzPzq2JFdpY7nAUh6LzTTQtDBUpOM37JQ"
-}
-{
-  "aud": "3449bf21-0b07-48e6-b6fc-13eb161a9901",
-  "iss": "ca1b98e1-97a2-43db-947f-8a08054c342e",
-  "jti": "a2fd393c-107a-4ad4-be22-3cfeeea90efe",
-  "iat": 1628257737",
-  "data": {
-    "consentId": "urn:bancoex:C1DD33123",
-    "creationDateTime": "2021-05-21T08:30:00Z",
-    "expirationDateTime": "2021-05-21T08:30:00Z",
-    "statusUpdateDateTime": "2021-05-21T08:30:00Z",
-    "status": "AWAITING_AUTHORISATION",
-    "loggedUser": {
-      "document": {
-        "identification": "11111111111",
-        "rel": "CPF"
-      }
-    },
-    "businessEntity": {,
-      "document": {
-        "identification": "11111111111111",
-        "rel": "CNPJ",
-      }
-    },
-    "creditor": {
-      "personType": "PESSOA_NATURAL",
-      "cpfCnpj": "58764789000137",
-      "name": "Marco Antonio de Brito"
-    },
-    "payment": {
-      "type": "PIX",
-      "schedule": {
-        "single": {
-          "date": "2021-01-01"
-        }
-      },
-      "currency": "BRL",
-      "amount": "100000.12",
-      "ibgeTownCode": "5300108",
-      "details": {
-        "localInstrument": "DICT",
-        "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6
-        D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008
-        BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.08045
-        0014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.AB
-        CD.3456.WXYZ6304EB76\n",
-        "proxy": "12345678901",
-        "creditorAccount": {
-          "ispb": "12345678",
-          "issuer": "1774",
-          "number": "1234567890",
-          "accountType": "CACC",
-        }
-      }
-    },
-    "debtorAccount": {
-      "ispb": "12345678",
-      "issuer": "1774",
-      "number": "1234567890",
-      "accountType": "CACC",
-    }
-  },
-  "links": {
-    "self": "https://api.banco.com.br/open-banking/payments/v1/consents",
-  },
-  "meta": {
-    "totalRecords": 1,
-    "totalPages": 1,
-    "requestDateTime": "2021-05-21T08:30:00Z",
-  }
+{   
+  "alg": "PS256",   
+  "typ": "JWT",   
+  "kid": "PWAi5ruQcHfzPzq2JFdpY7nAUh6LzTTQtDBUpOM37JQ"   
+}   
+{   
+  "aud": "3449bf21-0b07-48e6-b6fc-13eb161a9901",   
+  "iss": "ca1b98e1-97a2-43db-947f-8a08054c342e",   
+  "jti": "a2fd393c-107a-4ad4-be22-3cfeeea90efe",   
+  "iat": 1628257737",   
+  "data": {   
+    "consentId": "urn:bancoex:C1DD33123",   
+    "creationDateTime": "2021-05-21T08:30:00Z",   
+    "expirationDateTime": "2021-05-21T08:30:00Z",   
+    "statusUpdateDateTime": "2021-05-21T08:30:00Z",   
+    "status": "AWAITING_AUTHORISATION",   
+    "loggedUser": {   
+      "document": {   
+        "identification": "11111111111",   
+        "rel": "CPF"   
+      }   
+    },   
+    "businessEntity": {,   
+      "document": {   
+        "identification": "11111111111111",   
+        "rel": "CNPJ",   
+      }   
+    },   
+    "creditor": {   
+      "personType": "PESSOA_NATURAL",   
+      "cpfCnpj": "58764789000137",   
+      "name": "Marco Antonio de Brito"   
+    },   
+    "payment": {   
+      "type": "PIX",   
+      "schedule": {   
+        "single": {   
+          "date": "2021-01-01"   
+        }   
+      },   
+      "currency": "BRL",   
+      "amount": "100000.12",   
+      "ibgeTownCode": "5300108",   
+      "details": {   
+        "localInstrument": "DICT",   
+        "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6   
+        D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008   
+        BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.08045   
+        0014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.AB   
+        CD.3456.WXYZ6304EB76\n",   
+        "proxy": "12345678901",   
+        "creditorAccount": {   
+          "ispb": "12345678",   
+          "issuer": "1774",   
+          "number": "1234567890",   
+          "accountType": "CACC",   
+        }   
+      }   
+    },   
+    "debtorAccount": {   
+      "ispb": "12345678",   
+      "issuer": "1774",   
+      "number": "1234567890",   
+      "accountType": "CACC",   
+    }   
+  },   
+  "links": {   
+    "self": "https://api.banco.com.br/open-banking/payments/v1/consents",   
+  },   
+  "meta": {   
+    "totalRecords": 1,   
+    "totalPages": 1,   
+    "requestDateTime": "2021-05-21T08:30:00Z",   
+  }   
 }
 
 <h1 id="fase-3-apis-do-open-banking-brasil-api-pagamentos">API - Pagamentos - v1.1.0-rc1.0</h1>
@@ -720,13 +720,16 @@ const data = JSON.stringify({
       "cpfCnpj": "58764789000137",
       "name": "Marco Antonio de Brito"
     },
-    "debtorAccount": {
-      "ispb": "12345678",
-      "issuer": "1774",
-      "number": "1234567890",
-      "accountType": "CACC"
-    },
     "payment": {
+      "type": "PIX",
+      "schedule": {
+        "single": {
+          "date": "2021-01-01"
+        }
+      },
+      "date": "2021-01-01",
+      "currency": "BRL",
+      "amount": "100000.12",
       "ibgeTownCode": "5300108",
       "details": {
         "localInstrument": "DICT",
@@ -738,16 +741,13 @@ const data = JSON.stringify({
           "number": "1234567890",
           "accountType": "CACC"
         }
-      },
-      "type": "PIX",
-      "date": "2021-01-01",
-      "schedule": {
-        "single": {
-          "date": "2021-01-01"
-        }
-      },
-      "currency": "BRL",
-      "amount": "100000.12"
+      }
+    },
+    "debtorAccount": {
+      "ispb": "12345678",
+      "issuer": "1774",
+      "number": "1234567890",
+      "accountType": "CACC"
     }
   }
 });
@@ -779,7 +779,7 @@ import http.client
 
 conn = http.client.HTTPSConnection("example.com")
 
-payload = "{\"data\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"businessEntity\":{\"document\":{\"identification\":\"11111111111111\",\"rel\":\"CNPJ\"}},\"creditor\":{\"personType\":\"PESSOA_NATURAL\",\"cpfCnpj\":\"58764789000137\",\"name\":\"Marco Antonio de Brito\"},\"debtorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"},\"payment\":{\"ibgeTownCode\":\"5300108\",\"details\":{\"localInstrument\":\"DICT\",\"qrCode\":\"00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\\n\",\"proxy\":\"12345678901\",\"creditorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"}},\"type\":\"PIX\",\"date\":\"2021-01-01\",\"schedule\":{\"single\":{\"date\":\"2021-01-01\"}},\"currency\":\"BRL\",\"amount\":\"100000.12\"}}}"
+payload = "{\"data\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"businessEntity\":{\"document\":{\"identification\":\"11111111111111\",\"rel\":\"CNPJ\"}},\"creditor\":{\"personType\":\"PESSOA_NATURAL\",\"cpfCnpj\":\"58764789000137\",\"name\":\"Marco Antonio de Brito\"},\"payment\":{\"type\":\"PIX\",\"schedule\":{\"single\":{\"date\":\"2021-01-01\"}},\"date\":\"2021-01-01\",\"currency\":\"BRL\",\"amount\":\"100000.12\",\"ibgeTownCode\":\"5300108\",\"details\":{\"localInstrument\":\"DICT\",\"qrCode\":\"00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\\n\",\"proxy\":\"12345678901\",\"creditorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"}}},\"debtorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"}}}"
 
 headers = {
     'Content-Type': "application/json",
@@ -810,7 +810,7 @@ HttpResponse<String> response = Unirest.post("https://example.com/payments/v1/co
   .header("x-fapi-interaction-id", "string")
   .header("x-customer-user-agent", "string")
   .header("x-idempotency-key", "string")
-  .body("{\"data\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"businessEntity\":{\"document\":{\"identification\":\"11111111111111\",\"rel\":\"CNPJ\"}},\"creditor\":{\"personType\":\"PESSOA_NATURAL\",\"cpfCnpj\":\"58764789000137\",\"name\":\"Marco Antonio de Brito\"},\"debtorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"},\"payment\":{\"ibgeTownCode\":\"5300108\",\"details\":{\"localInstrument\":\"DICT\",\"qrCode\":\"00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\\n\",\"proxy\":\"12345678901\",\"creditorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"}},\"type\":\"PIX\",\"date\":\"2021-01-01\",\"schedule\":{\"single\":{\"date\":\"2021-01-01\"}},\"currency\":\"BRL\",\"amount\":\"100000.12\"}}}")
+  .body("{\"data\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"businessEntity\":{\"document\":{\"identification\":\"11111111111111\",\"rel\":\"CNPJ\"}},\"creditor\":{\"personType\":\"PESSOA_NATURAL\",\"cpfCnpj\":\"58764789000137\",\"name\":\"Marco Antonio de Brito\"},\"payment\":{\"type\":\"PIX\",\"schedule\":{\"single\":{\"date\":\"2021-01-01\"}},\"date\":\"2021-01-01\",\"currency\":\"BRL\",\"amount\":\"100000.12\",\"ibgeTownCode\":\"5300108\",\"details\":{\"localInstrument\":\"DICT\",\"qrCode\":\"00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\\n\",\"proxy\":\"12345678901\",\"creditorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"}}},\"debtorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"}}}")
   .asString();
 ```
 
@@ -850,13 +850,16 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
       "cpfCnpj": "58764789000137",
       "name": "Marco Antonio de Brito"
     },
-    "debtorAccount": {
-      "ispb": "12345678",
-      "issuer": "1774",
-      "number": "1234567890",
-      "accountType": "CACC"
-    },
     "payment": {
+      "type": "PIX",
+      "schedule": {
+        "single": {
+          "date": "2021-01-01"
+        }
+      },
+      "date": "2021-01-01",
+      "currency": "BRL",
+      "amount": "100000.12",
       "ibgeTownCode": "5300108",
       "details": {
         "localInstrument": "DICT",
@@ -868,16 +871,13 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
           "number": "1234567890",
           "accountType": "CACC"
         }
-      },
-      "type": "PIX",
-      "date": "2021-01-01",
-      "schedule": {
-        "single": {
-          "date": "2021-01-01"
-        }
-      },
-      "currency": "BRL",
-      "amount": "100000.12"
+      }
+    },
+    "debtorAccount": {
+      "ispb": "12345678",
+      "issuer": "1774",
+      "number": "1234567890",
+      "accountType": "CACC"
     }
   }
 }
@@ -938,14 +938,27 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
       "name": "Marco Antonio de Brito"
     },
     "payment": {
-      "date": "2021-01-01",
+      "type": "PIX",
       "schedule": {
         "single": {
           "date": "2021-01-01"
         }
       },
+      "date": "2021-01-01",
       "currency": "BRL",
-      "amount": "100000.12"
+      "amount": "100000.12",
+      "ibgeTownCode": "5300108",
+      "details": {
+        "localInstrument": "DICT",
+        "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\n",
+        "proxy": "12345678901",
+        "creditorAccount": {
+          "ispb": "12345678",
+          "issuer": "1774",
+          "number": "1234567890",
+          "accountType": "CACC"
+        }
+      }
     },
     "debtorAccount": {
       "ispb": "12345678",
@@ -1138,14 +1151,27 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
       "name": "Marco Antonio de Brito"
     },
     "payment": {
-      "date": "2021-01-01",
+      "type": "PIX",
       "schedule": {
         "single": {
           "date": "2021-01-01"
         }
       },
+      "date": "2021-01-01",
       "currency": "BRL",
-      "amount": "100000.12"
+      "amount": "100000.12",
+      "ibgeTownCode": "5300108",
+      "details": {
+        "localInstrument": "DICT",
+        "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\n",
+        "proxy": "12345678901",
+        "creditorAccount": {
+          "ispb": "12345678",
+          "issuer": "1774",
+          "number": "1234567890",
+          "accountType": "CACC"
+        }
+      }
     },
     "debtorAccount": {
       "ispb": "12345678",
@@ -1209,24 +1235,7 @@ openid,consent:consentId,payments
 > Exemplo de código
 
 ```javascript
-const data = JSON.stringify({
-  "data": {
-    "status": "REVOKED",
-    "revocation": {
-      "loggedUser": {
-        "document": {
-          "identification": "11111111111",
-          "rel": "CPF"
-        }
-      },
-      "revokedBy": "USER",
-      "reason": {
-        "code": "OTHER",
-        "additionalInformation": "Não quero mais o serviço"
-      }
-    }
-  }
-});
+const data = "{\"data\":{\"status\":\"REVOKED\",\"revocation\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"revokedBy\":\"USER\",\"reason\":{\"code\":\"OTHER\",\"additionalInformation\":\"Não quero mais o serviço\"}}}}";
 
 const xhr = new XMLHttpRequest();
 xhr.withCredentials = true;
@@ -1238,8 +1247,8 @@ xhr.addEventListener("readystatechange", function () {
 });
 
 xhr.open("PATCH", "https://example.com/payments/v1/consents/string");
-xhr.setRequestHeader("Content-Type", "application/json");
-xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Content-Type", "application/jwt");
+xhr.setRequestHeader("Accept", "application/jwt");
 xhr.setRequestHeader("Authorization", "string");
 xhr.setRequestHeader("x-fapi-auth-date", "stringstringstringstringstrin");
 xhr.setRequestHeader("x-fapi-customer-ip-address", "string");
@@ -1258,8 +1267,8 @@ conn = http.client.HTTPSConnection("example.com")
 payload = "{\"data\":{\"status\":\"REVOKED\",\"revocation\":{\"loggedUser\":{\"document\":{\"identification\":\"11111111111\",\"rel\":\"CPF\"}},\"revokedBy\":\"USER\",\"reason\":{\"code\":\"OTHER\",\"additionalInformation\":\"Não quero mais o serviço\"}}}}"
 
 headers = {
-    'Content-Type': "application/json",
-    'Accept': "application/json",
+    'Content-Type': "application/jwt",
+    'Accept': "application/jwt",
     'Authorization': "string",
     'x-fapi-auth-date': "stringstringstringstringstrin",
     'x-fapi-customer-ip-address': "string",
@@ -1278,8 +1287,8 @@ print(data.decode("utf-8"))
 
 ```java
 HttpResponse<String> response = Unirest.patch("https://example.com/payments/v1/consents/string")
-  .header("Content-Type", "application/json")
-  .header("Accept", "application/json")
+  .header("Content-Type", "application/jwt")
+  .header("Accept", "application/jwt")
   .header("Authorization", "string")
   .header("x-fapi-auth-date", "stringstringstringstringstrin")
   .header("x-fapi-customer-ip-address", "string")
@@ -1304,27 +1313,6 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 
 > Body parameter
 
-```json
-{
-  "data": {
-    "status": "REVOKED",
-    "revocation": {
-      "loggedUser": {
-        "document": {
-          "identification": "11111111111",
-          "rel": "CPF"
-        }
-      },
-      "revokedBy": "USER",
-      "reason": {
-        "code": "OTHER",
-        "additionalInformation": "Não quero mais o serviço"
-      }
-    }
-  }
-}
-```
-
 <h3 id="revogar-consentimento-de-pagamento.-parameters">Parâmetros</h3>
 
 |Nome|Origem|Tipo|Obrigatório|Descrição|
@@ -1346,64 +1334,17 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 
 > 200 Response
 
+> 400 Response
+
 ```json
 {
-  "data": {
-    "consentId": "urn:bancoex:C1DD33123",
-    "creationDateTime": "2021-05-21T08:30:00Z",
-    "expirationDateTime": "2021-05-21T08:30:00Z",
-    "statusUpdateDateTime": "2021-05-21T08:30:00Z",
-    "status": "REVOKED",
-    "revocation": {
-      "loggedUser": {
-        "document": {
-          "identification": "11111111111",
-          "rel": "CPF"
-        }
-      },
-      "revokedBy": "USER",
-      "reason": {
-        "code": "OTHER",
-        "additionalInformation": "Não quero mais o serviço"
-      }
-    },
-    "loggedUser": {
-      "document": {
-        "identification": "11111111111",
-        "rel": "CPF"
-      }
-    },
-    "businessEntity": {
-      "document": {
-        "identification": "11111111111111",
-        "rel": "CNPJ"
-      }
-    },
-    "creditor": {
-      "personType": "PESSOA_NATURAL",
-      "cpfCnpj": "58764789000137",
-      "name": "Marco Antonio de Brito"
-    },
-    "payment": {
-      "date": "2021-01-01",
-      "schedule": {
-        "single": {
-          "date": "2021-01-01"
-        }
-      },
-      "currency": "BRL",
-      "amount": "100000.12"
-    },
-    "debtorAccount": {
-      "ispb": "12345678",
-      "issuer": "1774",
-      "number": "1234567890",
-      "accountType": "CACC"
+  "errors": [
+    {
+      "code": "string",
+      "title": "string",
+      "detail": "string"
     }
-  },
-  "links": {
-    "self": "https://api.banco.com.br/open-banking/api/v1/resource"
-  },
+  ],
   "meta": {
     "totalRecords": 1,
     "totalPages": 1,
@@ -1842,374 +1783,6 @@ Para realizar esta operação, você deve estar autenticado e autorizado com os 
 openid,consent:consentId,payments
 </aside>
 
-## Ted-Tef - Criar iniciação de pagamento.
-
-<a id="opIdpaymentsPostTedTefPayments"></a>
-
-> Exemplo de código
-
-```javascript
-const data = JSON.stringify({
-  "data": {
-    "payment": {
-      "amount": "100000.12",
-      "currency": "BRL"
-    },
-    "creditorAccount": {
-      "ispb": "12345678",
-      "issuer": "1774",
-      "number": "1234567890",
-      "accountType": "CACC"
-    },
-    "purpose": 1,
-    "purposeAdditionalInfo": "Informações adicionais"
-  }
-});
-
-const xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
-
-xhr.addEventListener("readystatechange", function () {
-  if (this.readyState === this.DONE) {
-    console.log(this.responseText);
-  }
-});
-
-xhr.open("POST", "https://example.com/payments/v1/ted-tef/payments");
-xhr.setRequestHeader("Content-Type", "application/json");
-xhr.setRequestHeader("Accept", "application/json");
-xhr.setRequestHeader("Authorization", "string");
-xhr.setRequestHeader("x-fapi-auth-date", "stringstringstringstringstrin");
-xhr.setRequestHeader("x-fapi-customer-ip-address", "string");
-xhr.setRequestHeader("x-fapi-interaction-id", "string");
-xhr.setRequestHeader("x-customer-user-agent", "string");
-xhr.setRequestHeader("x-idempotency-key", "string");
-
-xhr.send(data);
-```
-
-```python
-import http.client
-
-conn = http.client.HTTPSConnection("example.com")
-
-payload = "{\"data\":{\"payment\":{\"amount\":\"100000.12\",\"currency\":\"BRL\"},\"creditorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"},\"purpose\":1,\"purposeAdditionalInfo\":\"Informações adicionais\"}}"
-
-headers = {
-    'Content-Type': "application/json",
-    'Accept': "application/json",
-    'Authorization': "string",
-    'x-fapi-auth-date': "stringstringstringstringstrin",
-    'x-fapi-customer-ip-address': "string",
-    'x-fapi-interaction-id': "string",
-    'x-customer-user-agent': "string",
-    'x-idempotency-key': "string"
-    }
-
-conn.request("POST", "/payments/v1/ted-tef/payments", payload, headers)
-
-res = conn.getresponse()
-data = res.read()
-
-print(data.decode("utf-8"))
-```
-
-```java
-HttpResponse<String> response = Unirest.post("https://example.com/payments/v1/ted-tef/payments")
-  .header("Content-Type", "application/json")
-  .header("Accept", "application/json")
-  .header("Authorization", "string")
-  .header("x-fapi-auth-date", "stringstringstringstringstrin")
-  .header("x-fapi-customer-ip-address", "string")
-  .header("x-fapi-interaction-id", "string")
-  .header("x-customer-user-agent", "string")
-  .header("x-idempotency-key", "string")
-  .body("{\"data\":{\"payment\":{\"amount\":\"100000.12\",\"currency\":\"BRL\"},\"creditorAccount\":{\"ispb\":\"12345678\",\"issuer\":\"1774\",\"number\":\"1234567890\",\"accountType\":\"CACC\"},\"purpose\":1,\"purposeAdditionalInfo\":\"Informações adicionais\"}}")
-  .asString();
-```
-
-`POST /payments/v1/ted-tef/payments`
-
-Método para criar uma iniciação de pagamento ted-tef.
-
-### Dicionário de dados
-
-Campos de resposta do endpoint de `/ted-tef/payments`
-
-<a href='dictionary/paymentsPostTedTefPayments_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
-
-Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
-
-> Body parameter
-
-```json
-{
-  "data": {
-    "payment": {
-      "amount": "100000.12",
-      "currency": "BRL"
-    },
-    "creditorAccount": {
-      "ispb": "12345678",
-      "issuer": "1774",
-      "number": "1234567890",
-      "accountType": "CACC"
-    },
-    "purpose": 1,
-    "purposeAdditionalInfo": "Informações adicionais"
-  }
-}
-```
-
-<h3 id="ted-tef---criar-iniciação-de-pagamento.-parameters">Parâmetros</h3>
-
-|Nome|Origem|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|Authorization|header|string|true|Cabeçalho HTTP padrão. Permite que as credenciais sejam fornecidas dependendo do tipo de recurso solicitado|
-|x-fapi-auth-date|header|string|false|Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC|
-|x-fapi-customer-ip-address|header|string|false|O endereço IP do usuário se estiver atualmente logado com o receptor.|
-|x-fapi-interaction-id|header|string|false|Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.|
-|x-customer-user-agent|header|string|false|Indica o user-agent que o usuário utiliza.|
-|x-idempotency-key|header|string|true|Cabeçalho HTTP personalizado. Identificador de solicitação exclusivo para suportar a idempotência.|
-|body|body|[CreateTedTefPayment](#schemacreatetedtefpayment)|true|Payload para criação da iniciação do pagamento ted-tef.|
-
-> O comando acima retorna uma estrutura json como essa:
-
-> 201 Response
-
-```json
-{
-  "data": {
-    "paymentId": "TXpRMU9UQTROMWhZV2xSU1FUazJSMDl",
-    "consentId": "urn:bancoex:C1DD33123",
-    "creationDateTime": "2020-07-21T08:30:00Z",
-    "statusUpdateDateTime": "2020-07-21T08:30:00Z",
-    "status": "PDNG",
-    "payment": {
-      "amount": "100000.12",
-      "currency": "BRL"
-    },
-    "creditorAccount": {
-      "ispb": "12345678",
-      "issuer": "1774",
-      "number": "1234567890",
-      "accountType": "CACC"
-    },
-    "purpose": 1,
-    "purposeAdditionalInfo": "Informações adicionais",
-    "rejectionReason": "USER_NOT_YET_ACTIVATED"
-  },
-  "links": {
-    "self": "https://api.banco.com.br/open-banking/api/v1/resource"
-  },
-  "meta": {
-    "totalRecords": 1,
-    "totalPages": 1,
-    "requestDateTime": "2021-05-21T08:30:00Z"
-  }
-}
-```
-
-> A solicitação foi bem formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.
-
-<h3 id="ted-tef---criar-iniciação-de-pagamento.-responses">Resposta</h3>
-
-|Status|Significado|Descrição|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Iniciação de pagamento ted-tef criada com sucesso.|[ResponseTedTefPayment](#schemaresponsetedtefpayment)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Cabeçalho de autenticação ausente/inválido ou token inválido|[ResponseError](#schemaresponseerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|O token tem escopo incorreto ou uma política de segurança foi violada|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|406|[Not Acceptable](https://tools.ietf.org/html/rfc7231#section-6.5.6)|A solicitação continha um cabeçalho Accept diferente dos tipos de mídia permitidos ou um conjunto de caracteres diferente de UTF-8|[ResponseError](#schemaresponseerror)|
-|415|[Unsupported Media Type](https://tools.ietf.org/html/rfc7231#section-6.5.13)|O formato do payload não é um formato suportado.|[ResponseError](#schemaresponseerror)|
-|422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|A solicitação foi bem formada, mas não pôde ser processada devido à lógica de negócios específica da solicitação.|[422ResponseErrorCreateTedTefPayment](#schema422responseerrorcreatetedtefpayment)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
-|default|Default|Erro inesperado.|[ResponseError](#schemaresponseerror)|
-
-### Response Headers
-
-|Status|Header|Type| |
-|---|---|---|---|---|
-|201|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|400|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|401|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|403|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|404|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|405|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|406|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|415|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|422|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|429|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|429|Retry-After|integer|<a href='#Retry-After'>Consultar Padrões</a>|
-|500|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-
-<aside class="warning">
-Para realizar esta operação, você deve estar autenticado e autorizado com os seguintes escopos: 
-
-consent:consentId,payments
-</aside>
-
-## Ted-Tef - Consultar iniciação de pagamento.
-
-<a id="opIdpaymentsGetTedTefPaymentsPaymentId"></a>
-
-> Exemplo de código
-
-```javascript
-const data = null;
-
-const xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
-
-xhr.addEventListener("readystatechange", function () {
-  if (this.readyState === this.DONE) {
-    console.log(this.responseText);
-  }
-});
-
-xhr.open("GET", "https://example.com/payments/v1/ted-tef/payments/string");
-xhr.setRequestHeader("Accept", "application/json");
-xhr.setRequestHeader("Authorization", "string");
-xhr.setRequestHeader("x-fapi-auth-date", "stringstringstringstringstrin");
-xhr.setRequestHeader("x-fapi-customer-ip-address", "string");
-xhr.setRequestHeader("x-fapi-interaction-id", "string");
-xhr.setRequestHeader("x-customer-user-agent", "string");
-
-xhr.send(data);
-```
-
-```python
-import http.client
-
-conn = http.client.HTTPSConnection("example.com")
-
-headers = {
-    'Accept': "application/json",
-    'Authorization': "string",
-    'x-fapi-auth-date': "stringstringstringstringstrin",
-    'x-fapi-customer-ip-address': "string",
-    'x-fapi-interaction-id': "string",
-    'x-customer-user-agent': "string"
-    }
-
-conn.request("GET", "/payments/v1/ted-tef/payments/string", headers=headers)
-
-res = conn.getresponse()
-data = res.read()
-
-print(data.decode("utf-8"))
-```
-
-```java
-HttpResponse<String> response = Unirest.get("https://example.com/payments/v1/ted-tef/payments/string")
-  .header("Accept", "application/json")
-  .header("Authorization", "string")
-  .header("x-fapi-auth-date", "stringstringstringstringstrin")
-  .header("x-fapi-customer-ip-address", "string")
-  .header("x-fapi-interaction-id", "string")
-  .header("x-customer-user-agent", "string")
-  .asString();
-```
-
-`GET /payments/v1/ted-tef/payments/{paymentId}`
-
-Método para consultar uma iniciação de pagamento ted-tef.
-
-### Dicionário de dados
-
-Campos de resposta do endpoint de `/ted-tef/payments`.
-
-<a href='dictionary/paymentsGetTedTefPaymentsPaymentId_v1.csv' target="_blank">Fazer download do dicionário de dados</a>
-
-Consulte a seção **Convenções de payload** para obter mais informações sobre [Atributos Obrigatórios / Opcionais](#convencoes-de-propriedade-dos-atributos).
-
-<h3 id="ted-tef---consultar-iniciação-de-pagamento.-parameters">Parâmetros</h3>
-
-|Nome|Origem|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|paymentId|path|string|true|Identificador da operação de pagamento.|
-|Authorization|header|string|true|Cabeçalho HTTP padrão. Permite que as credenciais sejam fornecidas dependendo do tipo de recurso solicitado|
-|x-fapi-auth-date|header|string|false|Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC|
-|x-fapi-customer-ip-address|header|string|false|O endereço IP do usuário se estiver atualmente logado com o receptor.|
-|x-fapi-interaction-id|header|string|false|Um UID [RFC4122](https://tools.ietf.org/html/rfc4122) usado como um ID de correlação. Se fornecido, o transmissor deve "reproduzir" esse valor no cabeçalho de resposta.|
-|x-customer-user-agent|header|string|false|Indica o user-agent que o usuário utiliza.|
-
-> O comando acima retorna uma estrutura json como essa:
-
-> 200 Response
-
-```json
-{
-  "data": {
-    "paymentId": "TXpRMU9UQTROMWhZV2xSU1FUazJSMDl",
-    "consentId": "urn:bancoex:C1DD33123",
-    "creationDateTime": "2020-07-21T08:30:00Z",
-    "statusUpdateDateTime": "2020-07-21T08:30:00Z",
-    "status": "PDNG",
-    "payment": {
-      "amount": "100000.12",
-      "currency": "BRL"
-    },
-    "creditorAccount": {
-      "ispb": "12345678",
-      "issuer": "1774",
-      "number": "1234567890",
-      "accountType": "CACC"
-    },
-    "purpose": 1,
-    "purposeAdditionalInfo": "Informações adicionais",
-    "rejectionReason": "USER_NOT_YET_ACTIVATED"
-  },
-  "links": {
-    "self": "https://api.banco.com.br/open-banking/api/v1/resource"
-  },
-  "meta": {
-    "totalRecords": 1,
-    "totalPages": 1,
-    "requestDateTime": "2021-05-21T08:30:00Z"
-  }
-}
-```
-
-<h3 id="ted-tef---consultar-iniciação-de-pagamento.-responses">Resposta</h3>
-
-|Status|Significado|Descrição|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Dados de iniciação de pagamento ted-tef obtidos com sucesso.|[ResponseTedTefPayment](#schemaresponsetedtefpayment)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Cabeçalho de autenticação ausente/inválido ou token inválido|[ResponseError](#schemaresponseerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|O token tem escopo incorreto ou uma política de segurança foi violada|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|406|[Not Acceptable](https://tools.ietf.org/html/rfc7231#section-6.5.6)|A solicitação continha um cabeçalho Accept diferente dos tipos de mídia permitidos ou um conjunto de caracteres diferente de UTF-8|[ResponseError](#schemaresponseerror)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
-|default|Default|Erro inesperado.|[ResponseError](#schemaresponseerror)|
-
-### Response Headers
-
-|Status|Header|Type| |
-|---|---|---|---|---|
-|200|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|400|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|401|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|403|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|404|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|405|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|406|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|429|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-|429|Retry-After|integer|<a href='#Retry-After'>Consultar Padrões</a>|
-|500|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
-
-<aside class="warning">
-Para realizar esta operação, você deve estar autenticado e autorizado com os seguintes escopos: 
-
-payments,,,payments
-</aside>
-
 <h1 id="fase-3-apis-do-open-banking-brasil-schemas">Schemas</h1>
 
 <h2 id="tocS_422ResponseErrorCreateConsent">422ResponseErrorCreateConsent</h2>
@@ -2242,9 +1815,9 @@ payments,,,payments
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
 |errors|[object]|true||
-|» code|string|true|Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:<br>• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.<br>• DATA_PGTO_INVALIDA: Data de pagamento inválida.<br>• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.<br>• NAO_INFORMADO: Não informado.<br>• TIPO_CONTA_NAO_SUPORTADO: Tipo de conta não suportado pelo arranjo alvo.<br>• JANELA_HORARIO_NAO_PERMITIDA: Janela de horário do arranjo de pagamento alvo não permitida.<br>• VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.|
-|» title|string|true|Título específico do erro reportado, de acordo com o código enviado:<br>• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.<br>• DATA_PGTO_INVALIDA: Data de pagamento inválida.<br>• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.<br>• NAO_INFORMADO: Não informado.<br>• TIPO_CONTA_NAO_SUPORTADO: Consentimento inválido.<br>• JANELA_HORARIO_NAO_PERMITIDA: Consentimento inválido.<br>• VALOR_ACIMA_LIMITE: Consentimento inválido.|
-|» detail|string|true|Descrição específica do erro de acordo com o código reportado:<br>• FORMA_PGTO_INVALIDA – Meio de pagamento inválido.<br>• DATA_PGTO_INVALIDA – Data de pagamento inválida no contexto, por exemplo, data no passado. Para pagamentos únicos deve ser informada a data atual, do dia corrente.<br>• DETALHE_PGTO_INVALIDO: O campo [nome_campo] não atende os requisitos de preenchimento.<br>• NAO_INFORMADO – Não reportado/identificado pela instituição detentora de conta.<br>• TIPO_CONTA_NAO_SUPORTADO: Tipo de conta não suportado pelo arranjo alvo.<br>• JANELA_HORARIO_NAO_PERMITIDA: Janela de horário do arranjo de pagamento alvo não permitida.<br>• VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.|
+|» code|string|true|Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:  <br>• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  <br>• DATA_PGTO_INVALIDA: Data de pagamento inválida.  <br>• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.  <br>• NAO_INFORMADO: Não informado.|
+|» title|string|true|Título específico do erro reportado, de acordo com o código enviado:  <br>• FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  <br>• DATA_PGTO_INVALIDA: Data de pagamento inválida. <br>• DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.<br>• NAO_INFORMADO: Não informado.|
+|» detail|string|true|Descrição específica do erro de acordo com o código reportado:  <br>• FORMA_PGTO_INVALIDA – Meio de pagamento inválido.  <br>• DATA_PGTO_INVALIDA – Data de pagamento inválida no contexto, por exemplo, data no passado. Para pagamentos únicos deve ser informada a data atual, do dia corrente.  <br>• DETALHE_PGTO_INVALIDO: O campo [nome_campo] não atende os requisitos de preenchimento.  <br>• NAO_INFORMADO – Não reportado/identificado pela instituição detentora de conta.|
 |meta|[Meta](#schemameta)|false|Meta informações referente à API requisitada.|
 
 #### Enumerated Values
@@ -2255,9 +1828,6 @@ payments,,,payments
 |code|DATA_PGTO_INVALIDA|
 |code|DETALHE_PGTO_INVALIDO|
 |code|NAO_INFORMADO|
-|code|TIPO_CONTA_NAO_SUPORTADO|
-|code|JANELA_HORARIO_NAO_PERMITIDA|
-|code|VALOR_ACIMA_LIMITE|
 
 <h2 id="tocS_422ResponseErrorCreatePixPayment">422ResponseErrorCreatePixPayment</h2>
 
@@ -2294,84 +1864,6 @@ payments,,,payments
 |» detail|string|true|Descrição específica do erro de acordo com o código reportado:<br>• SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento.<br>• BENEFICIARIO_INCOMPATIVEL: O beneficiário informado no consentimento não é o mesmo do esperado pelo DICT.<br>• VALOR_INCOMPATIVEL: O valor informado no consentimento não é o mesmo valor do informado no payload de pagamento.<br>• VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.<br>• VALOR_INVALIDO: O valor enviado não é válido para o QR Code informado.<br>• COBRANCA_INVALIDA: Validação de expiração, validação de vencimento ou Status Válido.<br>• CONSENTIMENTO_INVALIDO: Consentimento inválido (status diferente de "AUTHORISED" ou está expirado).<br>• JANELA_OPER_INVALIDA: Requisição está fora da janela de funcionamento.<br>• NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.<br>• PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.|
 |meta|[Meta](#schemameta)|false|Meta informações referente à API requisitada.|
 
-<h2 id="tocS_422ResponseErrorCreateTedTefPayment">422ResponseErrorCreateTedTefPayment</h2>
-
-<a id="schema422responseerrorcreatetedtefpayment"></a>
-<a id="schema_422ResponseErrorCreateTedTefPayment"></a>
-<a id="tocS422responseerrorcreatetedtefpayment"></a>
-<a id="tocs422responseerrorcreatetedtefpayment"></a>
-
-```json
-{
-  "errors": [
-    {
-      "code": "VALOR_ACIMA_LIMITE",
-      "title": "Acima do limite estabelecido.",
-      "detail": "A conta selecionada não possui saldo suficiente para realizar o pagamento."
-    }
-  ],
-  "meta": {
-    "totalRecords": 1,
-    "totalPages": 1,
-    "requestDateTime": "2021-05-21T08:30:00Z"
-  }
-}
-
-```
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|errors|[object]|true||
-|» code|[EnumErrorsCreateTedTefPayment](#schemaenumerrorscreatetedtefpayment)|true|Códigos de erros previstos na criação da iniciação de pagamento:<br>• VALOR_ACIMA_LIMITE - Indica que o pagamento foi rejeitado por ter um valor maior ou quantidade pagamentos supere o limite pré-estabelecido pela detentora de conta.<br>• PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO - Indica que o pagamento foi rejeitado devido aos incompatibilidade com os dados do consentimento associado.<br>• CONSENTIMENTO_INVALIDO - Indica que o pagamento foi rejeitado devido ao consentimento vinculado não estar em um estado esperado pelo fluxo de pagamento.<br>• SALDO_INSUFICIENTE - Indica que o pagamento foi rejeitado por insuficiência de fundos na conta do pagador.<br>• JANELA_OPER_INVALIDA - Indica que o pagamento foi rejeitado devido ao fato da janela de horário de pagamentos permitida do arranjo enccerrou.<br>• LIQUIDACAO_ERRO_INESPERADO - Indica que ocorreu um problema inesperado na liquidação do pagamento junto ao arranjo alvo.<br>• NAO_INFORMADO - Indica que o pagamento foi rejeitado por uma situação não informada pela detentora.<br>• AGENCIA_REQUERIDA - O tipo de conta alvo requer as informações de agência.<br>• FINALIDADE_REQUERIDA - Finalidade é requerida para o pagamento no arranjo alvo.|
-|» title|string|true|Título específico do erro reportado, de acordo com o código enviado:<br>• VALOR_ACIMA_LIMITE: Acima do limite estabelecido.<br>• PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: Divergência entre pagamento e consentimento.<br>• CONSENTIMENTO_INVALIDO: Consentimento inválido.<br>• SALDO_INSUFICIENTE: Saldo insuficiente.<br>• JANELA_OPER_INVALIDA: Janela de operação inválida.<br>• LIQUIDACAO_ERRO_INESPERADO: Erro na liquidação do pagamento no arranjo.<br>• NAO_INFORMADO: Não informado.<br>• AGENCIA_REQUERIDA: Pagamento inválido.<br>• FINALIDADE_REQUERIDA: Pagamento inválido.|
-|» detail|string|true|Descrição específica do erro de acordo com o código reportado:<br>• VALOR_ACIMA_LIMITE: Acima do limite estabelecido.<br>• PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.<br>• CONSENTIMENTO_INVALIDO: Consentimento inválido (status diferente de "AUTHORISED" ou está expirado).<br>• SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento.<br>• JANELA_OPER_INVALIDA: Requisição está fora da janela de funcionamento.<br>• LIQUIDACAO_ERRO_INESPERADO: Erro na liquidação do pagamento no arranjo alvo.<br>• NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.<br>• AGENCIA_REQUERIDA: O tipo de conta alvo requer as informações de agência.<br>• FINALIDADE_REQUERIDA: Finalidade é requerida para o pagamento no arranjo alvo.|
-|meta|[Meta](#schemameta)|false|Meta informações referente à API requisitada.|
-
-<h2 id="tocS_EnumErrorsCreateTedTefPayment">EnumErrorsCreateTedTefPayment</h2>
-
-<a id="schemaenumerrorscreatetedtefpayment"></a>
-<a id="schema_EnumErrorsCreateTedTefPayment"></a>
-<a id="tocSenumerrorscreatetedtefpayment"></a>
-<a id="tocsenumerrorscreatetedtefpayment"></a>
-
-```json
-"VALOR_ACIMA_LIMITE"
-
-```
-
-Códigos de erros previstos na criação da iniciação de pagamento:
-• VALOR_ACIMA_LIMITE - Indica que o pagamento foi rejeitado por ter um valor maior ou quantidade pagamentos supere o limite pré-estabelecido pela detentora de conta.
-• PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO - Indica que o pagamento foi rejeitado devido aos incompatibilidade com os dados do consentimento associado.
-• CONSENTIMENTO_INVALIDO - Indica que o pagamento foi rejeitado devido ao consentimento vinculado não estar em um estado esperado pelo fluxo de pagamento.
-• SALDO_INSUFICIENTE - Indica que o pagamento foi rejeitado por insuficiência de fundos na conta do pagador.
-• JANELA_OPER_INVALIDA - Indica que o pagamento foi rejeitado devido ao fato da janela de horário de pagamentos permitida do arranjo enccerrou.
-• LIQUIDACAO_ERRO_INESPERADO - Indica que ocorreu um problema inesperado na liquidação do pagamento junto ao arranjo alvo.
-• NAO_INFORMADO - Indica que o pagamento foi rejeitado por uma situação não informada pela detentora.
-• AGENCIA_REQUERIDA - O tipo de conta alvo requer as informações de agência.
-• FINALIDADE_REQUERIDA - Finalidade é requerida para o pagamento no arranjo alvo.
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|**|string|false|Códigos de erros previstos na criação da iniciação de pagamento:<br>• VALOR_ACIMA_LIMITE - Indica que o pagamento foi rejeitado por ter um valor maior ou quantidade pagamentos supere o limite pré-estabelecido pela detentora de conta.<br>• PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO - Indica que o pagamento foi rejeitado devido aos incompatibilidade com os dados do consentimento associado.<br>• CONSENTIMENTO_INVALIDO - Indica que o pagamento foi rejeitado devido ao consentimento vinculado não estar em um estado esperado pelo fluxo de pagamento.<br>• SALDO_INSUFICIENTE - Indica que o pagamento foi rejeitado por insuficiência de fundos na conta do pagador.<br>• JANELA_OPER_INVALIDA - Indica que o pagamento foi rejeitado devido ao fato da janela de horário de pagamentos permitida do arranjo enccerrou.<br>• LIQUIDACAO_ERRO_INESPERADO - Indica que ocorreu um problema inesperado na liquidação do pagamento junto ao arranjo alvo.<br>• NAO_INFORMADO - Indica que o pagamento foi rejeitado por uma situação não informada pela detentora.<br>• AGENCIA_REQUERIDA - O tipo de conta alvo requer as informações de agência.<br>• FINALIDADE_REQUERIDA - Finalidade é requerida para o pagamento no arranjo alvo.|
-
-#### Enumerated Values
-
-|Nome|Código|
-|---|---|
-|**|VALOR_ACIMA_LIMITE|
-|**|PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO|
-|**|CONSENTIMENTO_INVALIDO|
-|**|SALDO_INSUFICIENTE|
-|**|JANELA_OPER_INVALIDA|
-|**|LIQUIDACAO_ERRO_INESPERADO|
-|**|NAO_INFORMADO|
-|**|AGENCIA_REQUERIDA|
-|**|FINALIDADE_REQUERIDA|
-
 <h2 id="tocS_Account">Account</h2>
 
 <a id="schemaaccount"></a>
@@ -2400,7 +1892,7 @@ Objeto que contém a identificação de uma conta.
 |issuer|string|false|Código da Agência emissora da conta sem dígito.  <br>(Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito,  <br>no exercício de atividades da instituição, não podendo ser móvel ou transitória).  <br>[Restrição] Preenchimento obrigatório para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).|
 |number|string|true|Número da conta sem o dígito.|
 |checkDigit|string|true|Dígito da conta.|
-|accountType|[EnumAccountPaymentsType](#schemaenumaccountpaymentstype)|true|Tipos de contas usadas para pagamento via Pix.<br>Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,<br>conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.<br>Segue descrição de cada valor do ENUM para o escopo do Pix.<br>CACC - Current - Conta Corrente.<br>SLRY - Salary - Conta-Salário.<br>SVGS - Savings - Conta de Poupança.<br>TRAN - TransactingAccount - Conta de Pagamento pré-paga.<br/<br/><br>[Restrição] O <b>campo data.payment.creditorAccount.accountType</b> quando o arranjo alvo for TED só suportará os tipos <b>CACC</b> (Conta corrente), <b>SVGS</b> (Poupança) e <b>TRAN</b> (Conta de Pagamento pré-paga).<br/><br/>|
+|accountType|[EnumAccountPaymentsType](#schemaenumaccountpaymentstype)|true|Tipos de contas usadas para pagamento via Pix.  <br>Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  <br>conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  <br>Segue descrição de cada valor do ENUM para o escopo do Pix.  <br>CACC - Current - Conta Corrente.  <br>SLRY - Salary - Conta-Salário.  <br>SVGS - Savings - Conta de Poupança.  <br>TRAN - TransactingAccount - Conta de Pagamento pré-paga.|
 
 <h2 id="tocS_BusinessEntity">BusinessEntity</h2>
 
@@ -2456,13 +1948,16 @@ Usuário (pessoa jurídica) que encontra-se logado na instituição Iniciadora d
       "cpfCnpj": "58764789000137",
       "name": "Marco Antonio de Brito"
     },
-    "debtorAccount": {
-      "ispb": "12345678",
-      "issuer": "1774",
-      "number": "1234567890",
-      "accountType": "CACC"
-    },
     "payment": {
+      "type": "PIX",
+      "schedule": {
+        "single": {
+          "date": "2021-01-01"
+        }
+      },
+      "date": "2021-01-01",
+      "currency": "BRL",
+      "amount": "100000.12",
       "ibgeTownCode": "5300108",
       "details": {
         "localInstrument": "DICT",
@@ -2474,277 +1969,29 @@ Usuário (pessoa jurídica) que encontra-se logado na instituição Iniciadora d
           "number": "1234567890",
           "accountType": "CACC"
         }
-      },
-      "type": "PIX",
-      "date": "2021-01-01",
-      "schedule": {
-        "single": {
-          "date": "2021-01-01"
-        }
-      },
-      "currency": "BRL",
-      "amount": "100000.12"
-    }
-  }
-}
-
-```
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|data|[CreatePaymentConsentData](#schemacreatepaymentconsentdata)|true|Objeto contendo as informações de consentimento para a iniciação de pagamento individual.|
-
-<h2 id="tocS_CreatePaymentConsentData">CreatePaymentConsentData</h2>
-
-<a id="schemacreatepaymentconsentdata"></a>
-<a id="schema_CreatePaymentConsentData"></a>
-<a id="tocScreatepaymentconsentdata"></a>
-<a id="tocscreatepaymentconsentdata"></a>
-
-```json
-{
-  "loggedUser": {
-    "document": {
-      "identification": "11111111111",
-      "rel": "CPF"
-    }
-  },
-  "businessEntity": {
-    "document": {
-      "identification": "11111111111111",
-      "rel": "CNPJ"
-    }
-  },
-  "creditor": {
-    "personType": "PESSOA_NATURAL",
-    "cpfCnpj": "58764789000137",
-    "name": "Marco Antonio de Brito"
-  },
-  "debtorAccount": {
-    "ispb": "12345678",
-    "issuer": "1774",
-    "number": "1234567890",
-    "accountType": "CACC"
-  },
-  "payment": {
-    "ibgeTownCode": "5300108",
-    "details": {
-      "localInstrument": "DICT",
-      "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\n",
-      "proxy": "12345678901",
-      "creditorAccount": {
-        "ispb": "12345678",
-        "issuer": "1774",
-        "number": "1234567890",
-        "accountType": "CACC"
       }
     },
-    "type": "PIX",
-    "date": "2021-01-01",
-    "schedule": {
-      "single": {
-        "date": "2021-01-01"
-      }
-    },
-    "currency": "BRL",
-    "amount": "100000.12"
-  }
-}
-
-```
-
-Objeto contendo as informações de consentimento para a iniciação de pagamento individual.
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|loggedUser|[LoggedUser](#schemaloggeduser)|true|Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.<br>[Restrição] Deve obrigatoriamente ser enviado quando a revogação for feita pelo usuário final, ou seja, se o campo revokedBy estiver com o valor 'USER'.|
-|businessEntity|[BusinessEntity](#schemabusinessentity)|false|Usuário (pessoa jurídica) que encontra-se logado na instituição Iniciadora de Pagamento. [Restrição] Preenchimento obrigatório se usuário logado na instituição Iniciadora de Pagamento for um CNPJ (pessoa jurídica).|
-|creditor|[Identification](#schemaidentification)|true|Objeto contendo os dados do recebedor (creditor).|
-|debtorAccount|[DebtorAccount](#schemadebtoraccount)|false|Objeto que contém a identificação da conta de origem do pagador.  <br>As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.|
-|payment|any|true||
-
-oneOf
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|» **|[PixPaymentConsent](#schemapixpaymentconsent)|false|Objeto contendo dados de pagamento para consentimento.|
-
-xor
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|» **|[TedPaymentConsent](#schematedpaymentconsent)|false|Objeto contendo dados de pagamento para consentimento.<br/><br/><br>[Restrição] O <b>campo data.payment.creditorAccount.accountType</b> quando o arranjo alvo for TED só suportará os tipos <b>CACC</b> (Conta corrente), <b>SVGS</b> (Poupança) e <b>TRAN</b> (Conta de Pagamento pré-paga).<br/><br/><br>[Restrição] A detentora de conta deve validar se o consentimento para pagamento de TED está dentro de sua grade funcionamento para o arranjo.<br/><br/><br>[Restrição] A detentora de conta deve validar se o consentimento para pagamento de TED ou TEF está com o valor dentro dos limites de transferência por ela estabelecidos.|
-
-xor
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|» **|[TefPaymentConsent](#schematefpaymentconsent)|false|Objeto contendo dados de pagamento para consentimento.<br/><br/><br>[Restrição] Tanto o arranjo TED quanto TEF podem apresentar restrições de limites para transferências estipuladas nas detentoras de conta, devendo isso ser considerado ao criar o consentimento.<br/><br/><br>[Restrição] A detentora de conta deve validar se o consentimento para pagamento de TED ou TEF está com o valor dentro dos limites de transferência por ela estabelecidos.|
-
-<h2 id="tocS_PaymentConsent">PaymentConsent</h2>
-
-<a id="schemapaymentconsent"></a>
-<a id="schema_PaymentConsent"></a>
-<a id="tocSpaymentconsent"></a>
-<a id="tocspaymentconsent"></a>
-
-```json
-{
-  "date": "2021-01-01",
-  "schedule": {
-    "single": {
-      "date": "2021-01-01"
-    }
-  },
-  "currency": "BRL",
-  "amount": "100000.12"
-}
-
-```
-
-Objeto contendo dados de pagamento para consentimento.
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|date|string(date)|false|Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.|
-|schedule|object|false|Mutuamente exclusivo com o campo date. Este campo é obrigatório no caso de agendamento. Neste caso, o campo date não deve ser informado.|
-|» single|object|true|Define a política de agendamento único.|
-|»» date|string(date)|true|Define a data alvo da liquidação do pagamento. O fuso horário de Brasilia deve ser utilizado para criação e racionalização sobre os dados deste campo.  <br>OBS:Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.|
-|currency|string|true|Código da moeda nacional segundo modelo ISO-4217, ou seja, 'BRL'.<br>Todos os valores monetários informados estão representados com a moeda vigente do Brasil.|
-|amount|string|true|Valor da transação com 2 casas decimais.|
-
-<h2 id="tocS_PixPaymentConsent">PixPaymentConsent</h2>
-
-<a id="schemapixpaymentconsent"></a>
-<a id="schema_PixPaymentConsent"></a>
-<a id="tocSpixpaymentconsent"></a>
-<a id="tocspixpaymentconsent"></a>
-
-```json
-{
-  "ibgeTownCode": "5300108",
-  "details": {
-    "localInstrument": "DICT",
-    "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\n",
-    "proxy": "12345678901",
-    "creditorAccount": {
+    "debtorAccount": {
       "ispb": "12345678",
       "issuer": "1774",
       "number": "1234567890",
       "accountType": "CACC"
     }
-  },
-  "type": "PIX",
-  "date": "2021-01-01",
-  "schedule": {
-    "single": {
-      "date": "2021-01-01"
-    }
-  },
-  "currency": "BRL",
-  "amount": "100000.12"
+  }
 }
 
 ```
-
-Objeto contendo dados de pagamento para consentimento.
 
 ### Propriedades
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|ibgeTownCode|string|false|Traz o código da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatística).<br>Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientação do arranjo da forma de pagamento.<br>O preenchimento do campo tanto em pix/payments quanto /consents deve ser igual. Caso haja divergência dos valores, a instituição deve retornar HTTP 422 com o código de erro PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO.<br>Este campo faz referência ao campo CodMun do arranjo Pix.|
-|details|[Details](#schemadetails)|true|Objeto contendo os detalhes do pagamento.|
-|type|[EnumPixPaymentType](#schemaenumpixpaymenttype)|true|Este campo define o tipo de pagamento que será iniciado após a autorização do consentimento.|
-
-<h2 id="tocS_TedPaymentConsent">TedPaymentConsent</h2>
-
-<a id="schematedpaymentconsent"></a>
-<a id="schema_TedPaymentConsent"></a>
-<a id="tocStedpaymentconsent"></a>
-<a id="tocstedpaymentconsent"></a>
-
-```json
-{
-  "creditorAccount": {
-    "ispb": "12345678",
-    "issuer": "1774",
-    "number": "1234567890",
-    "accountType": "CACC"
-  },
-  "purpose": 1,
-  "purposeAdditionalInfo": "Informações adicionais",
-  "type": "TED",
-  "date": "2021-01-01",
-  "schedule": {
-    "single": {
-      "date": "2021-01-01"
-    }
-  },
-  "currency": "BRL",
-  "amount": "100000.12"
-}
-
-```
-
-Objeto contendo dados de pagamento para consentimento.<br/><br/>
-[Restrição] O <b>campo data.payment.creditorAccount.accountType</b> quando o arranjo alvo for TED só suportará os tipos <b>CACC</b> (Conta corrente), <b>SVGS</b> (Poupança) e <b>TRAN</b> (Conta de Pagamento pré-paga).<br/><br/>
-[Restrição] A detentora de conta deve validar se o consentimento para pagamento de TED está dentro de sua grade funcionamento para o arranjo.<br/><br/>
-[Restrição] A detentora de conta deve validar se o consentimento para pagamento de TED ou TEF está com o valor dentro dos limites de transferência por ela estabelecidos.
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|creditorAccount|[CreditorAccount](#schemacreditoraccount)|true|Objeto que contém a identificação da conta de destino do beneficiário/recebedor.|
-|purpose|[EnumPurposeTedTef](#schemaenumpurposetedtef)|true|Para o caso de TED o campo é obrigatório, para o caso de TEF não. É responsabilidade da iniciadora desenvolver esse condicionante de modo a garantir a usabilidade especificada pelo GT UX.<br><br>1   - Pagamento de Impostos, Tributos e Taxas<br>10  - Crédito em Conta<br>100 - Depósito Judicial<br>101 - Pensão Alimentícia<br>103 - Cessão de créditos - Liquid.principal por aquis.créditos ou direitos creditórios ou fluxo de caixa garant.por créditos, por ordem cliente PJ financ.<br>104 - Cessão de créditos - Liquidação principal por aquisição de créditos ou direitos creditórios, por ordem de FIDC ou cia securitizadora<br>107 - Cessão de créditos - Repasse contratual de fluxo de caixa ou de recebíveis pagos, por ordem de cliente PJ financeira<br>108 - Cessão de créditos - Repasse contratual de fluxo de caixa ou de recebíveis pagos antecipadamente, por ordem de cliente PJ financeira<br>109 - Cessão de créditos - Ajustes diversos<br>11  - Pagamento a Corretoras<br>110 - Transferência entre contas de mesma titularidade<br>111 - Crédito para investidor em cliente da IF Creditada<br>112 - Débito de investidor em cliente da IF Debitada<br>113 - Pagamento de Operações de Crédito por Cliente<br>114 - Resgate de aplicação financeira de cliente para conta de sua titularidade<br>117 - Aplicação financeira em nome do cliente remetente<br>12  - Pagamento de Boleto Bancário em Cartório<br>121 - Pagamento da TIR - Pix Saque e/ou Pix Troco<br>123 - Cessão de créditos - Liquid.princ.por recompra de créditos ou direitos creditórios ou fluxo de caixa garant.por créditos, por ordem cliente PJ financ.<br>124 - Cessão de créditos - Liquidação principal por recompra de créditos ou direitos creditórios, por ordem de FIDC ou cia securitizadora<br>13  - Pagamento de Tarifas pela Prestação de Serviços de Arrecadação de Convênios<br>131 - FGCoop - Recolhimento Fundo Garantidor do Cooperativismo de Crédito<br>132 - FGCoop - devolução de recolhimento a maior<br>136 - FGTS - Saque Emergencial<br>139 - Crédito ao consumidor decorrente de programa de incentivo fiscal<br>14  - Repasse de Valores Referentes a Títulos Liquidados em Cartórios de Protesto<br>149 - Auxílio Emergencial Lei 13.982<br>15  - Liquidação Financeira de Operadora de Cartão<br>150 - Benefício Emergencial de Preservação do Emprego e da Renda - BEm<br>157 - Tributos Municipais ISS - LCP 157<br>175 - Tributos Municipais ISS TERCEIROS - LCP 157<br>18  - Operações Seguro Habitacional - SFH<br>19  - Operações do FDS - Caixa<br>2   - Pagamento à Concessionárias de Serviço Público<br>200 - Transferência Internacional em Reais<br>201 - Ajuste Posição Mercado Futuro<br>202 - Repasse de Valores do BNDES<br>203 - Liquidação de Compromissos Junto ao BNDES<br>204 - Operações de Compra e Venda de Ações - Bolsas de Valores e Mercado de Balcão<br>205 - Contratos Referenciados em Ações ou Índices de Ações - Bolsas de Valores, de Mercadorias e de futuros<br>206 - Operação de Câmbio - Não Interbancária<br>207 - Operações no Mercado de Renda Fixa e de Renda Variável com Utilização de Intermediário<br>208 - Operação de Câmbio - Mercado Interbancário - Instituições sem conta Reservas Bancárias<br>209 - Pagamento de Operações com identificação de destinatário final<br>23  - Taxa de Administração<br>27  - Pagamento de Acordo / Execução Judicial<br>28  - Liquidação de Empréstimos Consignados<br>29  - Pagamento de bolsa auxílio<br>3   - Pagamentos de Dividendos<br>30  - Remuneração a cooperado<br>300 - Restituição de Imposto de Renda<br>301 - Ordem Bancária do Tesouro - OBT<br>302 - Pagamento de multas ao BACEN por atrasos de importação<br>303 - Restituição de tributos - RFB<br>31  - Pagamento de prebenda (Remuneração a padres e sacerdotes)<br>33  - Pagamento de juros sobre capital próprio<br>34  - Pagamento de rendimentos ou amortização s/ cotas e/ou debêntures<br>35  - Taxa de Serviço<br>36  - Pagamento de cheque para não correntista<br>37  - Pagamento de juros e/ou amortização de títulos depositados em garantia nas Câmaras<br>38  - Estorno ou Restituição - Diversos<br>39  - Pagamento de Vale Transporte<br>4   - Pagamento de Salários<br>40  - Simples Nacional<br>41  - Repasse de valores para o FUNDEB<br>42  - Repasse de Valores de Convênio Centralizado<br>43  - Patrocínio com Incentivo Fiscal<br>44  - Doação com Incentivo Fiscal<br>45  - Transferência de conta corrente de instituição não bancária para sua Conta de Liquidação<br>47  - Pagamento de Rescisão de Contrato de Trabalho<br>5   - Pagamento de Fornecedores<br>50  - Reembolso de despesas com estruturação de operações de renda fixa e variável<br>500 - Restituição de Prêmios de Seguros<br>501 - Pagamento de Indenização de Sinistro de Seguro<br>502 - Pagamento de Prêmio de Co-Seguro<br>504 - Pagamento de Indenização de Sinistro de Co-Seguro<br>505 - Pagamento de Prêmio de Resseguro<br>507 - Pagamento de Indenização de Sinistro de Resseguro<br>508 - Restituição de Indenização de Sinistro de Resseguro<br>509 - Pagamento de Despesas com Sinistros<br>510 - Pagamento de Inspeções/Vistorias Prévias<br>511 - Pagamento de Resgate de Título da Capitalização<br>512 - Pagamento de Sorteio de Título de Capitalização<br>513 - Pagamento de Devolução de Mensalidade de Título de Capitalização<br>514 - Restituição de Contribuição de Plano Previdenciário<br>515 - Pagamento de Benefício Previdenciário de Pecúlio<br>516 - Pagamento de Benefício Previdenciário de Pensão<br>517 - Pagamento de Benefício Previdenciário de Aposentadoria<br>518 - Pagamento de Resgate Previdenciário<br>519 - Pagamento de Comissão de Corretagem<br>520 - Pagamento de Transferências/Portabilidade de Reserva de Seguro/Previdência<br>6   - Pagamento de Honorários<br>7   - Pagamento de Aluguéis e Taxas de Condomínio<br>8   - Pagamento de Duplicatas e Títulos<br>9   - Pagamento de Mensalidade Escolar<br>97  - Compra de Moeda Estrangeira pelo FSB - Fundo Soberano do Brasil<br>99999 - Outros|
-|purposeAdditionalInfo|string|false|Texto livre para complementar informação relativa ao campo purpose.<br>[Restrição] Preencher quando purpose for igual OUTROS.|
-|type|[EnumTedPaymentType](#schemaenumtedpaymenttype)|true|Este campo define o tipo de pagamento que será iniciado após a autorização do consentimento.|
-
-<h2 id="tocS_TefPaymentConsent">TefPaymentConsent</h2>
-
-<a id="schematefpaymentconsent"></a>
-<a id="schema_TefPaymentConsent"></a>
-<a id="tocStefpaymentconsent"></a>
-<a id="tocstefpaymentconsent"></a>
-
-```json
-{
-  "creditorAccount": {
-    "ispb": "12345678",
-    "issuer": "1774",
-    "number": "1234567890",
-    "accountType": "CACC"
-  },
-  "type": "TEF",
-  "date": "2021-01-01",
-  "schedule": {
-    "single": {
-      "date": "2021-01-01"
-    }
-  },
-  "currency": "BRL",
-  "amount": "100000.12"
-}
-
-```
-
-Objeto contendo dados de pagamento para consentimento.<br/><br/>
-[Restrição] Tanto o arranjo TED quanto TEF podem apresentar restrições de limites para transferências estipuladas nas detentoras de conta, devendo isso ser considerado ao criar o consentimento.<br/><br/>
-[Restrição] A detentora de conta deve validar se o consentimento para pagamento de TED ou TEF está com o valor dentro dos limites de transferência por ela estabelecidos.
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|creditorAccount|[CreditorAccount](#schemacreditoraccount)|true|Objeto que contém a identificação da conta de destino do beneficiário/recebedor.|
-|type|[EnumTefPaymentType](#schemaenumtefpaymenttype)|true|Este campo define o tipo de pagamento que será iniciado após a autorização do consentimento.|
+|data|object|true|Objeto contendo as informações de consentimento para a iniciação de pagamento individual.|
+|» loggedUser|[LoggedUser](#schemaloggeduser)|true|Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.<br>[Restrição] Deve obrigatoriamente ser enviado quando a revogação for feita pelo usuário final, ou seja, se o campo revokedBy estiver com o valor 'USER'.|
+|» businessEntity|[BusinessEntity](#schemabusinessentity)|false|Usuário (pessoa jurídica) que encontra-se logado na instituição Iniciadora de Pagamento. [Restrição] Preenchimento obrigatório se usuário logado na instituição Iniciadora de Pagamento for um CNPJ (pessoa jurídica).|
+|» creditor|[Identification](#schemaidentification)|true|Objeto contendo os dados do recebedor (creditor).|
+|» payment|[PaymentConsent](#schemapaymentconsent)|true|Objeto contendo dados de pagamento para consentimento.|
+|» debtorAccount|[DebtorAccount](#schemadebtoraccount)|false|Objeto que contém a identificação da conta de origem do pagador.  <br>As informações quanto à conta de origem do pagador poderão ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informações do cliente. Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do pagamento.|
 
 <h2 id="tocS_CreatePixPayment">CreatePixPayment</h2>
 
@@ -2857,16 +2104,16 @@ Objeto contendo dados do pagamento e do recebedor (creditor).
 
 ```
 
-Objeto que contém a identificação da conta de destino do beneficiário/recebedor.
+Objeto que contém a identificação da conta de destino do beneficiário/recebedor.  
 
 ### Propriedades
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
 |ispb|string|true|Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos Brasileiros) do participante do SPI (Sistema de pagamentos instantâneos) somente com números.|
-|issuer|string|false|Código da Agência emissora da conta sem dígito.<br>(Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito,<br>no exercício de atividades da instituição, não podendo ser móvel ou transitória).<br>[Restrição] Preenchimento obrigatório para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).|
-|number|string|true|Deve ser preenchido com o número da conta do usuário recebedor, com dígito verificador (se este existir),<br>se houver valor alfanumérico, este deve ser convertido para 0.|
-|accountType|[EnumAccountPaymentsType](#schemaenumaccountpaymentstype)|true|Tipos de contas usadas para pagamento via Pix.<br>Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,<br>conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.<br>Segue descrição de cada valor do ENUM para o escopo do Pix.<br>CACC - Current - Conta Corrente.<br>SLRY - Salary - Conta-Salário.<br>SVGS - Savings - Conta de Poupança.<br>TRAN - TransactingAccount - Conta de Pagamento pré-paga.<br/<br/><br>[Restrição] O <b>campo data.payment.creditorAccount.accountType</b> quando o arranjo alvo for TED só suportará os tipos <b>CACC</b> (Conta corrente), <b>SVGS</b> (Poupança) e <b>TRAN</b> (Conta de Pagamento pré-paga).<br/><br/>|
+|issuer|string|false|Código da Agência emissora da conta sem dígito.  <br>(Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito,  <br>no exercício de atividades da instituição, não podendo ser móvel ou transitória).  <br>[Restrição] Preenchimento obrigatório para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).|
+|number|string|true|Deve ser preenchido com o número da conta do usuário recebedor, com dígito verificador (se este existir),  <br>se houver valor alfanumérico, este deve ser convertido para 0.|
+|accountType|[EnumAccountPaymentsType](#schemaenumaccountpaymentstype)|true|Tipos de contas usadas para pagamento via Pix.  <br>Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  <br>conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  <br>Segue descrição de cada valor do ENUM para o escopo do Pix.  <br>CACC - Current - Conta Corrente.  <br>SLRY - Salary - Conta-Salário.  <br>SVGS - Savings - Conta de Poupança.  <br>TRAN - TransactingAccount - Conta de Pagamento pré-paga.|
 
 <h2 id="tocS_DebtorAccount">DebtorAccount</h2>
 
@@ -2895,7 +2142,7 @@ As informações quanto à conta de origem do pagador poderão ser trazidas no c
 |ispb|string|true|Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos Brasileiros) do participante do SPI (Sistema de pagamentos instantâneos) somente com números.|
 |issuer|string|false|Código da Agência emissora da conta sem dígito.  <br>(Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito,  <br>no exercício de atividades da instituição, não podendo ser móvel ou transitória).  <br>[Restrição] Preenchimento obrigatório para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).|
 |number|string|true|Deve ser preenchido com o número da conta transacional do usuário pagador, com dígito verificador (se este existir),  <br>se houver valor alfanumérico, este deve ser convertido para 0.|
-|accountType|[EnumAccountPaymentsType](#schemaenumaccountpaymentstype)|true|Tipos de contas usadas para pagamento via Pix.<br>Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,<br>conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.<br>Segue descrição de cada valor do ENUM para o escopo do Pix.<br>CACC - Current - Conta Corrente.<br>SLRY - Salary - Conta-Salário.<br>SVGS - Savings - Conta de Poupança.<br>TRAN - TransactingAccount - Conta de Pagamento pré-paga.<br/<br/><br>[Restrição] O <b>campo data.payment.creditorAccount.accountType</b> quando o arranjo alvo for TED só suportará os tipos <b>CACC</b> (Conta corrente), <b>SVGS</b> (Poupança) e <b>TRAN</b> (Conta de Pagamento pré-paga).<br/><br/>|
+|accountType|[EnumAccountPaymentsType](#schemaenumaccountpaymentstype)|true|Tipos de contas usadas para pagamento via Pix.  <br>Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  <br>conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  <br>Segue descrição de cada valor do ENUM para o escopo do Pix.  <br>CACC - Current - Conta Corrente.  <br>SLRY - Salary - Conta-Salário.  <br>SVGS - Savings - Conta de Poupança.  <br>TRAN - TransactingAccount - Conta de Pagamento pré-paga.|
 
 <h2 id="tocS_Details">Details</h2>
 
@@ -2969,21 +2216,20 @@ Ele deve ser único, não podendo ser repetido em qualquer outra operação envi
 
 ```
 
-Tipos de contas usadas para pagamento via Pix.
-Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,
-conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.
-Segue descrição de cada valor do ENUM para o escopo do Pix.
-CACC - Current - Conta Corrente.
-SLRY - Salary - Conta-Salário.
-SVGS - Savings - Conta de Poupança.
-TRAN - TransactingAccount - Conta de Pagamento pré-paga.<br/<br/>
-[Restrição] O <b>campo data.payment.creditorAccount.accountType</b> quando o arranjo alvo for TED só suportará os tipos <b>CACC</b> (Conta corrente), <b>SVGS</b> (Poupança) e <b>TRAN</b> (Conta de Pagamento pré-paga).<br/><br/>
+Tipos de contas usadas para pagamento via Pix.  
+Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+Segue descrição de cada valor do ENUM para o escopo do Pix.  
+CACC - Current - Conta Corrente.  
+SLRY - Salary - Conta-Salário.  
+SVGS - Savings - Conta de Poupança.  
+TRAN - TransactingAccount - Conta de Pagamento pré-paga.
 
 ### Propriedades
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|**|string|false|Tipos de contas usadas para pagamento via Pix.<br>Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,<br>conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.<br>Segue descrição de cada valor do ENUM para o escopo do Pix.<br>CACC - Current - Conta Corrente.<br>SLRY - Salary - Conta-Salário.<br>SVGS - Savings - Conta de Poupança.<br>TRAN - TransactingAccount - Conta de Pagamento pré-paga.<br/<br/><br>[Restrição] O <b>campo data.payment.creditorAccount.accountType</b> quando o arranjo alvo for TED só suportará os tipos <b>CACC</b> (Conta corrente), <b>SVGS</b> (Poupança) e <b>TRAN</b> (Conta de Pagamento pré-paga).<br/><br/>|
+|**|string|false|Tipos de contas usadas para pagamento via Pix.  <br>Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  <br>conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  <br>Segue descrição de cada valor do ENUM para o escopo do Pix.  <br>CACC - Current - Conta Corrente.  <br>SLRY - Salary - Conta-Salário.  <br>SVGS - Savings - Conta de Poupança.  <br>TRAN - TransactingAccount - Conta de Pagamento pré-paga.|
 
 #### Enumerated Values
 
@@ -3245,12 +2491,12 @@ RJCT (REJECTED) - Instrução de pagamento rejeitada.
 |**|ACCC|
 |**|RJCT|
 
-<h2 id="tocS_EnumPixPaymentType">EnumPixPaymentType</h2>
+<h2 id="tocS_EnumPaymentType">EnumPaymentType</h2>
 
-<a id="schemaenumpixpaymenttype"></a>
-<a id="schema_EnumPixPaymentType"></a>
-<a id="tocSenumpixpaymenttype"></a>
-<a id="tocsenumpixpaymenttype"></a>
+<a id="schemaenumpaymenttype"></a>
+<a id="schema_EnumPaymentType"></a>
+<a id="tocSenumpaymenttype"></a>
+<a id="tocsenumpaymenttype"></a>
 
 ```json
 "PIX"
@@ -3270,58 +2516,6 @@ Este campo define o tipo de pagamento que será iniciado após a autorização d
 |Nome|Código|
 |---|---|
 |**|PIX|
-
-<h2 id="tocS_EnumTedPaymentType">EnumTedPaymentType</h2>
-
-<a id="schemaenumtedpaymenttype"></a>
-<a id="schema_EnumTedPaymentType"></a>
-<a id="tocSenumtedpaymenttype"></a>
-<a id="tocsenumtedpaymenttype"></a>
-
-```json
-"TED"
-
-```
-
-Este campo define o tipo de pagamento que será iniciado após a autorização do consentimento.
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|**|string|false|Este campo define o tipo de pagamento que será iniciado após a autorização do consentimento.|
-
-#### Enumerated Values
-
-|Nome|Código|
-|---|---|
-|**|TED|
-
-<h2 id="tocS_EnumTefPaymentType">EnumTefPaymentType</h2>
-
-<a id="schemaenumtefpaymenttype"></a>
-<a id="schema_EnumTefPaymentType"></a>
-<a id="tocSenumtefpaymenttype"></a>
-<a id="tocsenumtefpaymenttype"></a>
-
-```json
-"TEF"
-
-```
-
-Este campo define o tipo de pagamento que será iniciado após a autorização do consentimento.
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|**|string|false|Este campo define o tipo de pagamento que será iniciado após a autorização do consentimento.|
-
-#### Enumerated Values
-
-|Nome|Código|
-|---|---|
-|**|TEF|
 
 <h2 id="tocS_EnumRejectionReasonType">EnumRejectionReasonType</h2>
 
@@ -3549,6 +2743,56 @@ Meta informações referente à API requisitada.
 |totalPages|integer(int32)|true|Número total de páginas no resultado|
 |requestDateTime|string(date-time)|true|Data e hora da consulta, conforme especificação RFC-3339, formato UTC.|
 
+<h2 id="tocS_PaymentConsent">PaymentConsent</h2>
+
+<a id="schemapaymentconsent"></a>
+<a id="schema_PaymentConsent"></a>
+<a id="tocSpaymentconsent"></a>
+<a id="tocspaymentconsent"></a>
+
+```json
+{
+  "type": "PIX",
+  "schedule": {
+    "single": {
+      "date": "2021-01-01"
+    }
+  },
+  "date": "2021-01-01",
+  "currency": "BRL",
+  "amount": "100000.12",
+  "ibgeTownCode": "5300108",
+  "details": {
+    "localInstrument": "DICT",
+    "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\n",
+    "proxy": "12345678901",
+    "creditorAccount": {
+      "ispb": "12345678",
+      "issuer": "1774",
+      "number": "1234567890",
+      "accountType": "CACC"
+    }
+  }
+}
+
+```
+
+Objeto contendo dados de pagamento para consentimento.
+
+### Propriedades
+
+|Nome|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|type|[EnumPaymentType](#schemaenumpaymenttype)|true|Este campo define o tipo de pagamento que será iniciado após a autorização do consentimento.|
+|schedule|object|false|Mutuamente exclusivo com o campo date. Este campo é obrigatório no caso de agendamento. Neste caso, o campo date não deve ser informado.|
+|» single|object|true|Define a política de agendamento único.|
+|»» date|string(date)|true|Define a data alvo da liquidação do pagamento. O fuso horário de Brasilia deve ser utilizado para criação e racionalização sobre os dados deste campo.  <br>OBS:Esse campo deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília e deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.|
+|date|string(date)|false|Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.|
+|currency|string|true|Código da moeda nacional segundo modelo ISO-4217, ou seja, 'BRL'.<br>Todos os valores monetários informados estão representados com a moeda vigente do Brasil.|
+|amount|string|true|Valor da transação com 2 casas decimais.|
+|ibgeTownCode|string|false|Traz o código da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatística).<br>Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientação do arranjo da forma de pagamento.<br>O preenchimento do campo tanto em pix/payments quanto /consents deve ser igual. Caso haja divergência dos valores, a instituição deve retornar HTTP 422 com o código de erro PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO.<br>Este campo faz referência ao campo CodMun do arranjo Pix.|
+|details|[Details](#schemadetails)|true|Objeto contendo os detalhes do pagamento.|
+
 <h2 id="tocS_PaymentPix">PaymentPix</h2>
 
 <a id="schemapaymentpix"></a>
@@ -3654,14 +2898,27 @@ Objeto contendo dados do pagameto como moeda e valor.
       "name": "Marco Antonio de Brito"
     },
     "payment": {
-      "date": "2021-01-01",
+      "type": "PIX",
       "schedule": {
         "single": {
           "date": "2021-01-01"
         }
       },
+      "date": "2021-01-01",
       "currency": "BRL",
-      "amount": "100000.12"
+      "amount": "100000.12",
+      "ibgeTownCode": "5300108",
+      "details": {
+        "localInstrument": "DICT",
+        "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\n",
+        "proxy": "12345678901",
+        "creditorAccount": {
+          "ispb": "12345678",
+          "issuer": "1774",
+          "number": "1234567890",
+          "accountType": "CACC"
+        }
+      }
     },
     "debtorAccount": {
       "ispb": "12345678",
@@ -4079,395 +3336,4 @@ Códigos de erros previstos na revogação do consentimento de pagamento:
 |**|TEMPO_LIMITE_REVOGACAO_EXCEDIDO|
 |**|MOTIVO_REVOGACAO_NAO_PERMITIDO|
 |**|INFORMACAO_ADICIONAL_REVOGACAO_REQUERIDA|
-
-<h2 id="tocS_CreateTedTefPayment">CreateTedTefPayment</h2>
-
-<a id="schemacreatetedtefpayment"></a>
-<a id="schema_CreateTedTefPayment"></a>
-<a id="tocScreatetedtefpayment"></a>
-<a id="tocscreatetedtefpayment"></a>
-
-```json
-{
-  "data": {
-    "payment": {
-      "amount": "100000.12",
-      "currency": "BRL"
-    },
-    "creditorAccount": {
-      "ispb": "12345678",
-      "issuer": "1774",
-      "number": "1234567890",
-      "accountType": "CACC"
-    },
-    "purpose": 1,
-    "purposeAdditionalInfo": "Informações adicionais"
-  }
-}
-
-```
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|data|[CreateTedTefPaymentData](#schemacreatetedtefpaymentdata)|true|Objeto contendo dados do pagamento e do recebedor (creditor).|
-
-<h2 id="tocS_CreateTedTefPaymentData">CreateTedTefPaymentData</h2>
-
-<a id="schemacreatetedtefpaymentdata"></a>
-<a id="schema_CreateTedTefPaymentData"></a>
-<a id="tocScreatetedtefpaymentdata"></a>
-<a id="tocscreatetedtefpaymentdata"></a>
-
-```json
-{
-  "payment": {
-    "amount": "100000.12",
-    "currency": "BRL"
-  },
-  "creditorAccount": {
-    "ispb": "12345678",
-    "issuer": "1774",
-    "number": "1234567890",
-    "accountType": "CACC"
-  },
-  "purpose": 1,
-  "purposeAdditionalInfo": "Informações adicionais"
-}
-
-```
-
-Objeto contendo dados do pagamento e do recebedor (creditor).
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|payment|[PaymentPix](#schemapaymentpix)|true|Objeto contendo dados do pagameto como moeda e valor.|
-|creditorAccount|object|false|Objeto que contém a identificação da conta de destino do beneficiário/recebedor.|
-|» ispb|string|false|Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos Brasileiros) do participante do SPI (Sistema de pagamentos instantâneos) somente com números.|
-|» issuer|string|false|Código da Agência emissora da conta sem dígito.  <br>(Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito,  <br>no exercício de atividades da instituição, não podendo ser móvel ou transitória).  <br>[Restrição] Preenchimento obrigatório para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).|
-|» number|string|true|Deve ser preenchido com o número da conta do usuário recebedor, com dígito verificador (se este existir),  <br>se houver valor alfanumérico, este deve ser convertido para 0.|
-|» accountType|[EnumAccountPaymentsType](#schemaenumaccountpaymentstype)|true|Tipos de contas usadas para pagamento via Pix.<br>Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,<br>conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.<br>Segue descrição de cada valor do ENUM para o escopo do Pix.<br>CACC - Current - Conta Corrente.<br>SLRY - Salary - Conta-Salário.<br>SVGS - Savings - Conta de Poupança.<br>TRAN - TransactingAccount - Conta de Pagamento pré-paga.<br/<br/><br>[Restrição] O <b>campo data.payment.creditorAccount.accountType</b> quando o arranjo alvo for TED só suportará os tipos <b>CACC</b> (Conta corrente), <b>SVGS</b> (Poupança) e <b>TRAN</b> (Conta de Pagamento pré-paga).<br/><br/>|
-|purpose|[EnumPurposeTedTef](#schemaenumpurposetedtef)|false|Para o caso de TED o campo é obrigatório, para o caso de TEF não. É responsabilidade da iniciadora desenvolver esse condicionante de modo a garantir a usabilidade especificada pelo GT UX.<br><br>1   - Pagamento de Impostos, Tributos e Taxas<br>10  - Crédito em Conta<br>100 - Depósito Judicial<br>101 - Pensão Alimentícia<br>103 - Cessão de créditos - Liquid.principal por aquis.créditos ou direitos creditórios ou fluxo de caixa garant.por créditos, por ordem cliente PJ financ.<br>104 - Cessão de créditos - Liquidação principal por aquisição de créditos ou direitos creditórios, por ordem de FIDC ou cia securitizadora<br>107 - Cessão de créditos - Repasse contratual de fluxo de caixa ou de recebíveis pagos, por ordem de cliente PJ financeira<br>108 - Cessão de créditos - Repasse contratual de fluxo de caixa ou de recebíveis pagos antecipadamente, por ordem de cliente PJ financeira<br>109 - Cessão de créditos - Ajustes diversos<br>11  - Pagamento a Corretoras<br>110 - Transferência entre contas de mesma titularidade<br>111 - Crédito para investidor em cliente da IF Creditada<br>112 - Débito de investidor em cliente da IF Debitada<br>113 - Pagamento de Operações de Crédito por Cliente<br>114 - Resgate de aplicação financeira de cliente para conta de sua titularidade<br>117 - Aplicação financeira em nome do cliente remetente<br>12  - Pagamento de Boleto Bancário em Cartório<br>121 - Pagamento da TIR - Pix Saque e/ou Pix Troco<br>123 - Cessão de créditos - Liquid.princ.por recompra de créditos ou direitos creditórios ou fluxo de caixa garant.por créditos, por ordem cliente PJ financ.<br>124 - Cessão de créditos - Liquidação principal por recompra de créditos ou direitos creditórios, por ordem de FIDC ou cia securitizadora<br>13  - Pagamento de Tarifas pela Prestação de Serviços de Arrecadação de Convênios<br>131 - FGCoop - Recolhimento Fundo Garantidor do Cooperativismo de Crédito<br>132 - FGCoop - devolução de recolhimento a maior<br>136 - FGTS - Saque Emergencial<br>139 - Crédito ao consumidor decorrente de programa de incentivo fiscal<br>14  - Repasse de Valores Referentes a Títulos Liquidados em Cartórios de Protesto<br>149 - Auxílio Emergencial Lei 13.982<br>15  - Liquidação Financeira de Operadora de Cartão<br>150 - Benefício Emergencial de Preservação do Emprego e da Renda - BEm<br>157 - Tributos Municipais ISS - LCP 157<br>175 - Tributos Municipais ISS TERCEIROS - LCP 157<br>18  - Operações Seguro Habitacional - SFH<br>19  - Operações do FDS - Caixa<br>2   - Pagamento à Concessionárias de Serviço Público<br>200 - Transferência Internacional em Reais<br>201 - Ajuste Posição Mercado Futuro<br>202 - Repasse de Valores do BNDES<br>203 - Liquidação de Compromissos Junto ao BNDES<br>204 - Operações de Compra e Venda de Ações - Bolsas de Valores e Mercado de Balcão<br>205 - Contratos Referenciados em Ações ou Índices de Ações - Bolsas de Valores, de Mercadorias e de futuros<br>206 - Operação de Câmbio - Não Interbancária<br>207 - Operações no Mercado de Renda Fixa e de Renda Variável com Utilização de Intermediário<br>208 - Operação de Câmbio - Mercado Interbancário - Instituições sem conta Reservas Bancárias<br>209 - Pagamento de Operações com identificação de destinatário final<br>23  - Taxa de Administração<br>27  - Pagamento de Acordo / Execução Judicial<br>28  - Liquidação de Empréstimos Consignados<br>29  - Pagamento de bolsa auxílio<br>3   - Pagamentos de Dividendos<br>30  - Remuneração a cooperado<br>300 - Restituição de Imposto de Renda<br>301 - Ordem Bancária do Tesouro - OBT<br>302 - Pagamento de multas ao BACEN por atrasos de importação<br>303 - Restituição de tributos - RFB<br>31  - Pagamento de prebenda (Remuneração a padres e sacerdotes)<br>33  - Pagamento de juros sobre capital próprio<br>34  - Pagamento de rendimentos ou amortização s/ cotas e/ou debêntures<br>35  - Taxa de Serviço<br>36  - Pagamento de cheque para não correntista<br>37  - Pagamento de juros e/ou amortização de títulos depositados em garantia nas Câmaras<br>38  - Estorno ou Restituição - Diversos<br>39  - Pagamento de Vale Transporte<br>4   - Pagamento de Salários<br>40  - Simples Nacional<br>41  - Repasse de valores para o FUNDEB<br>42  - Repasse de Valores de Convênio Centralizado<br>43  - Patrocínio com Incentivo Fiscal<br>44  - Doação com Incentivo Fiscal<br>45  - Transferência de conta corrente de instituição não bancária para sua Conta de Liquidação<br>47  - Pagamento de Rescisão de Contrato de Trabalho<br>5   - Pagamento de Fornecedores<br>50  - Reembolso de despesas com estruturação de operações de renda fixa e variável<br>500 - Restituição de Prêmios de Seguros<br>501 - Pagamento de Indenização de Sinistro de Seguro<br>502 - Pagamento de Prêmio de Co-Seguro<br>504 - Pagamento de Indenização de Sinistro de Co-Seguro<br>505 - Pagamento de Prêmio de Resseguro<br>507 - Pagamento de Indenização de Sinistro de Resseguro<br>508 - Restituição de Indenização de Sinistro de Resseguro<br>509 - Pagamento de Despesas com Sinistros<br>510 - Pagamento de Inspeções/Vistorias Prévias<br>511 - Pagamento de Resgate de Título da Capitalização<br>512 - Pagamento de Sorteio de Título de Capitalização<br>513 - Pagamento de Devolução de Mensalidade de Título de Capitalização<br>514 - Restituição de Contribuição de Plano Previdenciário<br>515 - Pagamento de Benefício Previdenciário de Pecúlio<br>516 - Pagamento de Benefício Previdenciário de Pensão<br>517 - Pagamento de Benefício Previdenciário de Aposentadoria<br>518 - Pagamento de Resgate Previdenciário<br>519 - Pagamento de Comissão de Corretagem<br>520 - Pagamento de Transferências/Portabilidade de Reserva de Seguro/Previdência<br>6   - Pagamento de Honorários<br>7   - Pagamento de Aluguéis e Taxas de Condomínio<br>8   - Pagamento de Duplicatas e Títulos<br>9   - Pagamento de Mensalidade Escolar<br>97  - Compra de Moeda Estrangeira pelo FSB - Fundo Soberano do Brasil<br>99999 - Outros|
-|purposeAdditionalInfo|string|false|Texto livre para complementar informação relativa ao campo purpose.<br>[Restrição] Preencher quando purpose for igual OUTROS.|
-
-<h2 id="tocS_EnumPurposeTedTef">EnumPurposeTedTef</h2>
-
-<a id="schemaenumpurposetedtef"></a>
-<a id="schema_EnumPurposeTedTef"></a>
-<a id="tocSenumpurposetedtef"></a>
-<a id="tocsenumpurposetedtef"></a>
-
-```json
-1
-
-```
-
-Para o caso de TED o campo é obrigatório, para o caso de TEF não. É responsabilidade da iniciadora desenvolver esse condicionante de modo a garantir a usabilidade especificada pelo GT UX.
-
-1   - Pagamento de Impostos, Tributos e Taxas
-10  - Crédito em Conta
-100 - Depósito Judicial
-101 - Pensão Alimentícia
-103 - Cessão de créditos - Liquid.principal por aquis.créditos ou direitos creditórios ou fluxo de caixa garant.por créditos, por ordem cliente PJ financ.
-104 - Cessão de créditos - Liquidação principal por aquisição de créditos ou direitos creditórios, por ordem de FIDC ou cia securitizadora
-107 - Cessão de créditos - Repasse contratual de fluxo de caixa ou de recebíveis pagos, por ordem de cliente PJ financeira
-108 - Cessão de créditos - Repasse contratual de fluxo de caixa ou de recebíveis pagos antecipadamente, por ordem de cliente PJ financeira
-109 - Cessão de créditos - Ajustes diversos
-11  - Pagamento a Corretoras
-110 - Transferência entre contas de mesma titularidade
-111 - Crédito para investidor em cliente da IF Creditada
-112 - Débito de investidor em cliente da IF Debitada
-113 - Pagamento de Operações de Crédito por Cliente
-114 - Resgate de aplicação financeira de cliente para conta de sua titularidade
-117 - Aplicação financeira em nome do cliente remetente
-12  - Pagamento de Boleto Bancário em Cartório
-121 - Pagamento da TIR - Pix Saque e/ou Pix Troco
-123 - Cessão de créditos - Liquid.princ.por recompra de créditos ou direitos creditórios ou fluxo de caixa garant.por créditos, por ordem cliente PJ financ.
-124 - Cessão de créditos - Liquidação principal por recompra de créditos ou direitos creditórios, por ordem de FIDC ou cia securitizadora
-13  - Pagamento de Tarifas pela Prestação de Serviços de Arrecadação de Convênios
-131 - FGCoop - Recolhimento Fundo Garantidor do Cooperativismo de Crédito
-132 - FGCoop - devolução de recolhimento a maior
-136 - FGTS - Saque Emergencial
-139 - Crédito ao consumidor decorrente de programa de incentivo fiscal
-14  - Repasse de Valores Referentes a Títulos Liquidados em Cartórios de Protesto
-149 - Auxílio Emergencial Lei 13.982
-15  - Liquidação Financeira de Operadora de Cartão
-150 - Benefício Emergencial de Preservação do Emprego e da Renda - BEm
-157 - Tributos Municipais ISS - LCP 157
-175 - Tributos Municipais ISS TERCEIROS - LCP 157
-18  - Operações Seguro Habitacional - SFH
-19  - Operações do FDS - Caixa
-2   - Pagamento à Concessionárias de Serviço Público
-200 - Transferência Internacional em Reais
-201 - Ajuste Posição Mercado Futuro
-202 - Repasse de Valores do BNDES
-203 - Liquidação de Compromissos Junto ao BNDES
-204 - Operações de Compra e Venda de Ações - Bolsas de Valores e Mercado de Balcão
-205 - Contratos Referenciados em Ações ou Índices de Ações - Bolsas de Valores, de Mercadorias e de futuros
-206 - Operação de Câmbio - Não Interbancária
-207 - Operações no Mercado de Renda Fixa e de Renda Variável com Utilização de Intermediário
-208 - Operação de Câmbio - Mercado Interbancário - Instituições sem conta Reservas Bancárias
-209 - Pagamento de Operações com identificação de destinatário final
-23  - Taxa de Administração
-27  - Pagamento de Acordo / Execução Judicial
-28  - Liquidação de Empréstimos Consignados
-29  - Pagamento de bolsa auxílio
-3   - Pagamentos de Dividendos
-30  - Remuneração a cooperado
-300 - Restituição de Imposto de Renda
-301 - Ordem Bancária do Tesouro - OBT
-302 - Pagamento de multas ao BACEN por atrasos de importação
-303 - Restituição de tributos - RFB
-31  - Pagamento de prebenda (Remuneração a padres e sacerdotes)
-33  - Pagamento de juros sobre capital próprio
-34  - Pagamento de rendimentos ou amortização s/ cotas e/ou debêntures
-35  - Taxa de Serviço
-36  - Pagamento de cheque para não correntista
-37  - Pagamento de juros e/ou amortização de títulos depositados em garantia nas Câmaras
-38  - Estorno ou Restituição - Diversos
-39  - Pagamento de Vale Transporte
-4   - Pagamento de Salários
-40  - Simples Nacional
-41  - Repasse de valores para o FUNDEB
-42  - Repasse de Valores de Convênio Centralizado
-43  - Patrocínio com Incentivo Fiscal
-44  - Doação com Incentivo Fiscal
-45  - Transferência de conta corrente de instituição não bancária para sua Conta de Liquidação
-47  - Pagamento de Rescisão de Contrato de Trabalho
-5   - Pagamento de Fornecedores
-50  - Reembolso de despesas com estruturação de operações de renda fixa e variável
-500 - Restituição de Prêmios de Seguros
-501 - Pagamento de Indenização de Sinistro de Seguro
-502 - Pagamento de Prêmio de Co-Seguro
-504 - Pagamento de Indenização de Sinistro de Co-Seguro
-505 - Pagamento de Prêmio de Resseguro
-507 - Pagamento de Indenização de Sinistro de Resseguro
-508 - Restituição de Indenização de Sinistro de Resseguro
-509 - Pagamento de Despesas com Sinistros
-510 - Pagamento de Inspeções/Vistorias Prévias
-511 - Pagamento de Resgate de Título da Capitalização
-512 - Pagamento de Sorteio de Título de Capitalização
-513 - Pagamento de Devolução de Mensalidade de Título de Capitalização
-514 - Restituição de Contribuição de Plano Previdenciário
-515 - Pagamento de Benefício Previdenciário de Pecúlio
-516 - Pagamento de Benefício Previdenciário de Pensão
-517 - Pagamento de Benefício Previdenciário de Aposentadoria
-518 - Pagamento de Resgate Previdenciário
-519 - Pagamento de Comissão de Corretagem
-520 - Pagamento de Transferências/Portabilidade de Reserva de Seguro/Previdência
-6   - Pagamento de Honorários
-7   - Pagamento de Aluguéis e Taxas de Condomínio
-8   - Pagamento de Duplicatas e Títulos
-9   - Pagamento de Mensalidade Escolar
-97  - Compra de Moeda Estrangeira pelo FSB - Fundo Soberano do Brasil
-99999 - Outros
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|**|integer|false|Para o caso de TED o campo é obrigatório, para o caso de TEF não. É responsabilidade da iniciadora desenvolver esse condicionante de modo a garantir a usabilidade especificada pelo GT UX.<br><br>1   - Pagamento de Impostos, Tributos e Taxas<br>10  - Crédito em Conta<br>100 - Depósito Judicial<br>101 - Pensão Alimentícia<br>103 - Cessão de créditos - Liquid.principal por aquis.créditos ou direitos creditórios ou fluxo de caixa garant.por créditos, por ordem cliente PJ financ.<br>104 - Cessão de créditos - Liquidação principal por aquisição de créditos ou direitos creditórios, por ordem de FIDC ou cia securitizadora<br>107 - Cessão de créditos - Repasse contratual de fluxo de caixa ou de recebíveis pagos, por ordem de cliente PJ financeira<br>108 - Cessão de créditos - Repasse contratual de fluxo de caixa ou de recebíveis pagos antecipadamente, por ordem de cliente PJ financeira<br>109 - Cessão de créditos - Ajustes diversos<br>11  - Pagamento a Corretoras<br>110 - Transferência entre contas de mesma titularidade<br>111 - Crédito para investidor em cliente da IF Creditada<br>112 - Débito de investidor em cliente da IF Debitada<br>113 - Pagamento de Operações de Crédito por Cliente<br>114 - Resgate de aplicação financeira de cliente para conta de sua titularidade<br>117 - Aplicação financeira em nome do cliente remetente<br>12  - Pagamento de Boleto Bancário em Cartório<br>121 - Pagamento da TIR - Pix Saque e/ou Pix Troco<br>123 - Cessão de créditos - Liquid.princ.por recompra de créditos ou direitos creditórios ou fluxo de caixa garant.por créditos, por ordem cliente PJ financ.<br>124 - Cessão de créditos - Liquidação principal por recompra de créditos ou direitos creditórios, por ordem de FIDC ou cia securitizadora<br>13  - Pagamento de Tarifas pela Prestação de Serviços de Arrecadação de Convênios<br>131 - FGCoop - Recolhimento Fundo Garantidor do Cooperativismo de Crédito<br>132 - FGCoop - devolução de recolhimento a maior<br>136 - FGTS - Saque Emergencial<br>139 - Crédito ao consumidor decorrente de programa de incentivo fiscal<br>14  - Repasse de Valores Referentes a Títulos Liquidados em Cartórios de Protesto<br>149 - Auxílio Emergencial Lei 13.982<br>15  - Liquidação Financeira de Operadora de Cartão<br>150 - Benefício Emergencial de Preservação do Emprego e da Renda - BEm<br>157 - Tributos Municipais ISS - LCP 157<br>175 - Tributos Municipais ISS TERCEIROS - LCP 157<br>18  - Operações Seguro Habitacional - SFH<br>19  - Operações do FDS - Caixa<br>2   - Pagamento à Concessionárias de Serviço Público<br>200 - Transferência Internacional em Reais<br>201 - Ajuste Posição Mercado Futuro<br>202 - Repasse de Valores do BNDES<br>203 - Liquidação de Compromissos Junto ao BNDES<br>204 - Operações de Compra e Venda de Ações - Bolsas de Valores e Mercado de Balcão<br>205 - Contratos Referenciados em Ações ou Índices de Ações - Bolsas de Valores, de Mercadorias e de futuros<br>206 - Operação de Câmbio - Não Interbancária<br>207 - Operações no Mercado de Renda Fixa e de Renda Variável com Utilização de Intermediário<br>208 - Operação de Câmbio - Mercado Interbancário - Instituições sem conta Reservas Bancárias<br>209 - Pagamento de Operações com identificação de destinatário final<br>23  - Taxa de Administração<br>27  - Pagamento de Acordo / Execução Judicial<br>28  - Liquidação de Empréstimos Consignados<br>29  - Pagamento de bolsa auxílio<br>3   - Pagamentos de Dividendos<br>30  - Remuneração a cooperado<br>300 - Restituição de Imposto de Renda<br>301 - Ordem Bancária do Tesouro - OBT<br>302 - Pagamento de multas ao BACEN por atrasos de importação<br>303 - Restituição de tributos - RFB<br>31  - Pagamento de prebenda (Remuneração a padres e sacerdotes)<br>33  - Pagamento de juros sobre capital próprio<br>34  - Pagamento de rendimentos ou amortização s/ cotas e/ou debêntures<br>35  - Taxa de Serviço<br>36  - Pagamento de cheque para não correntista<br>37  - Pagamento de juros e/ou amortização de títulos depositados em garantia nas Câmaras<br>38  - Estorno ou Restituição - Diversos<br>39  - Pagamento de Vale Transporte<br>4   - Pagamento de Salários<br>40  - Simples Nacional<br>41  - Repasse de valores para o FUNDEB<br>42  - Repasse de Valores de Convênio Centralizado<br>43  - Patrocínio com Incentivo Fiscal<br>44  - Doação com Incentivo Fiscal<br>45  - Transferência de conta corrente de instituição não bancária para sua Conta de Liquidação<br>47  - Pagamento de Rescisão de Contrato de Trabalho<br>5   - Pagamento de Fornecedores<br>50  - Reembolso de despesas com estruturação de operações de renda fixa e variável<br>500 - Restituição de Prêmios de Seguros<br>501 - Pagamento de Indenização de Sinistro de Seguro<br>502 - Pagamento de Prêmio de Co-Seguro<br>504 - Pagamento de Indenização de Sinistro de Co-Seguro<br>505 - Pagamento de Prêmio de Resseguro<br>507 - Pagamento de Indenização de Sinistro de Resseguro<br>508 - Restituição de Indenização de Sinistro de Resseguro<br>509 - Pagamento de Despesas com Sinistros<br>510 - Pagamento de Inspeções/Vistorias Prévias<br>511 - Pagamento de Resgate de Título da Capitalização<br>512 - Pagamento de Sorteio de Título de Capitalização<br>513 - Pagamento de Devolução de Mensalidade de Título de Capitalização<br>514 - Restituição de Contribuição de Plano Previdenciário<br>515 - Pagamento de Benefício Previdenciário de Pecúlio<br>516 - Pagamento de Benefício Previdenciário de Pensão<br>517 - Pagamento de Benefício Previdenciário de Aposentadoria<br>518 - Pagamento de Resgate Previdenciário<br>519 - Pagamento de Comissão de Corretagem<br>520 - Pagamento de Transferências/Portabilidade de Reserva de Seguro/Previdência<br>6   - Pagamento de Honorários<br>7   - Pagamento de Aluguéis e Taxas de Condomínio<br>8   - Pagamento de Duplicatas e Títulos<br>9   - Pagamento de Mensalidade Escolar<br>97  - Compra de Moeda Estrangeira pelo FSB - Fundo Soberano do Brasil<br>99999 - Outros|
-
-#### Enumerated Values
-
-|Nome|Código|
-|---|---|
-|**|1|
-|**|10|
-|**|100|
-|**|101|
-|**|103|
-|**|104|
-|**|107|
-|**|108|
-|**|109|
-|**|11|
-|**|110|
-|**|111|
-|**|112|
-|**|113|
-|**|114|
-|**|117|
-|**|12|
-|**|121|
-|**|123|
-|**|124|
-|**|13|
-|**|131|
-|**|132|
-|**|136|
-|**|139|
-|**|14|
-|**|149|
-|**|15|
-|**|150|
-|**|157|
-|**|175|
-|**|18|
-|**|19|
-|**|2|
-|**|200|
-|**|201|
-|**|202|
-|**|203|
-|**|204|
-|**|205|
-|**|206|
-|**|207|
-|**|208|
-|**|209|
-|**|23|
-|**|27|
-|**|28|
-|**|29|
-|**|3|
-|**|30|
-|**|300|
-|**|301|
-|**|302|
-|**|303|
-|**|31|
-|**|33|
-|**|34|
-|**|35|
-|**|36|
-|**|37|
-|**|38|
-|**|39|
-|**|4|
-|**|40|
-|**|41|
-|**|42|
-|**|43|
-|**|44|
-|**|45|
-|**|47|
-|**|5|
-|**|50|
-|**|500|
-|**|501|
-|**|502|
-|**|504|
-|**|505|
-|**|507|
-|**|508|
-|**|509|
-|**|510|
-|**|511|
-|**|512|
-|**|513|
-|**|514|
-|**|515|
-|**|516|
-|**|517|
-|**|518|
-|**|519|
-|**|520|
-|**|6|
-|**|7|
-|**|8|
-|**|9|
-|**|97|
-|**|99999|
-
-<h2 id="tocS_ResponseTedTefPayment">ResponseTedTefPayment</h2>
-
-<a id="schemaresponsetedtefpayment"></a>
-<a id="schema_ResponseTedTefPayment"></a>
-<a id="tocSresponsetedtefpayment"></a>
-<a id="tocsresponsetedtefpayment"></a>
-
-```json
-{
-  "data": {
-    "paymentId": "TXpRMU9UQTROMWhZV2xSU1FUazJSMDl",
-    "consentId": "urn:bancoex:C1DD33123",
-    "creationDateTime": "2020-07-21T08:30:00Z",
-    "statusUpdateDateTime": "2020-07-21T08:30:00Z",
-    "status": "PDNG",
-    "payment": {
-      "amount": "100000.12",
-      "currency": "BRL"
-    },
-    "creditorAccount": {
-      "ispb": "12345678",
-      "issuer": "1774",
-      "number": "1234567890",
-      "accountType": "CACC"
-    },
-    "purpose": 1,
-    "purposeAdditionalInfo": "Informações adicionais",
-    "rejectionReason": "USER_NOT_YET_ACTIVATED"
-  },
-  "links": {
-    "self": "https://api.banco.com.br/open-banking/api/v1/resource"
-  },
-  "meta": {
-    "totalRecords": 1,
-    "totalPages": 1,
-    "requestDateTime": "2021-05-21T08:30:00Z"
-  }
-}
-
-```
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|data|[ResponseTedTefPaymentData](#schemaresponsetedtefpaymentdata)|true|Objeto contendo dados do pagamento e da conta do recebedor (creditor).|
-|links|object|true|Referências para outros recusos da API requisitada.|
-|» self|string(uri)|true|URI completo que gerou a resposta atual.|
-|meta|[Meta](#schemameta)|true|Meta informações referente à API requisitada.|
-
-<h2 id="tocS_ResponseTedTefPaymentData">ResponseTedTefPaymentData</h2>
-
-<a id="schemaresponsetedtefpaymentdata"></a>
-<a id="schema_ResponseTedTefPaymentData"></a>
-<a id="tocSresponsetedtefpaymentdata"></a>
-<a id="tocsresponsetedtefpaymentdata"></a>
-
-```json
-{
-  "paymentId": "TXpRMU9UQTROMWhZV2xSU1FUazJSMDl",
-  "consentId": "urn:bancoex:C1DD33123",
-  "creationDateTime": "2020-07-21T08:30:00Z",
-  "statusUpdateDateTime": "2020-07-21T08:30:00Z",
-  "status": "PDNG",
-  "payment": {
-    "amount": "100000.12",
-    "currency": "BRL"
-  },
-  "creditorAccount": {
-    "ispb": "12345678",
-    "issuer": "1774",
-    "number": "1234567890",
-    "accountType": "CACC"
-  },
-  "purpose": 1,
-  "purposeAdditionalInfo": "Informações adicionais",
-  "rejectionReason": "USER_NOT_YET_ACTIVATED"
-}
-
-```
-
-Objeto contendo dados do pagamento e da conta do recebedor (creditor).
-
-### Propriedades
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|paymentId|string|true|Código ou identificador único informado pela instituição detentora da conta para representar a iniciação de pagamento individual.<br>Este é o identificador que deverá ser utilizado na consulta ao status da iniciação de pagamento efetuada.|
-|consentId|string|true|Identificador único do consentimento criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.<br>Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource<br>Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN<br>seja um identificador de recurso persistente e independente da localização.<br>Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:<br>- o namespace(urn)<br>- o identificador associado ao namespace da instituição transnmissora (bancoex)<br>- o identificador específico dentro do namespace (C1DD33123).<br>Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).|
-|creationDateTime|string(date-time)|true|Data e hora em que o recurso foi criado.<br>Uma string com data e hora conforme especificação RFC-3339,<br>sempre com a utilização de timezone UTC(UTC time format).|
-|statusUpdateDateTime|string(date-time)|true|Data e hora da última atualização da iniciação de pagamento.<br>Uma string com data e hora conforme especificação RFC-3339,<br>sempre com a utilização de timezone UTC(UTC time format).|
-|status|[EnumPaymentStatusType](#schemaenumpaymentstatustype)|true|Estado atual da iniciação de pagamento. O estado evolui na seguinte ordem:  <br>1. PDNG (PENDING) - Iniciação de pagamento ou transação de pagamento está pendente. Checagens adicionais em realização.  <br>2. SASP (SCHEDULE_ACCEPTED_SETTLEMENT_IN_PROCESS) - Indica que o processo de agendamento está em processamento.  <br>3. SASC (SCHEDULE_ACCEPTED_SETTLEMENT_COMPLETED) - Indica que o processo de agendamento foi realizado.  <br>4. PART (PARTIALLY ACCEPTED) - Aguardando autorização múltipla alçada.  <br>5. ACSP (ACCEPTED_SETTLEMENT_IN_PROCESS) - Iniciação de pagamento aceita e processamento do pagamento foi iniciado.  <br>6. ACSC (ACCEPTED_SETTLEMENT_COMPLETED_DEBITOR_ACCOUNT) - Débito realizado na conta do pagador.  <br>7. ACCC (ACCEPTED_SETTLEMENT_COMPLETED) - Crédito realizado na instituição de destino.  <br><br>Em caso insucesso:  <br>RJCT (REJECTED) - Instrução de pagamento rejeitada.|
-|payment|[PaymentPix](#schemapaymentpix)|true|Objeto contendo dados do pagameto como moeda e valor.|
-|creditorAccount|[CreateTedTefPaymentData/properties/creditorAccount](#schemacreatetedtefpaymentdata/properties/creditoraccount)|true|Objeto que contém a identificação da conta de destino do beneficiário/recebedor.|
-|purpose|[EnumPurposeTedTef](#schemaenumpurposetedtef)|false|Para o caso de TED o campo é obrigatório, para o caso de TEF não. É responsabilidade da iniciadora desenvolver esse condicionante de modo a garantir a usabilidade especificada pelo GT UX.<br><br>1   - Pagamento de Impostos, Tributos e Taxas<br>10  - Crédito em Conta<br>100 - Depósito Judicial<br>101 - Pensão Alimentícia<br>103 - Cessão de créditos - Liquid.principal por aquis.créditos ou direitos creditórios ou fluxo de caixa garant.por créditos, por ordem cliente PJ financ.<br>104 - Cessão de créditos - Liquidação principal por aquisição de créditos ou direitos creditórios, por ordem de FIDC ou cia securitizadora<br>107 - Cessão de créditos - Repasse contratual de fluxo de caixa ou de recebíveis pagos, por ordem de cliente PJ financeira<br>108 - Cessão de créditos - Repasse contratual de fluxo de caixa ou de recebíveis pagos antecipadamente, por ordem de cliente PJ financeira<br>109 - Cessão de créditos - Ajustes diversos<br>11  - Pagamento a Corretoras<br>110 - Transferência entre contas de mesma titularidade<br>111 - Crédito para investidor em cliente da IF Creditada<br>112 - Débito de investidor em cliente da IF Debitada<br>113 - Pagamento de Operações de Crédito por Cliente<br>114 - Resgate de aplicação financeira de cliente para conta de sua titularidade<br>117 - Aplicação financeira em nome do cliente remetente<br>12  - Pagamento de Boleto Bancário em Cartório<br>121 - Pagamento da TIR - Pix Saque e/ou Pix Troco<br>123 - Cessão de créditos - Liquid.princ.por recompra de créditos ou direitos creditórios ou fluxo de caixa garant.por créditos, por ordem cliente PJ financ.<br>124 - Cessão de créditos - Liquidação principal por recompra de créditos ou direitos creditórios, por ordem de FIDC ou cia securitizadora<br>13  - Pagamento de Tarifas pela Prestação de Serviços de Arrecadação de Convênios<br>131 - FGCoop - Recolhimento Fundo Garantidor do Cooperativismo de Crédito<br>132 - FGCoop - devolução de recolhimento a maior<br>136 - FGTS - Saque Emergencial<br>139 - Crédito ao consumidor decorrente de programa de incentivo fiscal<br>14  - Repasse de Valores Referentes a Títulos Liquidados em Cartórios de Protesto<br>149 - Auxílio Emergencial Lei 13.982<br>15  - Liquidação Financeira de Operadora de Cartão<br>150 - Benefício Emergencial de Preservação do Emprego e da Renda - BEm<br>157 - Tributos Municipais ISS - LCP 157<br>175 - Tributos Municipais ISS TERCEIROS - LCP 157<br>18  - Operações Seguro Habitacional - SFH<br>19  - Operações do FDS - Caixa<br>2   - Pagamento à Concessionárias de Serviço Público<br>200 - Transferência Internacional em Reais<br>201 - Ajuste Posição Mercado Futuro<br>202 - Repasse de Valores do BNDES<br>203 - Liquidação de Compromissos Junto ao BNDES<br>204 - Operações de Compra e Venda de Ações - Bolsas de Valores e Mercado de Balcão<br>205 - Contratos Referenciados em Ações ou Índices de Ações - Bolsas de Valores, de Mercadorias e de futuros<br>206 - Operação de Câmbio - Não Interbancária<br>207 - Operações no Mercado de Renda Fixa e de Renda Variável com Utilização de Intermediário<br>208 - Operação de Câmbio - Mercado Interbancário - Instituições sem conta Reservas Bancárias<br>209 - Pagamento de Operações com identificação de destinatário final<br>23  - Taxa de Administração<br>27  - Pagamento de Acordo / Execução Judicial<br>28  - Liquidação de Empréstimos Consignados<br>29  - Pagamento de bolsa auxílio<br>3   - Pagamentos de Dividendos<br>30  - Remuneração a cooperado<br>300 - Restituição de Imposto de Renda<br>301 - Ordem Bancária do Tesouro - OBT<br>302 - Pagamento de multas ao BACEN por atrasos de importação<br>303 - Restituição de tributos - RFB<br>31  - Pagamento de prebenda (Remuneração a padres e sacerdotes)<br>33  - Pagamento de juros sobre capital próprio<br>34  - Pagamento de rendimentos ou amortização s/ cotas e/ou debêntures<br>35  - Taxa de Serviço<br>36  - Pagamento de cheque para não correntista<br>37  - Pagamento de juros e/ou amortização de títulos depositados em garantia nas Câmaras<br>38  - Estorno ou Restituição - Diversos<br>39  - Pagamento de Vale Transporte<br>4   - Pagamento de Salários<br>40  - Simples Nacional<br>41  - Repasse de valores para o FUNDEB<br>42  - Repasse de Valores de Convênio Centralizado<br>43  - Patrocínio com Incentivo Fiscal<br>44  - Doação com Incentivo Fiscal<br>45  - Transferência de conta corrente de instituição não bancária para sua Conta de Liquidação<br>47  - Pagamento de Rescisão de Contrato de Trabalho<br>5   - Pagamento de Fornecedores<br>50  - Reembolso de despesas com estruturação de operações de renda fixa e variável<br>500 - Restituição de Prêmios de Seguros<br>501 - Pagamento de Indenização de Sinistro de Seguro<br>502 - Pagamento de Prêmio de Co-Seguro<br>504 - Pagamento de Indenização de Sinistro de Co-Seguro<br>505 - Pagamento de Prêmio de Resseguro<br>507 - Pagamento de Indenização de Sinistro de Resseguro<br>508 - Restituição de Indenização de Sinistro de Resseguro<br>509 - Pagamento de Despesas com Sinistros<br>510 - Pagamento de Inspeções/Vistorias Prévias<br>511 - Pagamento de Resgate de Título da Capitalização<br>512 - Pagamento de Sorteio de Título de Capitalização<br>513 - Pagamento de Devolução de Mensalidade de Título de Capitalização<br>514 - Restituição de Contribuição de Plano Previdenciário<br>515 - Pagamento de Benefício Previdenciário de Pecúlio<br>516 - Pagamento de Benefício Previdenciário de Pensão<br>517 - Pagamento de Benefício Previdenciário de Aposentadoria<br>518 - Pagamento de Resgate Previdenciário<br>519 - Pagamento de Comissão de Corretagem<br>520 - Pagamento de Transferências/Portabilidade de Reserva de Seguro/Previdência<br>6   - Pagamento de Honorários<br>7   - Pagamento de Aluguéis e Taxas de Condomínio<br>8   - Pagamento de Duplicatas e Títulos<br>9   - Pagamento de Mensalidade Escolar<br>97  - Compra de Moeda Estrangeira pelo FSB - Fundo Soberano do Brasil<br>99999 - Outros|
-|purposeAdditionalInfo|string|false|Texto livre para complementar informação relativa ao campo purpose.<br>[Restrição] Preencher quando purpose for igual OUTROS.|
-|rejectionReason|[EnumRejectionReasonType](#schemaenumrejectionreasontype)|false|Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.  <br>ABORTED_SETTLEMENT_TIMEOUT - Liquidação da transação interrompida devido a timeout no SPI (AB03).  <br>ERROR_CREDITOR_AGENT - Transação interrompida devido a erro no participante do usuário recebedor (AB09).  <br>TIMEOUT_DEBTOR_AGENT - Timeout do participante emissor da ordem de pagamento (AB11).  <br>INVALID_CREDITOR_ACCOUNT_NUMBER - Número da conta transacional do usuário recebedor inexistente ou inválido (AC03).  <br>BLOCKED_ACCOUNT - Conta transacional do usuário recebedor encontra-se bloqueada (AC06).  <br>CLOSED_CREDITOR_ACCOUNT_NUMBER - Número da conta transacional do usuário recebedor encerrada (AC07).  <br>INVALID_CREDITOR_ACCOUNTTYPE - Tipo incorreto para a conta transacional do usuário recebedor (AC14).  <br>TRANSACTION_NOT_SUPPORTED - Tipo de transação não é suportado/autorizado na conta transacional do usuário recebedor (AG03). Exemplo: transferência para conta salário.  <br>NOT_ALLOWED_BOOK_TRANSFER - Não é permitida ordem de pagamento/devolução no SPI cujos recursos sejam transferidos de uma conta transacional para outra em uma mesma instituição participante ou entre participantes que utilizem o serviço de liquidação de um mesmo participante liquidante no SPI (booktransfer) (AG12).  <br>FORBIDDEN_RETURN_PAYMENT - Não é permitido devolver a devolução de um pagamento instantâneo (AG13).  <br>INCORRECT_AGENT - Participante direto não é liquidante do participante do usuário pagador / participante do usuário recebedor (AGNT).  <br>ZERO_AMOUNT - Ordem de pagamento instantâneo com valor zero (AM01).  <br>NOT_ALLOWED_AMOUNT - Ordem de pagamento/devolução em valor que faz superar o limite permitido para o tipo de conta transacional creditada (AM02).  <br>INSUFFICIENT_FUNDS - Saldo insuficiente na conta PI do participante do usuário pagador (AM04).  <br>WRONG_AMOUNT - Devolução de pagamento em valor que faz superar o valor da ordem de pagamento instantâneo correspondente (AM09).  <br>INVALID_AMOUNT - Divergência entre a somatória dos valores do bloco ‘valorDoDinheiroOuCompra’ e o campo ‘valor’ (AM12).  <br>INVALID_NUMBER_OF_TRANSACTIONS - Quantidade de transações inválida (AM18).  <br>INCONSISTENT_WITH_END_CUSTOMER - CPF/CNPJ do usuário recebedor não é consistente com o titular da conta transacional especificada (BE01).  <br>INVALID_IDENTIFICATION_CODE - Código de situação de pagamento ou de erro inválido (BE15).  <br>INVALID_CREDITOR_IDENTIFICATION_CODE - QR Code rejeitado pelo participante do usuário recebedor (BE17).  <br>CREDITOR_IDENTIFIER_INCORRECT - CPF/CNPJ do usuário recebedor incorreto (CH11).  <br>ELEMENT_CONTENT_FORMALLY_INCORRECT - Elemento da mensagem incorreto (CH16).  <br>ORDER_REJECTED - Ordem rejeitada pelo participante do usuário recebedor (DS04).  <br>NOT_ALLOWED_PAYMENT - Participante que assinou a mensagem não é autorizado a realizar a operação na conta PI debitada. No caso em que o participante que assinou a mensagem não é o titular da conta PI debitada nem é o liquidante no SPI do participante do usuário pagador (DS0G).  <br>NOT_ALLOWED_ACCOUNT - ISPB do participante que submeteu a resposta à ordem de pagamento/devolução diferente do ISPB do participante creditado pela ordem (DS0H).  <br>USER_NOT_YET_ACTIVATED - Participante não se encontra cadastrado ou ainda não iniciou a operação no SPI (DS27).  <br>INVALID_CREATION_DATE - Data e Hora do envio da mensagem inválida (DT02).  <br>INVALID_CUT_OFF_DATE - Transação extrapola o prazo máximo para devolução de pagamento instantâneo regulamentado pelo Arranjo PIX (DT05).  <br>SETTLEMENT_FAILED - Erro no processamento do pagamento instantâneo (ED05).  <br>INVALID_PURPOSE - Inconsistência entre a finalidade da transação e o preenchimento do bloco elementos Structured (FF07).  <br>INVALID_END_TO_END_ID - Identificador da operação mal formatado (FF08).  <br>INVALID_DEBTOR_CLEARING_SYSTEM_MEMBER_IDENTIFIER - ISPB do participante do usuário pagador inválido ou inexistente (RC09).  <br>INVALID_CREDITOR_CLEARING_SYSTEM_MEMBER_IDENTIFIER - ISPB do participante do usuário recebedor inválido ou inexistente (RC10).  <br>REGULATORY_REASON - Ordem de pagamento em que o usuário pagador é sancionado por resolução do Conselho de Segurança das Nações Unidas (CSNU). Nos casos em que o usuário recebedor for o sancionado, a ordem de pagamento não deve ser rejeitada (RR4).  <br>SPECIFIC_SERVICE_OFFERED_BY_CREDITOR_AGENT - A transação original não está relacionada ao serviço de Saque Pix (SL02).  <br>INVALID_BILL - Validação de expiração, validação de vencimento, Status Válido (INDT).  <br>OPERATION_WINDOW - Requisição está fora da janela de funcionamento (IDEA).  <br>INCOMPATIBLE_DATE - Data do pagamento divergente da data consentida ou divergente da data atual do QR Code (TERM).  <br>MISMATCH_AMOUNT - O valor informado no consentimento não é o mesmo valor do informado no payload de pagamento (OB01).  <br>OVER_LIMIT - O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente (OB02).   <br>INVALID_CONSENT - Consentimento inválido (status não é "authorised" ou está expirado) (OB03).  <br>DENIED_MULTIPLE_AUTHORISATIONS - Um (ou mais) aprovadores na detentora recusaram a operação (OB04).  <br>EXPIRED_MULTIPLE_AUTHORISATIONS - Um (ou mais) aprovadores na detentora não tomaram ação para aprovar a operação (OB05).  <br>EXPIRED_BILL - O QR Code não é mais válido (OB06).   <br>CONSENT_REVOKED - Pagamento cancelado devido à revogação do consentimento.   <br>[Restrição] Esse motivo deverá ser enviado quando o campo /data/status for igual a RJCT (REJECTED).|
 

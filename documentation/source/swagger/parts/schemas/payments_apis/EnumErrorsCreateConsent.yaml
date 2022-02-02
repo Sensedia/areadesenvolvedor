@@ -5,16 +5,12 @@ enum:
   - DATA_PGTO_INVALIDA
   - DETALHE_PGTO_INVALIDO
   - NAO_INFORMADO
-  - TIPO_CONTA_NAO_SUPORTADO
-  - JANELA_HORARIO_NAO_PERMITIDA
-  - VALOR_ACIMA_LIMITE
+  - AGENDAMENTO_INVALIDO
 example: FORMA_PGTO_INVALIDA
 description: |
-  Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:
-  • FORMA_PGTO_INVALIDA: Forma de pagamento inválida.
-  • DATA_PGTO_INVALIDA: Data de pagamento inválida.
-  • DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.
-  • NAO_INFORMADO: Não informado.
-  • TIPO_CONTA_NAO_SUPORTADO: Tipo de conta não suportado pelo arranjo alvo.
-  • JANELA_HORARIO_NAO_PERMITIDA: Janela de horário do arranjo de pagamento alvo não permitida.
-  • VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
+  Códigos de erros previstos na criação de consentimento para a iniciação de pagamentos:  
+  • FORMA_PGTO_INVALIDA: Forma de pagamento inválida.  
+  • DATA_PGTO_INVALIDA: Data de pagamento inválida.  
+  • DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.  
+  • NAO_INFORMADO: Não informado.   
+  • AGENDAMENTO_INVALIDO: Agendamento inválido.

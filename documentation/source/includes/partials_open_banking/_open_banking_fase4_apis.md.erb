@@ -10,6 +10,8 @@ disponibilizando ao público informações sobre os produtos que oferecem.
 
 <strong>API de Investimentos</strong>
 
+O compartilhamento de dados relacionados aos produtos de títulos financeiros se restringe ao mercado primário.
+
 A tabela abaixo atende aos seguintes produtos: 
 
 - Lista de produtos de renda fixa bancária (CDB, RDB, LCI e LCA);
@@ -19,8 +21,9 @@ A tabela abaixo atende aos seguintes produtos:
 <strong>Obs.:</strong> O campo <strong>denominação</strong> é apresentado no Swagger e no Json de exemplo como <strong>investmentType</strong>.
 
 <i>“Visando refletir uma padronização de mercado, foi proposto que a classificação de papéis do SINACOR seja utilizada para definir o preenchimento do campo denominação”.</i>
+
 ![Classificação denominação](images/extras/tabela_api_investimentos_classificacao_denominacao.png)
-<a href="images/extras/tabela_api_investimentos_classificacao_denominacao.xlsx" target="_blank">Download da Tabela de Classificação de Denominação</a>
+<a href="documents/tabela_api_investimentos_classificacao_denominacao.xlsx" target="_blank">Download da Tabela de Classificação de Denominação</a>
 
 <h1 id="fase-4-apis-do-open-banking-brasil-api-t-tulos-de-capitaliza-o">API - Títulos de Capitalização - v1.0.0-rc1.0</h1>
 
@@ -206,11 +209,11 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |Status|Significado|Descrição|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Dados de título(s) de capitalização obtidos com sucesso.|[ResponseCapitalizationBondsProductsList](#schemaresponsecapitalizationbondsproductslist)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[OpenDataResponseError](#schemaopendataresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[OpenDataResponseError](#schemaopendataresponseerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[OpenDataResponseError](#schemaopendataresponseerror)|
 
 <h1 id="fase-4-apis-do-open-banking-brasil-api-investimentos">API - Investimentos - v1.0.0-rc1.0</h1>
 
@@ -367,11 +370,11 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |Status|Significado|Descrição|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Dados de fundos de investimento obtidos com sucesso.|[OKResponseInvestmentsFund](#schemaokresponseinvestmentsfund)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[OpenDataResponseError](#schemaopendataresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[OpenDataResponseError](#schemaopendataresponseerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[OpenDataResponseError](#schemaopendataresponseerror)|
 
 ## Lista de produtos de renda fixa bancária (CDB, RDB, LCI e LCA)
 
@@ -452,7 +455,7 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
       "issuerInstitutionCnpjNumber": "45086338000178",
-      "investimentType": "CDB",
+      "investmentType": "CDB",
       "index": {
         "indexer": "CDI",
         "indexerAdditionalInfo": "Dólar",
@@ -486,10 +489,8 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
       "investmentConditions": {
         "minimumAmount": "100.00",
         "redemptionTerm": "DIARIA",
-        "minimumExpirationTerm": 30,
-        "maximumExpirationTerm": 720,
-        "minimumGracePeriod": 5,
-        "maximumGracePeriod": 180
+        "expirationPeriod": "1081+",
+        "gracePeriod": "1081+"
       }
     }
   ],
@@ -512,11 +513,11 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |Status|Significado|Descrição|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Dados de produtos de renda fixa bancária obtidos com sucesso.|[OKResponseInvestmentsFixedIncomeBank](#schemaokresponseinvestmentsfixedincomebank)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[OpenDataResponseError](#schemaopendataresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[OpenDataResponseError](#schemaopendataresponseerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[OpenDataResponseError](#schemaopendataresponseerror)|
 
 ## Lista de produtos de renda fixa crédito (Debêntures, CRI e CRA)
 
@@ -670,11 +671,11 @@ Campos de resposta do endpoint de `/credit-fixed-incomes`
 |Status|Significado|Descrição|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Dados de produtos de renda fixa crédito obtidos com sucesso.|[OKResponseInvestmentsFixedIncomeCredit](#schemaokresponseinvestmentsfixedincomecredit)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[OpenDataResponseError](#schemaopendataresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[OpenDataResponseError](#schemaopendataresponseerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[OpenDataResponseError](#schemaopendataresponseerror)|
 
 ## Lista de produtos de renda variável (Ações e Fundos de Índices)
 
@@ -828,11 +829,11 @@ Campos de resposta do endpoint de `/variable-incomes`
 |Status|Significado|Descrição|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Dados de produtos de renda variável obtidos com sucesso.|[OKResponseInvestmentsVariableIncome](#schemaokresponseinvestmentsvariableincome)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[OpenDataResponseError](#schemaopendataresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[OpenDataResponseError](#schemaopendataresponseerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[OpenDataResponseError](#schemaopendataresponseerror)|
 
 ## Lista de informações sobre títulos do tesouro direto
 
@@ -986,11 +987,11 @@ Campos de resposta do endpoint de `/treasure-titles`
 |Status|Significado|Descrição|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Dados de títulos do tesouro direto obtidos com sucesso.|[OKResponseInvestmentsTreasure](#schemaokresponseinvestmentstreasure)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[OpenDataResponseError](#schemaopendataresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[OpenDataResponseError](#schemaopendataresponseerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[OpenDataResponseError](#schemaopendataresponseerror)|
 
 <h1 id="fase-4-apis-do-open-banking-brasil-api-c-mbio">API - Câmbio - v1.0.0-rc1.0</h1>
 
@@ -1125,11 +1126,11 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |Status|Significado|Descrição|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Dados de operações de câmbio da instituição obtidos com sucesso.|[OKResponseExchangeOnlineRate](#schemaokresponseexchangeonlinerate)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[OpenDataResponseError](#schemaopendataresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[OpenDataResponseError](#schemaopendataresponseerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[OpenDataResponseError](#schemaopendataresponseerror)|
 
 ## Conjunto de informações de Câmbio para valor VET.
 
@@ -1264,11 +1265,11 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |Status|Significado|Descrição|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Dados de operações de câmbio da instituição obtidos com sucesso.|[OKResponseExchangeVetValue](#schemaokresponseexchangevetvalue)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[OpenDataResponseError](#schemaopendataresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[OpenDataResponseError](#schemaopendataresponseerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[OpenDataResponseError](#schemaopendataresponseerror)|
 
 <h1 id="fase-4-apis-do-open-banking-brasil-api-credenciamento">API - Credenciamento - v1.0.0-rc1.0</h1>
 
@@ -1410,11 +1411,11 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |Status|Significado|Descrição|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Taxas e tarifas por serviços obtidos com sucesso.|[OKResponseGetAcquiringServices](#schemaokresponsegetacquiringservices)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[OpenDataResponseError](#schemaopendataresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[OpenDataResponseError](#schemaopendataresponseerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[OpenDataResponseError](#schemaopendataresponseerror)|
 
 ## Conjunto de informações de Credenciamento para Pessoa Jurídica.
 
@@ -1542,11 +1543,11 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |Status|Significado|Descrição|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Taxas e tarifas por serviços obtidos com sucesso.|[OKResponseGetAcquiringServices](#schemaokresponsegetacquiringservices)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[OpenDataResponseError](#schemaopendataresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[OpenDataResponseError](#schemaopendataresponseerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[OpenDataResponseError](#schemaopendataresponseerror)|
 
 <h1 id="fase-4-apis-do-open-banking-brasil-api-previd-ncia">API - Previdência - v1.0.0-rc1.0</h1>
 
@@ -1808,11 +1809,11 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |Status|Significado|Descrição|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Dados de operações de previdência da instituição obtidos com sucesso.|[OkResponseGetRiskPension](#schemaokresponsegetriskpension)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[OpenDataResponseError](#schemaopendataresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[OpenDataResponseError](#schemaopendataresponseerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[OpenDataResponseError](#schemaopendataresponseerror)|
 
 ## Conjunto de informações de Previdência de Coberturas de Sobrevivência.
 
@@ -2008,11 +2009,11 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |Status|Significado|Descrição|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Coberturas de Previdência de Sobrevivência obtidas com sucesso.|[OKResponseSurvivalCoveragePension](#schemaokresponsesurvivalcoveragepension)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[OpenDataResponseError](#schemaopendataresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[OpenDataResponseError](#schemaopendataresponseerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[OpenDataResponseError](#schemaopendataresponseerror)|
 
 <h1 id="fase-4-apis-do-open-banking-brasil-api-seguros">API - Seguros - v1.0.0-rc1.0</h1>
 
@@ -2246,11 +2247,11 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |Status|Significado|Descrição|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[OKResponseAutomotiveInsuranceList](#schemaokresponseautomotiveinsurancelist)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[OpenDataResponseError](#schemaopendataresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[OpenDataResponseError](#schemaopendataresponseerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[OpenDataResponseError](#schemaopendataresponseerror)|
 
 ## Lista de seguros residenciais
 
@@ -2429,11 +2430,11 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |Status|Significado|Descrição|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[OKResponseHomeInsuranceList](#schemaokresponsehomeinsurancelist)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[OpenDataResponseError](#schemaopendataresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[OpenDataResponseError](#schemaopendataresponseerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[OpenDataResponseError](#schemaopendataresponseerror)|
 
 ## Lista de seguros pessoais
 
@@ -2679,11 +2680,11 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |Status|Significado|Descrição|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[OKResponsePersonalInsuranceList](#schemaokresponsepersonalinsurancelist)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[ResponseError](#schemaresponseerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[ResponseError](#schemaresponseerror)|
-|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[ResponseError](#schemaresponseerror)|
-|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.|[OpenDataResponseError](#schemaopendataresponseerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|O recurso solicitado não existe ou não foi implementado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|405|[Method Not Allowed](https://tools.ietf.org/html/rfc7231#section-6.5.5)|O consumidor tentou acessar o recurso com um método não suportado|[OpenDataResponseError](#schemaopendataresponseerror)|
+|429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[OpenDataResponseError](#schemaopendataresponseerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[OpenDataResponseError](#schemaopendataresponseerror)|
 
 <h1 id="fase-4-apis-do-open-banking-brasil-schemas">Schemas</h1>
 
@@ -2754,7 +2755,7 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |---|---|---|---|---|
 |data|[[AcquiringServicesContractData](#schemaacquiringservicescontractdata)]|true|[Conjunto de informações referentes às informações de credenciamento]|
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
-|meta|[Phase4Meta](#schemaphase4meta)|true|Meta informações referente à API requisitada.|
+|meta|[OpenDataMeta](#schemaopendatameta)|true|Meta informações referente à API requisitada.|
 
 <h2 id="tocS_AcquiringServicesContractData">AcquiringServicesContractData</h2>
 
@@ -3003,7 +3004,7 @@ Conjunto de informações referentes às informações de credenciamento
 |---|---|---|---|---|
 |data|[[GetRiskPensionContractData](#schemagetriskpensioncontractdata)]|true||
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
-|meta|[Phase4Meta](#schemaphase4meta)|true|Meta informações referente à API requisitada.|
+|meta|[OpenDataMeta](#schemaopendatameta)|true|Meta informações referente à API requisitada.|
 
 <h2 id="tocS_GetRiskPensionContractData">GetRiskPensionContractData</h2>
 
@@ -3666,7 +3667,7 @@ Nome da tarifa cobrada sobre o serviço de credenciamento, para pessoa física/j
 |---|---|---|---|---|
 |data|[[ExchangeOnlineRate](#schemaexchangeonlinerate)]|true|[Conjunto de informações referentes às informações de câmbio]|
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
-|meta|[Phase4Meta](#schemaphase4meta)|true|Meta informações referente à API requisitada.|
+|meta|[OpenDataMeta](#schemaopendatameta)|true|Meta informações referente à API requisitada.|
 
 <h2 id="tocS_OKResponseExchangeVetValue">OKResponseExchangeVetValue</h2>
 
@@ -3742,7 +3743,7 @@ Nome da tarifa cobrada sobre o serviço de credenciamento, para pessoa física/j
 |---|---|---|---|---|
 |data|[[ExchangeVetValue](#schemaexchangevetvalue)]|true|[Conjunto de informações referentes às informações de câmbio]|
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
-|meta|[Phase4Meta](#schemaphase4meta)|true|Meta informações referente à API requisitada.|
+|meta|[OpenDataMeta](#schemaopendatameta)|true|Meta informações referente à API requisitada.|
 
 <h2 id="tocS_ExchangeOnlineRate">ExchangeOnlineRate</h2>
 
@@ -4202,7 +4203,7 @@ spot,  que se liquidam em até dois dias (não aplica-se a operações futuras. 
 |---|---|---|---|---|
 |data|[[CapitalizationBondsProductIdentificationData](#schemacapitalizationbondsproductidentificationdata)]|true|Conjunto de informações do Título de Capitalização|
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
-|meta|[Phase4Meta](#schemaphase4meta)|true|Meta informações referente à API requisitada.|
+|meta|[OpenDataMeta](#schemaopendatameta)|true|Meta informações referente à API requisitada.|
 
 <h2 id="tocS_CapitalizationBondsProductEarlyRedemption">CapitalizationBondsProductEarlyRedemption</h2>
 
@@ -4812,7 +4813,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |---|---|---|---|---|
 |data|[[InvestmentsFund](#schemainvestmentsfund)]|true||
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
-|meta|[Phase4Meta](#schemaphase4meta)|true|Meta informações referente à API requisitada.|
+|meta|[OpenDataMeta](#schemaopendatameta)|true|Meta informações referente à API requisitada.|
 
 <h2 id="tocS_OKResponseInvestmentsFixedIncomeBank">OKResponseInvestmentsFixedIncomeBank</h2>
 
@@ -4832,7 +4833,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
         "urlComplementaryList": "https://empresaa1.com/companies"
       },
       "issuerInstitutionCnpjNumber": "45086338000178",
-      "investimentType": "CDB",
+      "investmentType": "CDB",
       "index": {
         "indexer": "CDI",
         "indexerAdditionalInfo": "Dólar",
@@ -4866,10 +4867,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
       "investmentConditions": {
         "minimumAmount": "100.00",
         "redemptionTerm": "DIARIA",
-        "minimumExpirationTerm": 30,
-        "maximumExpirationTerm": 720,
-        "minimumGracePeriod": 5,
-        "maximumGracePeriod": 180
+        "expirationPeriod": "1081+",
+        "gracePeriod": "1081+"
       }
     }
   ],
@@ -4894,7 +4893,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |---|---|---|---|---|
 |data|[[InvestmentsFixedIncomeBank](#schemainvestmentsfixedincomebank)]|true||
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
-|meta|[Phase4Meta](#schemaphase4meta)|true|Meta informações referente à API requisitada.|
+|meta|[OpenDataMeta](#schemaopendatameta)|true|Meta informações referente à API requisitada.|
 
 <h2 id="tocS_OKResponseInvestmentsFixedIncomeCredit">OKResponseInvestmentsFixedIncomeCredit</h2>
 
@@ -4989,7 +4988,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |---|---|---|---|---|
 |data|[[InvestmentsFixedIncomeCredit](#schemainvestmentsfixedincomecredit)]|true||
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
-|meta|[Phase4Meta](#schemaphase4meta)|true|Meta informações referente à API requisitada.|
+|meta|[OpenDataMeta](#schemaopendatameta)|true|Meta informações referente à API requisitada.|
 
 <h2 id="tocS_OKResponseInvestmentsVariableIncome">OKResponseInvestmentsVariableIncome</h2>
 
@@ -5084,7 +5083,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |---|---|---|---|---|
 |data|[[InvestmentsVariableIncome](#schemainvestmentsvariableincome)]|true||
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
-|meta|[Phase4Meta](#schemaphase4meta)|true|Meta informações referente à API requisitada.|
+|meta|[OpenDataMeta](#schemaopendatameta)|true|Meta informações referente à API requisitada.|
 
 <h2 id="tocS_OKResponseInvestmentsTreasure">OKResponseInvestmentsTreasure</h2>
 
@@ -5179,7 +5178,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |---|---|---|---|---|
 |data|[[InvestmentsTreasure](#schemainvestmentstreasure)]|true||
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
-|meta|[Phase4Meta](#schemaphase4meta)|true|Meta informações referente à API requisitada.|
+|meta|[OpenDataMeta](#schemaopendatameta)|true|Meta informações referente à API requisitada.|
 
 <h2 id="tocS_InvestmentsFund">InvestmentsFund</h2>
 
@@ -5408,12 +5407,12 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |quotationDays|integer(int32)|true|Indica se o fundo estabelece um período em que o investidor não pode resgatar os recursos aplicados no fundo. Caso ocorra resgate antes do período, o investidor perderá a rentabilidade do período.|
 |quotationTerm|[EnumInvestmentsFundGeneralConditionsTermType](#schemaenuminvestmentsfundgeneralconditionstermtype)|true|Período em dias corridos ou dias úteis do prazo de cotização.<br><br><ol><li>Dias corridos</li><li>Dias úteis</li></ol>|
 
-<h2 id="tocS_InvestimentFundMinimumAmount">InvestimentFundMinimumAmount</h2>
+<h2 id="tocS_InvestmentFundMinimumAmount">InvestmentFundMinimumAmount</h2>
 
-<a id="schemainvestimentfundminimumamount"></a>
-<a id="schema_InvestimentFundMinimumAmount"></a>
-<a id="tocSinvestimentfundminimumamount"></a>
-<a id="tocsinvestimentfundminimumamount"></a>
+<a id="schemainvestmentfundminimumamount"></a>
+<a id="schema_InvestmentFundMinimumAmount"></a>
+<a id="tocSinvestmentfundminimumamount"></a>
+<a id="tocsinvestmentfundminimumamount"></a>
 
 ```json
 {
@@ -5446,7 +5445,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
     "urlComplementaryList": "https://empresaa1.com/companies"
   },
   "issuerInstitutionCnpjNumber": "45086338000178",
-  "investimentType": "CDB",
+  "investmentType": "CDB",
   "index": {
     "indexer": "CDI",
     "indexerAdditionalInfo": "Dólar",
@@ -5480,10 +5479,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
   "investmentConditions": {
     "minimumAmount": "100.00",
     "redemptionTerm": "DIARIA",
-    "minimumExpirationTerm": 30,
-    "maximumExpirationTerm": 720,
-    "minimumGracePeriod": 5,
-    "maximumGracePeriod": 180
+    "expirationPeriod": "1081+",
+    "gracePeriod": "1081+"
   }
 }
 
@@ -5495,7 +5492,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |---|---|---|---|---|
 |participant|[Participant](#schemaparticipant)|true|Conjunto de informações relativas ao participante do produto de open banking|
 |issuerInstitutionCnpjNumber|string|true|CNPJ da instituição emissora.|
-|investimentType|[EnumInvestmentsFixedIncomeBankProductType](#schemaenuminvestmentsfixedincomebankproducttype)|true|Especificação do ativo em questão.<br><ol><li>CDB</li><li>RDB</li><li>LCI</li><li>LCA</li></ol>|
+|investmentType|[EnumInvestmentsFixedIncomeBankProductType](#schemaenuminvestmentsfixedincomebankproducttype)|true|Especificação do ativo em questão.<br><ol><li>CDB</li><li>RDB</li><li>LCI</li><li>LCA</li></ol>|
 |index|[InvestmentsFixedIncomeBankIndex](#schemainvestmentsfixedincomebankindex)|true||
 |investmentConditions|[InvestmentsFixedIncomeBankInvestmentConditions](#schemainvestmentsfixedincomebankinvestmentconditions)|true||
 
@@ -5559,10 +5556,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 {
   "minimumAmount": "100.00",
   "redemptionTerm": "DIARIA",
-  "minimumExpirationTerm": 30,
-  "maximumExpirationTerm": 720,
-  "minimumGracePeriod": 5,
-  "maximumGracePeriod": 180
+  "expirationPeriod": "1081+",
+  "gracePeriod": "1081+"
 }
 
 ```
@@ -5573,10 +5568,16 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |---|---|---|---|---|
 |minimumAmount|string|true|Valor mínimo de aplicação no ativo.|
 |redemptionTerm|[EnumInvestmentsFixedIncomeBankRedemptionTerm](#schemaenuminvestmentsfixedincomebankredemptionterm)|true|Capacidade de conversão do título em dinheiro (resgate ou recompra).<br><br><ol><li>diária</li><li>na data de vencimento</li><li>diária após prazo de carência</li></ol>|
-|minimumExpirationTerm|number(int32)|true|Prazo mínimo referente ao vencimento do título|
-|maximumExpirationTerm|number(int32)|true|Prazo máximo referente ao vencimento do título|
-|minimumGracePeriod|number(int32)|true|Prazo mínimo da carência, ou seja, quando passa a ser possível resgatar o investimento|
-|maximumGracePeriod|number(int32)|true|Prazo máximo da carência, ou seja, quando passa a ser possível resgatar o investimento|
+|expirationPeriod|[InvestmentsFixedIncomeBankInvestmentConditions/properties/gracePeriod](#schemainvestmentsfixedincomebankinvestmentconditions/properties/graceperiod)|true|Faixa de valores para prazos de vencimento e carência.|
+|gracePeriod|string|true|Faixa de valores para prazos de vencimento e carência.|
+
+#### Enumerated Values
+
+|Nome|Código|
+|---|---|
+|gracePeriod|1_360|
+|gracePeriod|361_1080|
+|gracePeriod|1081+|
 
 <h2 id="tocS_InvestmentsFixedIncomeCredit">InvestmentsFixedIncomeCredit</h2>
 
@@ -5692,7 +5693,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|minimumAmount|[InvestimentFundMinimumAmount](#schemainvestimentfundminimumamount)|true||
+|minimumAmount|[InvestmentFundMinimumAmount](#schemainvestmentfundminimumamount)|true||
 |redemption|[InvestmentsFundGeneralConditionsRedemption](#schemainvestmentsfundgeneralconditionsredemption)|true||
 |application|[InvestmentsFundGeneralConditionsApplication](#schemainvestmentsfundgeneralconditionsapplication)|true||
 |fundQuotaType|[EnumInvestmentsFundGeneralConditionsFundQuotaType](#schemaenuminvestmentsfundgeneralconditionsfundquotatype)|true|Referente a incidência de tributos sobre o produto de investimento&#58;<br><br><ol><li>Cota de abertura</li><li>Cota de fechamento</li></ol>|
@@ -6305,12 +6306,12 @@ Meta informações referente à API requisitada.
 |totalPages|integer(int32)|true|Número total de páginas no resultado|
 |requestDateTime|string(date-time)|true|Data e hora da consulta, conforme especificação RFC-3339, formato UTC.|
 
-<h2 id="tocS_Phase4Meta">Phase4Meta</h2>
+<h2 id="tocS_OpenDataMeta">OpenDataMeta</h2>
 
-<a id="schemaphase4meta"></a>
-<a id="schema_Phase4Meta"></a>
-<a id="tocSphase4meta"></a>
-<a id="tocsphase4meta"></a>
+<a id="schemaopendatameta"></a>
+<a id="schema_OpenDataMeta"></a>
+<a id="tocSopendatameta"></a>
+<a id="tocsopendatameta"></a>
 
 ```json
 {
@@ -6329,12 +6330,12 @@ Meta informações referente à API requisitada.
 |totalRecords|integer(int32)|true|Número total de registros no resultado|
 |totalPages|integer(int32)|true|Número total de páginas no resultado|
 
-<h2 id="tocS_ResponseError">ResponseError</h2>
+<h2 id="tocS_OpenDataResponseError">OpenDataResponseError</h2>
 
-<a id="schemaresponseerror"></a>
-<a id="schema_ResponseError"></a>
-<a id="tocSresponseerror"></a>
-<a id="tocsresponseerror"></a>
+<a id="schemaopendataresponseerror"></a>
+<a id="schema_OpenDataResponseError"></a>
+<a id="tocSopendataresponseerror"></a>
+<a id="tocsopendataresponseerror"></a>
 
 ```json
 {
@@ -6347,8 +6348,7 @@ Meta informações referente à API requisitada.
   ],
   "meta": {
     "totalRecords": 1,
-    "totalPages": 1,
-    "requestDateTime": "2021-05-21T08:30:00Z"
+    "totalPages": 1
   }
 }
 
@@ -6362,7 +6362,7 @@ Meta informações referente à API requisitada.
 |» code|string|true|Código de erro específico do endpoint|
 |» title|string|true|Título legível por humanos deste erro específico|
 |» detail|string|true|Descrição legível por humanos deste erro específico|
-|meta|[Meta](#schemameta)|false|Meta informações referente à API requisitada.|
+|meta|[OpenDataMeta](#schemaopendatameta)|false|Meta informações referente à API requisitada.|
 
 <h2 id="tocS_OKResponseSurvivalCoveragePension">OKResponseSurvivalCoveragePension</h2>
 
@@ -6499,7 +6499,7 @@ Meta informações referente à API requisitada.
 |---|---|---|---|---|
 |data|[[GetSurvivalPensionContractData](#schemagetsurvivalpensioncontractdata)]|true||
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
-|meta|[Phase4Meta](#schemaphase4meta)|true|Meta informações referente à API requisitada.|
+|meta|[OpenDataMeta](#schemaopendatameta)|true|Meta informações referente à API requisitada.|
 
 <h2 id="tocS_GetSurvivalPensionContractData">GetSurvivalPensionContractData</h2>
 
@@ -6643,12 +6643,12 @@ Meta informações referente à API requisitada.
 |modality|CONTRIBUICAO_VARIAVEL|
 |modality|BENEFICIO_DEFINIDO|
 
-<h2 id="tocS_SurvivalPensionInvestimentFund">SurvivalPensionInvestimentFund</h2>
+<h2 id="tocS_SurvivalPensionInvestmentFund">SurvivalPensionInvestmentFund</h2>
 
-<a id="schemasurvivalpensioninvestimentfund"></a>
-<a id="schema_SurvivalPensionInvestimentFund"></a>
-<a id="tocSsurvivalpensioninvestimentfund"></a>
-<a id="tocssurvivalpensioninvestimentfund"></a>
+<a id="schemasurvivalpensioninvestmentfund"></a>
+<a id="schema_SurvivalPensionInvestmentFund"></a>
+<a id="tocSsurvivalpensioninvestmentfund"></a>
+<a id="tocssurvivalpensioninvestmentfund"></a>
 
 ```json
 {
@@ -6788,7 +6788,7 @@ Período de Diferimento
 |gracePeriod|[SurvivalPensionGracePeriod](#schemasurvivalpensiongraceperiod)|false|Prazo de carência|
 |redemptionPaymentTerm|integer|false|Prazo em dias para pagamento do resgate|
 |portabilityPaymentTerm|number|false|Prazo em dias para pagamento da portabilidade (entre empresas diferentes).|
-|investmentFunds|[[SurvivalPensionInvestimentFund](#schemasurvivalpensioninvestimentfund)]|false|[Fundos de Investimento (por fundo).]|
+|investmentFunds|[[SurvivalPensionInvestmentFund](#schemasurvivalpensioninvestmentfund)]|false|[Fundos de Investimento (por fundo).]|
 
 <h2 id="tocS_SurvivalPensionType">SurvivalPensionType</h2>
 
@@ -7032,7 +7032,7 @@ Período de concessão do benefício
 |interestRate|string|false|Taxa de juros garantida utilizada para conversão em renda. Em %|
 |updateIndex|[UpdateIndex](#schemaupdateindex)|false|Índice utilizado na atualização do prêmio e do capital segurado, caso critério de atualização por meio de índice:<br>1. IPCA (IBGE);<br>2. IGP-M (FGV);<br>3. INPC (IBGE).|
 |reversalFinancialResults|string|false|Percentual de reversão de excedente financeiro na concessão. Em %.|
-|investmentFunds|[[SurvivalPensionInvestimentFund](#schemasurvivalpensioninvestimentfund)]|false|[Fundos de Investimento (por fundo).]|
+|investmentFunds|[[SurvivalPensionInvestmentFund](#schemasurvivalpensioninvestmentfund)]|false|[Fundos de Investimento (por fundo).]|
 
 <h2 id="tocS_GracePeriod">GracePeriod</h2>
 
@@ -8033,7 +8033,7 @@ Distribuição por frequência.
 |---|---|---|---|---|
 |data|[[AutomotiveInsuranceData](#schemaautomotiveinsurancedata)]|true||
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
-|meta|[Phase4Meta](#schemaphase4meta)|true|Meta informações referente à API requisitada.|
+|meta|[OpenDataMeta](#schemaopendatameta)|true|Meta informações referente à API requisitada.|
 
 <h2 id="tocS_AutomotiveGeoGraphicScope">AutomotiveGeoGraphicScope</h2>
 
@@ -9148,7 +9148,7 @@ Forma de pagamento:
 |---|---|---|---|---|
 |data|[[HomeInsuranceData](#schemahomeinsurancedata)]|true||
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
-|meta|[Phase4Meta](#schemaphase4meta)|true|Meta informações referente à API requisitada.|
+|meta|[OpenDataMeta](#schemaopendatameta)|true|Meta informações referente à API requisitada.|
 
 <h2 id="tocS_HomeInsuranceData">HomeInsuranceData</h2>
 
@@ -9769,7 +9769,7 @@ A considerar os seguintes domínios abaixo:
 |---|---|---|---|---|
 |data|[[PersonalInsuranceData](#schemapersonalinsurancedata)]|true||
 |links|[Links](#schemalinks)|true|Referências para outros recusos da API requisitada.|
-|meta|[Phase4Meta](#schemaphase4meta)|true|Meta informações referente à API requisitada.|
+|meta|[OpenDataMeta](#schemaopendatameta)|true|Meta informações referente à API requisitada.|
 
 <h2 id="tocS_PersonalInsuranceData">PersonalInsuranceData</h2>
 

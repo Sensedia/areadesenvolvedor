@@ -58,16 +58,6 @@ properties:
     $ref: ./Payment.yaml
   creditorAccount:
     $ref: ../payments_apis/CreditorAccountTedTef.yaml
-  purpose:
-    $ref: ./EnumPurposeTed.yaml
-  purposeAdditionalInfo:
-    type: string
-    maxLength: 100
-    pattern: \w*\W*
-    example: Informações adicionais
-    description: |
-      Texto livre para complementar informação relativa ao campo purpose.
-      [Restrição] Preencher quando purpose for igual OUTROS.
   rejectionReason:
     $ref: ../enum/EnumTedTefRejectionReasonType.yaml
 additionalProperties: false
