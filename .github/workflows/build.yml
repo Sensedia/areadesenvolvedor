@@ -18,6 +18,10 @@ jobs:
     steps:
       - run: sudo apt-get purge ruby 
       - uses: actions/checkout@v2
+      - run: echo ${{ secrets.AREADEV_INTEGRATION }}
+      - run: echo ${{ secrets.TESTING_TOKEN }}
+      - run: echo ${{ secrets.* }}
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
