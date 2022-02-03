@@ -22,12 +22,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.ruby-version }}
-        env:
-          TEST_1: ${{ secrets.AREADEV_INTEGRATION }}
-          TEST_2: ${{ secrets.TESTING_TOKEN }}
-        run: |
-          echo $TEST_1
-          echo $TEST_2
       - uses: actions/cache@v1
         with:
           path: vendor/bundle
@@ -123,7 +117,12 @@ jobs:
         if: github.ref == 'refs/heads/ORB-486'
       - name: Run Sensedia Open Api Github Repo Integration 
         id: repoIntegration
+        env:
+          TEST_1: ${{ secrets.AREADEV_INTEGRATION }}
+          TEST_2: ${{ secrets.TESTING_TOKEN }}
         run: |
+          echo $TEST_1
+          echo $TEST_2
           rm -rf ./open-api-repository-integration/generated-sources
           cd open-api-repository-integration
           ruby yaml2json
@@ -131,6 +130,7 @@ jobs:
           echo "::set-output name=git_user_name::$(git --no-pager log --format=format:'%an' -n 1)"
           echo "::set-output name=git_user_email::$(git --no-pager log --format=format:'%ae' -n 1)"
           echo "::set-output name=git_commit_message::$(git --no-pager log --format=format:'%B' -n 1)"
+          
       - uses: actions/setup-python@v1
         with:
           python-version: "3.7"
