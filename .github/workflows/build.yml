@@ -118,9 +118,9 @@ jobs:
           cd open-api-repository-integration
           ruby yaml2json
           cd ..
-          GIT_USER_NAME=$(git --no-pager log --format=format:'%an' -n 1)
-          GIT_USER_EMAIL=$(git --no-pager log --format=format:'%ae' -n 1)
-          GIT_COMMIT_MESSAGE=$(git --no-pager log --format=format:'%B' -n 1)
+          run:  echo "::set-output name=git_user_name::$(git --no-pager log --format=format:'%an' -n 1)"
+          run:  echo "::set-output name=git_user_email::$(git --no-pager log --format=format:'%ae' -n 1)"
+          run:  echo "::set-output name=git_commit_message::$(git --no-pager log --format=format:'%B' -n 1)"
       - uses: actions/setup-python@v1
         with:
           python-version: "3.7"
@@ -132,5 +132,6 @@ jobs:
           source_file: 'documentation/source/dictionary'
           destination_repo: 'Sensedia/openapi'
           destination_branch: 'ORB-486'
-          user_email: ${{ steps.repoIntegration.env.GIT_USER_EMAIL }}
-          user_name: ${{ env.GITHUB_ACTOR }}
+          user_email: ${{ steps.run_tests.outputs.git_user_email }}
+          user_name: ${{ steps.run_tests.outputs.git_user_name }}
+          commit_message: ${{ steps.run_tests.outputs.git_commit_message }}
