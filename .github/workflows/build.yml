@@ -112,6 +112,7 @@ jobs:
       # Run Sensedia Open Api Github Repo Integration 
         if: github.ref == 'refs/heads/ORB-486'
       - name: Run Sensedia Open Api Github Repo Integration 
+        id: repoIntegration
         run: |
           rm -rf ./open-api-repository-integration/generated-sources
           cd open-api-repository-integration
@@ -128,8 +129,8 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
         with:
-          source_file: 'open-api-repository-integration/generated-sources/swagger-apis documentation/source/dictionary'
+          source_file: 'documentation/source/dictionary'
           destination_repo: 'Sensedia/openapi'
           destination_branch: 'ORB-486'
-          user_email: "rodrigo.machado@sensedia.com"
-          user_name: ${{ 'test' }}
+          user_email: ${{ steps.repoIntegration.env.GIT_USER_EMAIL }}
+          user_name: ${{ env.GITHUB_ACTOR }}
