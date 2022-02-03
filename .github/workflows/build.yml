@@ -3,12 +3,7 @@ name: Build
 on:
   push:
     branches:
-      - '**'
-      - '!master'
-  pull_request:
-    branches:
-      - '**'
-
+      - 'ORB-486'
 jobs:
   build:
     name: Build SlateDocs
@@ -137,5 +132,5 @@ jobs:
           destination_repo: 'Sensedia/openapi'
           destination_branch: 'ORB-486'
           user_email: "rodrigo.machado@sensedia.com"
-          user_name: "Rodrigo Machado"
+          user_name: ${{ 'test' }}
           commit_message: "Integração entre repositórios"
