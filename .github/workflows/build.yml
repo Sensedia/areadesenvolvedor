@@ -18,19 +18,21 @@ jobs:
     steps:
       - run: sudo apt-get purge ruby 
       - uses: actions/checkout@v2
-      - run: echo ${{ secrets.AREADEV_INTEGRATION }}
-      - run: echo ${{ secrets.TESTING_TOKEN }}
-      - run: echo ${{ secrets.* }}
-
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.ruby-version }}
-
+        env:
+          TEST_1: ${{ secrets.AREADEV_INTEGRATION }}
+          TEST_2: ${{ secrets.TESTING_TOKEN }}
+        run: |
+          echo $TEST_1
+          echo $TEST_2
       - uses: actions/cache@v1
         with:
           path: vendor/bundle
           key: gems-${{ runner.os }}-${{ env.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
+          
 
       - uses: actions/setup-node@v1
         with:
