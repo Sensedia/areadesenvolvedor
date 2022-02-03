@@ -120,6 +120,9 @@ jobs:
           GIT_USER_NAME=$(git --no-pager log --format=format:'%an' -n 1)
           GIT_USER_EMAIL=$(git --no-pager log --format=format:'%ae' -n 1)
           GIT_COMMIT_MESSAGE=$(git --no-pager log --format=format:'%B' -n 1)
+          echo $GIT_USER_NAME
+          echo $GIT_USER_EMAIL
+          echo $GIT_COMMIT_MESSAGE
           echo "::set-output name=git_user_name::$GIT_USER_NAME"
           echo "::set-output name=git_user_email::$GIT_USER_EMAIL"
           echo "::set-output name=git_commit_message::$GIT_COMMIT_MESSAGE"
