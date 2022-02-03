@@ -128,7 +128,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
         with:
-          source_file: 'open-api-repository-integration/generated-sources/swagger-apis'
+          source_file: 'open-api-repository-integration/generated-sources/swagger-apis documentation/source/dictionary'
           destination_repo: 'Sensedia/openapi'
           destination_branch: 'ORB-486'
           user_email: "rodrigo.machado@sensedia.com"
