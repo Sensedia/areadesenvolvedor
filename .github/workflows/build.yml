@@ -118,7 +118,7 @@ jobs:
       - name: Run Sensedia Open Api Github Repo Integration 
         id: repoIntegration
         env:
-          TEST_1: ${{ secrets.AREADEV_INTEGRATION }}'
+          TEST_1: ${{ secrets.AREADEV_INTEGRATION }}
           TEST_2: ${{ secrets.TESTING_TOKEN }}
         run: |
           echo $TEST_1 | sed 's/./& /g
