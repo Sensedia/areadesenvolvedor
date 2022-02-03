@@ -9,7 +9,7 @@ enum:
   - PAYMENT_OUTSIDE_ALLOWED_TIMETABLE
   - UNEXPECTED_ERROR
   - UNEXPECTED_SETTLEMENT_ERROR
-example: PAYMENT_LIMIT_EXCEEDED
+example: UNEXPECTED_SETTLEMENT_ERROR
 description: |
   CONSENT_DATA_MISMATCH - Indica que o pagamento foi rejeitado devido aos incompatibilidade com os dados do consentimento associado.   
   CONSENT_REVOKED - Indica que o pagamento agendado foi rejeitado devido a revogação do consentimento vinculado.   
