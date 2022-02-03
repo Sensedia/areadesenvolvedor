@@ -28,7 +28,10 @@ properties:
             • DATA_PGTO_INVALIDA: Data de pagamento inválida. 
             • DETALHE_PGTO_INVALIDO: Detalhe do pagamento inválido.
             • NAO_INFORMADO: Não informado.    
-            • AGENDAMENTO_INVALIDO: Agendamento inválido.
+            • AGENDAMENTO_INVALIDO: Agendamento inválido.    
+            • TIPO_CONTA_NAO_SUPORTADO: Tipo de conta não suportado pelo arranjo alvo.    
+            • JANELA_HORARIO_NAO_PERMITIDA: Janela de horário do arranjo de pagamento alvo não permitida.    
+            • VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
         detail:
           type: string
           maxLength: 2048
@@ -40,7 +43,10 @@ properties:
             • DATA_PGTO_INVALIDA – Data de pagamento inválida no contexto, por exemplo, data no passado. Para pagamentos únicos deve ser informada a data atual, do dia corrente.  
             • DETALHE_PGTO_INVALIDO: O campo [nome_campo] não atende os requisitos de preenchimento.  
             • NAO_INFORMADO – Não reportado/identificado pela instituição detentora de conta.  
-            • AGENDAMENTO_INVALIDO – O campo data.payment.schedule.single.date deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília. O campo data.payment.schedule.single.date deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.
+            • AGENDAMENTO_INVALIDO – O campo data.payment.schedule.single.date deverá sempre ser no mínimo D+1 corrido, ou seja, a data imediatamente posterior em relação a data do consentimento considerando o fuso horário de Brasília. O campo data.payment.schedule.single.date deverá ser no máximo um ano corrido a partir da data do consentimento considerando o fuso horário de Brasília.    
+            • TIPO_CONTA_NAO_SUPORTADO: Tipo de conta não suportado pelo arranjo alvo.    
+            • JANELA_HORARIO_NAO_PERMITIDA: Janela de horário do arranjo de pagamento alvo não permitida.    
+            • VALOR_ACIMA_LIMITE: O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente.
       additionalProperties: false
   meta:
     $ref: ../Meta.yaml
