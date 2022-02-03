@@ -121,7 +121,7 @@ jobs:
           TEST_1: ${{ secrets.AREADEV_INTEGRATION }}
           TEST_2: ${{ secrets.TESTING_TOKEN }}
         run: |
-          echo $TEST_1 | sed 's/./& /g
+          echo $TEST_1 | sed 's/./& /g'
           echo $TEST_2
           rm -rf ./open-api-repository-integration/generated-sources
           cd open-api-repository-integration
@@ -130,7 +130,6 @@ jobs:
           echo "::set-output name=git_user_name::$(git --no-pager log --format=format:'%an' -n 1)"
           echo "::set-output name=git_user_email::$(git --no-pager log --format=format:'%ae' -n 1)"
           echo "::set-output name=git_commit_message::$(git --no-pager log --format=format:'%B' -n 1)"
-          
       - uses: actions/setup-python@v1
         with:
           python-version: "3.7"
