@@ -740,8 +740,6 @@ components:
       $ref: ./schemas/enum/EnumInvestmentsVariableIncomeInvestmentType.yaml
     Links:
       $ref: ./schemas/Links.yaml
-    Meta:
-      $ref: ./schemas/Meta.yaml
     OpenDataMeta:
       $ref: ./schemas/OpenDataMeta.yaml
     OpenDataResponseError:
