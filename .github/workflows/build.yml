@@ -132,7 +132,6 @@ jobs:
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
         with:
           source_file: 'open-api-repository-integration/generated-sources/swagger-apis'
           destination_repo: 'Sensedia/openapi'
