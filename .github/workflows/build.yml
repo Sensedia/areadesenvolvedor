@@ -109,9 +109,11 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/source') }}
 
       - run: |
+          mv source/versions ..
           bundle config set deployment 'true'
           bundle install
           bundle exec middleman build
+          mv ../versions build
 
       # Run Spectral
       - uses: stoplightio/spectral-action@v0.7.0
