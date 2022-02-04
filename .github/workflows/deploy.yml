@@ -1,6 +1,10 @@
 name: Deploy
 on:
   workflow_dispatch:
+    inputs:
+      build_id:
+        description: 'ID of build to deploy'     
+        required: true
 
 jobs:
   deploy:
@@ -19,24 +23,25 @@ jobs:
       #   with:
       #     ruby-version: ${{ env.ruby-version }}
 
-      # - uses: actions/cache@v1
-      #   with:
-      #     path: vendor/bundle
-      #     key: gems-${{ runner.os }}-${{ env.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
-
+      - uses: actions/cache@v2
+        with:
+          path: build
+          key: ${{ runner.os }}-${{ hashFiles('**/source') }}-${{ github.event.inputs.build_id }}
+      - run: |
+          ls -la
       # - uses: actions/setup-node@v1
       #   with:
       #     node-version: "12"
 
       # - run: npm install -g widdershins
       # - run: npm install -g @apidevtools/swagger-cli
-      - name: Download a single artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: deploy-files
-      - run: |
-          tar -zxvf build.tar.gz
-          mv build ./documentation
+      # - name: Download a single artifact
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #     name: deploy-files
+      # - run: |
+      #     tar -zxvf build.tar.gz
+      #     mv build ./documentation
       ###
       #ATENÇÃO: não é parar ligar a automação da Fase 1 sem a autorização do comitê de Open Banking
       # Open Banking Fase 1
