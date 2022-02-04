@@ -5,6 +5,7 @@ on:
       build_id:
         description: 'ID of build to deploy'     
         required: true
+  
 
 jobs:
   deploy:
@@ -22,13 +23,11 @@ jobs:
       #   uses: ruby/setup-ruby@v1
       #   with:
       #     ruby-version: ${{ env.ruby-version }}
-
-      - uses: actions/cache@v2
-        with:
-          path: build
-          key: ${{ runner.os }}-${{ hashFiles('**/source') }}-${{ github.event.inputs.build_id }}
       - run: |
-          ls -la
+          ARTIFACT_ID=$(echo curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/Sensedia/areadesenvolvedor/actions/runs/${{ github.event.inputs.build_id }}/artifacts | jq '.artifacts[0].archive_download_url'
+          curl -i -u senseRmginner:${{ secrets.AREADEV_INTEGRATION }} -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/octocat/hello-world/actions/artifacts/$ARTIFACT_ID/zip
+          ls -la 
+
       # - uses: actions/setup-node@v1
       #   with:
       #     node-version: "12"
@@ -121,8 +120,8 @@ jobs:
       #   with:
       #     file_glob: "documentation/source/swagger/*_apis.yaml"
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./documentation/build
+      # - name: Deploy
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./documentation/build
