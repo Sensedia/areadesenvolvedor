@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ruby-version: 2.5
+      INTEGRATION_BRANCH: 'ORB-486'
 
     steps:
       - run: sudo apt-get purge ruby 
@@ -22,6 +23,9 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.ruby-version }}
+      - uses: actions/setup-python@v1
+        with:
+          python-version: "3.7"
       - uses: actions/cache@v1
         with:
           path: vendor/bundle
@@ -104,9 +108,9 @@ jobs:
         with:
           path: build
           key: ${{ runner.os }}-${{ hashFiles('**/source') }}
-      # - run: bundle config set deployment 'true'
-      # - run: bundle install
-      # - run: bundle exec middleman build
+      - run: cd documentation && bundle config set deployment 'true'
+      - run: cd documentation && bundle install
+      - run: cd documentation && bundle exec middleman build
 
       # Run Spectral
       - uses: stoplightio/spectral-action@v0.7.0
@@ -114,7 +118,7 @@ jobs:
           file_glob: 'documentation/source/swagger/*_apis.yaml'
 
       # Run Sensedia Open Api Github Repo Integration 
-        if: github.ref == 'refs/heads/ORB-486'
+        if: github.ref == 'refs/heads/${{ env.INTEGRATION_BRANCH }}'
       - name: Run Sensedia Open Api Github Repo Integration 
         id: repoIntegration
         run: |
@@ -125,9 +129,6 @@ jobs:
           echo "::set-output name=git_user_name::$(git --no-pager log --format=format:'%an' -n 1)"
           echo "::set-output name=git_user_email::$(git --no-pager log --format=format:'%ae' -n 1)"
           echo "::set-output name=git_commit_message::$(git --no-pager log --format=format:'%B' -n 1)"
-      - uses: actions/setup-python@v1
-        with:
-          python-version: "3.7"
       - name: Pushes test file
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
@@ -135,8 +136,21 @@ jobs:
         with:
           source_file: 'open-api-repository-integration/generated-sources/swagger-apis'
           destination_repo: 'Sensedia/openapi'
-          destination_branch: 'ORB-486'
+          destination_branch: ${{ env.INTEGRATION_BRANCH }}
           user_email: ${{ steps.repoIntegration.outputs.git_user_email }}
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }}
-          
+        if: success()
+      - name: Archive deploy artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: deploy-files
+          path: |
+            ./documentation/build
+          retention-days: 1
+      - uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.AREADEV_INTEGRATION }}
+          repository: ${{ github.repository }}
+          event-type: trigger-deploy
+        
