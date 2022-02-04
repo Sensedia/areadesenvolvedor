@@ -138,7 +138,18 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
         with:
-          source_file: open-api-repository-integration/generated-sources/swagger-apis documentation/source/dictionary
+          source_file: open-api-repository-integration/generated-sources/swagger-apis
+          destination_repo: 'Sensedia/openapi'
+          destination_branch: ${{ env.INTEGRATION_BRANCH }}
+          user_email: ${{ steps.repoIntegration.outputs.git_user_email }}
+          user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
+          commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }}
+      - name: Open Api Repo Integration Part 3
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
+        with:
+          source_file: documentation/source/dictionary
           destination_repo: 'Sensedia/openapi'
           destination_branch: ${{ env.INTEGRATION_BRANCH }}
           user_email: ${{ steps.repoIntegration.outputs.git_user_email }}
