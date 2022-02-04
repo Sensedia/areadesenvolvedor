@@ -157,15 +157,6 @@ jobs:
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }}
         if: success()
-      - name: Compress build directory
-        run: tar -cvzf build.tar.gz documentation/build
-      - name: Archive deploy artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: deploy-files
-          path: |
-            build.tar.gz
-          retention-days: 1
       - name: Invoke deploy workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
