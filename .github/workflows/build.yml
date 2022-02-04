@@ -117,9 +117,9 @@ jobs:
         with:
           file_glob: 'documentation/source/swagger/*_apis.yaml'
 
-      # Run Sensedia Open Api Github Repo Integration 
+      # Open Api Github Repo Integration 
         if: github.ref == 'refs/heads/${{ env.INTEGRATION_BRANCH }}'
-      - name: Run Sensedia Open Api Github Repo Integration 
+      - name: Open Api Repo Integration Part 1 
         id: repoIntegration
         run: |
           rm -rf ./open-api-repository-integration/generated-sources
@@ -129,7 +129,7 @@ jobs:
           echo "::set-output name=git_user_name::$(git --no-pager log --format=format:'%an' -n 1)"
           echo "::set-output name=git_user_email::$(git --no-pager log --format=format:'%ae' -n 1)"
           echo "::set-output name=git_commit_message::$(git --no-pager log --format=format:'%B' -n 1)"
-      - name: Pushes test file
+      - name: Open Api Repo Integration Part 2 
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
@@ -141,12 +141,14 @@ jobs:
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }}
         if: success()
+      - name: Compress build directory
+        run: tar -cvzf build.tar documentation/build
       - name: Archive deploy artifacts
         uses: actions/upload-artifact@v2
         with:
           name: deploy-files
           path: |
-            ./documentation/build
+            build.tar.gz
           retention-days: 1
       - uses: peter-evans/repository-dispatch@v1
         with:

@@ -35,7 +35,9 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: deploy-files
-      - run: ls -la
+      - run: |
+          tar -zxvf build.tar.gz
+          mv build ./documentation
       ###
       #ATENÇÃO: não é parar ligar a automação da Fase 1 sem a autorização do comitê de Open Banking
       # Open Banking Fase 1
