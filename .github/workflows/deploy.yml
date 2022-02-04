@@ -105,7 +105,7 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/source') }}
 
       - run: |
-          mv source/versions ..
+          mv source/versions .. 
           bundle config set deployment 'true'
           bundle install
           bundle exec middleman build
