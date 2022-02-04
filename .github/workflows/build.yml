@@ -165,9 +165,9 @@ jobs:
           path: |
             build.tar.gz
           retention-days: 1
-      - uses: peter-evans/repository-dispatch@v1
+      - name: Invoke deploy workflow
+        uses: benc-uk/workflow-dispatch@v1
         with:
+          workflow: Deploy
           token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          event-type: "trigger-deploy"
         
