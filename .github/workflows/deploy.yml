@@ -1,7 +1,7 @@
 name: Deploy
 on:
   repository_dispatch:
-    types: [trigger-deploy]
+    types: ["trigger-deploy"]
 
 jobs:
   deploy:
