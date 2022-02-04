@@ -148,7 +148,7 @@ jobs:
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }}
         if: success()
       - name: Compress build directory
-        run: tar -cvzf build.tar documentation/build
+        run: tar -cvzf build.tar.gz documentation/build
       - name: Archive deploy artifacts
         uses: actions/upload-artifact@v2
         with:
