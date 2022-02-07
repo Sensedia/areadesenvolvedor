@@ -14,11 +14,7 @@ jobs:
         working-directory: documentation
     env:
       ruby-version: 2.5
-
     steps:
-      - uses: actions/checkout@v2
-      - name: bash 1
-        run: ls -la documentation/build
       - uses: dawidd6/action-download-artifact@v2
         with:
           # Optional, GitHub token, a Personal Access Token with `public_repo` scope if needed
@@ -38,9 +34,6 @@ jobs:
           name: testing_artifact
           # Optional, directory where to extract artifact. Defaults to the artifact name (see `name` input)
           path: ./documentation/build
-      - name: bash 2
-        run: ls -la documentation/build
-
       #   uses: ruby/setup-ruby@v1
       #   with:
       #     ruby-version: ${{ env.ruby-version }}
