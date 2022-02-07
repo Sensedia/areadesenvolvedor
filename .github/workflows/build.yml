@@ -167,6 +167,6 @@ jobs:
       - name: Invoke deploy workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          workflow: deploy
+          workflow: Deploy
           token: ${{ secrets.AREADEV_INTEGRATION }}
           inputs: '{ "build_id": "${{ github.run_id }}"}'
