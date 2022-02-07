@@ -35,9 +35,10 @@ jobs:
           # https://github.com/actions/download-artifact#download-all-artifacts
           name: testing_artifact
           # Optional, directory where to extract artifact. Defaults to the artifact name (see `name` input)
-          path: ./documentation/build
-      - run: ls -la build
-
+          path: ./documentation
+      - run: ls -la
+      - run: tar -zxvf build.tar.gz
+      - run: ls -la
       #   uses: ruby/setup-ruby@v1
       #   with:
       #     ruby-version: ${{ env.ruby-version }}

@@ -157,10 +157,12 @@ jobs:
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Dictionaries
         if: success()
+      - name: Compress build folder
+        run: tar -cvzf build.tar.gz documentation/build
       - uses: actions/upload-artifact@v2
         with:
           name: testing_artifact
-          path: documentation/build
+          path: build.tar.gz
           retention-days: 1
           
       - name: Invoke deploy workflow
