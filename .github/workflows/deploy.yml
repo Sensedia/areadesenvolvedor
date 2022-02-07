@@ -24,7 +24,7 @@ jobs:
       #   with:
       #     ruby-version: ${{ env.ruby-version }}
       - run: |
-          ARTIFACT_ID=$(echo curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/Sensedia/areadesenvolvedor/actions/runs/${{ github.event.inputs.build_id }}/artifacts | jq '.artifacts[0].archive_download_url'
+          ARTIFACT_ID=$(echo curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/Sensedia/areadesenvolvedor/actions/runs/${{ github.event.inputs.build_id }}/artifacts | jq '.artifacts[0].archive_download_url')
           curl -i -u senseRmginner:${{ secrets.AREADEV_INTEGRATION }} -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/octocat/hello-world/actions/artifacts/$ARTIFACT_ID/zip
           ls -la 
 
