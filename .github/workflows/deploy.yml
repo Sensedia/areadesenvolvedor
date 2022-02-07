@@ -39,6 +39,8 @@ jobs:
       - run: ls -la
       - run: tar -zxvf build.tar.gz
       - run: ls -la
+      - run: cp -Rf source/versions build
+
       #   uses: ruby/setup-ruby@v1
       #   with:
       #     ruby-version: ${{ env.ruby-version }}
