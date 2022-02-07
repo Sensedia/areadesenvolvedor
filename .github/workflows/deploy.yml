@@ -36,7 +36,7 @@ jobs:
           name: testing_artifact
           # Optional, directory where to extract artifact. Defaults to the artifact name (see `name` input)
           path: ./documentation/build
-        run: ls -la documentation/build
+      - run: ls -la documentation/build
 
       #   uses: ruby/setup-ruby@v1
       #   with:
