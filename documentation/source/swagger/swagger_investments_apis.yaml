@@ -4,7 +4,7 @@ info:
   description: |
     Estas APIs visam o compartilhamento de dados sobre Investimentos e suas
     características entre as Instituições Financeiras participantes do Open Banking Brasil
-  version: 1.0.0
+  version: 1.0.0-rc1.0
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
@@ -289,6 +289,14 @@ components:
           maxLength: 8
           pattern: '^\d{1}\.\d{1,6}$'
       additionalProperties: false
+    EnumDistinctTargetAudience:
+      type: string
+      description: Público alvo (ou PF ou PJ).
+      maxLength: 2
+      enum:
+        - PF
+        - PJ
+      example: PF
     InvestmentsFixedIncomeBank:
       type: object
       required:
@@ -312,6 +320,8 @@ components:
           $ref: '#/components/schemas/InvestmentsFixedIncomeBankIndex'
         investmentConditions:
           $ref: '#/components/schemas/InvestmentsFixedIncomeBankInvestmentConditions'
+        targetAudience:
+          $ref: '#/components/schemas/EnumDistinctTargetAudience'
       additionalProperties: false
     InvestmentsFixedIncomeBankIndex:
       type: object
@@ -407,6 +417,8 @@ components:
           $ref: '#/components/schemas/NoIdentificationFrequencyDistribution'
         loadingRate:
           $ref: '#/components/schemas/NoIdentificationFrequencyDistribution'
+        targetAudience:
+          $ref: '#/components/schemas/EnumDistinctTargetAudience'
       additionalProperties: false
     InvestmentsFund:
       type: object
@@ -612,6 +624,8 @@ components:
           $ref: '#/components/schemas/NoIdentificationFrequencyDistribution'
         loadingRate:
           $ref: '#/components/schemas/NoIdentificationFrequencyDistribution'
+        targetAudience:
+          $ref: '#/components/schemas/EnumDistinctTargetAudience'
       additionalProperties: false
     InvestmentsVariableIncome:
       type: object
@@ -628,6 +642,8 @@ components:
           $ref: '#/components/schemas/NoIdentificationFrequencyDistribution'
         loadingRate:
           $ref: '#/components/schemas/NoIdentificationFrequencyDistribution'
+        targetAudience:
+          $ref: '#/components/schemas/EnumDistinctTargetAudience'
       additionalProperties: false
     EnumInvestmentsFixedIncomeBankIndexer:
       type: string

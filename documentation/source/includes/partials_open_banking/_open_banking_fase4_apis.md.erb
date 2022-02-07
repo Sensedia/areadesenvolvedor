@@ -1,5 +1,5 @@
 
-<h1 id="fase-4-apis-do-open-banking-brasil">Fase 4 - APIs do Open Banking Brasil v1.0.0-rc1.0</h1>
+<h1 id="fase-4-apis-do-open-banking-brasil">Fase 4 - APIs do Open Banking Brasil</h1>
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
@@ -22,7 +22,7 @@ A tabela abaixo atende aos seguintes produtos:
 ![Classificação denominação](images/extras/tabela_api_investimentos_classificacao_denominacao.png)
 <a href="images/extras/tabela_api_investimentos_classificacao_denominacao.xlsx" target="_blank">Download da Tabela de Classificação de Denominação</a>
 
-<h1 id="fase-4-apis-do-open-banking-brasil-api-t-tulos-de-capitaliza-o">API - Títulos de Capitalização</h1>
+<h1 id="fase-4-apis-do-open-banking-brasil-api-t-tulos-de-capitaliza-o">API - Títulos de Capitalização - v1.0.0-rc1.0</h1>
 
 |Versão|
 |:-----|
@@ -212,7 +212,7 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
 
-<h1 id="fase-4-apis-do-open-banking-brasil-api-investimentos">API - Investimentos</h1>
+<h1 id="fase-4-apis-do-open-banking-brasil-api-investimentos">API - Investimentos - v1.0.0-rc1.0</h1>
 
 |Versão|
 |:-----|
@@ -490,7 +490,8 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
         "maximumExpirationTerm": 720,
         "minimumGracePeriod": 5,
         "maximumGracePeriod": 180
-      }
+      },
+      "targetAudience": "PF"
     }
   ],
   "links": {
@@ -648,7 +649,8 @@ Campos de resposta do endpoint de `/credit-fixed-incomes`
         ],
         "minimum": "0.010000",
         "maximum": "0.300000"
-      }
+      },
+      "targetAudience": "PF"
     }
   ],
   "links": {
@@ -806,7 +808,8 @@ Campos de resposta do endpoint de `/variable-incomes`
         ],
         "minimum": "0.010000",
         "maximum": "0.300000"
-      }
+      },
+      "targetAudience": "PF"
     }
   ],
   "links": {
@@ -964,7 +967,8 @@ Campos de resposta do endpoint de `/treasure-titles`
         ],
         "minimum": "0.010000",
         "maximum": "0.300000"
-      }
+      },
+      "targetAudience": "PF"
     }
   ],
   "links": {
@@ -992,7 +996,7 @@ Campos de resposta do endpoint de `/treasure-titles`
 |429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
 
-<h1 id="fase-4-apis-do-open-banking-brasil-api-c-mbio">API - Câmbio</h1>
+<h1 id="fase-4-apis-do-open-banking-brasil-api-c-mbio">API - Câmbio - v1.0.0-rc1.0</h1>
 
 |Versão|
 |:-----|
@@ -1270,7 +1274,7 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
 
-<h1 id="fase-4-apis-do-open-banking-brasil-api-credenciamento">API - Credenciamento</h1>
+<h1 id="fase-4-apis-do-open-banking-brasil-api-credenciamento">API - Credenciamento - v1.0.0-rc1.0</h1>
 
 |Versão|
 |:-----|
@@ -1548,7 +1552,7 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
 
-<h1 id="fase-4-apis-do-open-banking-brasil-api-previd-ncia">API - Previdência</h1>
+<h1 id="fase-4-apis-do-open-banking-brasil-api-previd-ncia">API - Previdência - v1.0.0-rc1.0</h1>
 
 |Versão|
 |:-----|
@@ -2014,7 +2018,7 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
 |429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
 
-<h1 id="fase-4-apis-do-open-banking-brasil-api-seguros">API - Seguros</h1>
+<h1 id="fase-4-apis-do-open-banking-brasil-api-seguros">API - Seguros - v1.0.0-rc1.0</h1>
 
 |Versão|
 |:-----|
@@ -4870,7 +4874,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
         "maximumExpirationTerm": 720,
         "minimumGracePeriod": 5,
         "maximumGracePeriod": 180
-      }
+      },
+      "targetAudience": "PF"
     }
   ],
   "links": {
@@ -4965,7 +4970,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
         ],
         "minimum": "0.010000",
         "maximum": "0.300000"
-      }
+      },
+      "targetAudience": "PF"
     }
   ],
   "links": {
@@ -5060,7 +5066,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
         ],
         "minimum": "0.010000",
         "maximum": "0.300000"
-      }
+      },
+      "targetAudience": "PF"
     }
   ],
   "links": {
@@ -5155,7 +5162,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
         ],
         "minimum": "0.010000",
         "maximum": "0.300000"
-      }
+      },
+      "targetAudience": "PF"
     }
   ],
   "links": {
@@ -5484,7 +5492,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
     "maximumExpirationTerm": 720,
     "minimumGracePeriod": 5,
     "maximumGracePeriod": 180
-  }
+  },
+  "targetAudience": "PF"
 }
 
 ```
@@ -5498,6 +5507,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |investimentType|[EnumInvestmentsFixedIncomeBankProductType](#schemaenuminvestmentsfixedincomebankproducttype)|true|Especificação do ativo em questão.<br><ol><li>CDB</li><li>RDB</li><li>LCI</li><li>LCA</li></ol>|
 |index|[InvestmentsFixedIncomeBankIndex](#schemainvestmentsfixedincomebankindex)|true||
 |investmentConditions|[InvestmentsFixedIncomeBankInvestmentConditions](#schemainvestmentsfixedincomebankinvestmentconditions)|true||
+|targetAudience|[EnumDistinctTargetAudience](#schemaenumdistincttargetaudience)|false|Público alvo (ou PF ou PJ).|
 
 <h2 id="tocS_InvestmentsFixedIncomeBankIndex">InvestmentsFixedIncomeBankIndex</h2>
 
@@ -5645,7 +5655,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
     ],
     "minimum": "0.010000",
     "maximum": "0.300000"
-  }
+  },
+  "targetAudience": "PF"
 }
 
 ```
@@ -5658,6 +5669,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |investmentType|[EnumInvestmentsFixedIncomeCreditInvestmentType](#schemaenuminvestmentsfixedincomecreditinvestmenttype)|true|Especifica o tipo de ativo negociado&#58;<br><br><ol><li>Debêntures</li><li>CRI</li><li>CRA</li></ol>|
 |custodyFee|[NoIdentificationFrequencyDistribution](#schemanoidentificationfrequencydistribution)|true|Distribuição por frequência.|
 |loadingRate|[NoIdentificationFrequencyDistribution](#schemanoidentificationfrequencydistribution)|true|Distribuição por frequência.|
+|targetAudience|[EnumDistinctTargetAudience](#schemaenumdistincttargetaudience)|false|Público alvo (ou PF ou PJ).|
 
 <h2 id="tocS_InvestmentsFundGeneralConditions">InvestmentsFundGeneralConditions</h2>
 
@@ -5788,7 +5800,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
     ],
     "minimum": "0.010000",
     "maximum": "0.300000"
-  }
+  },
+  "targetAudience": "PF"
 }
 
 ```
@@ -5801,6 +5814,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |investmentType|[EnumInvestmentsTreasureInvestmentType](#schemaenuminvestmentstreasureinvestmenttype)|true|Especifica o tipo de ativo negociado&#58;<br><br><ol><li>Tesouro direto</li></ol>|
 |custodyFee|[NoIdentificationFrequencyDistribution](#schemanoidentificationfrequencydistribution)|true|Distribuição por frequência.|
 |loadingRate|[NoIdentificationFrequencyDistribution](#schemanoidentificationfrequencydistribution)|true|Distribuição por frequência.|
+|targetAudience|[EnumDistinctTargetAudience](#schemaenumdistincttargetaudience)|false|Público alvo (ou PF ou PJ).|
 
 <h2 id="tocS_InvestmentsVariableIncome">InvestmentsVariableIncome</h2>
 
@@ -5869,7 +5883,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
     ],
     "minimum": "0.010000",
     "maximum": "0.300000"
-  }
+  },
+  "targetAudience": "PF"
 }
 
 ```
@@ -5882,6 +5897,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |investmentType|[EnumInvestmentsVariableIncomeInvestmentType](#schemaenuminvestmentsvariableincomeinvestmenttype)|true|Especifica o tipo de ativo negociado&#58;<br><br><ol><li>Ações</li><li>Fundo de índices</li></ol>|
 |custodyFee|[NoIdentificationFrequencyDistribution](#schemanoidentificationfrequencydistribution)|true|Distribuição por frequência.|
 |loadingRate|[NoIdentificationFrequencyDistribution](#schemanoidentificationfrequencydistribution)|true|Distribuição por frequência.|
+|targetAudience|[EnumDistinctTargetAudience](#schemaenumdistincttargetaudience)|false|Público alvo (ou PF ou PJ).|
 
 <h2 id="tocS_EnumInvestmentsFixedIncomeBankIndexer">EnumInvestmentsFixedIncomeBankIndexer</h2>
 
