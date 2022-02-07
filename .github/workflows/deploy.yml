@@ -37,7 +37,7 @@ jobs:
           # Optional, directory where to extract artifact. Defaults to the artifact name (see `name` input)
           path: ./documentation
       - run: ls -la
-      - run: tar -zxvf build.tar.gz
+      - run: tar -zxvf build.tar.gz .
       - run: ls -la
       - run: cp -Rf source/versions build
       - run: pwd && ls -la build
@@ -143,9 +143,9 @@ jobs:
       #   with:
       #     file_glob: "documentation/source/swagger/*_apis.yaml"
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./documentation/build
+      # - name: Deploy
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./documentation/build
       

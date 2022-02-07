@@ -157,7 +157,10 @@ jobs:
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Dictionaries
         if: success()
       - name: Compress build folder
-        run: tar -cvzf build.tar.gz documentation/build
+        run: |
+          mkdir build
+          mv documentation/build build
+          tar -cvzf build.tar.gz build
       - uses: actions/upload-artifact@v2
         with:
           name: testing_artifact
