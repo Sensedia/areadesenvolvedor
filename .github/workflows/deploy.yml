@@ -5,6 +5,9 @@ on:
       build_id:
         description: 'ID of build to deploy'     
         required: true
+  push:
+    branches:
+      - "ORB-486"
 jobs:
   deploy:
     name: Deploy Github pages
