@@ -684,6 +684,7 @@ info:
     ![Maquina de Estados](images/sequence-diagrams/diagramaDeClasseFase3_api_pagamento.png)
 
   version: 1.1.0-rc1.0
+
 tags:
   - name: API - Pagamentos
     description: |

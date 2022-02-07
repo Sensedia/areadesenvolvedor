@@ -160,6 +160,8 @@ components:
       $ref: ./schemas/business_commons/NoIdentificationFrequencyDistribution.yaml
     DistributionFrequencyPrice:
       $ref: ./schemas/business_commons/FrequencyDistributionPrice.yaml
+    EnumDistinctTargetAudience:
+     $ref: ./schemas/business_commons/EnumDistinctTargetAudience.yaml
     InvestmentsFixedIncomeBank:
       $ref: ./schemas/investments_apis/InvestmentsFixedIncomeBank.yaml
     InvestmentsFixedIncomeBankIndex:
