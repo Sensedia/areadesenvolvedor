@@ -160,7 +160,10 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: testing_artifact
-          path: open-api-repository-integration/generated-sources/swagger-apis
+          # path: open-api-repository-integration/generated-sources/swagger-apis
+          path: Planning_v2.2.pptx
+          retention-days: 1
+          
       - name: Invoke deploy workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
