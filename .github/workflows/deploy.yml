@@ -18,7 +18,9 @@ jobs:
       ruby-version: 2.5
 
     steps:
+      - name: Checkout
       - uses: actions/checkout@v2
+      - name: bash 1
       - run: ls -la documentation/build
       - name: Download artifact
       - uses: dawidd6/action-download-artifact@v2
@@ -40,7 +42,7 @@ jobs:
           name: testing_artifact
           # Optional, directory where to extract artifact. Defaults to the artifact name (see `name` input)
           path: ./documentation/build
-      - name: bash
+      - name: bash 2
       - run: ls -la documentation/build
 
       #   uses: ruby/setup-ruby@v1
