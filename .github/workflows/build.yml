@@ -17,27 +17,27 @@ jobs:
       INTEGRATION_BRANCH: 'ORB-486'
 
     steps:
-      # - run: sudo apt-get purge ruby 
+      - run: sudo apt-get purge ruby 
       - uses: actions/checkout@v2
-      # - name: Set up Ruby
-      #   uses: ruby/setup-ruby@v1
-      #   with:
-      #     ruby-version: ${{ env.ruby-version }}
-      # - uses: actions/setup-python@v1
-      #   with:
-      #     python-version: "3.7"
-      # - uses: actions/cache@v2
-      #   with:
-      #     path: vendor/bundle
-      #     key: gems-${{ runner.os }}-${{ env.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.ruby-version }}
+      - uses: actions/setup-python@v1
+        with:
+          python-version: "3.7"
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: gems-${{ runner.os }}-${{ env.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
           
 
-      # - uses: actions/setup-node@v1
-      #   with:
-      #     node-version: '12'
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
 
-      # - run: npm install -g widdershins
-      # - run: npm install -g @apidevtools/swagger-cli
+      - run: npm install -g widdershins
+      - run: npm install -g @apidevtools/swagger-cli
 
       ##
       ##ATENÇÃO: não é parar ligar a automação da Fase 1 sem a autorização do comitê de Open Banking
@@ -46,122 +46,121 @@ jobs:
       ##
 
       # Open Banking Fase 2
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_consents_apis_part.yml --outfile documentation/source/swagger/swagger_consents_apis.yaml --type=yaml
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_resources_apis_part.yml --outfile documentation/source/swagger/swagger_resources_apis.yaml --type=yaml
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_customers_apis_part.yml --outfile documentation/source/swagger/swagger_customers_apis.yaml --type=yaml
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_accounts_apis_part.yml --outfile documentation/source/swagger/swagger_accounts_apis.yaml --type=yaml
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_credit_cards_apis_part.yml --outfile documentation/source/swagger/swagger_credit_cards_apis.yaml --type=yaml
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_loans_apis_part.yml --outfile documentation/source/swagger/swagger_loans_apis.yaml --type=yaml
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_financings_apis_part.yml --outfile documentation/source/swagger/swagger_financings_apis.yaml --type=yaml
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_unarranged_accounts_overdraft_apis_part.yml --outfile documentation/source/swagger/swagger_unarranged_accounts_overdraft_apis.yaml --type=yaml
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_invoice_financings_apis_part.yml --outfile documentation/source/swagger/swagger_invoice_financings_apis.yaml --type=yaml
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_open_banking_fase2_apis_part.yml --outfile documentation/source/swagger/swagger_open_banking_fase2_apis.yml --type=yaml
+      - run: swagger-cli bundle documentation/source/swagger/parts/_consents_apis_part.yml --outfile documentation/source/swagger/swagger_consents_apis.yaml --type=yaml
+      - run: swagger-cli bundle documentation/source/swagger/parts/_resources_apis_part.yml --outfile documentation/source/swagger/swagger_resources_apis.yaml --type=yaml
+      - run: swagger-cli bundle documentation/source/swagger/parts/_customers_apis_part.yml --outfile documentation/source/swagger/swagger_customers_apis.yaml --type=yaml
+      - run: swagger-cli bundle documentation/source/swagger/parts/_accounts_apis_part.yml --outfile documentation/source/swagger/swagger_accounts_apis.yaml --type=yaml
+      - run: swagger-cli bundle documentation/source/swagger/parts/_credit_cards_apis_part.yml --outfile documentation/source/swagger/swagger_credit_cards_apis.yaml --type=yaml
+      - run: swagger-cli bundle documentation/source/swagger/parts/_loans_apis_part.yml --outfile documentation/source/swagger/swagger_loans_apis.yaml --type=yaml
+      - run: swagger-cli bundle documentation/source/swagger/parts/_financings_apis_part.yml --outfile documentation/source/swagger/swagger_financings_apis.yaml --type=yaml
+      - run: swagger-cli bundle documentation/source/swagger/parts/_unarranged_accounts_overdraft_apis_part.yml --outfile documentation/source/swagger/swagger_unarranged_accounts_overdraft_apis.yaml --type=yaml
+      - run: swagger-cli bundle documentation/source/swagger/parts/_invoice_financings_apis_part.yml --outfile documentation/source/swagger/swagger_invoice_financings_apis.yaml --type=yaml
+      - run: swagger-cli bundle documentation/source/swagger/parts/_open_banking_fase2_apis_part.yml --outfile documentation/source/swagger/swagger_open_banking_fase2_apis.yml --type=yaml
       
       # Open Banking Fase 3
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_payments_apis_part.yml --outfile documentation/source/swagger/swagger_payments_apis.yaml --type=yaml
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_open_banking_fase3_apis_part.yml --outfile documentation/source/swagger/swagger_open_banking_fase3_apis.yml --type=yaml
+      - run: swagger-cli bundle documentation/source/swagger/parts/_payments_apis_part.yml --outfile documentation/source/swagger/swagger_payments_apis.yaml --type=yaml
+      - run: swagger-cli bundle documentation/source/swagger/parts/_open_banking_fase3_apis_part.yml --outfile documentation/source/swagger/swagger_open_banking_fase3_apis.yml --type=yaml
 
       # Open Banking Fase 4
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_capitalization_bonds_apis_part.yml --outfile documentation/source/swagger/swagger_capitalization_bonds_apis.yaml --type=yaml
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_investments_apis_part.yml --outfile documentation/source/swagger/swagger_investments_apis.yaml --type=yaml
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_insurances_apis_part.yml --outfile documentation/source/swagger/swagger_insurances_apis.yaml --type=yaml
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_open_banking_fase4_apis_part.yml --outfile documentation/source/swagger/swagger_open_banking_fase4_apis.yml --type=yaml
+      - run: swagger-cli bundle documentation/source/swagger/parts/_capitalization_bonds_apis_part.yml --outfile documentation/source/swagger/swagger_capitalization_bonds_apis.yaml --type=yaml
+      - run: swagger-cli bundle documentation/source/swagger/parts/_investments_apis_part.yml --outfile documentation/source/swagger/swagger_investments_apis.yaml --type=yaml
+      - run: swagger-cli bundle documentation/source/swagger/parts/_insurances_apis_part.yml --outfile documentation/source/swagger/swagger_insurances_apis.yaml --type=yaml
+      - run: swagger-cli bundle documentation/source/swagger/parts/_open_banking_fase4_apis_part.yml --outfile documentation/source/swagger/swagger_open_banking_fase4_apis.yml --type=yaml
 
-      # - run: cd documentation && bash build-dictionary.sh
-      # - run: sed -i '1s/^\(\xef\xbb\xbf\)\?/\xef\xbb\xbf/' documentation/source/swagger/swagger_*
+      - run: cd documentation && bash build-dictionary.sh
+      - run: sed -i '1s/^\(\xef\xbb\xbf\)\?/\xef\xbb\xbf/' documentation/source/swagger/swagger_*
 
       # Open Banking Fase 1
       # - run: swagger-cli validate documentation/source/swagger/swagger_open_banking_fase1_apis.yml
 
       # Open Banking Fase 2
-      # - run: swagger-cli validate documentation/source/swagger/swagger_consents_apis.yaml
-      # - run: swagger-cli validate documentation/source/swagger/swagger_resources_apis.yaml
-      # - run: swagger-cli validate documentation/source/swagger/swagger_customers_apis.yaml
-      # - run: swagger-cli validate documentation/source/swagger/swagger_credit_cards_apis.yaml
-      # - run: swagger-cli validate documentation/source/swagger/swagger_accounts_apis.yaml
-      # - run: swagger-cli validate documentation/source/swagger/swagger_loans_apis.yaml
-      # - run: swagger-cli validate documentation/source/swagger/swagger_financings_apis.yaml
-      # - run: swagger-cli validate documentation/source/swagger/swagger_unarranged_accounts_overdraft_apis.yaml
-      # - run: swagger-cli validate documentation/source/swagger/swagger_invoice_financings_apis.yaml
-      # - run: swagger-cli validate documentation/source/swagger/swagger_open_banking_fase2_apis.yml
+      - run: swagger-cli validate documentation/source/swagger/swagger_consents_apis.yaml
+      - run: swagger-cli validate documentation/source/swagger/swagger_resources_apis.yaml
+      - run: swagger-cli validate documentation/source/swagger/swagger_customers_apis.yaml
+      - run: swagger-cli validate documentation/source/swagger/swagger_credit_cards_apis.yaml
+      - run: swagger-cli validate documentation/source/swagger/swagger_accounts_apis.yaml
+      - run: swagger-cli validate documentation/source/swagger/swagger_loans_apis.yaml
+      - run: swagger-cli validate documentation/source/swagger/swagger_financings_apis.yaml
+      - run: swagger-cli validate documentation/source/swagger/swagger_unarranged_accounts_overdraft_apis.yaml
+      - run: swagger-cli validate documentation/source/swagger/swagger_invoice_financings_apis.yaml
+      - run: swagger-cli validate documentation/source/swagger/swagger_open_banking_fase2_apis.yml
 
       # Open Banking Fase 3
-      # - run: swagger-cli validate documentation/source/swagger/swagger_payments_apis.yaml
-      # - run: swagger-cli validate documentation/source/swagger/swagger_open_banking_fase3_apis.yml
+      - run: swagger-cli validate documentation/source/swagger/swagger_payments_apis.yaml
+      - run: swagger-cli validate documentation/source/swagger/swagger_open_banking_fase3_apis.yml
 
       # Open Banking Fase 4
-      # - run: swagger-cli validate documentation/source/swagger/swagger_capitalization_bonds_apis.yaml
-      # - run: swagger-cli validate documentation/source/swagger/swagger_investments_apis.yaml
-      # - run: swagger-cli validate documentation/source/swagger/swagger_insurances_apis.yaml
-      # - run: swagger-cli validate documentation/source/swagger/swagger_open_banking_fase4_apis.yml
+      - run: swagger-cli validate documentation/source/swagger/swagger_capitalization_bonds_apis.yaml
+      - run: swagger-cli validate documentation/source/swagger/swagger_investments_apis.yaml
+      - run: swagger-cli validate documentation/source/swagger/swagger_insurances_apis.yaml
+      - run: swagger-cli validate documentation/source/swagger/swagger_open_banking_fase4_apis.yml
 
       ##
       # ATENÇÃO: não é parar ligar a automação da Fase 1 sem a autorização do comitê de Open Banking
       # - run: widdershins documentation/source/swagger/swagger_open_banking_fase1_apis.yml -o documentation/source/includes/partials_open_banking/_open_banking_fase1_apis.md.erb --user_templates documentation/source/templates/openapi3/ --language_tabs "javascript:JavaScript:request" "python:Python:request" "java:Java::request" --omitHeader --summary --httpsnippet
       ##
       
-      # - run: widdershins documentation/source/swagger/swagger_open_banking_fase2_apis.yml -o documentation/source/includes/partials_open_banking/_open_banking_fase2_apis.md.erb --user_templates documentation/source/templates/openapi3/ --language_tabs "javascript:JavaScript:request" "python:Python:request" "java:Java::request" --omitHeader --summary --httpsnippet
-      # - run: widdershins documentation/source/swagger/swagger_open_banking_fase3_apis.yml -o documentation/source/includes/partials_open_banking/_open_banking_fase3_apis.md.erb --user_templates documentation/source/templates/openapi3/ --language_tabs "javascript:JavaScript:request" "python:Python:request" "java:Java::request" --omitHeader --summary --httpsnippet
-      # - run: widdershins documentation/source/swagger/swagger_open_banking_fase4_apis.yml -o documentation/source/includes/partials_open_banking/_open_banking_fase4_apis.md.erb --user_templates documentation/source/templates/openapi3/ --language_tabs "javascript:JavaScript:request" "python:Python:request" "java:Java::request" --omitHeader --summary --httpsnippet
+      - run: widdershins documentation/source/swagger/swagger_open_banking_fase2_apis.yml -o documentation/source/includes/partials_open_banking/_open_banking_fase2_apis.md.erb --user_templates documentation/source/templates/openapi3/ --language_tabs "javascript:JavaScript:request" "python:Python:request" "java:Java::request" --omitHeader --summary --httpsnippet
+      - run: widdershins documentation/source/swagger/swagger_open_banking_fase3_apis.yml -o documentation/source/includes/partials_open_banking/_open_banking_fase3_apis.md.erb --user_templates documentation/source/templates/openapi3/ --language_tabs "javascript:JavaScript:request" "python:Python:request" "java:Java::request" --omitHeader --summary --httpsnippet
+      - run: widdershins documentation/source/swagger/swagger_open_banking_fase4_apis.yml -o documentation/source/includes/partials_open_banking/_open_banking_fase4_apis.md.erb --user_templates documentation/source/templates/openapi3/ --language_tabs "javascript:JavaScript:request" "python:Python:request" "java:Java::request" --omitHeader --summary --httpsnippet
 
-      # - uses: actions/cache@v2
-      #   with:
-      #     path: build
-      #     key: ${{ runner.os }}-${{ hashFiles('**/source') }}
-      # - run: | 
-      #     cd documentation 
-      #     mv source/versions ..
-      #     bundle config set deployment 'true'
-      #     bundle install
-      #     bundle exec middleman build
-      #     mv ../versions build/source
+      - uses: actions/cache@v2
+        with:
+          path: build
+          key: ${{ runner.os }}-${{ hashFiles('**/source') }}
+      - run: | 
+          cd documentation 
+          mv source/versions ..
+          bundle config set deployment 'true'
+          bundle install
+          bundle exec middleman build
+          mv ../versions build/source
 
       # Run Spectral
-      # - uses: stoplightio/spectral-action@v0.7.0
-      #   with:
-      #     file_glob: 'documentation/source/swagger/*_apis.yaml'
+      - uses: stoplightio/spectral-action@v0.7.0
+        with:
+          file_glob: 'documentation/source/swagger/*_apis.yaml'
 
       # Open Api Github Repo Integration 
-      #   if: github.ref == 'refs/heads/${{ env.INTEGRATION_BRANCH }}'
-      # - name: Open Api Repo Integration Part 1 
-      #   id: repoIntegration
-      #   run: |
-      #     rm -rf ./open-api-repository-integration/generated-sources
-      #     cd open-api-repository-integration
-      #     ruby yaml2json
-      #     cd ..
-      #     echo $(git --no-pager log --format=format:'%B' -n 1)
-      #     echo "::set-output name=git_user_name::$(git --no-pager log --format=format:'%an' -n 1)"
-      #     echo "::set-output name=git_user_email::$(git --no-pager log --format=format:'%ae' -n 1)"
-      #     echo "::set-output name=git_commit_message::$(git --no-pager log --format=format:'%B' -n 1)"
-      # - name: Open Api Repo Integration Part 2 
-      #   uses: dmnemec/copy_file_to_another_repo_action@main
-      #   env:
-      #     API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
-      #   with:
-      #     source_file: open-api-repository-integration/generated-sources/swagger-apis
-      #     destination_repo: 'Sensedia/openapi'
-      #     destination_branch: ${{ env.INTEGRATION_BRANCH }}
-      #     user_email: ${{ steps.repoIntegration.outputs.git_user_email }}
-      #     user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
-      #     commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Swagger Files
-      # - name: Open Api Repo Integration Part 3
-      #   uses: dmnemec/copy_file_to_another_repo_action@main
-      #   env:
-      #     API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
-      #   with:
-      #     source_file: documentation/source/dictionary
-      #     destination_repo: 'Sensedia/openapi'
-      #     destination_branch: ${{ env.INTEGRATION_BRANCH }}
-      #     user_email: ${{ steps.repoIntegration.outputs.git_user_email }}
-      #     user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
-      #     commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Dictionaries
-      #   if: success()
+        if: github.ref == 'refs/heads/${{ env.INTEGRATION_BRANCH }}'
+      - name: Open Api Repo Integration Part 1 
+        id: repoIntegration
+        run: |
+          rm -rf ./open-api-repository-integration/generated-sources
+          cd open-api-repository-integration
+          ruby yaml2json
+          cd ..
+          echo $(git --no-pager log --format=format:'%B' -n 1)
+          echo "::set-output name=git_user_name::$(git --no-pager log --format=format:'%an' -n 1)"
+          echo "::set-output name=git_user_email::$(git --no-pager log --format=format:'%ae' -n 1)"
+          echo "::set-output name=git_commit_message::$(git --no-pager log --format=format:'%B' -n 1)"
+      - name: Open Api Repo Integration Part 2 
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
+        with:
+          source_file: open-api-repository-integration/generated-sources/swagger-apis
+          destination_repo: 'Sensedia/openapi'
+          destination_branch: ${{ env.INTEGRATION_BRANCH }}
+          user_email: ${{ steps.repoIntegration.outputs.git_user_email }}
+          user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
+          commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Swagger Files
+      - name: Open Api Repo Integration Part 3
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
+        with:
+          source_file: documentation/source/dictionary
+          destination_repo: 'Sensedia/openapi'
+          destination_branch: ${{ env.INTEGRATION_BRANCH }}
+          user_email: ${{ steps.repoIntegration.outputs.git_user_email }}
+          user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
+          commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Dictionaries
+        if: success()
       - uses: actions/upload-artifact@v2
         with:
           name: testing_artifact
-          # path: open-api-repository-integration/generated-sources/swagger-apis
-          path: Planning_v2.2.pptx
+          path: documentation/build
           retention-days: 1
           
       - name: Invoke deploy workflow
