@@ -139,7 +139,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
         with:
-          source_file: open-api-repository-integration/generated-sources/*
+          source_file: open-api-repository-integration/generated-sources/swagger-apis
           destination_repo: 'Sensedia/openapi'
           destination_branch: ${{ env.INTEGRATION_BRANCH }}
           user_email: ${{ steps.repoIntegration.outputs.git_user_email }}
