@@ -104,10 +104,10 @@ jobs:
       # - run: widdershins documentation/source/swagger/swagger_open_banking_fase3_apis.yml -o documentation/source/includes/partials_open_banking/_open_banking_fase3_apis.md.erb --user_templates documentation/source/templates/openapi3/ --language_tabs "javascript:JavaScript:request" "python:Python:request" "java:Java::request" --omitHeader --summary --httpsnippet
       # - run: widdershins documentation/source/swagger/swagger_open_banking_fase4_apis.yml -o documentation/source/includes/partials_open_banking/_open_banking_fase4_apis.md.erb --user_templates documentation/source/templates/openapi3/ --language_tabs "javascript:JavaScript:request" "python:Python:request" "java:Java::request" --omitHeader --summary --httpsnippet
 
-      - uses: actions/cache@v2
-        with:
-          path: build
-          key: ${{ runner.os }}-${{ hashFiles('**/source') }}
+      # - uses: actions/cache@v2
+      #   with:
+      #     path: build
+      #     key: ${{ runner.os }}-${{ hashFiles('**/source') }}
       # - run: | 
       #     cd documentation 
       #     mv source/versions ..
@@ -167,6 +167,6 @@ jobs:
       - name: Invoke deploy workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          workflow: Deploy
+          workflow: deploy
           token: ${{ secrets.AREADEV_INTEGRATION }}
           inputs: '{ "build_id": "${{ github.run_id }}"}'
