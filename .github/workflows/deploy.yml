@@ -36,11 +36,11 @@ jobs:
           name: testing_artifact
           # Optional, directory where to extract artifact. Defaults to the artifact name (see `name` input)
           path: ./documentation
-      - run: ls -la
       - run: tar -zxvf build.tar.gz
-      - run: ls -la
-      - run: cp -Rf source/versions build
-      - run: pwd && ls -la build
+      - run: cp -Rf source/versions build/build
+      - run: |
+          ls -la
+          ls -la build/build
       #   uses: ruby/setup-ruby@v1
       #   with:
       #     ruby-version: ${{ env.ruby-version }}
