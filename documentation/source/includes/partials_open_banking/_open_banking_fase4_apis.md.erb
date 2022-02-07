@@ -490,7 +490,8 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
         "maximumExpirationTerm": 720,
         "minimumGracePeriod": 5,
         "maximumGracePeriod": 180
-      }
+      },
+      "targetAudience": "PF"
     }
   ],
   "links": {
@@ -648,7 +649,8 @@ Campos de resposta do endpoint de `/credit-fixed-incomes`
         ],
         "minimum": "0.010000",
         "maximum": "0.300000"
-      }
+      },
+      "targetAudience": "PF"
     }
   ],
   "links": {
@@ -806,7 +808,8 @@ Campos de resposta do endpoint de `/variable-incomes`
         ],
         "minimum": "0.010000",
         "maximum": "0.300000"
-      }
+      },
+      "targetAudience": "PF"
     }
   ],
   "links": {
@@ -964,7 +967,8 @@ Campos de resposta do endpoint de `/treasure-titles`
         ],
         "minimum": "0.010000",
         "maximum": "0.300000"
-      }
+      },
+      "targetAudience": "PF"
     }
   ],
   "links": {
@@ -4870,7 +4874,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
         "maximumExpirationTerm": 720,
         "minimumGracePeriod": 5,
         "maximumGracePeriod": 180
-      }
+      },
+      "targetAudience": "PF"
     }
   ],
   "links": {
@@ -4965,7 +4970,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
         ],
         "minimum": "0.010000",
         "maximum": "0.300000"
-      }
+      },
+      "targetAudience": "PF"
     }
   ],
   "links": {
@@ -5060,7 +5066,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
         ],
         "minimum": "0.010000",
         "maximum": "0.300000"
-      }
+      },
+      "targetAudience": "PF"
     }
   ],
   "links": {
@@ -5155,7 +5162,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
         ],
         "minimum": "0.010000",
         "maximum": "0.300000"
-      }
+      },
+      "targetAudience": "PF"
     }
   ],
   "links": {
@@ -5484,7 +5492,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
     "maximumExpirationTerm": 720,
     "minimumGracePeriod": 5,
     "maximumGracePeriod": 180
-  }
+  },
+  "targetAudience": "PF"
 }
 
 ```
@@ -5498,6 +5507,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |investimentType|[EnumInvestmentsFixedIncomeBankProductType](#schemaenuminvestmentsfixedincomebankproducttype)|true|Especificação do ativo em questão.<br><ol><li>CDB</li><li>RDB</li><li>LCI</li><li>LCA</li></ol>|
 |index|[InvestmentsFixedIncomeBankIndex](#schemainvestmentsfixedincomebankindex)|true||
 |investmentConditions|[InvestmentsFixedIncomeBankInvestmentConditions](#schemainvestmentsfixedincomebankinvestmentconditions)|true||
+|targetAudience|[EnumDistinctTargetAudience](#schemaenumdistincttargetaudience)|false|Público alvo (ou PF ou PJ).|
 
 <h2 id="tocS_InvestmentsFixedIncomeBankIndex">InvestmentsFixedIncomeBankIndex</h2>
 
@@ -5645,7 +5655,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
     ],
     "minimum": "0.010000",
     "maximum": "0.300000"
-  }
+  },
+  "targetAudience": "PF"
 }
 
 ```
@@ -5658,6 +5669,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |investmentType|[EnumInvestmentsFixedIncomeCreditInvestmentType](#schemaenuminvestmentsfixedincomecreditinvestmenttype)|true|Especifica o tipo de ativo negociado&#58;<br><br><ol><li>Debêntures</li><li>CRI</li><li>CRA</li></ol>|
 |custodyFee|[NoIdentificationFrequencyDistribution](#schemanoidentificationfrequencydistribution)|true|Distribuição por frequência.|
 |loadingRate|[NoIdentificationFrequencyDistribution](#schemanoidentificationfrequencydistribution)|true|Distribuição por frequência.|
+|targetAudience|[EnumDistinctTargetAudience](#schemaenumdistincttargetaudience)|false|Público alvo (ou PF ou PJ).|
 
 <h2 id="tocS_InvestmentsFundGeneralConditions">InvestmentsFundGeneralConditions</h2>
 
@@ -5788,7 +5800,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
     ],
     "minimum": "0.010000",
     "maximum": "0.300000"
-  }
+  },
+  "targetAudience": "PF"
 }
 
 ```
@@ -5801,6 +5814,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |investmentType|[EnumInvestmentsTreasureInvestmentType](#schemaenuminvestmentstreasureinvestmenttype)|true|Especifica o tipo de ativo negociado&#58;<br><br><ol><li>Tesouro direto</li></ol>|
 |custodyFee|[NoIdentificationFrequencyDistribution](#schemanoidentificationfrequencydistribution)|true|Distribuição por frequência.|
 |loadingRate|[NoIdentificationFrequencyDistribution](#schemanoidentificationfrequencydistribution)|true|Distribuição por frequência.|
+|targetAudience|[EnumDistinctTargetAudience](#schemaenumdistincttargetaudience)|false|Público alvo (ou PF ou PJ).|
 
 <h2 id="tocS_InvestmentsVariableIncome">InvestmentsVariableIncome</h2>
 
@@ -5869,7 +5883,8 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
     ],
     "minimum": "0.010000",
     "maximum": "0.300000"
-  }
+  },
+  "targetAudience": "PF"
 }
 
 ```
@@ -5882,6 +5897,7 @@ Intervalo de tempo regular previsto entre os sorteios. Conforme os domínios:
 |investmentType|[EnumInvestmentsVariableIncomeInvestmentType](#schemaenuminvestmentsvariableincomeinvestmenttype)|true|Especifica o tipo de ativo negociado&#58;<br><br><ol><li>Ações</li><li>Fundo de índices</li></ol>|
 |custodyFee|[NoIdentificationFrequencyDistribution](#schemanoidentificationfrequencydistribution)|true|Distribuição por frequência.|
 |loadingRate|[NoIdentificationFrequencyDistribution](#schemanoidentificationfrequencydistribution)|true|Distribuição por frequência.|
+|targetAudience|[EnumDistinctTargetAudience](#schemaenumdistincttargetaudience)|false|Público alvo (ou PF ou PJ).|
 
 <h2 id="tocS_EnumInvestmentsFixedIncomeBankIndexer">EnumInvestmentsFixedIncomeBankIndexer</h2>
 
