@@ -20,6 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Download artifact
+      - run: ls -la documentation/build
       - uses: dawidd6/action-download-artifact@v2
         with:
           # Optional, GitHub token, a Personal Access Token with `public_repo` scope if needed
@@ -39,6 +40,7 @@ jobs:
           name: testing_artifact
           # Optional, directory where to extract artifact. Defaults to the artifact name (see `name` input)
           path: ./documentation/build
+      - run: ls -la documentation/build
       # - name: Set up Ruby
       #   uses: ruby/setup-ruby@v1
       #   with:
