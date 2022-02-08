@@ -15,10 +15,10 @@ jobs:
     env:
       ruby-version: 2.5
       integration-branch: 'ORB-486'
-      is-homolog-branch: ${{ github.ref == 'refs/heads/env.integration-branch' }}
+      is-homolog-branch: ${{ github.ref == 'refs/heads/'env.integration-branch }}
 
     steps:
-      - run: echo ${{ github.ref == 'refs/heads/env.integration-branch' }}
+      - run: echo ${{ github.ref == 'refs/heads/'env.integration-branch }}
       - run: sudo apt-get purge ruby 
       - uses: actions/checkout@v2
       - name: Set up Ruby
