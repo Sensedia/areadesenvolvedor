@@ -15,7 +15,7 @@ jobs:
     env:
       ruby-version: 2.5
       integration-branch: 'ORB-486'
-      integration-branch-full-ref: refs/heads/${{ env.integration-branch }}
+      integration-branch-full-ref: refs/heads/${{ integration-branch }}
       is-homolog-branch: ${{ github.ref == integration-branch-full-ref }}
 
     steps:
