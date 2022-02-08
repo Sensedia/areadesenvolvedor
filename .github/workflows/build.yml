@@ -14,9 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ruby-version: 2.5
-      INTEGRATION_BRANCH: 'ORB-486'
+      integration-branch: 'ORB-486'
+      is-homolog-branch: ${{ github.ref == 'refs/heads/env.integration-branch' }}
 
     steps:
+      - run: echo ${{ github.ref == 'refs/heads/env.integration-branch' }}
       - run: sudo apt-get purge ruby 
       - uses: actions/checkout@v2
       - name: Set up Ruby
@@ -37,15 +39,16 @@ jobs:
 
       - run: npm install -g widdershins
       - run: npm install -g @apidevtools/swagger-cli
-      - name: Proccess Swagger Files
-        run: |
-          cd documentation
-          bash ./process-swagger-files.sh
- 
+
       - uses: actions/cache@v2
         with:
           path: build
           key: ${{ runner.os }}-${{ hashFiles('**/source') }}
+
+      - name: Proccess Swagger Files
+        run: |
+          cd documentation
+          bash ./process-swagger-files.sh
 
       - name: Build Portal Site
         run: | 
@@ -66,7 +69,7 @@ jobs:
       # 1. Clean generated-sources folder
       # 2. Parse YAML to JSON
       # 3. Store GIT variables for next steps
-        if: github.ref == 'refs/heads/${{ env.INTEGRATION_BRANCH }}'
+        if: ${{ env.is-integration-branch }}'
       - name: Parse YAML to JSON and store GIT variables for next steps
         id: repoIntegration
         run: |
@@ -78,6 +81,7 @@ jobs:
           echo "::set-output name=git_user_email::$(git --no-pager log --format=format:'%ae' -n 1)"
           echo "::set-output name=git_commit_message::$(git --no-pager log --format=format:'%B' -n 1)"
 
+        if: ${{ env.is-integration-branch }}'
       # 4. Copy generated-source/swagger-apis files to 'Sensedia/openapi' repository (Commit them).
       - name: "'Sensedia/openapi' Integration - Swagger files"
         uses: dmnemec/copy_file_to_another_repo_action@main
@@ -86,11 +90,12 @@ jobs:
         with:
           source_file: open-api-repository-integration/generated-sources/swagger-apis
           destination_repo: 'Sensedia/openapi'
-          destination_branch: ${{ env.INTEGRATION_BRANCH }}
+          destination_branch: ${{ env.integration-branch }}
           user_email: ${{ steps.repoIntegration.outputs.git_user_email }}
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Swagger Files
 
+        if: ${{ env.is-integration-branch }}'
       # 5. Copy generated-source/dictionaries files to 'Sensedia/openapi' repository (Commit them).
       - name: "'Sensedia/openapi' Integration - Dictionaries"
         uses: dmnemec/copy_file_to_another_repo_action@main
@@ -99,11 +104,12 @@ jobs:
         with:
           source_file: documentation/source/dictionary
           destination_repo: 'Sensedia/openapi'
-          destination_branch: ${{ env.INTEGRATION_BRANCH }}
+          destination_branch: ${{ env.integration-branch }}
           user_email: ${{ steps.repoIntegration.outputs.git_user_email }}
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Dictionaries
 
+        if: ${{ env.is-integration-branch }}'
       # 6. Copy generated-source/swagger-apis files to 'Sensedia/draft-openapi' repository (Commit them).
       - name: "'Sensedia/draft-openapi' Integration - Swagger files"
         uses: dmnemec/copy_file_to_another_repo_action@main
@@ -112,11 +118,12 @@ jobs:
         with:
           source_file: open-api-repository-integration/generated-sources/swagger-apis
           destination_repo: 'Sensedia/draft-openapi'
-          destination_branch: ${{ env.INTEGRATION_BRANCH }}
+          destination_branch: ${{ env.integration-branch }}
           user_email: ${{ steps.repoIntegration.outputs.git_user_email }}
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Swagger Files
 
+        if: ${{ env.is-integration-branch }}'
       # 7. Copy generated-source/dictionaries files to 'Sensedia/draft-openapi' repository (Commit them).
       - name: "'Sensedia/draft-openapi' Integration - Dictionaries"
         uses: dmnemec/copy_file_to_another_repo_action@main
@@ -125,7 +132,7 @@ jobs:
         with:
           source_file: documentation/source/dictionary
           destination_repo: 'Sensedia/draft-openapi'
-          destination_branch: ${{ env.INTEGRATION_BRANCH }}
+          destination_branch: ${{ env.integration-branch }}
           user_email: ${{ steps.repoIntegration.outputs.git_user_email }}
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Dictionaries
@@ -155,4 +162,4 @@ jobs:
         with:
           workflow: Deploy
           token: ${{ secrets.AREADEV_INTEGRATION }}
-          inputs: '{ "build_id": "${{ github.run_id }}", "integration_branch": "${{ env.INTEGRATION_BRANCH }}"}'
+          inputs: '{ "build_id": "${{ github.run_id }}", "integration_branch": "${{ env.integration-branch }}"}'
