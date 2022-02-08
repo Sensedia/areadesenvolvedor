@@ -38,72 +38,13 @@ jobs:
 
       - run: npm install -g widdershins
       - run: npm install -g @apidevtools/swagger-cli
-
-      ##
-      ##ATENÇÃO: não é parar ligar a automação da Fase 1 sem a autorização do comitê de Open Banking
-      ##Open Banking Fase 1
-      # - run: swagger-cli bundle documentation/source/swagger/parts/_open_banking_fase1_apis_part.yml --outfile documentation/source/swagger/swagger_open_banking_fase1_apis.yml --type=yaml
-      ##
-
-      # Open Banking Fase 2
-      - run: swagger-cli bundle documentation/source/swagger/parts/_consents_apis_part.yml --outfile documentation/source/swagger/swagger_consents_apis.yaml --type=yaml
-      - run: swagger-cli bundle documentation/source/swagger/parts/_resources_apis_part.yml --outfile documentation/source/swagger/swagger_resources_apis.yaml --type=yaml
-      - run: swagger-cli bundle documentation/source/swagger/parts/_customers_apis_part.yml --outfile documentation/source/swagger/swagger_customers_apis.yaml --type=yaml
-      - run: swagger-cli bundle documentation/source/swagger/parts/_accounts_apis_part.yml --outfile documentation/source/swagger/swagger_accounts_apis.yaml --type=yaml
-      - run: swagger-cli bundle documentation/source/swagger/parts/_credit_cards_apis_part.yml --outfile documentation/source/swagger/swagger_credit_cards_apis.yaml --type=yaml
-      - run: swagger-cli bundle documentation/source/swagger/parts/_loans_apis_part.yml --outfile documentation/source/swagger/swagger_loans_apis.yaml --type=yaml
-      - run: swagger-cli bundle documentation/source/swagger/parts/_financings_apis_part.yml --outfile documentation/source/swagger/swagger_financings_apis.yaml --type=yaml
-      - run: swagger-cli bundle documentation/source/swagger/parts/_unarranged_accounts_overdraft_apis_part.yml --outfile documentation/source/swagger/swagger_unarranged_accounts_overdraft_apis.yaml --type=yaml
-      - run: swagger-cli bundle documentation/source/swagger/parts/_invoice_financings_apis_part.yml --outfile documentation/source/swagger/swagger_invoice_financings_apis.yaml --type=yaml
-      - run: swagger-cli bundle documentation/source/swagger/parts/_open_banking_fase2_apis_part.yml --outfile documentation/source/swagger/swagger_open_banking_fase2_apis.yml --type=yaml
+      - run: npm install -g @stoplight/spectral-cli
       
-      # Open Banking Fase 3
-      - run: swagger-cli bundle documentation/source/swagger/parts/_payments_apis_part.yml --outfile documentation/source/swagger/swagger_payments_apis.yaml --type=yaml
-      - run: swagger-cli bundle documentation/source/swagger/parts/_open_banking_fase3_apis_part.yml --outfile documentation/source/swagger/swagger_open_banking_fase3_apis.yml --type=yaml
-
-      # Open Banking Fase 4
-      - run: swagger-cli bundle documentation/source/swagger/parts/_capitalization_bonds_apis_part.yml --outfile documentation/source/swagger/swagger_capitalization_bonds_apis.yaml --type=yaml
-      - run: swagger-cli bundle documentation/source/swagger/parts/_investments_apis_part.yml --outfile documentation/source/swagger/swagger_investments_apis.yaml --type=yaml
-      - run: swagger-cli bundle documentation/source/swagger/parts/_insurances_apis_part.yml --outfile documentation/source/swagger/swagger_insurances_apis.yaml --type=yaml
-      - run: swagger-cli bundle documentation/source/swagger/parts/_open_banking_fase4_apis_part.yml --outfile documentation/source/swagger/swagger_open_banking_fase4_apis.yml --type=yaml
-
-      - run: cd documentation && bash build-dictionary.sh
-      - run: sed -i '1s/^\(\xef\xbb\xbf\)\?/\xef\xbb\xbf/' documentation/source/swagger/swagger_*
-
-      # Open Banking Fase 1
-      # - run: swagger-cli validate documentation/source/swagger/swagger_open_banking_fase1_apis.yml
-
-      # Open Banking Fase 2
-      - run: swagger-cli validate documentation/source/swagger/swagger_consents_apis.yaml
-      - run: swagger-cli validate documentation/source/swagger/swagger_resources_apis.yaml
-      - run: swagger-cli validate documentation/source/swagger/swagger_customers_apis.yaml
-      - run: swagger-cli validate documentation/source/swagger/swagger_credit_cards_apis.yaml
-      - run: swagger-cli validate documentation/source/swagger/swagger_accounts_apis.yaml
-      - run: swagger-cli validate documentation/source/swagger/swagger_loans_apis.yaml
-      - run: swagger-cli validate documentation/source/swagger/swagger_financings_apis.yaml
-      - run: swagger-cli validate documentation/source/swagger/swagger_unarranged_accounts_overdraft_apis.yaml
-      - run: swagger-cli validate documentation/source/swagger/swagger_invoice_financings_apis.yaml
-      - run: swagger-cli validate documentation/source/swagger/swagger_open_banking_fase2_apis.yml
-
-      # Open Banking Fase 3
-      - run: swagger-cli validate documentation/source/swagger/swagger_payments_apis.yaml
-      - run: swagger-cli validate documentation/source/swagger/swagger_open_banking_fase3_apis.yml
-
-      # Open Banking Fase 4
-      - run: swagger-cli validate documentation/source/swagger/swagger_capitalization_bonds_apis.yaml
-      - run: swagger-cli validate documentation/source/swagger/swagger_investments_apis.yaml
-      - run: swagger-cli validate documentation/source/swagger/swagger_insurances_apis.yaml
-      - run: swagger-cli validate documentation/source/swagger/swagger_open_banking_fase4_apis.yml
-
-      ##
-      # ATENÇÃO: não é parar ligar a automação da Fase 1 sem a autorização do comitê de Open Banking
-      # - run: widdershins documentation/source/swagger/swagger_open_banking_fase1_apis.yml -o documentation/source/includes/partials_open_banking/_open_banking_fase1_apis.md.erb --user_templates documentation/source/templates/openapi3/ --language_tabs "javascript:JavaScript:request" "python:Python:request" "java:Java::request" --omitHeader --summary --httpsnippet
-      ##
-      
-      - run: widdershins documentation/source/swagger/swagger_open_banking_fase2_apis.yml -o documentation/source/includes/partials_open_banking/_open_banking_fase2_apis.md.erb --user_templates documentation/source/templates/openapi3/ --language_tabs "javascript:JavaScript:request" "python:Python:request" "java:Java::request" --omitHeader --summary --httpsnippet
-      - run: widdershins documentation/source/swagger/swagger_open_banking_fase3_apis.yml -o documentation/source/includes/partials_open_banking/_open_banking_fase3_apis.md.erb --user_templates documentation/source/templates/openapi3/ --language_tabs "javascript:JavaScript:request" "python:Python:request" "java:Java::request" --omitHeader --summary --httpsnippet
-      - run: widdershins documentation/source/swagger/swagger_open_banking_fase4_apis.yml -o documentation/source/includes/partials_open_banking/_open_banking_fase4_apis.md.erb --user_templates documentation/source/templates/openapi3/ --language_tabs "javascript:JavaScript:request" "python:Python:request" "java:Java::request" --omitHeader --summary --httpsnippet
-
+      - name: Proccess Swagger Files
+        run: |
+          cd documentation
+          bash ./process-swagger-files.sh
+ 
       - uses: actions/cache@v2
         with:
           path: build
@@ -115,10 +56,6 @@ jobs:
           bundle install
           bundle exec middleman build
 
-      # Run Spectral
-      - uses: stoplightio/spectral-action@v0.7.0
-        with:
-          file_glob: 'documentation/source/swagger/*_apis.yaml'
       ####################################
       # Open Api Github Repo Integration #
       ####################################
@@ -195,12 +132,12 @@ jobs:
         if: success()
       - name: Compress build folder
         run: |
+          rm -rf build
           mkdir build
-          mv documentation/build build
+          mv documentation/build/* build
           ls -la build
           tar -cvzf build.tar.gz build
           tar -xvzf build.tar.gz
-          ls -la build
 
       # 9. Upload build.tar.gz built in previous step to Github repository artifacts.
       - uses: actions/upload-artifact@v2
