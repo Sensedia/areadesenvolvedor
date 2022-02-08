@@ -69,5 +69,3 @@ swagger-cli validate source/swagger/swagger_open_banking_fase4_apis.yml
 widdershins source/swagger/swagger_open_banking_fase2_apis.yml -o source/includes/partials_open_banking/_open_banking_fase2_apis.md.erb --user_templates source/templates/openapi3/ --language_tabs "javascript:JavaScript:request" "python:Python:request" "java:Java::request" --omitHeader --summary --httpsnippet
 widdershins source/swagger/swagger_open_banking_fase3_apis.yml -o source/includes/partials_open_banking/_open_banking_fase3_apis.md.erb --user_templates source/templates/openapi3/ --language_tabs "javascript:JavaScript:request" "python:Python:request" "java:Java::request" --omitHeader --summary --httpsnippet
 widdershins source/swagger/swagger_open_banking_fase4_apis.yml -o source/includes/partials_open_banking/_open_banking_fase4_apis.md.erb --user_templates source/templates/openapi3/ --language_tabs "javascript:JavaScript:request" "python:Python:request" "java:Java::request" --omitHeader --summary --httpsnippet
-
-spectral lint source/swagger/*_apis.yaml

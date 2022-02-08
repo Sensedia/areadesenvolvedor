@@ -31,16 +31,12 @@ jobs:
           path: vendor/bundle
           key: gems-${{ runner.os }}-${{ env.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
           
-
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
 
       - run: npm install -g widdershins
       - run: npm install -g @apidevtools/swagger-cli
-      - run: spectral --help
-      - run: npm install -g @stoplight/spectral-cli
-
       - name: Proccess Swagger Files
         run: |
           cd documentation
@@ -50,6 +46,7 @@ jobs:
         with:
           path: build
           key: ${{ runner.os }}-${{ hashFiles('**/source') }}
+
       - name: Build Portal Site
         run: | 
           cd documentation 
@@ -58,6 +55,10 @@ jobs:
           bundle install
           bundle exec middleman build
 
+      # Run Spectral
+      - uses: stoplightio/spectral-action@v0.7.0
+        with:
+          file_glob: 'documentation/source/swagger/*_apis.yaml'
       ####################################
       # Open Api Github Repo Integration #
       ####################################
@@ -66,7 +67,7 @@ jobs:
       # 2. Parse YAML to JSON
       # 3. Store GIT variables for next steps
         if: github.ref == 'refs/heads/${{ env.INTEGRATION_BRANCH }}'
-      - name: Parse YAML to JSON and create Git step variables
+      - name: Parse YAML to JSON and store GIT variables for next steps
         id: repoIntegration
         run: |
           rm -rf ./open-api-repository-integration/generated-sources
