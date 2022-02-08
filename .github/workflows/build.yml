@@ -15,7 +15,8 @@ jobs:
     env:
       ruby-version: 2.5
       integration-branch: 'ORB-486'
-      is-homolog-branch: ${{ github.ref == join('refs/heads/', env.integration-branch) }}
+      integration-branch-full-ref: refs/heads/${{ env.integration-branch }}
+      is-homolog-branch: ${{ github.ref == integration-branch-full-ref }}
 
     steps:
       - run: echo "refs/heads/$env.integration-branch"
