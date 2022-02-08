@@ -34,18 +34,18 @@ jobs:
           name: build_folder_artifact
           path: ./documentation
 
-      # 2. Extract build.tar.gz and copy files to build/build
-      - name: Extract build.tar.gz and copy files to build/build
+      # 2. Extract build.tar.gz and copy files to build
+      - name: Extract build.tar.gz and copy files to build
         run: | 
           tar -zxvf build.tar.gz
-          cp -Rf source/versions build/build
+          cp -Rf source/versions build
           ls -la
-          ls -la build/build
+          ls -la build
  
-      # 3. Deploy files in documentation/build/build
+      # 3. Deploy files in documentation/build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./documentation/build/build
+          publish_dir: ./documentation/build
       

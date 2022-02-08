@@ -38,8 +38,9 @@ jobs:
 
       - run: npm install -g widdershins
       - run: npm install -g @apidevtools/swagger-cli
+      - run: which spectral
       - run: npm install -g @stoplight/spectral-cli
-      
+
       - name: Proccess Swagger Files
         run: |
           cd documentation
@@ -49,7 +50,8 @@ jobs:
         with:
           path: build
           key: ${{ runner.os }}-${{ hashFiles('**/source') }}
-      - run: | 
+      - name: Build Portal Site
+        run: | 
           cd documentation 
           mv source/versions ..
           bundle config set deployment 'true'
@@ -64,7 +66,7 @@ jobs:
       # 2. Parse YAML to JSON
       # 3. Store GIT variables for next steps
         if: github.ref == 'refs/heads/${{ env.INTEGRATION_BRANCH }}'
-      - name: Open Api Repo Integration Part 1 
+      - name: Parse YAML to JSON and create Git step variables
         id: repoIntegration
         run: |
           rm -rf ./open-api-repository-integration/generated-sources
