@@ -38,7 +38,7 @@ jobs:
 
       - run: npm install -g widdershins
       - run: npm install -g @apidevtools/swagger-cli
-      - run: which spectral
+      - run: spectral --help
       - run: npm install -g @stoplight/spectral-cli
 
       - name: Proccess Swagger Files
