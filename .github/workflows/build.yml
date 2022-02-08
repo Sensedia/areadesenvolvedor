@@ -18,7 +18,6 @@ jobs:
       is-integration-branch: ${{ github.ref == 'refs/heads/ORB-486' }}
 
     steps:
-      - run: echo $env.is-integration-branch
       - run: echo ${{ github.ref }}
       - run: sudo apt-get purge ruby 
       - uses: actions/checkout@v2
@@ -70,7 +69,7 @@ jobs:
       # 1. Clean generated-sources folder
       # 2. Parse YAML to JSON
       # 3. Store GIT variables for next steps
-        if: ${{ env.is-integration-branch }}'
+        if: ${{ env.is-integration-branch }}
       - name: Parse YAML to JSON and store GIT variables for next steps
         id: repoIntegration
         run: |
@@ -82,7 +81,7 @@ jobs:
           echo "::set-output name=git_user_email::$(git --no-pager log --format=format:'%ae' -n 1)"
           echo "::set-output name=git_commit_message::$(git --no-pager log --format=format:'%B' -n 1)"
 
-        if: ${{ env.is-integration-branch }}'
+        if: ${{ env.is-integration-branch }}
       # 4. Copy generated-source/swagger-apis files to 'Sensedia/openapi' repository (Commit them).
       - name: "'Sensedia/openapi' Integration - Swagger files"
         uses: dmnemec/copy_file_to_another_repo_action@main
@@ -96,7 +95,7 @@ jobs:
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Swagger Files
 
-        if: ${{ env.is-integration-branch }}'
+        if: ${{ env.is-integration-branch }}
       # 5. Copy generated-source/dictionaries files to 'Sensedia/openapi' repository (Commit them).
       - name: "'Sensedia/openapi' Integration - Dictionaries"
         uses: dmnemec/copy_file_to_another_repo_action@main
@@ -110,7 +109,7 @@ jobs:
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Dictionaries
 
-        if: ${{ env.is-integration-branch }}'
+        if: ${{ env.is-integration-branch }}
       # 6. Copy generated-source/swagger-apis files to 'Sensedia/draft-openapi' repository (Commit them).
       - name: "'Sensedia/draft-openapi' Integration - Swagger files"
         uses: dmnemec/copy_file_to_another_repo_action@main
@@ -124,7 +123,7 @@ jobs:
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Swagger Files
 
-        if: ${{ env.is-integration-branch }}'
+        if: ${{ env.is-integration-branch }}
       # 7. Copy generated-source/dictionaries files to 'Sensedia/draft-openapi' repository (Commit them).
       - name: "'Sensedia/draft-openapi' Integration - Dictionaries"
         uses: dmnemec/copy_file_to_another_repo_action@main
@@ -140,7 +139,7 @@ jobs:
 
       # On success, will run the next steps.
       # 8. Compress build folder in tar.gz format.
-        if: success()
+        if: success() && ${{ env.is-integration-branch }}
       - name: Compress build folder
         run: |
           rm -rf build
@@ -150,6 +149,7 @@ jobs:
           tar -cvzf build.tar.gz build
           tar -xvzf build.tar.gz
 
+        if: success() && ${{ env.is-integration-branch }}
       # 9. Upload build.tar.gz built in previous step to Github repository artifacts.
       - uses: actions/upload-artifact@v2
         with:
@@ -157,6 +157,7 @@ jobs:
           path: build.tar.gz
           retention-days: 1
 
+        if: success() && ${{ env.is-integration-branch }}
       # 10. Invoke Deploy Workflow passing the 'build_id' and 'integration_branch' parameters.
       - name: Invoke deploy workflow
         uses: benc-uk/workflow-dispatch@v1
