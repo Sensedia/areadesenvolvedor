@@ -15,11 +15,10 @@ jobs:
     env:
       ruby-version: 2.5
       integration-branch: 'ORB-486'
-      integration-branch-full-ref: refs/heads/${{ integration-branch }}
-      is-homolog-branch: ${{ github.ref == integration-branch-full-ref }}
+      is-integration-branch: ${{ github.ref == 'refs/heads/ORB-486' }}
 
     steps:
-      - run: echo "refs/heads/$env.integration-branch"
+      - run: echo $env.is-integration-branch
       - run: echo ${{ github.ref }}
       - run: sudo apt-get purge ruby 
       - uses: actions/checkout@v2
