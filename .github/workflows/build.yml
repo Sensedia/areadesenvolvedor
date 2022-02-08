@@ -119,8 +119,13 @@ jobs:
       - uses: stoplightio/spectral-action@v0.7.0
         with:
           file_glob: 'documentation/source/swagger/*_apis.yaml'
+      ####################################
+      # Open Api Github Repo Integration #
+      ####################################
 
-      # Open Api Github Repo Integration 
+      # 1. Clean generated-sources folder
+      # 2. Parse YAML to JSON
+      # 3. Store GIT variables for next steps
         if: github.ref == 'refs/heads/${{ env.INTEGRATION_BRANCH }}'
       - name: Open Api Repo Integration Part 1 
         id: repoIntegration
@@ -129,11 +134,12 @@ jobs:
           cd open-api-repository-integration
           ruby yaml2json
           cd ..
-          echo $(git --no-pager log --format=format:'%B' -n 1)
           echo "::set-output name=git_user_name::$(git --no-pager log --format=format:'%an' -n 1)"
           echo "::set-output name=git_user_email::$(git --no-pager log --format=format:'%ae' -n 1)"
           echo "::set-output name=git_commit_message::$(git --no-pager log --format=format:'%B' -n 1)"
-      - name: Open Api Repo Integration Part 2 
+
+      # 4. Copy generated-source/swagger-apis files to 'Sensedia/openapi' repository (Commit them).
+      - name: "'Sensedia/openapi' Integration - Swagger files"
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
@@ -144,7 +150,9 @@ jobs:
           user_email: ${{ steps.repoIntegration.outputs.git_user_email }}
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Swagger Files
-      - name: Open Api Repo Integration Part 3
+
+      # 5. Copy generated-source/dictionaries files to 'Sensedia/openapi' repository (Commit them).
+      - name: "'Sensedia/openapi' Integration - Dictionaries"
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
@@ -155,7 +163,9 @@ jobs:
           user_email: ${{ steps.repoIntegration.outputs.git_user_email }}
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Dictionaries
-      - name: Open Api Repo Integration Part 4 
+
+      # 6. Copy generated-source/swagger-apis files to 'Sensedia/draft-openapi' repository (Commit them).
+      - name: "'Sensedia/draft-openapi' Integration - Swagger files"
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
@@ -166,7 +176,9 @@ jobs:
           user_email: ${{ steps.repoIntegration.outputs.git_user_email }}
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Swagger Files
-      - name: Open Api Repo Integration Part 5
+
+      # 7. Copy generated-source/dictionaries files to 'Sensedia/draft-openapi' repository (Commit them).
+      - name: "'Sensedia/draft-openapi' Integration - Dictionaries"
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
@@ -177,6 +189,9 @@ jobs:
           user_email: ${{ steps.repoIntegration.outputs.git_user_email }}
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Dictionaries
+
+      # On success, will run the next steps.
+      # 8. Compress build folder in tar.gz format.
         if: success()
       - name: Compress build folder
         run: |
@@ -186,12 +201,15 @@ jobs:
           tar -cvzf build.tar.gz build
           tar -xvzf build.tar.gz
           ls -la build
+
+      # 9. Upload build.tar.gz built in previous step to Github repository artifacts.
       - uses: actions/upload-artifact@v2
         with:
           name: build_folder_artifact
           path: build.tar.gz
           retention-days: 1
-          
+
+      # 10. Invoke Deploy Workflow passing the 'build_id' and 'integration_branch' parameters.
       - name: Invoke deploy workflow
         uses: benc-uk/workflow-dispatch@v1
         with:

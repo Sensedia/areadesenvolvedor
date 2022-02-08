@@ -19,6 +19,12 @@ jobs:
       ruby-version: 2.5
     steps:
       - uses: actions/checkout@v2
+
+      #############################################
+      # Deploy artifact built in 'Build' Workflow #
+      #############################################
+      
+      # 1. Download build.tar.gz from Github repository artifacts
       - uses: dawidd6/action-download-artifact@v2
         with:
           github_token: ${{secrets.AREADEV_INTEGRATION}}
@@ -27,12 +33,16 @@ jobs:
           run_id: ${{ github.event.inputs.build_id }}
           name: build_folder_artifact
           path: ./documentation
-      - run: tar -zxvf build.tar.gz
-      - run: cp -Rf source/versions build/build
-      - run: |
+
+      # 2. Extract build.tar.gz and copy files to build/build
+      - name: Extract build.tar.gz and copy files to build/build
+        run: | 
+          tar -zxvf build.tar.gz
+          cp -Rf source/versions build/build
           ls -la
           ls -la build/build
  
+      # 3. Deploy files in documentation/build/build
       # - name: Deploy
       #   uses: peaceiris/actions-gh-pages@v3
       #   with:
