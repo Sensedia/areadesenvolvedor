@@ -15,7 +15,7 @@ jobs:
     env:
       ruby-version: 2.5
       is-sensedia-repository: ${{ github.repository ==  'Sensedia/areadesenvolvedor' }}
-      is-deploy-branch: ${{ github.ref_name == 'OPB_Homologacao' || github.ref_name == 'master' }}
+      is-deploy-branch: ${{ github.ref_name == 'TESTING_INTEGRATION' || ( github.ref_name == 'master' && github.repository !=  'Sensedia/areadesenvolvedor')  }}
 
     steps:
       - run: sudo apt-get purge ruby 
