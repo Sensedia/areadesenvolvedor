@@ -5,9 +5,6 @@ on:
       build_id:
         description: 'ID of build to deploy'     
         required: true
-      integration_branch:
-        description: 'Integration branch that contain build files to deploy.'
-        required: true
 jobs:
   deploy:
     name: Deploy Github pages
@@ -29,23 +26,22 @@ jobs:
         with:
           github_token: ${{secrets.AREADEV_INTEGRATION}}
           workflow: build.yml
-          branch: ${{ github.event.inputs.integration_branch }}
+          branch: ${{ github.ref_name }}
           run_id: ${{ github.event.inputs.build_id }}
           name: build_folder_artifact
           path: ./documentation
 
-      # 2. Extract build.tar.gz and copy files to build
-      - name: Extract build.tar.gz and copy files to build
+      # 2. Copy files to build
+      - name: Copy files to build
         run: | 
-          tar -zxvf build.tar.gz
           cp -Rf source/versions build
           ls -la
           ls -la build
  
-      # 3. Deploy files in documentation/build
-      # - name: Deploy
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./documentation/build
+      #3. Deploy files in documentation/build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./documentation/build
       
