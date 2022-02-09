@@ -1,6 +1,6 @@
 ﻿openapi: 3.0.0
 info:
-  title: API Accounts - Open Banking Brasill
+  title: API Accounts - Open Banking Brasilll
   description: |
     API de contas de depósito à vista, contas de poupança e contas pré-pagas do Open Banking Brasil – Fase 2.
     API que retorna informações de contas de depósito à vista, contas de poupança e contas de pagamento pré-pagas mantidas nas instituições transmissoras por seus clientes,
