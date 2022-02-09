@@ -17,6 +17,8 @@ jobs:
       is-deploy-branch: ${{ github.ref_name == 'TESTING_INTEGRATION' || ( github.ref_name == 'master' && github.repository !=  'Sensedia/areadesenvolvedor')  }}
 
     steps:
+      - run: echo ${{ github.ref_name == 'TESTING_INTEGRATION' }}
+      - run: echo ${{ github.ref_name }}
       - run: sudo apt-get purge ruby 
       - uses: actions/checkout@v2
       - name: Set up Ruby
