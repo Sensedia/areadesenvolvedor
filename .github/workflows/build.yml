@@ -56,7 +56,7 @@ jobs:
           file_glob: 'documentation/source/swagger/*_apis.yaml'
 
       - name: Build Portal Site
-        if: ${{ github.action_status == 'true' && env.is-deploy-branch }}
+        if: ${{ success() && env.is-deploy-branch }}
         run: | 
           cd documentation 
           mv source/versions ..
