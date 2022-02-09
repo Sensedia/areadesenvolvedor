@@ -164,4 +164,4 @@ jobs:
         with:
           workflow: Deploy
           token: ${{ secrets.AREADEV_INTEGRATION }}
-          inputs: '{ "build_id": "${{ github.run_id }}"'
+          inputs: '{ "build_id": "${{ github.run_id }}" }'
