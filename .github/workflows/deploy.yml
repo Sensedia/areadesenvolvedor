@@ -31,9 +31,10 @@ jobs:
           name: build_folder_artifact
           path: ./documentation
 
-      # 2. Copy files to build
-      - name: Copy files to build
+      # 2. Extract build.tar.gz and copy files to build
+      - name: Extract build.tar.gz and copy files to build
         run: | 
+          tar -zxvf build.tar.gz
           cp -Rf source/versions build
           ls -la
           ls -la build
