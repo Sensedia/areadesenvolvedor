@@ -14,7 +14,7 @@ jobs:
     env:
       ruby-version: 2.5
       enable-openapi-integration: ${{ github.repository ==  'Sensedia/areadesenvolvedor' && github.ref_name != 'master'}}
-      is-deploy-branch: ${{ github.ref_name == 'OPB_Homologacao' || ( github.ref_name == 'master' && github.repository !=  'Sensedia/areadesenvolvedor')  }}
+      is-deploy-branch: ${{ github.ref_name == 'TESTING_INTEGRATION' || ( github.ref_name == 'master' && github.repository !=  'Sensedia/areadesenvolvedor')  }}
 
     steps:
       - run: sudo apt-get purge ruby 
@@ -43,10 +43,15 @@ jobs:
           path: build
           key: ${{ runner.os }}-${{ hashFiles('**/source') }}
 
-      - name: Proccess Swagger Files
+      - name: Compile Swagger Files
         run: |
           cd documentation
-          bash ./process-swagger-files.sh
+          bash ./compile-swagger-files.sh
+
+      # Run Spectral
+      - uses: stoplightio/spectral-action@v0.7.0
+        with:
+          file_glob: 'documentation/source/swagger/*_apis.yaml'
 
       - name: Build Portal Site
         if: ${{ github.action_status == 'true' && env.is-deploy-branch }}
@@ -56,11 +61,6 @@ jobs:
           bundle config set deployment 'true'
           bundle install
           bundle exec middleman build
-
-      # Run Spectral
-      - uses: stoplightio/spectral-action@v0.7.0
-        with:
-          file_glob: 'documentation/source/swagger/*_apis.yaml'
 
       ####################################
       # Open Api Github Repo Integration #
