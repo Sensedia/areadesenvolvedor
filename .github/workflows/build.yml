@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ruby-version: 2.5
-      is-sensedia-repository: ${{ github.repository ==  'Sensedia/areadesenvolvedor' }}
+      enable-openapi-integration: ${{ github.repository ==  'Sensedia/areadesenvolvedor' && github.ref_name != 'master'}}
       is-deploy-branch: ${{ github.ref_name == 'TESTING_INTEGRATION' || ( github.ref_name == 'master' && github.repository !=  'Sensedia/areadesenvolvedor')  }}
 
     steps:
@@ -69,7 +69,7 @@ jobs:
       # 1. Clean generated-sources folder
       # 2. Parse YAML to JSON
       # 3. Store GIT variables for next steps
-        if: ${{ env.is-sensedia-repository }}
+        if: ${{ env.enable-openapi-integration }}
       - name: Parse YAML to JSON and store GIT variables for next steps
         id: repoIntegration
         run: |
@@ -81,7 +81,7 @@ jobs:
           echo "::set-output name=git_user_email::$(git --no-pager log --format=format:'%ae' -n 1)"
           echo "::set-output name=git_commit_message::$(git --no-pager log --format=format:'%B' -n 1)"
 
-        if: ${{ env.is-sensedia-repository }}
+        if: ${{ env.enable-openapi-integration }}
       # 4. Copy generated-source/swagger-apis files to 'Sensedia/openapi' repository (Commit them).
       - name: "'Sensedia/openapi' Integration - Swagger files"
         uses: dmnemec/copy_file_to_another_repo_action@main
@@ -95,7 +95,7 @@ jobs:
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Swagger Files
 
-        if: ${{ env.is-sensedia-repository }}
+        if: ${{ env.enable-openapi-integration }}
       # 5. Copy generated-source/dictionaries files to 'Sensedia/openapi' repository (Commit them).
       - name: "'Sensedia/openapi' Integration - Dictionaries"
         uses: dmnemec/copy_file_to_another_repo_action@main
@@ -109,7 +109,7 @@ jobs:
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Dictionaries
 
-        if: ${{ env.is-sensedia-repository }}
+        if: ${{ env.enable-openapi-integration }}
       # 6. Copy generated-source/swagger-apis files to 'Sensedia/draft-openapi' repository (Commit them).
       - name: "'Sensedia/draft-openapi' Integration - Swagger files"
         uses: dmnemec/copy_file_to_another_repo_action@main
@@ -123,7 +123,7 @@ jobs:
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Swagger Files
 
-        if: ${{ env.is-sensedia-repository }}
+        if: ${{ env.enable-openapi-integration }}
       # 7. Copy generated-source/dictionaries files to 'Sensedia/draft-openapi' repository (Commit them).
       - name: "'Sensedia/draft-openapi' Integration - Dictionaries"
         uses: dmnemec/copy_file_to_another_repo_action@main
