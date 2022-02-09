@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ruby-version: 2.5
-      integration-branch: 'ORB-486'
-      is-integration-branch: ${{ github.ref == 'refs/heads/ORB-486' }}
+      integration-branch: 'TESTING_INTEGRATION'
+      is-integration-branch: ${{ github.ref == 'refs/heads/TESTING_INTEGRATION' }}
 
     steps:
       - run: echo ${{ github.ref }}
