@@ -56,7 +56,6 @@ jobs:
       - name: Build Portal Site
         if: ${{ success() && env.is-deploy-branch }}
         run: |
-          echo ${{ success() }} 
           echo ${{ env.is-deploy-branch }} 
           echo ${{ success() && env.is-deploy-branch }} 
           cd documentation 
