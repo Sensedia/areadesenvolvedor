@@ -18,6 +18,8 @@ jobs:
       is-integration-branch: ${{ github.ref == 'refs/heads/TESTING_INTEGRATION' }}
 
     steps:
+      - run: echo ${{ github.workspace }}
+      - run: echo ${{ github.repository }}
       - run: echo ${{ github.ref }}
       - run: sudo apt-get purge ruby 
       - uses: actions/checkout@v2
