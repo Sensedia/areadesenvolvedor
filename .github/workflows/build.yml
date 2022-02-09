@@ -48,8 +48,8 @@ jobs:
           cd documentation
           bash ./process-swagger-files.sh
 
-        if: ${{ success() && env.is-deploy-branch }}
       - name: Build Portal Site
+        if: ${{ github.action_status == 'true' && env.is-deploy-branch }}
         run: | 
           cd documentation 
           mv source/versions ..
@@ -69,8 +69,8 @@ jobs:
       # 1. Clean generated-sources folder
       # 2. Parse YAML to JSON
       # 3. Store GIT variables for next steps
-        if: ${{ env.enable-openapi-integration }}
       - name: Parse YAML to JSON and store GIT variables for next steps
+        if: ${{ env.enable-openapi-integration }}
         id: repoIntegration
         run: |
           rm -rf ./open-api-repository-integration/generated-sources
@@ -81,9 +81,9 @@ jobs:
           echo "::set-output name=git_user_email::$(git --no-pager log --format=format:'%ae' -n 1)"
           echo "::set-output name=git_commit_message::$(git --no-pager log --format=format:'%B' -n 1)"
 
-        if: ${{ env.enable-openapi-integration }}
       # 4. Copy generated-source/swagger-apis files to 'Sensedia/openapi' repository (Commit them).
       - name: "'Sensedia/openapi' Integration - Swagger files"
+        if: ${{ env.enable-openapi-integration }}
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
@@ -95,9 +95,9 @@ jobs:
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Swagger Files
 
-        if: ${{ env.enable-openapi-integration }}
       # 5. Copy generated-source/dictionaries files to 'Sensedia/openapi' repository (Commit them).
       - name: "'Sensedia/openapi' Integration - Dictionaries"
+        if: ${{ env.enable-openapi-integration }}
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
@@ -109,9 +109,9 @@ jobs:
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Dictionaries
 
-        if: ${{ env.enable-openapi-integration }}
       # 6. Copy generated-source/swagger-apis files to 'Sensedia/draft-openapi' repository (Commit them).
       - name: "'Sensedia/draft-openapi' Integration - Swagger files"
+        if: ${{ env.enable-openapi-integration }}
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
@@ -123,9 +123,9 @@ jobs:
           user_name: ${{ steps.repoIntegration.outputs.git_user_name }}
           commit_message: ${{ steps.repoIntegration.outputs.git_commit_message }} - Swagger Files
 
-        if: ${{ env.enable-openapi-integration }}
       # 7. Copy generated-source/dictionaries files to 'Sensedia/draft-openapi' repository (Commit them).
       - name: "'Sensedia/draft-openapi' Integration - Dictionaries"
+        if: ${{ env.enable-openapi-integration }}
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.AREADEV_INTEGRATION }}
@@ -139,8 +139,8 @@ jobs:
 
       # On success, will run the next steps.
       # 8. Compress build folder in tar.gz format to deploy.
-        if: ${{ success() && env.is-deploy-branch }}
       - name: Compress build folder
+        if: ${{ github.action_status == 'true' && env.is-deploy-branch }}
         run: |
           rm -rf build
           mkdir build
@@ -149,17 +149,17 @@ jobs:
           tar -cvzf build.tar.gz build
           tar -xvzf build.tar.gz
 
-        if: ${{ success() && env.is-deploy-branch }}
       # 9. Upload build.tar.gz built in previous step to Github repository artifacts.
       - uses: actions/upload-artifact@v2
+        if: ${{ github.action_status == 'true' && env.is-deploy-branch }}
         with:
           name: build_folder_artifact
           path: build.tar.gz
           retention-days: 1
 
-        if: ${{ success() && env.is-deploy-branch }}
       # 10. Invoke Deploy Workflow passing the 'build_id' and 'integration_branch' parameters.
       - name: Invoke deploy workflow
+        if: ${{ github.action_status == 'true' && env.is-deploy-branch }}
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: Deploy
