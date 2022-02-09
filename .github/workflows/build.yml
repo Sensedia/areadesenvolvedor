@@ -48,7 +48,7 @@ jobs:
           cd documentation
           bash ./process-swagger-files.sh
 
-        ${{ success() && env.is-deploy-branch }}
+        if: ${{ success() && env.is-deploy-branch }}
       - name: Build Portal Site
         run: | 
           cd documentation 
