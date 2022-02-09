@@ -48,6 +48,7 @@ jobs:
           cd documentation
           bash ./process-swagger-files.sh
 
+        ${{ success() && env.is-deploy-branch }}
       - name: Build Portal Site
         run: | 
           cd documentation 
@@ -138,7 +139,7 @@ jobs:
 
       # On success, will run the next steps.
       # 8. Compress build folder in tar.gz format to deploy.
-        if: success() && ${{ env.is-deploy-branch }}
+        if: ${{ success() && env.is-deploy-branch }}
       - name: Compress build folder
         run: |
           rm -rf build
@@ -148,15 +149,15 @@ jobs:
           tar -cvzf build.tar.gz build
           tar -xvzf build.tar.gz
 
-        if: success() && ${{ env.is-deploy-branch }}
+        if: ${{ success() && env.is-deploy-branch }}
       # 9. Upload build.tar.gz built in previous step to Github repository artifacts.
       - uses: actions/upload-artifact@v2
         with:
           name: build_folder_artifact
-          path: build
+          path: build.tar.gz
           retention-days: 1
 
-        if: success() && ${{ env.is-deploy-branch }}
+        if: ${{ success() && env.is-deploy-branch }}
       # 10. Invoke Deploy Workflow passing the 'build_id' and 'integration_branch' parameters.
       - name: Invoke deploy workflow
         uses: benc-uk/workflow-dispatch@v1
