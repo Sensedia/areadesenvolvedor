@@ -54,7 +54,7 @@ jobs:
           file_glob: 'documentation/source/swagger/*_apis.yaml'
 
       - name: Build Portal Site
-        if: ${{ job.status && env.is-deploy-branch }}
+        if: ${{ !(job.status && env.is-deploy-branch) }}
         run: |
           echo ${{ job.status && env.is-deploy-branch }}
           cd documentation 
