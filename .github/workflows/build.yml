@@ -141,8 +141,9 @@ jobs:
 
       # On success, will run the next steps.
       # 8. Compress build folder in tar.gz format to deploy.
+      - run: echo ${{ success() }}
       - name: Compress build folder
-        if: ${{ github.action_status == 'true' && env.is-deploy-branch }}
+        if: ${{ success() && env.is-deploy-branch }}
         run: |
           rm -rf build
           mkdir build
@@ -153,7 +154,7 @@ jobs:
 
       # 9. Upload build.tar.gz built in previous step to Github repository artifacts.
       - uses: actions/upload-artifact@v2
-        if: ${{ github.action_status == 'true' && env.is-deploy-branch }}
+        if: ${{ success() && env.is-deploy-branch }}
         with:
           name: build_folder_artifact
           path: build.tar.gz
@@ -161,7 +162,7 @@ jobs:
 
       # 10. Invoke Deploy Workflow passing the 'build_id' and 'integration_branch' parameters.
       - name: Invoke deploy workflow
-        if: ${{ github.action_status == 'true' && env.is-deploy-branch }}
+        if: ${{ success() && env.is-deploy-branch }}
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: Deploy
