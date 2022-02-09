@@ -141,8 +141,8 @@ jobs:
 
       # On success, will run the next steps.
       # 8. Compress build folder in tar.gz format to deploy.
-      - run: echo ${{ success() }}
       - name: Compress build folder
+      - run: echo ${{ success() }}
         if: ${{ success() && env.is-deploy-branch }}
         run: |
           rm -rf build
