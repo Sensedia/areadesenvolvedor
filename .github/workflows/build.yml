@@ -56,6 +56,7 @@ jobs:
       - name: Build Portal Site
         if: ${{ job.status && env.is-deploy-branch }}
         run: |
+          echo ${{ job.status && env.is-deploy-branch }}
           cd documentation 
           mv source/versions ..
           bundle config set deployment 'true'
