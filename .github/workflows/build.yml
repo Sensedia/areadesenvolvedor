@@ -67,6 +67,7 @@ jobs:
           rm -rf ./open-api-repository-integration/generated-sources
           cd open-api-repository-integration
           ruby yaml2json.rb
+          bash generate-swagger-ui-html.sh
           cd ..
           echo "::set-output name=git_user_name::$(git --no-pager log --format=format:'%an' -n 1)"
           echo "::set-output name=git_user_email::$(git --no-pager log --format=format:'%ae' -n 1)"
