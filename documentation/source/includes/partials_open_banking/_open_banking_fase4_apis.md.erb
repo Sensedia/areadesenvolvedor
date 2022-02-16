@@ -1216,9 +1216,6 @@ Consulte a seção **Convenções de payload** para obter mais informações sob
       "rangeTransactionCategory": "0,01_200",
       "targetAudience": "PESSOA_NATURAL",
       "vetAmount": {
-        "name": "NA",
-        "code": "NA",
-        "chargingTriggerInfo": "NA",
         "prices": [
           {
             "interval": "1_FAIXA",
@@ -3692,9 +3689,6 @@ Nome da tarifa cobrada sobre o serviço de credenciamento, para pessoa física/j
       "rangeTransactionCategory": "0,01_200",
       "targetAudience": "PESSOA_NATURAL",
       "vetAmount": {
-        "name": "NA",
-        "code": "NA",
-        "chargingTriggerInfo": "NA",
         "prices": [
           {
             "interval": "1_FAIXA",
@@ -3816,9 +3810,6 @@ Conjunto de informações referentes às informações de câmbio
   "rangeTransactionCategory": "0,01_200",
   "targetAudience": "PESSOA_NATURAL",
   "vetAmount": {
-    "name": "NA",
-    "code": "NA",
-    "chargingTriggerInfo": "NA",
     "prices": [
       {
         "interval": "1_FAIXA",
@@ -3860,7 +3851,7 @@ Conjunto de informações referentes às informações de câmbio
 |deliveryForeignCurrency|[EnumExchangeDeliveryForeignCurrency](#schemaenumexchangedeliveryforeigncurrency)|true|A classificação da forma de operação, conforme a circular BCB nº 3690 de 16/12/2013. (Vide Enum)<br><ul><li>ESPECIE</li><li>CARTAO_PRE_PAGO</li><li>TELETRANSMISSAO_SWIFT</li></ul>|
 |rangeTransactionCategory|[EnumExchangeRangeTransactionCategory](#schemaenumexchangerangetransactioncategory)|true|A classificação conforme a circular BCB nº 4015.|
 |targetAudience|[EnumTargetAudience](#schemaenumtargetaudience)|false|A considerar os domínios abaixo:<br><br>  1. Pessoa Natural<br>  2. Pessoa Jurídica<br>  3. Ambas (Pessoa Natural e Jurídica)|
-|vetAmount|[VetValueFrequencyDistribution](#schemavetvaluefrequencydistribution)|true|Distribuição por frequência.|
+|vetAmount|[NoIdentificationFrequencyDistribution](#schemanoidentificationfrequencydistribution)|true|Distribuição por frequência.|
 
 <h2 id="tocS_OnlineRate">OnlineRate</h2>
 
