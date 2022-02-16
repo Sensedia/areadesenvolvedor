@@ -251,7 +251,7 @@ components:
         targetAudience:
           $ref: '#/components/schemas/EnumTargetAudience'
         vetAmount:
-          $ref: '#/components/schemas/VetValueFrequencyDistribution'
+          $ref: '#/components/schemas/NoIdentificationFrequencyDistribution'
       additionalProperties: false
     OnlineRate:
       type: object
@@ -284,32 +284,14 @@ components:
           example: '5.5023'
           description: Valor da operação.
       additionalProperties: false
-    VetValueFrequencyDistribution:
+    NoIdentificationFrequencyDistribution:
       type: object
       description: Distribuição por frequência.
       required:
-        - name
-        - code
-        - chargingTriggerInfo
         - prices
         - minimum
         - maximum
       properties:
-        name:
-          type: string
-          description: Nome do serviço
-          maxLength: 200
-          example: NA
-        code:
-          type: string
-          description: Código de identificação do serviço.
-          maxLength: 200
-          example: NA
-        chargingTriggerInfo:
-          type: string
-          description: Fatos geradores de cobrança.
-          maxLength: 200
-          example: NA
         prices:
           type: array
           description: Distribuição dos preços.
