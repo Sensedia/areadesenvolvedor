@@ -5,6 +5,7 @@ required:
   - investmentType
   - index
   - investmentConditions
+  - targetAudience
 properties:
   participant:
     $ref: ../business_commons/Participant.yaml
