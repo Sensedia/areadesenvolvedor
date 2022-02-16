@@ -211,6 +211,7 @@ components:
         - deliveryForeignCurrency
         - rangeTransactionCategory
         - vetAmount
+        - targetAudience
       properties:
         participant:
           $ref: '#/components/schemas/Participant'
@@ -236,6 +237,7 @@ components:
         - transactionType
         - transactionCategory
         - value
+        - targetAudience
       properties:
         foreignCurrency:
           type: string
