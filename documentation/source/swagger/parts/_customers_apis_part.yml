@@ -358,7 +358,7 @@ components:
     GeographicCoordinates:
       $ref: ./schemas/GeographicCoordinates.yaml
     Links:
-      $ref: ./schemas/Links.yaml
+      $ref: ./schemas/Links_fase2.yaml
     Meta:
       $ref: ./schemas/Meta.yaml
     Nationality:
