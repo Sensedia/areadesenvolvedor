@@ -25,9 +25,9 @@ TELETRANSMISSAO_SWIFT";1;1;"";Não permitido;string;CARTAO_PRE_PAGO
 
   1. Pessoa Natural
   2. Pessoa Jurídica
-  3. Ambas (Pessoa Natural e Jurídica)";Texto;23;Opcional;;"PESSOA_NATURAL 
+  3. Ambas (Pessoa Natural e Jurídica)";Texto;23;Obrigatório;;"PESSOA_NATURAL 
 PESSOA_JURIDICA 
-PESSOA_NATURAL_JURIDICA";0;1;"";Não permitido;string;PESSOA_NATURAL
+PESSOA_NATURAL_JURIDICA";1;1;"";Não permitido;string;PESSOA_NATURAL
 /data/vetAmount;vetAmount;Distribuição por frequência.;Objeto;;Obrigatório;;;1;1;"";Não permitido;object;
 /data/vetAmount/name;name;Nome do serviço;Texto;200;Obrigatório;;;1;1;"";Não permitido;string;NA
 /data/vetAmount/code;code;Código de identificação do serviço.;Texto;200;Obrigatório;;;1;1;"";Não permitido;string;NA

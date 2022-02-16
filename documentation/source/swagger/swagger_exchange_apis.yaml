@@ -4,7 +4,7 @@ info:
   description: |
     API de Câmbio do Open Banking Brasil – Fase 4.
     API que retorna informações de Câmbio.
-  version: 1.0.0
+  version: 1.0.0-rc1.0
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
@@ -236,6 +236,7 @@ components:
         - deliveryForeignCurrency
         - rangeTransactionCategory
         - vetAmount
+        - targetAudience
       properties:
         participant:
           $ref: '#/components/schemas/Participant'
@@ -261,6 +262,7 @@ components:
         - transactionType
         - transactionCategory
         - value
+        - targetAudience
       properties:
         foreignCurrency:
           type: string
