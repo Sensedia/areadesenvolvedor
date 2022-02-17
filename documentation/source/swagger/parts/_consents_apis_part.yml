@@ -234,7 +234,7 @@ paths:
 components:
   schemas:
     Links:
-      $ref: ./schemas/Links.yaml
+      $ref: ./schemas/Links_fase2.yaml
     Meta:
       $ref: ./schemas/Meta.yaml
     CreateConsent:

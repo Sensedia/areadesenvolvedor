@@ -9,7 +9,7 @@ properties:
     items: 
       $ref: ./CreditCardAccountsTransaction.yaml
   links:
-    $ref: ../Links.yaml
+    $ref: ../Links_fase2.yaml
   meta:
     $ref: ../Meta.yaml
 additionalProperties: false

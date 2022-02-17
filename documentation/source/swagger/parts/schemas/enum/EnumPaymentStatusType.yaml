@@ -9,7 +9,7 @@ enum:
   - ACSC
   - ACCC
   - RJCT
-example: PDNG
+example: RJCT
 description: |
   Estado atual da iniciação de pagamento. O estado evolui na seguinte ordem:  
   1. PDNG (PENDING) - Iniciação de pagamento ou transação de pagamento está pendente. Checagens adicionais em realização.  

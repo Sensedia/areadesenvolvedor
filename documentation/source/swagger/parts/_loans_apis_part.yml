@@ -297,7 +297,7 @@ components:
     EnumWarrantyType:
       $ref: ./schemas/enum/EnumWarrantyType.yaml
     Links:
-      $ref: ./schemas/Links.yaml
+      $ref: ./schemas/Links_fase2.yaml
     LoansBalloonPayment:
       $ref: ./schemas/loans_apis/LoansBalloonPayment.yaml
     LoansContract:
