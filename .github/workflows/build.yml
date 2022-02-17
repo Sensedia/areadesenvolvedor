@@ -25,7 +25,6 @@ jobs:
         with:
           api-token: ${{ secrets.API_SECURITY_TOKEN }}
           min-score: 99
-          entryPoint: documentation
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
