@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: 42Crunch/api-security-audit-action@v2
         with:
-          api-token: ${{ secrets.AREADEV_INTEGRATION }}
+          api-token: ${{ secrets.API_SECURITY_TOKEN }}
           min-score: 99
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
