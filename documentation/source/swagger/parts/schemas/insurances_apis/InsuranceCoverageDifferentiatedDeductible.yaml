@@ -10,5 +10,5 @@ properties:
     pattern: '^\d{1,16}\.\d{2,4}$'
     example: '0.01'
   currency:
-    $ref: CurrencyCode.yaml
+    $ref: ../business_commons/CurrencyCode.yaml
 additionalProperties: false

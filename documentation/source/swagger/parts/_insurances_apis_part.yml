@@ -122,14 +122,8 @@ components:
       $ref: ./schemas/business_commons/EnumProductModality.yaml
     EnumGracePeriodUnit:
       $ref: ./schemas/business_commons/EnumGracePeriodUnit.yaml
-    InsurancePensionCoverageDeductible:
-      $ref: ./schemas/business_commons/InsurancePensionCoverageDeductible.yaml
-    InsurancePensionCoverageDifferentiatedDeductible:
-      $ref: ./schemas/business_commons/InsurancePensionCoverageDifferentiatedDeductible.yaml
     InsurancePensionEnumPmbacRemuneration:
       $ref: ./schemas/business_commons/InsurancePensionEnumPmbacRemuneration.yaml
-    InsurancePensionBenefitRecalculation:
-      $ref: ./schemas/business_commons/InsurancePensionBenefitRecalculation.yaml
     AgeAdjustment:
       $ref: ./schemas/business_commons/InsurancePensionAgeAdjustment.yaml
     InsurancePensionEnumFinancialRegime:
@@ -138,8 +132,6 @@ components:
       $ref: ./schemas/business_commons/InsurancePensionReclaim.yaml
     InsurancePensionReclaimTableItem:
       $ref: ./schemas/business_commons/InsurancePensionReclaimTableItem.yaml
-    NoIdentificationFrequencyDistribution:
-      $ref: ./schemas/business_commons/NoIdentificationFrequencyDistribution.yaml
     EnumPersonalIndemnifiablePeriodType:
       $ref: ./schemas/business_commons/InsurancePensionEnumIndemnifiablePeriodType.yaml
     # Fim schemas comuns
@@ -221,6 +213,12 @@ components:
     # Fim home schemas
 
     # Início personal schemas
+    InsuranceCoverageDeductible:
+      $ref: ./schemas/insurances_apis/InsuranceCoverageDeductible.yaml
+    InsuranceCoverageDifferentiatedDeductible:
+      $ref: ./schemas/insurances_apis/InsuranceCoverageDifferentiatedDeductible.yaml
+    InsuranceBenefitRecalculation:
+      $ref: ./schemas/insurances_apis/InsuranceBenefitRecalculation.yaml
     OKResponsePersonalInsuranceList:
       $ref: ./schemas/insurances_apis/personal/ResponsePersonalInsuranceList.yaml
     PersonalInsuranceData:
@@ -229,8 +227,8 @@ components:
       $ref: ./schemas/insurances_apis/personal/PersonalCoverageItem.yaml
     PersonalCoverageItemAttributes:
       $ref: ./schemas/insurances_apis/personal/PersonalCoverageItemAttributes.yaml
-    EnumInsurancePensionCategory:
-      $ref: ./schemas/enum/EnumInsurancePensionCategory.yaml
+    EnumInsuranceCategory:
+      $ref: ./schemas/enum/EnumInsuranceCategory.yaml
     EnumPersonalIndemnityPaymentFrequencyType:
       $ref: ./schemas/enum/EnumPersonalIndemnityPaymentFrequencyType.yaml
     EnumExcludedRisks:
