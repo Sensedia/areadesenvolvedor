@@ -1,6 +1,8 @@
 type: "array"
 items:
   description: |
+    Especifica os tipos de permissões de acesso às APIs no escopo do Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos pelo usuário e necessários ao acesso a cada endpoint das APIs.
+
     [Regra de negócio] A lista de permissões contidas para o campo permissions devem ser mutuamente exclusivas para PF e PJ.
 
     – PF: CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ, CUSTOMERS_PERSONAL_ADITTIONALINFO_READ.
