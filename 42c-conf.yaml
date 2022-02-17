@@ -3,4 +3,4 @@ audit:
     ORB-1130:
       discovery:
         search:
-          - './source/swagger/*.yaml'
+          - './documentation/source/swagger/*.yaml'
