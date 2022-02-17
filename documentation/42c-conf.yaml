@@ -1,6 +1,0 @@
-audit:
-  branches:
-    ORB-1130:
-      discovery:
-        search:
-          - './source/swagger/*.yaml'
