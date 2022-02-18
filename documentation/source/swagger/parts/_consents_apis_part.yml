@@ -247,6 +247,8 @@ components:
       $ref: ./schemas/consents_apis/LoggedUser.yaml
     BusinessEntity:
       $ref: ./schemas/consents_apis/BusinessEntity.yaml
+    Permissions:
+      $ref: ./schemas/consents_apis/Permissions.yaml
   parameters:
     consentId:
       $ref: ./parameters/ConsentId.yaml

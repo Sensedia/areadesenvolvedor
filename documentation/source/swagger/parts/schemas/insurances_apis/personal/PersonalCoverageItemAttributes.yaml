@@ -45,9 +45,9 @@ properties:
     maxLength: 10
     example: 15
   deductible:
-    $ref: ../../business_commons/InsurancePensionCoverageDeductible.yaml
+    $ref: ../InsuranceCoverageDeductible.yaml
   differentiatedDeductible:
-    $ref: ../../business_commons/InsurancePensionCoverageDifferentiatedDeductible.yaml
+    $ref: ../InsuranceCoverageDifferentiatedDeductible.yaml
   excludedRisks:
     type: array
     items:
