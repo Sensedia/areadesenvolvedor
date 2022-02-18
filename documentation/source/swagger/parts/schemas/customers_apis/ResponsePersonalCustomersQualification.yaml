@@ -7,7 +7,7 @@ properties:
   data:
     $ref: ./PersonalQualificationData.yaml
   links:
-    $ref: ../Links_fase2.yaml
+    $ref: Links_fase2_customers.yaml
   meta:
     $ref: ../Meta.yaml
 additionalProperties: false

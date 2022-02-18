@@ -69,7 +69,7 @@ properties:
         maxLength: 20
     additionalProperties: false
   links:
-    $ref: ../Links_fase2.yaml
+    $ref: Links_fase2_consents.yaml
   meta:
     $ref: ../Meta.yaml
 additionalProperties: false
