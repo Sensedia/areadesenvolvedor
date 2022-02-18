@@ -10,7 +10,7 @@ properties:
     items:
       $ref: ./UnarrangedAccountsOverdraftContractedWarranty.yaml
   links:
-    $ref: ../Links_fase2.yaml
+    $ref: Links_fase2_unarranged_account_overdraft.yaml
   meta:
     $ref: ../Meta.yaml
 additionalProperties: false
