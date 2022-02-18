@@ -24,6 +24,46 @@ info:
 
     - II - até uma hora, para os demais casos.
 
+    ###Orientações
+
+    O atributo self do objeto link dos endpoints deve retornar o link referente ao recurso que está sendo utilizado, conforme descrito abaixo:
+
+    - I - Quando chamado método GET deverá retornar o link para o próprio recurso consultado.
+
+    - II - Quando chamado método POST deverá retornar o link para o recurso criado.
+
+    - III - Quando chamado método PATCH deverá retornar o link para o recurso alterado.
+
+    - Veja o exemplo com método GET:
+
+        "links": {
+          "self": "https://api.banco.com.br/open-banking/api/v1/resource",
+          "first": "https://api.banco.com.br/open-banking/api/v1/resource",
+          "prev": "https://api.banco.com.br/open-banking/api/v1/resource",
+          "next": "https://api.banco.com.br/open-banking/api/v1/resource",
+          "last": "https://api.banco.com.br/open-banking/api/v1/resource"
+        }
+
+    - Veja o exemplo com método POST:
+
+        "links": {
+          "self": "https://api.banco.com.br/open-banking/api/v1/resource/{resourceId}",
+          "first": "https://api.banco.com.br/open-banking/api/v1/resource/{resourceId}",
+          "prev": "https://api.banco.com.br/open-banking/api/v1/resource/{resourceId}",
+          "next": "https://api.banco.com.br/open-banking/api/v1/resource/{resourceId}",
+          "last": "https://api.banco.com.br/open-banking/api/v1/resource/{resourceId}"
+        }
+
+    - Veja o exemplo com método PACTH:
+
+      "links": {
+        "self": "https://api.banco.com.br/open-banking/api/v1/resource/{resourceId}",
+        "first": "https://api.banco.com.br/open-banking/api/v1/resource/{resourceId}",
+        "prev": "https://api.banco.com.br/open-banking/api/v1/resource/{resourceId}",
+        "next": "https://api.banco.com.br/open-banking/api/v1/resource/{resourceId}",
+        "last": "https://api.banco.com.br/open-banking/api/v1/resource/{resourceId}"
+      }
+
   version: 1.0.4
 tags:
   - name: API - Consentimento
