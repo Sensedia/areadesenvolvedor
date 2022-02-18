@@ -3211,7 +3211,7 @@ components:
     InvoiceFinancingsWarranties:
       $ref: ./schemas/invoice_financings_apis/InvoiceFinancingsWarranties.yaml
     Links:
-      $ref: ./schemas/Links.yaml
+      $ref: ./schemas/Links_fase2.yaml
     LoansBalloonPayment:
       $ref: ./schemas/loans_apis/LoansBalloonPayment.yaml
     LoansBank:
