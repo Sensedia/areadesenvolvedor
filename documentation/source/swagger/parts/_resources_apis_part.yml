@@ -13,9 +13,9 @@ info:
     - A `permission` específica desta API  - `RESOURCES_READ` - DEVE ser solicitada pela instituição receptora na ocasião do pedido de criação do consentimento.
     - A consulta à API Resources não é obrigatória por parte das instituições receptoras - esta API foi criada para dar visibilidade da existência de ocorrências que possam impedir o compartilhamento de determinados recursos por parte da instituição transmissora dos dados.
     - O identificador do recurso devolvido na API Resources - `resourceId`, identifica o recurso reportado pelo participante do Open Banking, no caso de:
-      - Contas de depósito à vista, de poupança ou de pagamento pré-paga: corresponde ao accountId;
-      - Conta de pagamento pós-paga: corresponde ao creditCardAccountId;
-      - Empréstimos, Financiamentos, Direitos creditórios descontados e Adiantamento a depositantes: corresponde ao contractId.
+      - Contas de depósito à vista, de poupança ou de pagamento pré-paga: corresponde ao `accountId`;
+      - Conta de pagamento pós-paga: corresponde ao `creditCardAccountId`;
+      - Empréstimos, Financiamentos, Direitos creditórios descontados e Adiantamento a depositantes: corresponde ao `contractId`.
 
     ## Status previstos para os recursos listados na API Resources
     - AVAILABLE: indica que o recurso encontra-se disponível e o(s) consentimento(s) associado(s) possui(em) status `AUTHORISED`.
