@@ -5,7 +5,6 @@ required:
   - gracePeriod
   - deductibleBRL
   - differentiatedDeductibleBRL
-  - assistanceTypes
 properties:
   indemnityPaymentMethods:
     description: Listagem da forma de pagamento da indenização para cada combinação de modalidade/cobertura do produto.
