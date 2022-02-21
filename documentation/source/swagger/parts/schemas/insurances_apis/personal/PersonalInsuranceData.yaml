@@ -30,7 +30,7 @@ properties:
     maxLength: 80
     example: "0001"
   category:
-    $ref: ../../enum/EnumInsurancePensionCategory.yaml
+    $ref: ../../enum/EnumInsuranceCategory.yaml
   modality:
     $ref: ../../business_commons/EnumProductModality.yaml
   coverages:

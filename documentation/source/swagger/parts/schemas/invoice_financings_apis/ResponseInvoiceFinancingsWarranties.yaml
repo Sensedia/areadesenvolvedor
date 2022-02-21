@@ -10,7 +10,7 @@ properties:
     items:
       $ref: ./InvoiceFinancingsContractedWarranty.yaml
   links:
-    $ref: ../Links.yaml
+    $ref: Links_fase2_invoice_financings.yaml
   meta:
     $ref: ../Meta.yaml
 additionalProperties: false
