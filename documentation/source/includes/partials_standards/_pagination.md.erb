@@ -98,7 +98,7 @@ No objeto `links`, serão retornadas hypermedia (referências para os recursos r
 | last      | A URI para requisitar a última página.                                     | Obrigatório se a resposta não for a última página.                                             |
 | prev      | A URI para requisitar a página anterior.                                   | Obrigatório quando houver página anterior. Não deve ser enviado quando for a primeira página.  |
 | next      | A URI para requisitar a próxima página.                                    | Obrigatório quando houver página posterior. Não deve ser enviado quando for a última página.   |
-| self      | A URI para requisitar a próxima página.                                    | Não há.                                                                                        |
+| self      | A URI contendo o próprio recurso consultado.                                    | Não há.                                                                                        |
 
 ### Orientações sobre o uso do atributo self
 O atributo self do objeto link dos endpoints deve retornar o link referente ao recurso que está sendo utilizado, conforme descrito abaixo:
