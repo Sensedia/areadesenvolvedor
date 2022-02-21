@@ -21,14 +21,14 @@ properties:
     $ref: ../../business_commons/Society.yaml
   name:
     type: string
-    description: 'Nome comercial do produto, pelo qual é identificado nos canais de distribuição e atendimento da sociedade.'
+    description: "Nome comercial do produto, pelo qual é identificado nos canais de distribuição e atendimento da sociedade."
     maxLength: 80
-    example: 'Produto A'
+    example: "Produto A"
   code:
     type: string
-    description: 'Código único a ser definido pela sociedade.'
+    description: "Código único a ser definido pela sociedade."
     maxLength: 80
-    example: '0001'
+    example: "0001"
   category:
     $ref: ../../enum/EnumInsurancePensionCategory.yaml
   modality:
@@ -42,12 +42,13 @@ properties:
     type: array
     items:
       $ref: ../../business_commons/EnumAssistanceType.yaml
+    minItems: 0
   assistanceTypesAdditionalInfos:
     description: Lista a ser preenchido pelas participantes quando houver ‘Outros’ no campo ‘Tipo de Assistência’
     type: array
     items:
       type: string
-    example: [ 'Assistance additional info.' ]
+    example: ["Assistance additional info."]
   additionals:
     type: array
     items:
@@ -71,7 +72,7 @@ properties:
   pmbacRemuneration:
     $ref: ../../business_commons/InsurancePensionEnumPmbacRemuneration.yaml
   benefitRecalculation:
-    $ref: ../../business_commons/InsurancePensionBenefitRecalculation.yaml   
+    $ref: ../../business_commons/InsurancePensionBenefitRecalculation.yaml
   ageAdjustment:
     $ref: ../../business_commons/InsurancePensionAgeAdjustment.yaml
   financialRegimes:
