@@ -1195,10 +1195,14 @@ components:
       $ref: ./schemas/payments_apis/PatchPaymentsConsent.yaml
     PatchPaymentsConsentData:
       $ref: ./schemas/payments_apis/PatchPaymentsConsentData.yaml
-    Revocation:
-      $ref: ./schemas/payments_apis/Revocation.yaml
-    EnumRevokedBy:
-      $ref: ./schemas/payments_apis/EnumRevokedBy.yaml
+    RevocationRequest:
+      $ref: ./schemas/payments_apis/RevocationRequest.yaml
+    RevocationResponse:
+      $ref: ./schemas/payments_apis/RevocationResponse.yaml
+    EnumRevokedByRequest:
+      $ref: ./schemas/payments_apis/EnumRevokedByRequest.yaml
+    EnumRevokedByResponse:
+      $ref: ./schemas/payments_apis/EnumRevokedByResponse.yaml
     Reason:
       $ref: ./schemas/payments_apis/Reason.yaml
     EnumRevocationReason:
