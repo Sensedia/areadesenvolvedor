@@ -12,7 +12,7 @@ properties:
     description: |
       Lista dos lançamentos referentes às transações realizadas e de lançamentos futuros para as contas de: depósito à vista, poupança e de pagamento pré-paga
   links:
-    $ref: ../Links.yaml
+    $ref: Links_fase2_accounts.yaml
   meta:
     $ref: ../Meta.yaml
 additionalProperties: false

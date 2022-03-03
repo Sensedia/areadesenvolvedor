@@ -1,0 +1,10 @@
+type: string
+maxLength: 8
+enum:
+  - USER
+  - TPP
+example: USER
+description: |
+  Define qual das partes envolvidas na transação está realizando a revogação. Valores possíveis:
+  - USER (Revogado pelo usuário)
+  - TPP (Instituições Provedoras - iniciadora de pagamentos)
