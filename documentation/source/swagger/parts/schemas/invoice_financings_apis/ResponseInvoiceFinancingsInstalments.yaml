@@ -7,7 +7,7 @@ properties:
   data:
     $ref: ./InvoiceFinancingsInstalments.yaml
   links:
-    $ref: ../Links.yaml
+    $ref: Links_fase2_invoice_financings.yaml
   meta:
     $ref: ../Meta.yaml
 additionalProperties: false
