@@ -9,9 +9,9 @@ properties:
     items:
       $ref: ./ResourceData.yaml
     minItems: 1
-    description: 'Lista de recursos e seus respectivos status.'
+    description: "Lista de recursos e seus respectivos status."
   links:
-    $ref: ../Links.yaml
+    $ref: Links_fase2_resources.yaml
   meta:
     $ref: ../Meta.yaml
 additionalProperties: false

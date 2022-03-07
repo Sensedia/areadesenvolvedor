@@ -1,0 +1,53 @@
+type: object
+required:
+  - errors
+properties:
+  errors:
+    type: array
+    minItems: 1
+    maxItems: 9
+    items:
+      type: object
+      required:
+        - code
+        - title
+        - detail
+      properties:
+        code:
+          $ref: ../enum/EnumErrorsCreateTedTefPayment.yaml
+        title:
+          type: string
+          maxLength: 255
+          pattern: \w*\W*
+          example: Acima do limite estabelecido.
+          description: |
+            Título específico do erro reportado, de acordo com o código enviado:
+            • VALOR_ACIMA_LIMITE: Acima do limite estabelecido.
+            • PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: Divergência entre pagamento e consentimento.
+            • CONSENTIMENTO_INVALIDO: Consentimento inválido.
+            • SALDO_INSUFICIENTE: Saldo insuficiente.
+            • JANELA_OPER_INVALIDA: Janela de operação inválida.
+            • LIQUIDACAO_ERRO_INESPERADO: Erro na liquidação do pagamento no arranjo.
+            • NAO_INFORMADO: Não informado.
+            • AGENCIA_REQUERIDA: Pagamento inválido.
+            • FINALIDADE_REQUERIDA: Pagamento inválido.
+        detail:
+          type: string
+          maxLength: 2048
+          pattern: \w*\W*
+          example: A conta selecionada não possui saldo suficiente para realizar o pagamento.
+          description: |
+            Descrição específica do erro de acordo com o código reportado:
+            • VALOR_ACIMA_LIMITE: Acima do limite estabelecido.
+            • PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+            • CONSENTIMENTO_INVALIDO: Consentimento inválido (status diferente de "AUTHORISED" ou está expirado).
+            • SALDO_INSUFICIENTE: A conta selecionada não possui saldo suficiente para realizar o pagamento.
+            • JANELA_OPER_INVALIDA: Requisição está fora da janela de funcionamento.
+            • LIQUIDACAO_ERRO_INESPERADO: Erro na liquidação do pagamento no arranjo alvo.
+            • NAO_INFORMADO: Não reportado/identificado pela instituição detentora de conta.
+            • AGENCIA_REQUERIDA: O tipo de conta alvo requer as informações de agência.
+            • FINALIDADE_REQUERIDA: Finalidade é requerida para o pagamento no arranjo alvo.
+      additionalProperties: false
+  meta:
+    $ref: ../Meta.yaml
+additionalProperties: false
