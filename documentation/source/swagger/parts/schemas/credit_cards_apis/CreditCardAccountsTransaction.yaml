@@ -6,10 +6,7 @@ required:
   - creditDebitType
   - transactionType
   - transactionalAdditionalInfo
-  - paymentType
   - feeTypeAdditionalInfo
-  - otherCreditsAdditionalInfo
-  - otherCreditsType
   - chargeIdentificator
   - chargeNumber
   - brazilianAmount
@@ -67,7 +64,12 @@ properties:
   otherCreditsAdditionalInfo:
     type: string
     maxLength: 50
-    description: Campo livre, de preenchimento obrigatório quando selecionado tipo de crédito "OUTROS"
+    description: |
+      Campo livre, de preenchimento obrigatório quando selecionado tipo de crédito "OUTROS".
+
+      Para transmissora: Preencher campo com "NA" quando OtherCreditType não for tipo OUTROS.
+
+      Para recebedora: Ignorar o campo preenchido conforme esse cenário.
   chargeIdentificator:
     type: string
     maxLength: 50
