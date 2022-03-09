@@ -6,6 +6,7 @@ required:
   - countrySubDivision
   - postCode
   - country
+  - countryCode
 properties:
   isMain:
     type: boolean
@@ -63,7 +64,7 @@ properties:
     type: string
     maxLength: 3
     example: BRA
-    description: "Código do pais de acordo com o código “alpha3” do ISO-3166"
+    description: "Código do pais de acordo com o código alpha3 do ISO-3166"
   geographicCoordinates:
     $ref: ../GeographicCoordinates.yaml
 additionalProperties: false
