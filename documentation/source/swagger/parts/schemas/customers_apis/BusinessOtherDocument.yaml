@@ -1,6 +1,5 @@
 type: object
 required:
-  - number
   - expirationDate
 properties:
   type:
