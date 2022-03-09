@@ -2,12 +2,10 @@ type: object
 required:
   - isMain
   - address
-  - districtName
   - townName
   - countrySubDivision
   - postCode
   - country
-  - countryCode
 properties:
   isMain:
     type: boolean
@@ -16,13 +14,9 @@ properties:
   address:
     type: string
     maxLength: 150
-    minLength: 2
-    pattern: '^\w{2}[\w\W\s]*$'
+    pattern: '[\w\W\s]*'
     example: Av Naburo Ykesaki, 1270
-    description: |
-      Corresponde ao endereço comercial do cliente.
-
-      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
+    description: Corresponde ao endereço comercial do cliente
   additionalInfo:
     type: string
     maxLength: 30
@@ -32,19 +26,18 @@ properties:
   districtName:
     type: string
     maxLength: 50
-    pattern: '[\w\W\s]*'
+    pattern: '\w*\W*'
     example: Centro
-    description: Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.
+    description: |
+      Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.   
+      [Restrição] Preenchimento obrigatório, se houver.
   townName:
     type: string
     maxLength: 50
-    pattern: '^\w{2}[\w\W\s]*$'
-    minLength: 2
+    pattern: '[\w\W\s]*'
     example: Marília
     description: |
-      Localidade: O nome da localidade corresponde à designação da cidade ou município no qual o endereço está localizado.  
-      
-      [Restrição] Caso a transmissora não possua a informação deverá retornar "NA" neste campo.
+      Localidade: O nome da localidade corresponde à designação da cidade ou município no qual o endereço está localizado.
   ibgeTownCode:
     type: string
     pattern: \d{7}$
@@ -63,16 +56,14 @@ properties:
   country:
     type: string
     maxLength: 80
-    pattern: '\w*\W*'
+    pattern: '[\w\W\s]*'
     example: Brasil
-    description: |
-      Nome do país
-      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
+    description: Nome do país
   countryCode:
     type: string
     maxLength: 3
     example: BRA
-    description: "Código do pais de acordo com o código alpha3 do ISO-3166"
+    description: "Código do pais de acordo com o código “alpha3” do ISO-3166"
   geographicCoordinates:
     $ref: ../GeographicCoordinates.yaml
 additionalProperties: false
