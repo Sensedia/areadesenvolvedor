@@ -1,7 +1,6 @@
 type: object
 required:
   - number
-  - country
   - expirationDate
 properties:
   type:
