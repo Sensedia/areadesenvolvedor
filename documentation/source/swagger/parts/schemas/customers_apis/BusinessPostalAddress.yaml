@@ -2,7 +2,6 @@ type: object
 required:
   - isMain
   - address
-  - districtName
   - townName
   - countrySubDivision
   - postCode
@@ -28,9 +27,11 @@ properties:
   districtName:
     type: string
     maxLength: 50
-    pattern: '[\w\W\s]*'
+    pattern: '\w*\W*'
     example: Centro
-    description: Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.
+    description: |
+      Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.   
+      [Restrição] Preenchimento obrigatório, se houver.
   townName:
     type: string
     maxLength: 50
