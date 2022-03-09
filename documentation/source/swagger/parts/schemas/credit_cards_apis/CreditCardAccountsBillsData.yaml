@@ -9,7 +9,6 @@ required:
   - billMinimumAmountCurrency
   - isInstalment
   - financeCharges
-  - payments
 properties:
   billId:
     description: Informação que identifica a fatura
