@@ -3,14 +3,14 @@ content:
   application/jwt:
     schema:
       $ref: ./422ResponseErrorCreatePixPayment.yaml
-    examples: 
+    examples:
       Saldo insuficiente:
         summary: Saldo insuficiente
         value:  {
                   "errors": [
                     {
-                      "code": "SALDO_INSUFICIENTE", 
-                      "title": "Saldo insuficiente.", 
+                      "code": "SALDO_INSUFICIENTE",
+                      "title": "Saldo insuficiente.",
                       "detail": "A conta selecionada não possui saldo suficiente para realizar o pagamento."
                     }
                   ],

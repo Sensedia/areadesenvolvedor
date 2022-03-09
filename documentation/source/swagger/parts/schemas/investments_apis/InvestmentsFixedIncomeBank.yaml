@@ -2,9 +2,10 @@ type: object
 required:
   - participant
   - issuerInstitutionCnpjNumber
-  - investimentType
+  - investmentType
   - index
   - investmentConditions
+  - targetAudience
 properties:
   participant:
     $ref: ../business_commons/Participant.yaml
@@ -14,10 +15,12 @@ properties:
     maxLength: 14
     pattern: '^\d{14}$'
     example: '45086338000178'
-  investimentType:
+  investmentType:
     $ref: ../enum/EnumInvestmentsFixedIncomeBankProductType.yaml
   index:
     $ref: ./InvestmentsFixedIncomeBankIndex.yaml
   investmentConditions:
     $ref: ./InvestmentsFixedIncomeBankInvestmentConditions.yaml
+  targetAudience:
+    $ref: ../business_commons/EnumDistinctTargetAudience.yaml
 additionalProperties: false

@@ -7,7 +7,7 @@ properties:
   data:
     $ref: ./UnarrangedAccountOverdraftPaymentsData.yaml
   links:
-    $ref: ../Links.yaml
+    $ref: Links_fase2_unarranged_account_overdraft.yaml
   meta:
     $ref: ../Meta.yaml
 additionalProperties: false
