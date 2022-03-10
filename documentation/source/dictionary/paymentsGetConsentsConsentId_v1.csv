@@ -38,12 +38,14 @@ ASPSP
 TPP";1;1;"";Não permitido;string;USER
 /data/revocation/reason;reason;Define a razão pela qual o consentimento foi revogado.;Objeto;;Obrigatório;;;1;1;"";Não permitido;object;
 /data/revocation/reason/code;code;"Define o código da razão pela qual o consentimento foi revogado. 
-Valores possíveis: 
-FRAUD - Indica suspeita de fraude 
-ACCOUNT_CLOSURE - Indica que a conta do usuário foi encerrada 
-OTHER - Indica que motivo do cancelamento está fora dos motivos pré-estabelecidos.";Texto;22;Obrigatório;;"FRAUD 
+Valores possíveis: 
+
+- FRAUD - Indica suspeita de fraude.
+- ACCOUNT_CLOSURE - Indica que a conta do usuário foi encerrada. 
+- OTHER - Indica que motivo do cancelamento está fora dos motivos pré-estabelecidos.";Texto;22;Condicional;;"FRAUD 
 ACCOUNT_CLOSURE 
-OTHER";1;1;"";Não permitido;string;OTHER
+OTHER";1;1;" Os motivos de revogação do consentimento: FRAUD e ACCOUNT_CLOSURE só podem ser usados caso o campo revokedBy tenha o valor TPP ou ASPSP, ou seja, somente no caso de revogação unilateral pela iniciadora ou detentora.
+";Não permitido;string;OTHER
 /data/revocation/reason/additionalInformation;additionalInformation;Contém informações adicionais definidas pelo requisitante da revogação.;Texto;140;Condicional;[\w\W\s]*;;0;1;" Deverá ser obrigatoriamente preenchido quando a revogação for feita pela iniciadora ou pela detentora unilateralmente, ou seja, quando o campo revokedBy for igual a TPP ou ASPSP e o motivo de revogação for OTHER.
 ";Não permitido;string;Não quero mais o serviço
 /data/loggedUser;loggedUser;Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.;Objeto;;Condicional;;;1;1;" Deve obrigatoriamente ser enviado quando a revogação for feita pelo usuário final, ou seja, se o campo revokedBy estiver com o valor 'USER'.
@@ -65,7 +67,9 @@ O CNPJ será utilizado com 14 números e deverá ser informado sem pontos ou tra
 /data/creditor/name;name;"Em caso de pessoa natural deve ser informado o nome completo do titular da conta do recebedor.  
 Em caso de pessoa jurídica deve ser informada a razão social ou o nome fantasia da conta do recebedor.";Texto;140;Obrigatório;[\w\W\s]*;;1;1;"";Não permitido;string;Marco Antonio de Brito
 /data/payment;payment;Objeto contendo dados de pagamento para consentimento.;Objeto;;Obrigatório;;;1;1;"";Não permitido;object;
-/data/payment/type;type;Este campo define o tipo de pagamento que será iniciado após a autorização do consentimento.;Texto;3;Obrigatório;;PIX;1;1;"";Não permitido;string;PIX
+/data/payment/type;type;Este campo define o tipo de pagamento que será iniciado após a autorização do consentimento.;Texto;3;Obrigatório;;"PIX 
+TED 
+TEF";1;1;"";Não permitido;string;PIX
 /data/payment/schedule;schedule;"";"";;Opcional;;;0;1;"";Não permitido;;
 /data/payment/date;date;Mutuamente exclusivo com o objeto schedule. Este campo é obrigatório no caso de pagamento único. Neste caso, o objeto schedule não deve ser informado.;Data;10;Opcional;^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$;;0;1;"";Não permitido;string;2021-01-01
 /data/payment/currency;currency;"Código da moeda nacional segundo modelo ISO-4217, ou seja, 'BRL'.

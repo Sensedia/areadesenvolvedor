@@ -9,7 +9,7 @@ properties:
   localInstrument:
     $ref: ./EnumLocalInstrument.yaml
   payment:
-    $ref: ./PaymentPix.yaml
+    $ref: ./Payment.yaml
   creditorAccount:
     $ref: ../business_commons/CreditorAccount.yaml
   remittanceInformation:
