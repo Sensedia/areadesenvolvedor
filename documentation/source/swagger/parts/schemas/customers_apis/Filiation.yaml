@@ -24,5 +24,7 @@ properties:
     description: |
       Nome social da pessoa natural, se houver. 
       (aquele pelo qual travestis e transexuais se reconhecem, 
-      bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local)
+      bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local)  
+      Informação deve ser enviada de forma mandatória quando existente e caso a transmissora não a possua deve informar "NA".  
+      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA
 additionalProperties: false
