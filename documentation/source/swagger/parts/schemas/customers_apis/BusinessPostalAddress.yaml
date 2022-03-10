@@ -41,7 +41,8 @@ properties:
     pattern: '[\w\W\s]*'
     example: Marília
     description: |
-      Localidade: O nome da localidade corresponde à designação da cidade ou município no qual o endereço está localizado.
+      Localidade: O nome da localidade corresponde à designação da cidade ou município no qual o endereço está localizado.  
+      [Regra de negócio] Caso a transmissora não possua a informação deverá retornar "NA" neste campo.
   ibgeTownCode:
     type: string
     pattern: \d{7}$
