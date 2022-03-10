@@ -5,7 +5,6 @@ required:
   - updateDateTime
   - brandName
   - cnpjNumber
-  - tradeName
   - companyCnpjNumber
   - companyName
   - incorporationDate
@@ -16,7 +15,7 @@ properties:
     type: string
     maxLength: 20
     format: date-time
-    example: '2021-05-21T08:30:00Z'
+    example: "2021-05-21T08:30:00Z"
     description: Data e hora da atualização do bloco, conforme especificação RFC-3339
   businessId:
     type: string
@@ -47,15 +46,15 @@ properties:
     type: string
     maxLength: 20
     format: date-time
-    example: '2021-05-21T08:30:00Z'
-    description: 'Data de constituição da empresa, conforme especificação RFC-3339.'
+    example: "2021-05-21T08:30:00Z"
+    description: "Data de constituição da empresa, conforme especificação RFC-3339."
   cnpjNumber:
     type: string
     maxLength: 14
     pattern: \d{14}|^NA$
-    example: '50685362006773'
+    example: "50685362006773"
     description: Número completo do CNPJ da Empresa consultada  - o CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara
-  companyCnpjNumber: 
+  companyCnpjNumber:
     type: array
     items:
       type: string
