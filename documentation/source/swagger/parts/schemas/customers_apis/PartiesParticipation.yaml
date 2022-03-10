@@ -12,7 +12,6 @@ required:
   - documentType
   - documentNumber
   - documentCountry
-  - documentExpirationDate
 properties:
   personType:
     $ref: ../enum/EnumPersonType.yaml
