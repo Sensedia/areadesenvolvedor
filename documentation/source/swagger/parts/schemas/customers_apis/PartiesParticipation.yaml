@@ -5,7 +5,6 @@ required:
   - type
   - personType
   - civilName
-  - socialName
   - companyName
   - startDate
   - shareholding
@@ -26,9 +25,13 @@ properties:
   socialName:
     type: string
     maxLength: 70
+    minItems: 0
     pattern: '[\w\W\s]*'
     example: Karina
-    description: Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local)
+    description: |
+      Nome social da pessoa natural, se houver. (aquele pelo qual travestis e transexuais se reconhecem, bem como são identificados por sua comunidade e em seu meio social, conforme Decreto Local).   
+
+      [Restrição] De preenchimento obrigatório, se houver.
   companyName:
     type: string
     maxLength: 70
