@@ -13,7 +13,9 @@ properties:
     description: |
       Nome civil completo da pessoa relativa à filiação.
       (Direito fundamental da pessoa, o nome civil é aquele atribuído à pessoa natural desde o registro de seu nascimento, 
-      com o qual será identificada por toda a sua vida, bem como após a sua morte)
+      com o qual será identificada por toda a sua vida, bem como após a sua morte).  
+      Informação deve ser enviada de forma mandatória quando existente e caso a transmissora não a possua deve informar "NA".  
+      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA
   socialName:
     type: string
     maxLength: 70

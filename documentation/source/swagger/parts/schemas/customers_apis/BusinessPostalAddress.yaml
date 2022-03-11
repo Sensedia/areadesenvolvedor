@@ -2,11 +2,11 @@ type: object
 required:
   - isMain
   - address
-  - districtName
   - townName
   - countrySubDivision
   - postCode
   - country
+  - countryCode
 properties:
   isMain:
     type: boolean
@@ -30,16 +30,19 @@ properties:
   districtName:
     type: string
     maxLength: 50
-    pattern: '[\w\W\s]*'
+    pattern: '\w*\W*'
     example: Centro
-    description: Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.
+    description: |
+      Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.   
+      [Restrição] Preenchimento obrigatório, se houver.
   townName:
     type: string
     maxLength: 50
     pattern: '[\w\W\s]*'
     example: Marília
     description: |
-      Localidade: O nome da localidade corresponde à designação da cidade ou município no qual o endereço está localizado.
+      Localidade: O nome da localidade corresponde à designação da cidade ou município no qual o endereço está localizado.  
+      [Regra de negócio] Caso a transmissora não possua a informação deverá retornar "NA" neste campo.
   ibgeTownCode:
     type: string
     pattern: \d{7}$
@@ -60,7 +63,10 @@ properties:
     maxLength: 80
     pattern: '[\w\W\s]*'
     example: Brasil
-    description: Nome do país
+    description: |
+      Nome do país
+
+      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
   countryCode:
     type: string
     maxLength: 3
