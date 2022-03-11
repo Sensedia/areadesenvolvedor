@@ -10,6 +10,7 @@ properties:
     type: string
     maxLength: 100
     pattern: '[\w\W\s]*'
+    minItems: 0
     example: Informações adicionais
     description: |
       Texto livre para complementar informação relativa ao patrimonio. 
