@@ -36,10 +36,11 @@ properties:
     example: 100000.0400
   feeRate:
     type: string
+    maxLength: 6
+    pattern: ^\d{1}\.\d{4}$
     description: |
       É o valor da tarifa em percentual pactuada no contrato. 
       [Restrição] Preenchimento obrigatório quando a forma de cobrança for Percentual. Exemplo: 0.0150 = 1,5%.
-    maxLength: 19
     nullable: true
     example: '0.2000'
 additionalProperties: false
