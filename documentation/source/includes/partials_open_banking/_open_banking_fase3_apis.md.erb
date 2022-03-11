@@ -1,5 +1,5 @@
 
-<h1 id="fase-3-apis-do-open-banking-brasil">Fase 3 - APIs do Open Banking Brasil v1.1.0</h1>
+<h1 id="fase-3-apis-do-open-banking-brasil">Fase 3 - APIs do Open Banking Brasil</h1>
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
@@ -285,57 +285,6 @@ Para evitar vazamento de informação, a detentora deve validar que o pagamento 
 
 ### Como assinar o payload
 
-No contexto da API Payment Initiation, os payloads de mensagem de consentimento e de pagamento que trafegam tanto por parte da instituição iniciadora de transação de pagamento quanto por parte da instituição detentora de conta devem estar assinados. Abaixo temos as orientações para assinatura das mensagens JWS.
-
-Informações complementares de segurança podem ser consultadas em <a href="https://github.com/OpenBanking-Brasil/specs-seguranca/blob/main/open-banking-brasil-financial-api-1_ID3-ptbr.md"> https://github.com/OpenBanking-Brasil/specs-seguranca/blob/main/open-banking-brasil-financial-api-1_ID3-ptbr.md</a>.
-
-- **Passo 1** - Identifique a chave privada e o certificado de assinatura correspondente a serem usados para assinatura:
-
-As assinaturas devem ser realizadas com uso do certificado digital de assinatura especificado no <a href="https://github.com/OpenBanking-Brasil/specs-seguranca/blob/main/open-banking-brasil-certificate-standards-1_ID1-ptbr.md#certificado-de-assinatura-certificadoassinatura" target="_blank">Padrão de Certificados Open Banking Brasil</a>.
-
-O certificado de assinatura deve ser válido no momento da criação do JWS.
-
-- **Passo 2** - Geração do JOSE Header
-
-O JOSE Header deve conter os seguintes campos:
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|alg|string|true|O algoritmo que será usado para assinar o JWS. Deve ser preenchido com o valor `PS256`.|
-|kid|string|true|Deve ser obrigatoriamente preenchido com o valor do identificador da chave utilizado para a assinatura.|
-|typ|string|true|É o tipo de conteúdo usado para trafegar mensagens na API. Deve ser preenchido com o valor `JWT`.|
-
-- **Passo 3** - Montando a mensagem JWS
-
-Para garantir a integridade e o não-repúdio das informações tramitadas em *API´s sensíveis e que indicam essa necessidade na sua documentação*, deve ser adotado a estrutura no padrão JWS definida na [<a href="https://datatracker.ietf.org/doc/html/rfc7515" target="_blank">RFC7515</a>] e que inclui:
-
-**Cabeçalho** (_JSON Object Signing and Encryption – JOSE Header_), onde se define o algoritmo utilizado e inclui informações sobre a chave pública ou certificado que podem ser utilizadas para validar a assinatura;
-
-**Payload** (_JWS Payload_): conteúdo propriamente dito e detalhado na especificação da API além de informações sobre `claims` JWT ;
-
-**Assinatura digital** (_JWS Signature_): assinatura digital, realizada conforme parâmetros do cabeçalho.
-
-O payload das mensagens (requisição e resposta _JWT_) assinadas devem incluir as seguintes `claims` presentes na [<a href="https://datatracker.ietf.org/doc/html/rfc7519#section-4.1" target="_blank">RFC7519</a>] (JWT):
-
-|Nome|Tipo|Obrigatório|Descrição|
-|---|---|---|---|---|
-|aud|string|true|(***requisição JWT***): o Provedor do Recurso (p. ex. a instituição Detentora da Conta) deverá validar se o valor do campo **aud** coincide com o endpoint sendo acionado.<br>(***resposta JWT***): o cliente da API (p. ex. instituição Iniciadora) deverá validar se o valor do campo **aud** coincide com o seu próprio `organisationId` listado no diretório.|
-|iss|string|true|(***requisição JWT*** e ***resposta JWT***): o receptor da mensagem deverá validar se o valor do campo **iss** coincide com o `organisationId` da outra parte listado no diretório.|
-|jti|string|true|(***requisição JWT*** e ***resposta JWT***): o valor do campo **jti** deverá ser preenchido com o UUID definido pela instituição de acordo com a <a href="https://datatracker.ietf.org/doc/html/rfc4122" target="_blank">RFC 4122</a> usando o versão 4.|
-|iat|string|true|(***requisição JWT*** e ***resposta JWT***): o valor do campo **iat** deverá ser preenchido com o horário da geração da mensagem e de acordo com o padrão estabelecido na <a href="https://datatracker.ietf.org/doc/html/rfc7519#section-2" target="_blank">RFC7519</a> para o formato _NumericDate_. A claim iat deverá ser gerada no Unix Time GMT +0 e sua verificação deverá possuir uma tolerância de +/- 60 segundos para cobrir pequenas diferenças nos relógios dos servidores dos participantes.|
-
-- **A claim do “jti” deve ser única para um clientId dentro de um intervalo de tempo de 86.400 segundos, não podendo ser reutilizada neste período. Em caso de reutilização, deverá ser retornado o código de erro HTTP 403.**
-
-- **As validações referentes as claims do JWT devem preceder a validação de idempotência (e.g. “jti”, “iat” e “iss”)**
-
-Cada elemento acima deve ser codificado utilizando o padrão Base64url [<a href="https://datatracker.ietf.org/doc/html/rfc4648#section-5" target="_blank">RFC4648</a>] e, feito isso, os elementos devem ser concatenados com “.” (método JWS Compact Serialization, conforme definido na [<a href="https://datatracker.ietf.org/doc/html/rfc7515#section-3.1" target="_blank">RFC7515</a>]).
-
-Formato da mensagem JWS:
-
-<span style="background: #e9e8e8; padding: 3px;">**payload** = Base64url(**JOSEHeader**)  +  "." + Base64url(**payload JWT**)  +  "."  +  Base64url(**digital signature**)</span>
-
-Veja ao lado exemplo de mensagem JWS assinada e codificada e um exemplo de mensagem JWS decodificada.
-
 > Exemplo de requisição - JWS assinada e codificada
 
 ```json
@@ -354,7 +303,7 @@ Veja ao lado exemplo de mensagem JWS assinada e codificada e um exemplo de mensa
   "aud": "https://api.banco.com.br/openbanking/payments/v1/consents",
   "iss": "5647fe90-f6bc-11eb-9a03-0242ac130003",
   "jti": "7960577c-662c-456e-8cf5-e630828af635",
-  "iat": "1628257484",
+  "iat": 1628257484,
   "data": {
     "loggedUser": {
       "document": {
@@ -422,7 +371,7 @@ Veja ao lado exemplo de mensagem JWS assinada e codificada e um exemplo de mensa
   "aud": "3449bf21-0b07-48e6-b6fc-13eb161a9901",
   "iss": "ca1b98e1-97a2-43db-947f-8a08054c342e",
   "jti": "a2fd393c-107a-4ad4-be22-3cfeeea90efe",
-  "iat": "1628257737",
+  "iat": 1628257737,
   "data": {
     "consentId": "urn:bancoex:C1DD33123",
     "creationDateTime": "2021-05-21T08:30:00Z",
@@ -484,6 +433,57 @@ Veja ao lado exemplo de mensagem JWS assinada e codificada e um exemplo de mensa
 * "Assinatura omitida por questões de brevidade"
 ```
 
+No contexto da API Payment Initiation, os payloads de mensagem de consentimento e de pagamento que trafegam tanto por parte da instituição iniciadora de transação de pagamento quanto por parte da instituição detentora de conta devem estar assinados. Abaixo temos as orientações para assinatura das mensagens JWS.
+
+Informações complementares de segurança podem ser consultadas em <a href="https://github.com/OpenBanking-Brasil/specs-seguranca/blob/main/open-banking-brasil-financial-api-1_ID3-ptbr.md"> https://github.com/OpenBanking-Brasil/specs-seguranca/blob/main/open-banking-brasil-financial-api-1_ID3-ptbr.md</a>.
+
+- **Passo 1** - Identifique a chave privada e o certificado de assinatura correspondente a serem usados para assinatura:
+
+As assinaturas devem ser realizadas com uso do certificado digital de assinatura especificado no <a href="https://github.com/OpenBanking-Brasil/specs-seguranca/blob/main/open-banking-brasil-certificate-standards-1_ID1-ptbr.md#certificado-de-assinatura-certificadoassinatura" target="_blank">Padrão de Certificados Open Banking Brasil</a>.
+
+O certificado de assinatura deve ser válido no momento da criação do JWS.
+
+- **Passo 2** - Geração do JOSE Header
+
+O JOSE Header deve conter os seguintes campos:
+
+|Nome|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|alg|string|true|O algoritmo que será usado para assinar o JWS. Deve ser preenchido com o valor `PS256`.|
+|kid|string|true|Deve ser obrigatoriamente preenchido com o valor do identificador da chave utilizado para a assinatura.|
+|typ|string|true|É o tipo de conteúdo usado para trafegar mensagens na API. Deve ser preenchido com o valor `JWT`.|
+
+- **Passo 3** - Montando a mensagem JWS
+
+Para garantir a integridade e o não-repúdio das informações tramitadas em *API´s sensíveis e que indicam essa necessidade na sua documentação*, deve ser adotado a estrutura no padrão JWS definida na [<a href="https://datatracker.ietf.org/doc/html/rfc7515" target="_blank">RFC7515</a>] e que inclui:
+
+**Cabeçalho** (_JSON Object Signing and Encryption – JOSE Header_), onde se define o algoritmo utilizado e inclui informações sobre a chave pública ou certificado que podem ser utilizadas para validar a assinatura;
+
+**Payload** (_JWS Payload_): conteúdo propriamente dito e detalhado na especificação da API além de informações sobre `claims` JWT ;
+
+**Assinatura digital** (_JWS Signature_): assinatura digital, realizada conforme parâmetros do cabeçalho.
+
+O payload das mensagens (requisição e resposta _JWT_) assinadas devem incluir as seguintes `claims` presentes na [<a href="https://datatracker.ietf.org/doc/html/rfc7519#section-4.1" target="_blank">RFC7519</a>] (JWT):
+
+|Nome|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|aud|string|true|(***requisição JWT***): o Provedor do Recurso (p. ex. a instituição Detentora da Conta) deverá validar se o valor do campo **aud** coincide com o endpoint sendo acionado.<br>(***resposta JWT***): o cliente da API (p. ex. instituição Iniciadora) deverá validar se o valor do campo **aud** coincide com o seu próprio `organisationId` listado no diretório.|
+|iss|string|true|(***requisição JWT*** e ***resposta JWT***): o receptor da mensagem deverá validar se o valor do campo **iss** coincide com o `organisationId` da outra parte listado no diretório.|
+|jti|string|true|(***requisição JWT*** e ***resposta JWT***): o valor do campo **jti** deverá ser preenchido com o UUID definido pela instituição de acordo com a <a href="https://datatracker.ietf.org/doc/html/rfc4122" target="_blank">RFC 4122</a> usando o versão 4.|
+|iat|NumericDate|true|(***requisição JWT*** e ***resposta JWT***): o valor do campo **iat** deverá ser preenchido com o horário da geração da mensagem e de acordo com o padrão estabelecido na <a href="https://datatracker.ietf.org/doc/html/rfc7519#section-2" target="_blank">RFC7519</a> para o formato _NumericDate_. A claim iat deverá ser gerada no Unix Time GMT +0 e sua verificação deverá possuir uma tolerância de +/- 60 segundos para cobrir pequenas diferenças nos relógios dos servidores dos participantes.|
+
+- **A claim do “jti” deve ser única para um clientId dentro de um intervalo de tempo de 86.400 segundos, não podendo ser reutilizada neste período. Em caso de reutilização, deverá ser retornado o código de erro HTTP 403.**
+
+- **As validações referentes as claims do JWT devem preceder a validação de idempotência (e.g. “jti”, “iat” e “iss”)**
+
+Cada elemento acima deve ser codificado utilizando o padrão Base64url [<a href="https://datatracker.ietf.org/doc/html/rfc4648#section-5" target="_blank">RFC4648</a>] e, feito isso, os elementos devem ser concatenados com “.” (método JWS Compact Serialization, conforme definido na [<a href="https://datatracker.ietf.org/doc/html/rfc7515#section-3.1" target="_blank">RFC7515</a>]).
+
+Formato da mensagem JWS:
+
+<span style="background: #e9e8e8; padding: 3px;">**payload** = Base64url(**JOSEHeader**)  +  "." + Base64url(**payload JWT**)  +  "."  +  Base64url(**digital signature**)</span>
+
+Veja ao lado exemplo de mensagem JWS assinada e codificada e um exemplo de mensagem JWS decodificada.
+
 **Em caso de erro**
 
 * Na validação da assinatura pelo Provedor do Recurso a API deve retornar mensagem de erro `HTTP` com status code `400` e a resposta deve incluir na propriedade code do objeto de resposta de erro especificado na API (*ResponseError*) a indicação da falha com o conteúdo `BAD_SIGNATURE`.
@@ -502,20 +502,20 @@ As validações referentes a assinatura de mensagens devem preceder as validaç�
 
 - **Mecanismo de retentativas de liquidação de pagamentos agendados**
 
-No momento de liquidação de pagamento agendado é possível ter falhas sistêmicas ou violações de regras de negócio. Como por exemplo, ausência de saldo na conta do pagador para realizar a liquidação. Neste contexto é interessante às detentoras de conta a adoção de políticas de retentativas de liquidação.
+No momento de liquidação de pagamento agendado é possível ter falhas sistêmicas ou violações de regras de negócio. Como por exemplo, ausência de saldo na conta do pagador para realizar a liquidação. Neste contexto é interessante às detentoras de conta a adoção de políticas de retentativas de liquidação.   
 
 O arranjo PIX não define nada a respeito deste tema, por consequência, o Open Banking deixa livre para cada detentora adote a política de retentativa que mais fizer sentido para ela.
 
 - **Revogação do consentimento**
 
-Com a inclusão da funcionalidade de agendamento do pagamento é interessante facultar às partes envolvidas na transação a possibilidade de cancelamento do mesmo, desde que até um dia antes da sua liquidação. Esse mecanismo será oferecido a partir da revogação de consentimentos para pagamentos agendados.
+Com a inclusão da funcionalidade de agendamento do pagamento é interessante facultar às partes envolvidas na transação a possibilidade de cancelamento do mesmo, desde que até um dia antes da sua liquidação. Esse mecanismo será oferecido a partir da revogação de consentimentos para pagamentos agendados. 
 
 Considerando a diretriz do controle do agendamento pela detentora de conta e as necessidades dos envolvidos na transação é possível os seguintes cenários de jornadas de revogação:
 
-    1. **Revogação pelo usuário na iniciadora** através da área de gestão de pagamentos do open banking (Consulte o guia de UX do Open Banking para maiores detalhes);
-    2. **Revogação pelo usuário na detentora** através da área de gestão de pagamentos do open banking (Consulte o guia de UX do Open Banking para maiores detalhes);
-    3. **Revogação pelo usuário na detentora** através da área de gestão do PIX (Consulte o guia de UX do arranjo PIX para maiores detalhes);
-    4. **Revogação pela iniciadora** sem a presença do usuário;
+    1. **Revogação pelo usuário na iniciadora** através da área de gestão de pagamentos do open banking (Consulte o guia de UX do Open Banking para maiores detalhes);   
+    2. **Revogação pelo usuário na detentora** através da área de gestão de pagamentos do open banking (Consulte o guia de UX do Open Banking para maiores detalhes);   
+    3. **Revogação pelo usuário na detentora** através da área de gestão do PIX (Consulte o guia de UX do arranjo PIX para maiores detalhes);   
+    4. **Revogação pela iniciadora** sem a presença do usuário;   
     5. **Revogação pela detentora** sem a presença do usuário.
 
 - **Regras funcionais**
@@ -524,11 +524,165 @@ Considerando a diretriz do controle do agendamento pela detentora de conta e as 
 |------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
 |RN001 |Ao revogar um consentimento o pagamento associado deverá ir para o status **RJCT** e campo **rejectionReason** deverá ter o valor **CONSENT_REVOKED**. Schema: <a href="#tocS_EnumRejectionReasonType">EnumRejectionReasonType</a> |<a href="#revogar-consentimento-de-pagamento">Revogar consentimento</a> |
 
-<h1 id="fase-3-apis-do-open-banking-brasil-api-pagamentos">API - Pagamentos</h1>
+**Post/Consents**
+
+- **Exemplo -  PIX normal**
+
+{   
+  "alg": "PS256",   
+  "typ": "JWT",   
+  "kid": "PWAi5ruQcHfzPzq2JFdpY7nAUh6LzTTQtDBUpOM37JQ"   
+}   
+{   
+  "aud": "3449bf21-0b07-48e6-b6fc-13eb161a9901",   
+  "iss": "ca1b98e1-97a2-43db-947f-8a08054c342e",   
+  "jti": "a2fd393c-107a-4ad4-be22-3cfeeea90efe",   
+  "iat": 1628257737",   
+  "data": {   
+    "consentId": "urn:bancoex:C1DD33123",   
+    "creationDateTime": "2021-05-21T08:30:00Z",   
+    "expirationDateTime": "2021-05-21T08:30:00Z",   
+    "statusUpdateDateTime": "2021-05-21T08:30:00Z",   
+    "status": "AWAITING_AUTHORISATION",   
+    "loggedUser": {   
+      "document": {   
+        "identification": "11111111111",   
+        "rel": "CPF"   
+      }   
+    },   
+    "businessEntity": {,   
+      "document": {   
+        "identification": "11111111111111",   
+        "rel": "CNPJ",   
+      }   
+    },   
+    "creditor": {   
+      "personType": "PESSOA_NATURAL",   
+      "cpfCnpj": "58764789000137",   
+      "name": "Marco Antonio de Brito"   
+    },   
+    "payment": {   
+      "type": "PIX",   
+      "date": "2021-01-01",   
+      "currency": "BRL",   
+      "amount": "100000.12",   
+      "ibgeTownCode": "5300108",   
+      "details": {   
+        "localInstrument": "DICT",   
+        "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6   
+        D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008   
+        BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.08045   
+        0014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.ABC   
+        D.3456.WXYZ6304EB76\n",   
+        "proxy": "12345678901",   
+        "creditorAccount": {   
+          "ispb": "12345678",   
+          "issuer": "1774",   
+          "number": "1234567890",   
+          "accountType": "CACC",   
+        }   
+      }   
+    },   
+    "debtorAccount": {   
+      "ispb": "12345678",   
+      "issuer": "1774",   
+      "number": "1234567890",   
+      "accountType": "CACC",   
+    }   
+  },   
+  "links": {   
+    "self": "https://api.banco.com.br/open-banking/payments/v1/consents",   
+  },   
+  "meta": {   
+    "totalRecords": 1,   
+    "totalPages": 1,   
+    "requestDateTime": "2021-05-21T08:30:00Z",   
+  }   
+}
+
+- **Exemplo -  PIX agendado**
+
+{   
+  "alg": "PS256",   
+  "typ": "JWT",   
+  "kid": "PWAi5ruQcHfzPzq2JFdpY7nAUh6LzTTQtDBUpOM37JQ"   
+}   
+{   
+  "aud": "3449bf21-0b07-48e6-b6fc-13eb161a9901",   
+  "iss": "ca1b98e1-97a2-43db-947f-8a08054c342e",   
+  "jti": "a2fd393c-107a-4ad4-be22-3cfeeea90efe",   
+  "iat": 1628257737",   
+  "data": {   
+    "consentId": "urn:bancoex:C1DD33123",   
+    "creationDateTime": "2021-05-21T08:30:00Z",   
+    "expirationDateTime": "2021-05-21T08:30:00Z",   
+    "statusUpdateDateTime": "2021-05-21T08:30:00Z",   
+    "status": "AWAITING_AUTHORISATION",   
+    "loggedUser": {   
+      "document": {   
+        "identification": "11111111111",   
+        "rel": "CPF"   
+      }   
+    },   
+    "businessEntity": {,   
+      "document": {   
+        "identification": "11111111111111",   
+        "rel": "CNPJ",   
+      }   
+    },   
+    "creditor": {   
+      "personType": "PESSOA_NATURAL",   
+      "cpfCnpj": "58764789000137",   
+      "name": "Marco Antonio de Brito"   
+    },   
+    "payment": {   
+      "type": "PIX",   
+      "schedule": {   
+        "single": {   
+          "date": "2021-01-01"   
+        }   
+      },   
+      "currency": "BRL",   
+      "amount": "100000.12",   
+      "ibgeTownCode": "5300108",   
+      "details": {   
+        "localInstrument": "DICT",   
+        "qrCode": "00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6   
+        D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008   
+        BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.08045   
+        0014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.AB   
+        CD.3456.WXYZ6304EB76\n",   
+        "proxy": "12345678901",   
+        "creditorAccount": {   
+          "ispb": "12345678",   
+          "issuer": "1774",   
+          "number": "1234567890",   
+          "accountType": "CACC",   
+        }   
+      }   
+    },   
+    "debtorAccount": {   
+      "ispb": "12345678",   
+      "issuer": "1774",   
+      "number": "1234567890",   
+      "accountType": "CACC",   
+    }   
+  },   
+  "links": {   
+    "self": "https://api.banco.com.br/open-banking/payments/v1/consents",   
+  },   
+  "meta": {   
+    "totalRecords": 1,   
+    "totalPages": 1,   
+    "requestDateTime": "2021-05-21T08:30:00Z",   
+  }   
+}
+
+<h1 id="fase-3-apis-do-open-banking-brasil-api-pagamentos">API - Pagamentos - v1.1.0-rc1.0</h1>
 
 |Versão|
 |:-----|
-|1.1.0|
+|1.1.0-rc1.0|
 
 #### Visão Geral
 
@@ -663,6 +817,8 @@ HttpResponse<String> response = Unirest.post("https://example.com/payments/v1/co
 `POST /payments/v1/consents`
 
 Método para a criação do consentimento para iniciação de pagamento.
+
+Para consultar os payloads correspondentes ao tipo do pagamento PIX, <a href="#orientacoes">acesse aqui.</a>
 
 ### Dicionário de dados
 
@@ -2124,6 +2280,34 @@ REVOKED - Revogado
 |**|CONSUMED|
 |**|REVOKED|
 
+<h2 id="tocS_EnumAuthorisationPatchStatusType">EnumAuthorisationPatchStatusType</h2>
+
+<a id="schemaenumauthorisationpatchstatustype"></a>
+<a id="schema_EnumAuthorisationPatchStatusType"></a>
+<a id="tocSenumauthorisationpatchstatustype"></a>
+<a id="tocsenumauthorisationpatchstatustype"></a>
+
+```json
+"REVOKED"
+
+```
+
+Estado para o qual deve ir.
+
+[Restrição] O único valor válido é REVOKED. (caso contrário a detentora deve retornar erro HTTP 400)
+
+### Propriedades
+
+|Nome|Tipo|Obrigatório|Descrição|
+|---|---|---|---|---|
+|**|string|false|Estado para o qual deve ir.<br><br>[Restrição] O único valor válido é REVOKED. (caso contrário a detentora deve retornar erro HTTP 400)|
+
+#### Enumerated Values
+
+|Nome|Código|
+|---|---|
+|**|REVOKED|
+
 <h2 id="tocS_EnumErrorsCreateConsent">EnumErrorsCreateConsent</h2>
 
 <a id="schemaenumerrorscreateconsent"></a>
@@ -2344,7 +2528,6 @@ Este campo define o tipo de pagamento que será iniciado após a autorização d
 "USER_NOT_YET_ACTIVATED"
 
 ```
-
 Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.  
 ABORTED_SETTLEMENT_TIMEOUT - Liquidação da transação interrompida devido a timeout no SPI (AB03).  
 ERROR_CREDITOR_AGENT - Transação interrompida devido a erro no participante do usuário recebedor (AB09).  
@@ -2390,13 +2573,15 @@ INVALID_CONSENT - Consentimento inválido (status não é "authorised" ou está 
 DENIED_MULTIPLE_AUTHORISATIONS - Um (ou mais) aprovadores na detentora recusaram a operação (OB04).  
 EXPIRED_MULTIPLE_AUTHORISATIONS - Um (ou mais) aprovadores na detentora não tomaram ação para aprovar a operação (OB05).  
 EXPIRED_BILL - O QR Code não é mais válido (OB06).   
+CONSENT_REVOKED - Pagamento cancelado devido à revogação do consentimento.   
+
 [Restrição] Esse motivo deverá ser enviado quando o campo /data/status for igual a RJCT (REJECTED).
 
 ### Propriedades
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|**|string|false|Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.  <br>ABORTED_SETTLEMENT_TIMEOUT - Liquidação da transação interrompida devido a timeout no SPI (AB03).  <br>ERROR_CREDITOR_AGENT - Transação interrompida devido a erro no participante do usuário recebedor (AB09).  <br>TIMEOUT_DEBTOR_AGENT - Timeout do participante emissor da ordem de pagamento (AB11).  <br>INVALID_CREDITOR_ACCOUNT_NUMBER - Número da conta transacional do usuário recebedor inexistente ou inválido (AC03).  <br>BLOCKED_ACCOUNT - Conta transacional do usuário recebedor encontra-se bloqueada (AC06).  <br>CLOSED_CREDITOR_ACCOUNT_NUMBER - Número da conta transacional do usuário recebedor encerrada (AC07).  <br>INVALID_CREDITOR_ACCOUNTTYPE - Tipo incorreto para a conta transacional do usuário recebedor (AC14).  <br>TRANSACTION_NOT_SUPPORTED - Tipo de transação não é suportado/autorizado na conta transacional do usuário recebedor (AG03). Exemplo: transferência para conta salário.  <br>NOT_ALLOWED_BOOK_TRANSFER - Não é permitida ordem de pagamento/devolução no SPI cujos recursos sejam transferidos de uma conta transacional para outra em uma mesma instituição participante ou entre participantes que utilizem o serviço de liquidação de um mesmo participante liquidante no SPI (booktransfer) (AG12).  <br>FORBIDDEN_RETURN_PAYMENT - Não é permitido devolver a devolução de um pagamento instantâneo (AG13).  <br>INCORRECT_AGENT - Participante direto não é liquidante do participante do usuário pagador / participante do usuário recebedor (AGNT).  <br>ZERO_AMOUNT - Ordem de pagamento instantâneo com valor zero (AM01).  <br>NOT_ALLOWED_AMOUNT - Ordem de pagamento/devolução em valor que faz superar o limite permitido para o tipo de conta transacional creditada (AM02).  <br>INSUFFICIENT_FUNDS - Saldo insuficiente na conta PI do participante do usuário pagador (AM04).  <br>WRONG_AMOUNT - Devolução de pagamento em valor que faz superar o valor da ordem de pagamento instantâneo correspondente (AM09).  <br>INVALID_AMOUNT - Divergência entre a somatória dos valores do bloco ‘valorDoDinheiroOuCompra’ e o campo ‘valor’ (AM12).  <br>INVALID_NUMBER_OF_TRANSACTIONS - Quantidade de transações inválida (AM18).  <br>INCONSISTENT_WITH_END_CUSTOMER - CPF/CNPJ do usuário recebedor não é consistente com o titular da conta transacional especificada (BE01).  <br>INVALID_IDENTIFICATION_CODE - Código de situação de pagamento ou de erro inválido (BE15).  <br>INVALID_CREDITOR_IDENTIFICATION_CODE - QR Code rejeitado pelo participante do usuário recebedor (BE17).  <br>CREDITOR_IDENTIFIER_INCORRECT - CPF/CNPJ do usuário recebedor incorreto (CH11).  <br>ELEMENT_CONTENT_FORMALLY_INCORRECT - Elemento da mensagem incorreto (CH16).  <br>ORDER_REJECTED - Ordem rejeitada pelo participante do usuário recebedor (DS04).  <br>NOT_ALLOWED_PAYMENT - Participante que assinou a mensagem não é autorizado a realizar a operação na conta PI debitada. No caso em que o participante que assinou a mensagem não é o titular da conta PI debitada nem é o liquidante no SPI do participante do usuário pagador (DS0G).  <br>NOT_ALLOWED_ACCOUNT - ISPB do participante que submeteu a resposta à ordem de pagamento/devolução diferente do ISPB do participante creditado pela ordem (DS0H).  <br>USER_NOT_YET_ACTIVATED - Participante não se encontra cadastrado ou ainda não iniciou a operação no SPI (DS27).  <br>INVALID_CREATION_DATE - Data e Hora do envio da mensagem inválida (DT02).  <br>INVALID_CUT_OFF_DATE - Transação extrapola o prazo máximo para devolução de pagamento instantâneo regulamentado pelo Arranjo PIX (DT05).  <br>SETTLEMENT_FAILED - Erro no processamento do pagamento instantâneo (ED05).  <br>INVALID_PURPOSE - Inconsistência entre a finalidade da transação e o preenchimento do bloco elementos Structured (FF07).  <br>INVALID_END_TO_END_ID - Identificador da operação mal formatado (FF08).  <br>INVALID_DEBTOR_CLEARING_SYSTEM_MEMBER_IDENTIFIER - ISPB do participante do usuário pagador inválido ou inexistente (RC09).  <br>INVALID_CREDITOR_CLEARING_SYSTEM_MEMBER_IDENTIFIER - ISPB do participante do usuário recebedor inválido ou inexistente (RC10).  <br>REGULATORY_REASON - Ordem de pagamento em que o usuário pagador é sancionado por resolução do Conselho de Segurança das Nações Unidas (CSNU). Nos casos em que o usuário recebedor for o sancionado, a ordem de pagamento não deve ser rejeitada (RR4).  <br>SPECIFIC_SERVICE_OFFERED_BY_CREDITOR_AGENT - A transação original não está relacionada ao serviço de Saque Pix (SL02).  <br>INVALID_BILL - Validação de expiração, validação de vencimento, Status Válido (INDT).  <br>OPERATION_WINDOW - Requisição está fora da janela de funcionamento (IDEA).  <br>INCOMPATIBLE_DATE - Data do pagamento divergente da data consentida ou divergente da data atual do QR Code (TERM).  <br>MISMATCH_AMOUNT - O valor informado no consentimento não é o mesmo valor do informado no payload de pagamento (OB01).  <br>OVER_LIMIT - O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente (OB02).   <br>INVALID_CONSENT - Consentimento inválido (status não é "authorised" ou está expirado) (OB03).  <br>DENIED_MULTIPLE_AUTHORISATIONS - Um (ou mais) aprovadores na detentora recusaram a operação (OB04).  <br>EXPIRED_MULTIPLE_AUTHORISATIONS - Um (ou mais) aprovadores na detentora não tomaram ação para aprovar a operação (OB05).  <br>EXPIRED_BILL - O QR Code não é mais válido (OB06).   <br>[Restrição] Esse motivo deverá ser enviado quando o campo /data/status for igual a RJCT (REJECTED).|
+|**|string|false|Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.  <br>ABORTED_SETTLEMENT_TIMEOUT - Liquidação da transação interrompida devido a timeout no SPI (AB03).  <br>ERROR_CREDITOR_AGENT - Transação interrompida devido a erro no participante do usuário recebedor (AB09).  <br>TIMEOUT_DEBTOR_AGENT - Timeout do participante emissor da ordem de pagamento (AB11).  <br>INVALID_CREDITOR_ACCOUNT_NUMBER - Número da conta transacional do usuário recebedor inexistente ou inválido (AC03).  <br>BLOCKED_ACCOUNT - Conta transacional do usuário recebedor encontra-se bloqueada (AC06).  <br>CLOSED_CREDITOR_ACCOUNT_NUMBER - Número da conta transacional do usuário recebedor encerrada (AC07).  <br>INVALID_CREDITOR_ACCOUNTTYPE - Tipo incorreto para a conta transacional do usuário recebedor (AC14).  <br>TRANSACTION_NOT_SUPPORTED - Tipo de transação não é suportado/autorizado na conta transacional do usuário recebedor (AG03). Exemplo: transferência para conta salário.  <br>NOT_ALLOWED_BOOK_TRANSFER - Não é permitida ordem de pagamento/devolução no SPI cujos recursos sejam transferidos de uma conta transacional para outra em uma mesma instituição participante ou entre participantes que utilizem o serviço de liquidação de um mesmo participante liquidante no SPI (booktransfer) (AG12).  <br>FORBIDDEN_RETURN_PAYMENT - Não é permitido devolver a devolução de um pagamento instantâneo (AG13).  <br>INCORRECT_AGENT - Participante direto não é liquidante do participante do usuário pagador / participante do usuário recebedor (AGNT).  <br>ZERO_AMOUNT - Ordem de pagamento instantâneo com valor zero (AM01).  <br>NOT_ALLOWED_AMOUNT - Ordem de pagamento/devolução em valor que faz superar o limite permitido para o tipo de conta transacional creditada (AM02).  <br>INSUFFICIENT_FUNDS - Saldo insuficiente na conta PI do participante do usuário pagador (AM04).  <br>WRONG_AMOUNT - Devolução de pagamento em valor que faz superar o valor da ordem de pagamento instantâneo correspondente (AM09).  <br>INVALID_AMOUNT - Divergência entre a somatória dos valores do bloco ‘valorDoDinheiroOuCompra’ e o campo ‘valor’ (AM12).  <br>INVALID_NUMBER_OF_TRANSACTIONS - Quantidade de transações inválida (AM18).  <br>INCONSISTENT_WITH_END_CUSTOMER - CPF/CNPJ do usuário recebedor não é consistente com o titular da conta transacional especificada (BE01).  <br>INVALID_IDENTIFICATION_CODE - Código de situação de pagamento ou de erro inválido (BE15).  <br>INVALID_CREDITOR_IDENTIFICATION_CODE - QR Code rejeitado pelo participante do usuário recebedor (BE17).  <br>CREDITOR_IDENTIFIER_INCORRECT - CPF/CNPJ do usuário recebedor incorreto (CH11).  <br>ELEMENT_CONTENT_FORMALLY_INCORRECT - Elemento da mensagem incorreto (CH16).  <br>ORDER_REJECTED - Ordem rejeitada pelo participante do usuário recebedor (DS04).  <br>NOT_ALLOWED_PAYMENT - Participante que assinou a mensagem não é autorizado a realizar a operação na conta PI debitada. No caso em que o participante que assinou a mensagem não é o titular da conta PI debitada nem é o liquidante no SPI do participante do usuário pagador (DS0G).  <br>NOT_ALLOWED_ACCOUNT - ISPB do participante que submeteu a resposta à ordem de pagamento/devolução diferente do ISPB do participante creditado pela ordem (DS0H).  <br>USER_NOT_YET_ACTIVATED - Participante não se encontra cadastrado ou ainda não iniciou a operação no SPI (DS27).  <br>INVALID_CREATION_DATE - Data e Hora do envio da mensagem inválida (DT02).  <br>INVALID_CUT_OFF_DATE - Transação extrapola o prazo máximo para devolução de pagamento instantâneo regulamentado pelo Arranjo PIX (DT05).  <br>SETTLEMENT_FAILED - Erro no processamento do pagamento instantâneo (ED05).  <br>INVALID_PURPOSE - Inconsistência entre a finalidade da transação e o preenchimento do bloco elementos Structured (FF07).  <br>INVALID_END_TO_END_ID - Identificador da operação mal formatado (FF08).  <br>INVALID_DEBTOR_CLEARING_SYSTEM_MEMBER_IDENTIFIER - ISPB do participante do usuário pagador inválido ou inexistente (RC09).  <br>INVALID_CREDITOR_CLEARING_SYSTEM_MEMBER_IDENTIFIER - ISPB do participante do usuário recebedor inválido ou inexistente (RC10).  <br>REGULATORY_REASON - Ordem de pagamento em que o usuário pagador é sancionado por resolução do Conselho de Segurança das Nações Unidas (CSNU). Nos casos em que o usuário recebedor for o sancionado, a ordem de pagamento não deve ser rejeitada (RR4).  <br>SPECIFIC_SERVICE_OFFERED_BY_CREDITOR_AGENT - A transação original não está relacionada ao serviço de Saque Pix (SL02).  <br>INVALID_BILL - Validação de expiração, validação de vencimento, Status Válido (INDT).  <br>OPERATION_WINDOW - Requisição está fora da janela de funcionamento (IDEA).  <br>INCOMPATIBLE_DATE - Data do pagamento divergente da data consentida ou divergente da data atual do QR Code (TERM).  <br>MISMATCH_AMOUNT - O valor informado no consentimento não é o mesmo valor do informado no payload de pagamento (OB01).  <br>OVER_LIMIT - O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente (OB02).   <br>INVALID_CONSENT - Consentimento inválido (status não é "authorised" ou está expirado) (OB03).  <br>DENIED_MULTIPLE_AUTHORISATIONS - Um (ou mais) aprovadores na detentora recusaram a operação (OB04).  <br>EXPIRED_MULTIPLE_AUTHORISATIONS - Um (ou mais) aprovadores na detentora não tomaram ação para aprovar a operação (OB05).  <br>EXPIRED_BILL - O QR Code não é mais válido (OB06).   <br>CONSENT_REVOKED - Pagamento cancelado devido à revogação do consentimento.   <br>[Restrição] Esse motivo deverá ser enviado quando o campo /data/status for igual a RJCT (REJECTED).|
 
 #### Enumerated Values
 
@@ -2446,6 +2631,7 @@ EXPIRED_BILL - O QR Code não é mais válido (OB06).
 |**|DENIED_MULTIPLE_AUTHORISATIONS|
 |**|EXPIRED_MULTIPLE_AUTHORISATIONS|
 |**|EXPIRED_BILL|
+|**|CONSENT_REVOKED|
 
 <h2 id="tocS_Identification">Identification</h2>
 
@@ -2763,7 +2949,7 @@ Objeto contendo dados do pagameto como moeda e valor.
 |» expirationDateTime|string(date-time)|true|Data e hora em que o consentimento da iniciação de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).<br>O consentimento é criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expiração - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.<br>Para o cenário em que o status assumiu AUTHORISED, o tempo máximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este é o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. Não é possível prorrogar este tempo e a criação de um novo consentimento será necessária para os cenários de insucesso.<br>O tempo do expirationDateTime é garantido com os 15 minutos do access token, sendo possível utilizar mais três refresh tokens até totalizar 60 minutos.|
 |» statusUpdateDateTime|string(date-time)|true|Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).|
 |» status|[EnumAuthorisationStatusType](#schemaenumauthorisationstatustype)|true|Retorna o estado do consentimento, o qual no momento de sua criação será AWAITING_AUTHORISATION.<br>Este estado será alterado depois da autorização do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED, REJECTED ou REVOKED.<br>O consentimento fica no estado CONSUMED após ocorrer a iniciação do pagamento referente ao consentimento.<br>Em caso de consentimento expirado a detentora deverá retornar o status REJECTED.<br>Em caso de revogação do consentimento a detentora deverá retornar o status REVOKED.<br>Estados possíveis:<br>AWAITING_AUTHORISATION - Aguardando autorização<br>AUTHORISED - Autorizado<br>REJECTED - Rejeitado<br>CONSUMED - Consumido<br>REVOKED - Revogado|
-|» revocation|[Revocation](#schemarevocation)|false|Objeto que contém as informações das circunstância da revogação.<br>O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.|
+|» revocation|[Revocation](#schemarevocation)|false|Objeto que contém as informações das circunstância da revogação.   <br><br>[Restrição] O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.|
 |» loggedUser|[LoggedUser](#schemaloggeduser)|true|Usuário (pessoa natural) que encontra-se logado na instituição Iniciadora de Pagamento.<br>[Restrição] Deve obrigatoriamente ser enviado quando a revogação for feita pelo usuário final, ou seja, se o campo revokedBy estiver com o valor 'USER'.|
 |» businessEntity|[BusinessEntity](#schemabusinessentity)|false|Usuário (pessoa jurídica) que encontra-se logado na instituição Iniciadora de Pagamento. [Restrição] Preenchimento obrigatório se usuário logado na instituição Iniciadora de Pagamento for um CNPJ (pessoa jurídica).|
 |» creditor|[Identification](#schemaidentification)|true|Objeto contendo os dados do recebedor (creditor).|
@@ -2877,7 +3063,7 @@ Objeto contendo dados do pagamento e da conta do recebedor (creditor).
 |proxy|string|false|Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatória.<br>No caso de telefone celular deve ser informado no padrão E.1641.<br>Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no máximo 77 caracteres.<br>No caso de CPF deverá ser informado com 11 números, sem pontos ou traços.<br>Para o caso de CNPJ deverá ser informado com 14 números, sem pontos ou traços.<br>No caso de chave aleatória deve ser informado o UUID gerado pelo DICT, conforme formato especificado na RFC41223.<br>Se informado, a detentora da conta deve validar o proxy no DICT quando localInstrument for igual a DICT, QRDN ou QRES e validar o campo creditorAccount.<br>Esta validação é opcional caso o localInstrument for igual a INIC.<br>[Restrição] Se localInstrument for igual a MANU, o campo proxy não deve ser preenchido. Se localInstrument for igual INIC, DICT, QRDN ou QRES, o campo proxy deve ser sempre preenchido com a chave Pix.|
 |ibgeTownCode|string|false|Traz o código da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatística).<br>Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientação do arranjo da forma de pagamento.<br>O preenchimento do campo tanto em pix/payments quanto /consents deve ser igual. Caso haja divergência dos valores, a instituição deve retornar HTTP 422 com o código de erro PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO.<br>Este campo faz referência ao campo CodMun do arranjo Pix.|
 |status|[EnumPaymentStatusType](#schemaenumpaymentstatustype)|true|Estado atual da iniciação de pagamento. O estado evolui na seguinte ordem:  <br>1. PDNG (PENDING) - Iniciação de pagamento ou transação de pagamento está pendente. Checagens adicionais em realização.  <br>2. SASP (SCHEDULE_ACCEPTED_SETTLEMENT_IN_PROCESS) - Indica que o processo de agendamento está em processamento.  <br>3. SASC (SCHEDULE_ACCEPTED_SETTLEMENT_COMPLETED) - Indica que o processo de agendamento foi realizado.  <br>4. PART (PARTIALLY ACCEPTED) - Aguardando autorização múltipla alçada.  <br>5. ACSP (ACCEPTED_SETTLEMENT_IN_PROCESS) - Iniciação de pagamento aceita e processamento do pagamento foi iniciado.  <br>6. ACSC (ACCEPTED_SETTLEMENT_COMPLETED_DEBITOR_ACCOUNT) - Débito realizado na conta do pagador.  <br>7. ACCC (ACCEPTED_SETTLEMENT_COMPLETED) - Crédito realizado na instituição de destino.  <br><br>Em caso insucesso:  <br>RJCT (REJECTED) - Instrução de pagamento rejeitada.|
-|rejectionReason|[EnumRejectionReasonType](#schemaenumrejectionreasontype)|false|Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.  <br>ABORTED_SETTLEMENT_TIMEOUT - Liquidação da transação interrompida devido a timeout no SPI (AB03).  <br>ERROR_CREDITOR_AGENT - Transação interrompida devido a erro no participante do usuário recebedor (AB09).  <br>TIMEOUT_DEBTOR_AGENT - Timeout do participante emissor da ordem de pagamento (AB11).  <br>INVALID_CREDITOR_ACCOUNT_NUMBER - Número da conta transacional do usuário recebedor inexistente ou inválido (AC03).  <br>BLOCKED_ACCOUNT - Conta transacional do usuário recebedor encontra-se bloqueada (AC06).  <br>CLOSED_CREDITOR_ACCOUNT_NUMBER - Número da conta transacional do usuário recebedor encerrada (AC07).  <br>INVALID_CREDITOR_ACCOUNTTYPE - Tipo incorreto para a conta transacional do usuário recebedor (AC14).  <br>TRANSACTION_NOT_SUPPORTED - Tipo de transação não é suportado/autorizado na conta transacional do usuário recebedor (AG03). Exemplo: transferência para conta salário.  <br>NOT_ALLOWED_BOOK_TRANSFER - Não é permitida ordem de pagamento/devolução no SPI cujos recursos sejam transferidos de uma conta transacional para outra em uma mesma instituição participante ou entre participantes que utilizem o serviço de liquidação de um mesmo participante liquidante no SPI (booktransfer) (AG12).  <br>FORBIDDEN_RETURN_PAYMENT - Não é permitido devolver a devolução de um pagamento instantâneo (AG13).  <br>INCORRECT_AGENT - Participante direto não é liquidante do participante do usuário pagador / participante do usuário recebedor (AGNT).  <br>ZERO_AMOUNT - Ordem de pagamento instantâneo com valor zero (AM01).  <br>NOT_ALLOWED_AMOUNT - Ordem de pagamento/devolução em valor que faz superar o limite permitido para o tipo de conta transacional creditada (AM02).  <br>INSUFFICIENT_FUNDS - Saldo insuficiente na conta PI do participante do usuário pagador (AM04).  <br>WRONG_AMOUNT - Devolução de pagamento em valor que faz superar o valor da ordem de pagamento instantâneo correspondente (AM09).  <br>INVALID_AMOUNT - Divergência entre a somatória dos valores do bloco ‘valorDoDinheiroOuCompra’ e o campo ‘valor’ (AM12).  <br>INVALID_NUMBER_OF_TRANSACTIONS - Quantidade de transações inválida (AM18).  <br>INCONSISTENT_WITH_END_CUSTOMER - CPF/CNPJ do usuário recebedor não é consistente com o titular da conta transacional especificada (BE01).  <br>INVALID_IDENTIFICATION_CODE - Código de situação de pagamento ou de erro inválido (BE15).  <br>INVALID_CREDITOR_IDENTIFICATION_CODE - QR Code rejeitado pelo participante do usuário recebedor (BE17).  <br>CREDITOR_IDENTIFIER_INCORRECT - CPF/CNPJ do usuário recebedor incorreto (CH11).  <br>ELEMENT_CONTENT_FORMALLY_INCORRECT - Elemento da mensagem incorreto (CH16).  <br>ORDER_REJECTED - Ordem rejeitada pelo participante do usuário recebedor (DS04).  <br>NOT_ALLOWED_PAYMENT - Participante que assinou a mensagem não é autorizado a realizar a operação na conta PI debitada. No caso em que o participante que assinou a mensagem não é o titular da conta PI debitada nem é o liquidante no SPI do participante do usuário pagador (DS0G).  <br>NOT_ALLOWED_ACCOUNT - ISPB do participante que submeteu a resposta à ordem de pagamento/devolução diferente do ISPB do participante creditado pela ordem (DS0H).  <br>USER_NOT_YET_ACTIVATED - Participante não se encontra cadastrado ou ainda não iniciou a operação no SPI (DS27).  <br>INVALID_CREATION_DATE - Data e Hora do envio da mensagem inválida (DT02).  <br>INVALID_CUT_OFF_DATE - Transação extrapola o prazo máximo para devolução de pagamento instantâneo regulamentado pelo Arranjo PIX (DT05).  <br>SETTLEMENT_FAILED - Erro no processamento do pagamento instantâneo (ED05).  <br>INVALID_PURPOSE - Inconsistência entre a finalidade da transação e o preenchimento do bloco elementos Structured (FF07).  <br>INVALID_END_TO_END_ID - Identificador da operação mal formatado (FF08).  <br>INVALID_DEBTOR_CLEARING_SYSTEM_MEMBER_IDENTIFIER - ISPB do participante do usuário pagador inválido ou inexistente (RC09).  <br>INVALID_CREDITOR_CLEARING_SYSTEM_MEMBER_IDENTIFIER - ISPB do participante do usuário recebedor inválido ou inexistente (RC10).  <br>REGULATORY_REASON - Ordem de pagamento em que o usuário pagador é sancionado por resolução do Conselho de Segurança das Nações Unidas (CSNU). Nos casos em que o usuário recebedor for o sancionado, a ordem de pagamento não deve ser rejeitada (RR4).  <br>SPECIFIC_SERVICE_OFFERED_BY_CREDITOR_AGENT - A transação original não está relacionada ao serviço de Saque Pix (SL02).  <br>INVALID_BILL - Validação de expiração, validação de vencimento, Status Válido (INDT).  <br>OPERATION_WINDOW - Requisição está fora da janela de funcionamento (IDEA).  <br>INCOMPATIBLE_DATE - Data do pagamento divergente da data consentida ou divergente da data atual do QR Code (TERM).  <br>MISMATCH_AMOUNT - O valor informado no consentimento não é o mesmo valor do informado no payload de pagamento (OB01).  <br>OVER_LIMIT - O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente (OB02).   <br>INVALID_CONSENT - Consentimento inválido (status não é "authorised" ou está expirado) (OB03).  <br>DENIED_MULTIPLE_AUTHORISATIONS - Um (ou mais) aprovadores na detentora recusaram a operação (OB04).  <br>EXPIRED_MULTIPLE_AUTHORISATIONS - Um (ou mais) aprovadores na detentora não tomaram ação para aprovar a operação (OB05).  <br>EXPIRED_BILL - O QR Code não é mais válido (OB06).   <br>[Restrição] Esse motivo deverá ser enviado quando o campo /data/status for igual a RJCT (REJECTED).|
+|rejectionReason|[EnumRejectionReasonType](#schemaenumrejectionreasontype)|false|Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.  <br>ABORTED_SETTLEMENT_TIMEOUT - Liquidação da transação interrompida devido a timeout no SPI (AB03).  <br>ERROR_CREDITOR_AGENT - Transação interrompida devido a erro no participante do usuário recebedor (AB09).  <br>TIMEOUT_DEBTOR_AGENT - Timeout do participante emissor da ordem de pagamento (AB11).  <br>INVALID_CREDITOR_ACCOUNT_NUMBER - Número da conta transacional do usuário recebedor inexistente ou inválido (AC03).  <br>BLOCKED_ACCOUNT - Conta transacional do usuário recebedor encontra-se bloqueada (AC06).  <br>CLOSED_CREDITOR_ACCOUNT_NUMBER - Número da conta transacional do usuário recebedor encerrada (AC07).  <br>INVALID_CREDITOR_ACCOUNTTYPE - Tipo incorreto para a conta transacional do usuário recebedor (AC14).  <br>TRANSACTION_NOT_SUPPORTED - Tipo de transação não é suportado/autorizado na conta transacional do usuário recebedor (AG03). Exemplo: transferência para conta salário.  <br>NOT_ALLOWED_BOOK_TRANSFER - Não é permitida ordem de pagamento/devolução no SPI cujos recursos sejam transferidos de uma conta transacional para outra em uma mesma instituição participante ou entre participantes que utilizem o serviço de liquidação de um mesmo participante liquidante no SPI (booktransfer) (AG12).  <br>FORBIDDEN_RETURN_PAYMENT - Não é permitido devolver a devolução de um pagamento instantâneo (AG13).  <br>INCORRECT_AGENT - Participante direto não é liquidante do participante do usuário pagador / participante do usuário recebedor (AGNT).  <br>ZERO_AMOUNT - Ordem de pagamento instantâneo com valor zero (AM01).  <br>NOT_ALLOWED_AMOUNT - Ordem de pagamento/devolução em valor que faz superar o limite permitido para o tipo de conta transacional creditada (AM02).  <br>INSUFFICIENT_FUNDS - Saldo insuficiente na conta PI do participante do usuário pagador (AM04).  <br>WRONG_AMOUNT - Devolução de pagamento em valor que faz superar o valor da ordem de pagamento instantâneo correspondente (AM09).  <br>INVALID_AMOUNT - Divergência entre a somatória dos valores do bloco ‘valorDoDinheiroOuCompra’ e o campo ‘valor’ (AM12).  <br>INVALID_NUMBER_OF_TRANSACTIONS - Quantidade de transações inválida (AM18).  <br>INCONSISTENT_WITH_END_CUSTOMER - CPF/CNPJ do usuário recebedor não é consistente com o titular da conta transacional especificada (BE01).  <br>INVALID_IDENTIFICATION_CODE - Código de situação de pagamento ou de erro inválido (BE15).  <br>INVALID_CREDITOR_IDENTIFICATION_CODE - QR Code rejeitado pelo participante do usuário recebedor (BE17).  <br>CREDITOR_IDENTIFIER_INCORRECT - CPF/CNPJ do usuário recebedor incorreto (CH11).  <br>ELEMENT_CONTENT_FORMALLY_INCORRECT - Elemento da mensagem incorreto (CH16).  <br>ORDER_REJECTED - Ordem rejeitada pelo participante do usuário recebedor (DS04).  <br>NOT_ALLOWED_PAYMENT - Participante que assinou a mensagem não é autorizado a realizar a operação na conta PI debitada. No caso em que o participante que assinou a mensagem não é o titular da conta PI debitada nem é o liquidante no SPI do participante do usuário pagador (DS0G).  <br>NOT_ALLOWED_ACCOUNT - ISPB do participante que submeteu a resposta à ordem de pagamento/devolução diferente do ISPB do participante creditado pela ordem (DS0H).  <br>USER_NOT_YET_ACTIVATED - Participante não se encontra cadastrado ou ainda não iniciou a operação no SPI (DS27).  <br>INVALID_CREATION_DATE - Data e Hora do envio da mensagem inválida (DT02).  <br>INVALID_CUT_OFF_DATE - Transação extrapola o prazo máximo para devolução de pagamento instantâneo regulamentado pelo Arranjo PIX (DT05).  <br>SETTLEMENT_FAILED - Erro no processamento do pagamento instantâneo (ED05).  <br>INVALID_PURPOSE - Inconsistência entre a finalidade da transação e o preenchimento do bloco elementos Structured (FF07).  <br>INVALID_END_TO_END_ID - Identificador da operação mal formatado (FF08).  <br>INVALID_DEBTOR_CLEARING_SYSTEM_MEMBER_IDENTIFIER - ISPB do participante do usuário pagador inválido ou inexistente (RC09).  <br>INVALID_CREDITOR_CLEARING_SYSTEM_MEMBER_IDENTIFIER - ISPB do participante do usuário recebedor inválido ou inexistente (RC10).  <br>REGULATORY_REASON - Ordem de pagamento em que o usuário pagador é sancionado por resolução do Conselho de Segurança das Nações Unidas (CSNU). Nos casos em que o usuário recebedor for o sancionado, a ordem de pagamento não deve ser rejeitada (RR4).  <br>SPECIFIC_SERVICE_OFFERED_BY_CREDITOR_AGENT - A transação original não está relacionada ao serviço de Saque Pix (SL02).  <br>INVALID_BILL - Validação de expiração, validação de vencimento, Status Válido (INDT).  <br>OPERATION_WINDOW - Requisição está fora da janela de funcionamento (IDEA).  <br>INCOMPATIBLE_DATE - Data do pagamento divergente da data consentida ou divergente da data atual do QR Code (TERM).  <br>MISMATCH_AMOUNT - O valor informado no consentimento não é o mesmo valor do informado no payload de pagamento (OB01).  <br>OVER_LIMIT - O valor (ou quantidade de transações) ultrapassa a faixa de limite parametrizada na detentora para permitir a realização de transações pelo cliente (OB02).   <br>INVALID_CONSENT - Consentimento inválido (status não é "authorised" ou está expirado) (OB03).  <br>DENIED_MULTIPLE_AUTHORISATIONS - Um (ou mais) aprovadores na detentora recusaram a operação (OB04).  <br>EXPIRED_MULTIPLE_AUTHORISATIONS - Um (ou mais) aprovadores na detentora não tomaram ação para aprovar a operação (OB05).  <br>EXPIRED_BILL - O QR Code não é mais válido (OB06).   <br>CONSENT_REVOKED - Pagamento cancelado devido à revogação do consentimento.   <br>[Restrição] Esse motivo deverá ser enviado quando o campo /data/status for igual a RJCT (REJECTED).|
 |localInstrument|[CreatePixPaymentData/properties/localInstrument](#schemacreatepixpaymentdata/properties/localinstrument)|true|Especifica a forma de iniciação do pagamento:<br>- MANU - Inserção manual de dados da conta transacional<br>- DICT - Inserção manual de chave Pix<br>- QRDN - QR code dinâmico<br>- QRES - QR code estático<br>- INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciações de pagamento em que o beneficiário é previamente conhecido.|
 |cnpjInitiator|string|true|CNPJ do Iniciador de Pagamento devidamente habilitado para a prestação de Serviço de Iniciação no Pix.|
 |payment|[PaymentPix](#schemapaymentpix)|true|Objeto contendo dados do pagameto como moeda e valor.|
@@ -2953,8 +3139,8 @@ Objeto contendo dados do pagamento e do recebedor (creditor).
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|status|[EnumAuthorisationStatusType](#schemaenumauthorisationstatustype)|true|Retorna o estado do consentimento, o qual no momento de sua criação será AWAITING_AUTHORISATION.<br>Este estado será alterado depois da autorização do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED, REJECTED ou REVOKED.<br>O consentimento fica no estado CONSUMED após ocorrer a iniciação do pagamento referente ao consentimento.<br>Em caso de consentimento expirado a detentora deverá retornar o status REJECTED.<br>Em caso de revogação do consentimento a detentora deverá retornar o status REVOKED.<br>Estados possíveis:<br>AWAITING_AUTHORISATION - Aguardando autorização<br>AUTHORISED - Autorizado<br>REJECTED - Rejeitado<br>CONSUMED - Consumido<br>REVOKED - Revogado|
-|revocation|[Revocation](#schemarevocation)|true|Objeto que contém as informações das circunstância da revogação.<br>O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.|
+|status|[EnumAuthorisationPatchStatusType](#schemaenumauthorisationpatchstatustype)|true|Estado para o qual deve ir.<br><br>[Restrição] O único valor válido é REVOKED. (caso contrário a detentora deve retornar erro HTTP 400)|
+|revocation|[Revocation](#schemarevocation)|true|Objeto que contém as informações das circunstância da revogação.   <br><br>[Restrição] O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.|
 
 <h2 id="tocS_Revocation">Revocation</h2>
 
@@ -2980,8 +3166,9 @@ Objeto contendo dados do pagamento e do recebedor (creditor).
 
 ```
 
-Objeto que contém as informações das circunstância da revogação.
-O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.
+Objeto que contém as informações das circunstância da revogação.   
+
+[Restrição] O campo loggedUser deve ser preenchido quando a revogação for feita pelo usuário final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.
 
 ### Propriedades
 
