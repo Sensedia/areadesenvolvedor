@@ -15,13 +15,16 @@ properties:
   passportNumber:
     type: string
     maxLength: 20
-    pattern: '[\w\W\s]*'
+    pattern: '[\w*\W*]'
     example: "75253468744594820620"
     description: |
       Número do Passaporte. Documento concedido aos viajantes por uma autoridade
       administrativa nacional a fim de certificar sua identidade perante autoridades
       estrangeiras. De preenchimento obrigatório. Aplicável somente à Pessoa natural
       residente no exterior desobrigada de inscrição no CPF.
+
+      [Restrição] Aplicável somente à Pessoa natural residente no exterior desobrigada de inscrição no CPF.
+      Informação deve ser enviada de forma mandatória quando existente e caso a transmissora não a possua deve informar "NA".
   passportCountry:
     type: string
     maxLength: 3
