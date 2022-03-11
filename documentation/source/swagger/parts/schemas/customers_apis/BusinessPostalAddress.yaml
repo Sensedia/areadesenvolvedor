@@ -60,7 +60,9 @@ properties:
     maxLength: 80
     pattern: '[\w\W\s]*'
     example: Brasil
-    description: Nome do país
+    description: |
+      Nome do país
+      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
   countryCode:
     type: string
     maxLength: 3
