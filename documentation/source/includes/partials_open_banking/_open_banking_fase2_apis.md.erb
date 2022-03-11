@@ -7667,7 +7667,7 @@ Conjunto de informações relativas a Identificação ou seja a ação e o efeit
 |ibgeTownCode|string|false|Código IBGE de Município. A Tabela de Códigos de Municípios do IBGE apresenta a lista dos municípios brasileiros associados a um código composto de 7 dígitos, sendo os dois primeiros referentes ao código da Unidade da Federação.|
 |countrySubDivision|[EnumCountrySubDivision](#schemaenumcountrysubdivision)|true|Enumeração referente a cada sigla da unidade da federação que identifica o estado ou o distrito federal, no qual o endereço está localizado. p.ex. 'AC'. São consideradas apenas as siglas para os estados brasileiros|
 |postCode|string|true|Código de Endereçamento Postal: Composto por um conjunto numérico de oito dígitos, o objetivo principal do CEP é orientar e acelerar o encaminhamento, o tratamento e a entrega de objetos postados nos Correios, por meio da sua atribuição a localidades, logradouros, unidades dos Correios, serviços, órgãos públicos, empresas e edifícios. p.ex. '01311000'|
-|country|string|true|Nome do país|
+|country|string|true|Nome do país<br><br>[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.|
 |countryCode|string|false|Código do pais de acordo com o código “alpha3” do ISO-3166|
 |geographicCoordinates|[GeographicCoordinates](#schemageographiccoordinates)|false|Conjunto de informações, que correspondem aos valores das coordenadas geográficas em graus decimais, no Sistema de referência WGS84|
 

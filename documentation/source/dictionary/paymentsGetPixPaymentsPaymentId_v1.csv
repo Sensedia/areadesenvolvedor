@@ -46,6 +46,7 @@ ACSP
 ACSC 
 ACCC 
 RJCT";1;1;"";Não permitido;string;PDNG
+
 /data/rejectionReason;rejectionReason;"Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.  
 ABORTED_SETTLEMENT_TIMEOUT - Liquidação da transação interrompida devido a timeout no SPI (AB03).  
 ERROR_CREDITOR_AGENT - Transação interrompida devido a erro no participante do usuário recebedor (AB09).  
