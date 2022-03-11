@@ -119,7 +119,8 @@ properties:
     description: Data de vencimento primeira parcela do principal
   CET:
     type: string
-    maxLength: 19
+    maxLength: 6
+    pattern: ^\d{1}\.\d{4}$
     example: '0.2900'
     nullable: true
     description: |
