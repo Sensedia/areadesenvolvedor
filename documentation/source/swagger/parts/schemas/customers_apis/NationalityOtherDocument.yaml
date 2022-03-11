@@ -34,10 +34,13 @@ properties:
   country:
     type: string
     maxLength: 80
-    pattern: '[\w\W\s]*'
     minItems: 0
+    pattern: '[\w*\W*]'
     example: Brasil
-    description: Nome do país
+    description: |
+      Nome do país
+
+      [Restrição] Informação deve ser enviada de forma mandatória quando existente e caso a transmissora não a possua deve informar "NA".
   typeAdditionalInfo:
     type: string
     maxLength: 70

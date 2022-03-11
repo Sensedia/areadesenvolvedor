@@ -33,13 +33,12 @@ properties:
   type:
     $ref: ../enum/EnumTransactionTypes.yaml
   amount:
-    type: number
-    format: double
+    type: string
     pattern: '^-?\d{1,15}\.\d{2,4}$'
     description: Valor da transação. Expressa em valor monetário com 4 casas decimais.
     maxLength: 20
     minLength: 0
-    example: 500.54
+    example: '500.54'
   transactionCurrency:
     type: string
     pattern: '^(\w{3}){1}$'

@@ -7,7 +7,7 @@ properties:
   data:
     $ref: ./AccountIdentificationData.yaml
   links:
-    $ref: ../Links.yaml
+    $ref: Links_fase2_accounts.yaml
   meta:
     $ref: ../Meta.yaml
 additionalProperties: false
