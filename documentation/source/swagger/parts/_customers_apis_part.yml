@@ -69,26 +69,24 @@ paths:
         - $ref: "#/components/parameters/xFapiInteractionId"
         - $ref: "#/components/parameters/xCustomerUserAgent"
       responses:
-        "200":
-          $ref: "#/components/responses/OKResponsePersonalCustomersIdentification"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "405":
-          $ref: "#/components/responses/MethodNotAllowed"
-        "406":
-          $ref: "#/components/responses/NotAcceptable"
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-        default:
-          $ref: "#/components/responses/OKResponsePersonalCustomersIdentification"
+        '200':
+          $ref: '#/components/responses/OKResponsePersonalCustomersIdentification'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
       security:
         - OpenId:
             - "openid"
@@ -109,26 +107,24 @@ paths:
         - $ref: "#/components/parameters/xFapiInteractionId"
         - $ref: "#/components/parameters/xCustomerUserAgent"
       responses:
-        "200":
-          $ref: "#/components/responses/OKResponsePersonalCustomersQualification"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "405":
-          $ref: "#/components/responses/MethodNotAllowed"
-        "406":
-          $ref: "#/components/responses/NotAcceptable"
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-        default:
-          $ref: "#/components/responses/OKResponsePersonalCustomersQualification"
+        '200':
+          $ref: '#/components/responses/OKResponsePersonalCustomersQualification'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
       security:
         - OpenId:
             - "openid"
@@ -149,26 +145,25 @@ paths:
         - $ref: "#/components/parameters/xFapiInteractionId"
         - $ref: "#/components/parameters/xCustomerUserAgent"
       responses:
-        "200":
-          $ref: "#/components/responses/OKResponsePersonalCustomersFinancialRelation"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "405":
-          $ref: "#/components/responses/MethodNotAllowed"
-        "406":
-          $ref: "#/components/responses/NotAcceptable"
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-        default:
-          $ref: "#/components/responses/OKResponsePersonalCustomersFinancialRelation"
+
+        '200':
+          $ref: '#/components/responses/OKResponsePersonalCustomersFinancialRelation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
       security:
         - OpenId:
             - "openid"
@@ -189,26 +184,24 @@ paths:
         - $ref: "#/components/parameters/xFapiInteractionId"
         - $ref: "#/components/parameters/xCustomerUserAgent"
       responses:
-        "200":
-          $ref: "#/components/responses/OKResponseBusinessCustomersIdentification"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "405":
-          $ref: "#/components/responses/MethodNotAllowed"
-        "406":
-          $ref: "#/components/responses/NotAcceptable"
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-        default:
-          $ref: "#/components/responses/OKResponseBusinessCustomersIdentification"
+        '200':
+          $ref: '#/components/responses/OKResponseBusinessCustomersIdentification'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
       security:
         - OpenId:
             - "openid"
@@ -229,26 +222,24 @@ paths:
         - $ref: "#/components/parameters/xFapiInteractionId"
         - $ref: "#/components/parameters/xCustomerUserAgent"
       responses:
-        "200":
-          $ref: "#/components/responses/OKResponseBusinessCustomersQualification"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "405":
-          $ref: "#/components/responses/MethodNotAllowed"
-        "406":
-          $ref: "#/components/responses/NotAcceptable"
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-        default:
-          $ref: "#/components/responses/OKResponseBusinessCustomersQualification"
+        '200':
+          $ref: '#/components/responses/OKResponseBusinessCustomersQualification'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
       security:
         - OpenId:
             - "openid"
@@ -269,26 +260,24 @@ paths:
         - $ref: "#/components/parameters/xFapiInteractionId"
         - $ref: "#/components/parameters/xCustomerUserAgent"
       responses:
-        "200":
-          $ref: "#/components/responses/OKResponseBusinessCustomersFinancialRelation"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "405":
-          $ref: "#/components/responses/MethodNotAllowed"
-        "406":
-          $ref: "#/components/responses/NotAcceptable"
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-        default:
-          $ref: "#/components/responses/OKResponseBusinessCustomersFinancialRelation"
+        '200':
+          $ref: '#/components/responses/OKResponseBusinessCustomersFinancialRelation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
       security:
         - OpenId:
             - "openid"

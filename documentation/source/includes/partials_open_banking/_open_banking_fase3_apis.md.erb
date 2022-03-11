@@ -2528,7 +2528,6 @@ Este campo define o tipo de pagamento que será iniciado após a autorização d
 "USER_NOT_YET_ACTIVATED"
 
 ```
-
 Motivo da rejeição do pagamento. Informações complementares sobre o motivo do status.  
 ABORTED_SETTLEMENT_TIMEOUT - Liquidação da transação interrompida devido a timeout no SPI (AB03).  
 ERROR_CREDITOR_AGENT - Transação interrompida devido a erro no participante do usuário recebedor (AB09).  
@@ -2575,6 +2574,7 @@ DENIED_MULTIPLE_AUTHORISATIONS - Um (ou mais) aprovadores na detentora recusaram
 EXPIRED_MULTIPLE_AUTHORISATIONS - Um (ou mais) aprovadores na detentora não tomaram ação para aprovar a operação (OB05).  
 EXPIRED_BILL - O QR Code não é mais válido (OB06).   
 CONSENT_REVOKED - Pagamento cancelado devido à revogação do consentimento.   
+
 [Restrição] Esse motivo deverá ser enviado quando o campo /data/status for igual a RJCT (REJECTED).
 
 ### Propriedades
