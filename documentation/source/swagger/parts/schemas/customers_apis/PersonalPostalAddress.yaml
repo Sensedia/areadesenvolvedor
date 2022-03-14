@@ -21,6 +21,7 @@ properties:
   additionalInfo:
     type: string
     maxLength: 30
+    minItems: 0
     pattern: '[\w\W\s]*'
     example: Fundos
     description: Alguns logradouros ainda necessitam ser especificados por meio de complemento.
@@ -50,7 +51,7 @@ properties:
     pattern: \d{8}|^NA$
     maxLength: 8
     example: "17500001"
-    description: | 
+    description: |
       Código de Endereçamento Postal: Composto por um conjunto numérico de oito dígitos, o objetivo principal do CEP é orientar e acelerar o encaminhamento, o tratamento e a entrega de objetos postados nos Correios, por meio da sua atribuição a localidades, logradouros, unidades dos Correios, serviços, órgãos públicos, empresas e edifícios. p.ex. '01311000'.
   country:
     type: string
