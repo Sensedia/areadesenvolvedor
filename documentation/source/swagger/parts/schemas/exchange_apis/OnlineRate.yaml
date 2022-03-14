@@ -6,6 +6,7 @@ required:
   - transactionType
   - transactionCategory
   - value
+  - targetAudience
 properties:
   foreignCurrency:
     $ref: ../business_commons/CurrencyCode.yaml
