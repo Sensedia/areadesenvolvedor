@@ -17,7 +17,7 @@ info:
     É também necessário que o recurso em questão (conta, contrato, etc) esteja disponível na instituição transmissora (ou seja, sem boqueios de qualquer natureza e com todas as autorizações/consentimentos já autorizados).\
     Além disso as `permissions` necessárias deverão ter sido solicitadas quando da criação do consentimento relacionado (`consentId`).\
     Relacionamos a seguir as `permissions` necessárias para a consulta de dados em cada `endpoint` da presente API.
-    
+
     ## Permissions necessárias para a API Accounts
 
     Para cada um dos paths desta API, além dos escopos (`scopes`) indicados existem `permissions` que deverão ser observadas:
@@ -46,9 +46,9 @@ info:
     email: gt-interfaces@openbankingbr.org
     url: https://openbanking-brasil.github.io/areadesenvolvedor/
 servers:
-  - url: 'https://api.banco.com.br/open-banking/accounts/v1'
+  - url: "https://api.banco.com.br/open-banking/accounts/v1"
     description: Servidor de Produção
-  - url: 'https://apih.banco.com.br/open-banking/accounts/v1'
+  - url: "https://apih.banco.com.br/open-banking/accounts/v1"
     description: Servidor de Homologação
 tags:
   - name: Accounts
@@ -62,14 +62,14 @@ paths:
       operationId: accountsGetAccounts
       description: Método para obter a lista de contas depósito à vista, poupança e pagamento pré-pagas mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
       parameters:
-        - $ref: '#/components/parameters/Authorization'
-        - $ref: '#/components/parameters/xFapiAuthDate'
-        - $ref: '#/components/parameters/xFapiCustomerIpAddress'
-        - $ref: '#/components/parameters/xFapiInteractionId'
-        - $ref: '#/components/parameters/xCustomerUserAgent'
-        - $ref: '#/components/parameters/page'
-        - $ref: '#/components/parameters/pageSize'
-        - $ref: '#/components/parameters/accountType'
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/xFapiAuthDate"
+        - $ref: "#/components/parameters/xFapiCustomerIpAddress"
+        - $ref: "#/components/parameters/xFapiInteractionId"
+        - $ref: "#/components/parameters/xCustomerUserAgent"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/accountType"
       responses:
         '200':
           $ref: '#/components/responses/OKResponseAccountList'
@@ -85,18 +85,18 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseAccountList'
       security:
         - OpenId:
-            - 'openid'     
+            - "openid"
           OAuth2Security:
-            - 'consent:consentId'
-            - 'accounts'            
+            - "consent:consentId"
+            - "accounts"
   /accounts/{accountId}:
     get:
       tags:
@@ -105,12 +105,12 @@ paths:
       description: Método para obter os dados de identificação da conta de depósito à vista, poupança ou pagamento pré-paga identificada por accountId mantida pelo cliente na instituição transmissora.
       operationId: accountsGetAccountsAccountId
       parameters:
-        - $ref: '#/components/parameters/Authorization'
-        - $ref: '#/components/parameters/xFapiAuthDate'
-        - $ref: '#/components/parameters/xFapiCustomerIpAddress'
-        - $ref: '#/components/parameters/xFapiInteractionId'
-        - $ref: '#/components/parameters/xCustomerUserAgent'
-        - $ref: '#/components/parameters/accountId'
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/xFapiAuthDate"
+        - $ref: "#/components/parameters/xFapiCustomerIpAddress"
+        - $ref: "#/components/parameters/xFapiInteractionId"
+        - $ref: "#/components/parameters/xCustomerUserAgent"
+        - $ref: "#/components/parameters/accountId"
       responses:
         '200':
           $ref: '#/components/responses/OKResponseAccountIdentification'
@@ -126,18 +126,18 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseAccountIdentification'
       security:
         - OpenId:
-            - 'openid'     
+            - "openid"
           OAuth2Security:
-            - 'consent:consentId'
-            - 'accounts' 
+            - "consent:consentId"
+            - "accounts"
   /accounts/{accountId}/balances:
     get:
       tags:
@@ -146,12 +146,12 @@ paths:
       operationId: accountsGetAccountsAccountIdBalances
       description: Método para obter os saldos da conta de depósito à vista, poupança ou pagamento pré-paga identificada por accountId mantida pelo cliente na instituição transmissora.
       parameters:
-        - $ref: '#/components/parameters/Authorization'
-        - $ref: '#/components/parameters/xFapiAuthDate'
-        - $ref: '#/components/parameters/xFapiCustomerIpAddress'
-        - $ref: '#/components/parameters/xFapiInteractionId'
-        - $ref: '#/components/parameters/xCustomerUserAgent'
-        - $ref: '#/components/parameters/accountId'
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/xFapiAuthDate"
+        - $ref: "#/components/parameters/xFapiCustomerIpAddress"
+        - $ref: "#/components/parameters/xFapiInteractionId"
+        - $ref: "#/components/parameters/xCustomerUserAgent"
+        - $ref: "#/components/parameters/accountId"
       responses:
         '200':
           $ref: '#/components/responses/OKResponseAccountBalances'
@@ -167,18 +167,18 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseAccountBalances'
       security:
         - OpenId:
-            - 'openid'     
+            - "openid"
           OAuth2Security:
-            - 'consent:consentId'
-            - 'accounts' 
+            - "consent:consentId"
+            - "accounts"
   /accounts/{accountId}/transactions:
     get:
       tags:
@@ -187,17 +187,17 @@ paths:
       operationId: accountsGetAccountsAccountIdTransactions
       description: Método para obter a lista de transações da conta de depósito à vista, poupança ou pagamento pré-paga identificada por accountId mantida pelo cliente na instituição transmissora.
       parameters:
-        - $ref: '#/components/parameters/Authorization'
-        - $ref: '#/components/parameters/xFapiAuthDate'
-        - $ref: '#/components/parameters/xFapiCustomerIpAddress'
-        - $ref: '#/components/parameters/xFapiInteractionId'
-        - $ref: '#/components/parameters/xCustomerUserAgent'
-        - $ref: '#/components/parameters/accountId'
-        - $ref: '#/components/parameters/page'
-        - $ref: '#/components/parameters/pageSize'
-        - $ref: '#/components/parameters/fromBookingDate'
-        - $ref: '#/components/parameters/toBookingDate'
-        - $ref: '#/components/parameters/creditDebitIndicator'
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/xFapiAuthDate"
+        - $ref: "#/components/parameters/xFapiCustomerIpAddress"
+        - $ref: "#/components/parameters/xFapiInteractionId"
+        - $ref: "#/components/parameters/xCustomerUserAgent"
+        - $ref: "#/components/parameters/accountId"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/fromBookingDate"
+        - $ref: "#/components/parameters/toBookingDate"
+        - $ref: "#/components/parameters/creditDebitIndicator"
       responses:
         '200':
           $ref: '#/components/responses/OKResponseAccountTransactions'
@@ -213,18 +213,18 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseAccountTransactions'
       security:
         - OpenId:
-            - 'openid'     
+            - "openid"
           OAuth2Security:
-            - 'consent:consentId'
-            - 'accounts' 
+            - "consent:consentId"
+            - "accounts"
   /accounts/{accountId}/overdraft-limits:
     get:
       tags:
@@ -233,12 +233,12 @@ paths:
       operationId: accountsGetAccountsAccountIdOverdraftLimits
       description: Método para obter os limites da conta de depósito à vista, poupança ou pagamento pré-paga identificada por accountId mantida pelo cliente na instituição transmissora.
       parameters:
-        - $ref: '#/components/parameters/Authorization'
-        - $ref: '#/components/parameters/xFapiAuthDate'
-        - $ref: '#/components/parameters/xFapiCustomerIpAddress'
-        - $ref: '#/components/parameters/xFapiInteractionId'
-        - $ref: '#/components/parameters/xCustomerUserAgent'
-        - $ref: '#/components/parameters/accountId'
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/xFapiAuthDate"
+        - $ref: "#/components/parameters/xFapiCustomerIpAddress"
+        - $ref: "#/components/parameters/xFapiInteractionId"
+        - $ref: "#/components/parameters/xCustomerUserAgent"
+        - $ref: "#/components/parameters/accountId"
       responses:
         '200':
           $ref: '#/components/responses/OKResponseAccountOverdraftLimits'
@@ -254,18 +254,18 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseAccountOverdraftLimits'
       security:
         - OpenId:
-            - 'openid'     
+            - "openid"
           OAuth2Security:
-            - 'consent:consentId'
-            - 'accounts' 
+            - "consent:consentId"
+            - "accounts"
 components:
   schemas:
     AccountBalancesData:
@@ -291,7 +291,7 @@ components:
     EnumTransactionTypes:
       $ref: ./schemas/enum/EnumTransactionTypes.yaml
     Links:
-      $ref: ./schemas/Links.yaml
+      $ref: ./schemas/accounts_apis/Links_fase2_accounts.yaml
     Meta:
       $ref: ./schemas/Meta.yaml
     ResponseAccountList:
@@ -306,7 +306,7 @@ components:
       $ref: ./schemas/accounts_apis/ResponseAccountTransactions.yaml
     ResponseError:
       $ref: ./schemas/ResponseError.yaml
-    XFapiInteractionId:  
+    XFapiInteractionId:
       $ref: ./headers/XFapiInteractionId.yaml
   parameters:
     accountId:
@@ -344,7 +344,7 @@ components:
   securitySchemes:
     OpenId:
       type: openIdConnect
-      openIdConnectUrl: 'https://auth.mockbank.poc.raidiam.io/.well-known/openid-configuration'
+      openIdConnectUrl: "https://auth.mockbank.poc.raidiam.io/.well-known/openid-configuration"
     OAuth2Security:
       type: oauth2
       description: "Fluxo OAuth necessário para que a receptora tenha acesso aos dados na instituição transmissora. Requer o processo de redirecionamento e autenticação do usuário a que se referem os dados."
@@ -353,58 +353,58 @@ components:
           authorizationUrl: "https://authserver.example/authorization"
           tokenUrl: "https://authserver.example/token"
           scopes:
-            accounts: "Escopo necessário para acesso à API Accounts. O controle dos endpoints específicos é feito via permissions."      
+            accounts: "Escopo necessário para acesso à API Accounts. O controle dos endpoints específicos é feito via permissions."
   responses:
     OKResponseAccountList:
       description: Dados de identificação das contas obtidos com sucesso.
       headers:
         x-fapi-interaction-id:
           schema:
-            $ref: '#/components/schemas/XFapiInteractionId'
+            $ref: "#/components/schemas/XFapiInteractionId"
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ResponseAccountList'
+            $ref: "#/components/schemas/ResponseAccountList"
     OKResponseAccountIdentification:
       description: Dados de identificação da conta identificada por accountId obtidos com sucesso.
       headers:
         x-fapi-interaction-id:
           schema:
-            $ref: '#/components/schemas/XFapiInteractionId'
+            $ref: "#/components/schemas/XFapiInteractionId"
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ResponseAccountIdentification'
+            $ref: "#/components/schemas/ResponseAccountIdentification"
     OKResponseAccountBalances:
       description: Dados relativos aos saldos da conta identificada por accountId obtidos com sucesso.
       headers:
         x-fapi-interaction-id:
           schema:
-            $ref: '#/components/schemas/XFapiInteractionId'
+            $ref: "#/components/schemas/XFapiInteractionId"
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ResponseAccountBalances'
+            $ref: "#/components/schemas/ResponseAccountBalances"
     OKResponseAccountTransactions:
       description: Dados da lista de transações da conta identificada por accountId obtidos com sucesso.
       headers:
         x-fapi-interaction-id:
           schema:
-            $ref: '#/components/schemas/XFapiInteractionId'
+            $ref: "#/components/schemas/XFapiInteractionId"
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ResponseAccountTransactions'
+            $ref: "#/components/schemas/ResponseAccountTransactions"
     OKResponseAccountOverdraftLimits:
       description: Dados de limites da conta identificada por accountId obtidos com sucesso.
       headers:
         x-fapi-interaction-id:
           schema:
-            $ref: '#/components/schemas/XFapiInteractionId'
+            $ref: "#/components/schemas/XFapiInteractionId"
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ResponseAccountOverdraftLimits'
+            $ref: "#/components/schemas/ResponseAccountOverdraftLimits"
     BadRequest:
       $ref: ./responses/BadRequest.yaml
     Forbidden:
@@ -421,3 +421,5 @@ components:
       $ref: ./responses/TooManyRequests.yaml
     Unauthorized:
       $ref: ./responses/Unauthorized.yaml
+    UnprocessableEntity:
+      $ref: ./responses/UnprocessableEntity.yaml

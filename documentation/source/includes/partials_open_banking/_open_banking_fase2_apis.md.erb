@@ -1,5 +1,5 @@
 
-<h1 id="fase-2-apis-do-open-banking-brasil">Fase 2 - APIs do Open Banking Brasil v1.0.4</h1>
+<h1 id="fase-2-apis-do-open-banking-brasil">Fase 2 - APIs do Open Banking Brasil</h1>
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
@@ -25,7 +25,7 @@ Conforme publicado na <a href="https://www.bcb.gov.br/estabilidadefinanceira/exi
 
 - II - até uma hora, para os demais casos.
 
-<h1 id="fase-2-apis-do-open-banking-brasil-api-consentimento">API - Consentimento</h1>
+<h1 id="fase-2-apis-do-open-banking-brasil-api-consentimento">API - Consentimento - v1.0.4</h1>
 
 |Versão|
 |:-----|
@@ -328,7 +328,7 @@ Método para obter detalhes do consentimento identificado por consentId.
 
 |Nome|Origem|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|consentId|path|string|true|O consentId é o identificador único do consentimento a ser revogado e deverá ser um URN - Uniform Resource Name.|
+|consentId|path|string|true|O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  |
 |Authorization|header|string|true|Cabeçalho HTTP padrão. Permite que as credenciais sejam fornecidas dependendo do tipo de recurso solicitado|
 |x-fapi-auth-date|header|string|false|Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC|
 |x-fapi-customer-ip-address|header|string|false|O endereço IP do usuário se estiver atualmente logado com o receptor.|
@@ -337,7 +337,15 @@ Método para obter detalhes do consentimento identificado por consentId.
 
 #### Detailed descriptions
 
-**consentId**: O consentId é o identificador único do consentimento a ser revogado e deverá ser um URN - Uniform Resource Name.
+**consentId**: O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+seja um identificador de recurso persistente e independente da localização.  
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex) 
+- o identificador específico dentro do namespace (C1DD33123).  
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
 
 > O comando acima retorna uma estrutura json como essa:
 
@@ -475,7 +483,7 @@ Método para deletar / revogar o consentimento identificado por consentId.
 
 |Nome|Origem|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|consentId|path|string|true|O consentId é o identificador único do consentimento a ser revogado e deverá ser um URN - Uniform Resource Name.|
+|consentId|path|string|true|O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  |
 |Authorization|header|string|true|Cabeçalho HTTP padrão. Permite que as credenciais sejam fornecidas dependendo do tipo de recurso solicitado|
 |x-fapi-auth-date|header|string|false|Data em que o usuário logou pela última vez com o receptor. Representada de acordo com a [RFC7231](https://tools.ietf.org/html/rfc7231).Exemplo: Sun, 10 Sep 2017 19:43:31 UTC|
 |x-fapi-customer-ip-address|header|string|false|O endereço IP do usuário se estiver atualmente logado com o receptor.|
@@ -484,7 +492,15 @@ Método para deletar / revogar o consentimento identificado por consentId.
 
 #### Detailed descriptions
 
-**consentId**: O consentId é o identificador único do consentimento a ser revogado e deverá ser um URN - Uniform Resource Name.
+**consentId**: O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
+Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+seja um identificador de recurso persistente e independente da localização.  
+Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+- o namespace(urn)
+- o identificador associado ao namespace da instituição transnmissora (bancoex) 
+- o identificador específico dentro do namespace (C1DD33123).  
+Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
 
 > O comando acima retorna uma estrutura json como essa:
 
@@ -528,7 +544,7 @@ Método para deletar / revogar o consentimento identificado por consentId.
 |---|---|---|---|---|
 |204|x-fapi-interaction-id|string|<a href='#x-fapi-interaction-id'>Consultar Padrões</a>|
 
-<h1 id="fase-2-apis-do-open-banking-brasil-api-resources">API - Resources</h1>
+<h1 id="fase-2-apis-do-open-banking-brasil-api-resources">API - Resources - v1.0.4</h1>
 
 |Versão|
 |:-----|
@@ -682,7 +698,7 @@ Para realizar esta operação, você deve estar autenticado e autorizado com os 
 resources,consent:consentId
 </aside>
 
-<h1 id="fase-2-apis-do-open-banking-brasil-api-dados-cadastrais">API - Dados Cadastrais</h1>
+<h1 id="fase-2-apis-do-open-banking-brasil-api-dados-cadastrais">API - Dados Cadastrais - v1.0.4</h1>
 
 |Versão|
 |:-----|
@@ -1287,12 +1303,12 @@ Tags: [CBO (Cbo Code)](#glossarioCBO), [CNPJ (CNPJ Number)](#glossarioCNPJ), [C�
     "occupationDescription": "01",
     "informedIncome": {
       "frequency": "DIARIA",
-      "amount": 100000.04,
+      "amount": "100000.0400",
       "currency": "BRL",
       "date": "2021-05-21"
     },
     "informedPatrimony": {
-      "amount": 100000.04,
+      "amount": "100000.0400",
       "currency": "BRL",
       "year": 2010
     }
@@ -1448,19 +1464,19 @@ Tags: [CNAE (Cnae Code)](#glossarioCNAE), [CNPJ (CNPJ Number)](#glossarioCNPJ), 
     "updateDateTime": "2021-05-21T08:30:00Z",
     "economicActivities": [
       {
-        "code": 8599604,
+        "code": "8599604",
         "isMain": true
       }
     ],
     "informedRevenue": {
       "frequency": "DIARIA",
       "frequencyAdditionalInfo": "Informações adicionais",
-      "amount": 100000.04,
+      "amount": "100000.0400",
       "currency": "BRL",
       "year": 2010
     },
     "informedPatrimony": {
-      "amount": 100000.04,
+      "amount": "100000.0400",
       "currency": "BRL",
       "date": "2021-05-21"
     }
@@ -1838,7 +1854,7 @@ Tags: [CNPJ (CNPJ Number)](#glossarioCNPJ), [CPF - Cadastro de Pessoa Física (C
 |429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
 
-<h1 id="fase-2-apis-do-open-banking-brasil-api-cart-o-de-cr-dito">API - Cartão de Crédito</h1>
+<h1 id="fase-2-apis-do-open-banking-brasil-api-cart-o-de-cr-dito">API - Cartão de Crédito - v1.0.4</h1>
 
 |Versão|
 |:-----|
@@ -2878,7 +2894,7 @@ Para realizar esta operação, você deve estar autenticado e autorizado com os 
 credit-card,consent:consentId
 </aside>
 
-<h1 id="fase-2-apis-do-open-banking-brasil-api-contas">API - Contas</h1>
+<h1 id="fase-2-apis-do-open-banking-brasil-api-contas">API - Contas - v1.0.4</h1>
 
 |Versão|
 |:-----|
@@ -3709,7 +3725,7 @@ Tags: [Adiantamento a Depositante (Unarranged Account Overdraft)](#glossarioAdia
 |429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
 
-<h1 id="fase-2-apis-do-open-banking-brasil-api-opera-es-de-cr-dito-empr-stimos">API - Operações de Crédito - Empréstimos</h1>
+<h1 id="fase-2-apis-do-open-banking-brasil-api-opera-es-de-cr-dito-empr-stimos">API - Operações de Crédito - Empréstimos - v1.0.4</h1>
 
 |Versão|
 |:-----|
@@ -4563,7 +4579,7 @@ Tags: [Empréstimo (Loan)](#glossarioEmprestimo) e [Prestação Regular (Instalm
 |429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
 
-<h1 id="fase-2-apis-do-open-banking-brasil-api-opera-es-de-cr-dito-financiamentos">API - Operações de Crédito - Financiamentos</h1>
+<h1 id="fase-2-apis-do-open-banking-brasil-api-opera-es-de-cr-dito-financiamentos">API - Operações de Crédito - Financiamentos - v1.0.4</h1>
 
 |Versão|
 |:-----|
@@ -5416,7 +5432,7 @@ Tags: [Financiamento (Financing)](#glossarioFinanciamento) e [Prestação Regula
 |429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
 
-<h1 id="fase-2-apis-do-open-banking-brasil-api-opera-es-de-cr-dito-adiantamento-a-depositantes">API - Operações de Crédito - Adiantamento a Depositantes</h1>
+<h1 id="fase-2-apis-do-open-banking-brasil-api-opera-es-de-cr-dito-adiantamento-a-depositantes">API - Operações de Crédito - Adiantamento a Depositantes - v1.0.4</h1>
 
 |Versão|
 |:-----|
@@ -6269,7 +6285,7 @@ Tags: [Adiantamento a Depositante (Unarranged Account Overdraft)](#glossarioAdia
 |429|[Too Many Requests](https://tools.ietf.org/html/rfc6585#section-4)|A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido|[ResponseError](#schemaresponseerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Ocorreu um erro no gateway da API ou no microsserviço|[ResponseError](#schemaresponseerror)|
 
-<h1 id="fase-2-apis-do-open-banking-brasil-api-opera-es-de-cr-dito-direitos-credit-rios-descontados">API - Operações de Crédito - Direitos Creditórios Descontados</h1>
+<h1 id="fase-2-apis-do-open-banking-brasil-api-opera-es-de-cr-dito-direitos-credit-rios-descontados">API - Operações de Crédito - Direitos Creditórios Descontados - v1.0.4</h1>
 
 |Versão|
 |:-----|
@@ -7651,7 +7667,7 @@ Conjunto de informações relativas a Identificação ou seja a ação e o efeit
 |ibgeTownCode|string|false|Código IBGE de Município. A Tabela de Códigos de Municípios do IBGE apresenta a lista dos municípios brasileiros associados a um código composto de 7 dígitos, sendo os dois primeiros referentes ao código da Unidade da Federação.|
 |countrySubDivision|[EnumCountrySubDivision](#schemaenumcountrysubdivision)|true|Enumeração referente a cada sigla da unidade da federação que identifica o estado ou o distrito federal, no qual o endereço está localizado. p.ex. 'AC'. São consideradas apenas as siglas para os estados brasileiros|
 |postCode|string|true|Código de Endereçamento Postal: Composto por um conjunto numérico de oito dígitos, o objetivo principal do CEP é orientar e acelerar o encaminhamento, o tratamento e a entrega de objetos postados nos Correios, por meio da sua atribuição a localidades, logradouros, unidades dos Correios, serviços, órgãos públicos, empresas e edifícios. p.ex. '01311000'|
-|country|string|true|Nome do país|
+|country|string|true|Nome do país<br><br>[Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.|
 |countryCode|string|false|Código do pais de acordo com o código “alpha3” do ISO-3166|
 |geographicCoordinates|[GeographicCoordinates](#schemageographiccoordinates)|false|Conjunto de informações, que correspondem aos valores das coordenadas geográficas em graus decimais, no Sistema de referência WGS84|
 
@@ -7693,19 +7709,19 @@ Conjunto de informações relativas a Identificação ou seja a ação e o efeit
   "updateDateTime": "2021-05-21T08:30:00Z",
   "economicActivities": [
     {
-      "code": 8599604,
+      "code": "8599604",
       "isMain": true
     }
   ],
   "informedRevenue": {
     "frequency": "DIARIA",
     "frequencyAdditionalInfo": "Informações adicionais",
-    "amount": 100000.04,
+    "amount": "100000.0400",
     "currency": "BRL",
     "year": 2010
   },
   "informedPatrimony": {
-    "amount": 100000.04,
+    "amount": "100000.0400",
     "currency": "BRL",
     "date": "2021-05-21"
   }
@@ -7724,11 +7740,11 @@ Objeto que reúne as informações relativas ao processo de qualificação. Cons
 |informedRevenue|object|true||
 |» frequency|[EnumInformedRevenueFrequency](#schemaenuminformedrevenuefrequency)|true|Traz a frequência ou período do faturamento informado.<br>"O faturamento é calculado a partir de todos os benefícios que a empresa conseguiu com sua atividade econômica em um determinado período. Esses benefícios são os rendimentos ou ganhos da organização através de suas vendas ou serviços prestados".|
 |» frequencyAdditionalInfo|string|false|Texto livre para complementar informação relativa ao patrimonio. <br>[Restrição] Preencher quando frequency for igual OUTROS.|
-|» amount|number(double)¦null|true|Valor do patrimônio informado. Expresso em valor monetário com 4 casas decimais.<br>Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.|
+|» amount|string¦null|true|Valor do patrimônio informado. Expresso em valor monetário com 4 casas decimais.<br>Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.|
 |» currency|string|true|Moeda referente ao valor do patrimônio, segundo modelo ISO-4217.|
 |» year|number¦null|false|Ano de referência do Patrimônio, conforme especificação RFC-3339.|
 |informedPatrimony|object|true||
-|» amount|number(double)¦null|true|Valor do patrimônio informado. Expresso em valor monetário com 4 casas decimais.<br>Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.|
+|» amount|string|true|Valor do patrimônio informado. Expresso em valor monetário com 4 casas decimais.<br>Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.|
 |» currency|string|true|Moeda referente ao valor do patrimônio, segundo modelo ISO-4217.|
 |» date|string(date)|true|Data de referência do Patrimônio, conforme especificação RFC-3339.|
 
@@ -8226,7 +8242,7 @@ Conjunto de informações referentes à identificação da conta de pagamento p�
 
 ```json
 {
-  "code": 8599604,
+  "code": "8599604",
   "isMain": true
 }
 
@@ -8236,7 +8252,7 @@ Conjunto de informações referentes à identificação da conta de pagamento p�
 
 |Nome|Tipo|Obrigatório|Descrição|
 |---|---|---|---|---|
-|code|number|true|Traz o código do ramo da atividade principal da empresa consultada, segundo padrão CNAE (Classificação Nacional de Atividades Econômicas)|
+|code|string|true|Traz o código do ramo da atividade principal da empresa consultada, segundo padrão CNAE (Classificação Nacional de Atividades Econômicas)|
 |isMain|boolean|true|Indica se é o ramo principal de atividade da empresa quando true e se é o ramo secundário quando false.|
 
 <h2 id="tocS_EnumAccountSubType">EnumAccountSubType</h2>
@@ -12784,12 +12800,12 @@ Conjunto de informações relativas a Identificação ou seja a ação e o efeit
   "occupationDescription": "01",
   "informedIncome": {
     "frequency": "DIARIA",
-    "amount": 100000.04,
+    "amount": "100000.0400",
     "currency": "BRL",
     "date": "2021-05-21"
   },
   "informedPatrimony": {
-    "amount": 100000.04,
+    "amount": "100000.0400",
     "currency": "BRL",
     "year": 2010
   }
@@ -12809,11 +12825,11 @@ Conjunto de informações relativas ao processo de qualificação. Considera-se 
 |occupationDescription|string|true|Campo livre, de preenchimento obrigatório. Traz o código da ocupação ou o descritivo da ocupação, se selecionada a opção 'OUTRO'|
 |informedIncome|object|true||
 |» frequency|[EnumInformedIncomeFrequency](#schemaenuminformedincomefrequency)|true|Traz a frequência ou período da renda informada.|
-|» amount|number(double)¦null|true|Valor total da renda informada. Expresso em valor monetário com 4 casas decimais. <br>Renda primária indica os montantes a pagar ou a receber em troca do uso temporário de recursos financeiros, trabalho ou ativos não financeiros não produzidos, a saber, remuneração de trabalhadores, renda de investimentos e demais rendas primárias.<br>Fazem parte da primeira a remuneração do trabalho assalariado (salários e ordenados); da segunda, renda de investimento direto, renda de investimento em carteira, renda de outros investimentos e renda de ativos de reserva; e da terceira, tributos sobre a produção e importação, subsídios e aluguéis.<br>Fonte: Banco Central do Brasil – Departamento Econômico|
+|» amount|string|true|Valor total da renda informada. Expresso em valor monetário com 4 casas decimais. <br>Renda primária indica os montantes a pagar ou a receber em troca do uso temporário de recursos financeiros, trabalho ou ativos não financeiros não produzidos, a saber, remuneração de trabalhadores, renda de investimentos e demais rendas primárias.<br>Fazem parte da primeira a remuneração do trabalho assalariado (salários e ordenados); da segunda, renda de investimento direto, renda de investimento em carteira, renda de outros investimentos e renda de ativos de reserva; e da terceira, tributos sobre a produção e importação, subsídios e aluguéis.<br>Fonte: Banco Central do Brasil – Departamento Econômico|
 |» currency|string|true|Moeda referente ao valor da renda, segundo modelo ISO-4217.|
 |» date|string(date)|true|Data da renda, conforme especificação RFC-3339.|
 |informedPatrimony|object|true||
-|» amount|number(double)¦null|true|Valor do patrimônio informado. Expresso em valor monetário com 4 casas decimais.<br>Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.|
+|» amount|string¦null|true|Valor do patrimônio informado. Expresso em valor monetário com 4 casas decimais.<br>Patrimônio é o conjunto de bens vinculado a uma pessoa ou a uma entidade.|
 |» currency|string|true|Moeda referente ao valor do patrimônio, segundo modelo ISO-4217.|
 |» year|number¦null|true|Ano de referência do Patrimônio, conforme especificação RFC-3339.|
 
@@ -13218,19 +13234,19 @@ Conjunto de informações relativas ao processo de qualificação. Considera-se 
     "updateDateTime": "2021-05-21T08:30:00Z",
     "economicActivities": [
       {
-        "code": 8599604,
+        "code": "8599604",
         "isMain": true
       }
     ],
     "informedRevenue": {
       "frequency": "DIARIA",
       "frequencyAdditionalInfo": "Informações adicionais",
-      "amount": 100000.04,
+      "amount": "100000.0400",
       "currency": "BRL",
       "year": 2010
     },
     "informedPatrimony": {
-      "amount": 100000.04,
+      "amount": "100000.0400",
       "currency": "BRL",
       "date": "2021-05-21"
     }
@@ -14656,12 +14672,12 @@ Conjunto de informações relativas ao processo de qualificação. Considera-se 
     "occupationDescription": "01",
     "informedIncome": {
       "frequency": "DIARIA",
-      "amount": 100000.04,
+      "amount": "100000.0400",
       "currency": "BRL",
       "date": "2021-05-21"
     },
     "informedPatrimony": {
-      "amount": 100000.04,
+      "amount": "100000.0400",
       "currency": "BRL",
       "year": 2010
     }
