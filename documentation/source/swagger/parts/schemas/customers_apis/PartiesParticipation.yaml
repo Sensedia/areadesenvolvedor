@@ -73,9 +73,14 @@ properties:
     description: Campo livre, de preenchimento obrigatório quando o documento informado tiver informações complementares relevantes para a sua identificação
   documentCountry:
     type: string
+    minLength: 2
     maxLength: 3
+    pattern: '^\w{2}[\w\W\s]*$'
     example: CAN
-    description: País de emissão do documento. Código do pais de acordo com o código alpha3 do ISO-3166.
+    description: |
+      País de emissão do documento. Código do pais de acordo com o código alpha3 do ISO-3166.
+
+      [Regra de negócio] Caso a transmissora não possua a informação deverá retornar "NA" neste campo.
   documentExpirationDate:
     type: string
     format: date
