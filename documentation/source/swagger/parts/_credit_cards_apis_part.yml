@@ -340,6 +340,8 @@ components:
       $ref: ./schemas/credit_cards_apis/CreditCardsAccountsPaymentMethod.yaml
     CreditCardAccountsTransaction:
       $ref: ./schemas/credit_cards_apis/CreditCardAccountsTransaction.yaml
+    CreditCardAccountsTransactionAmount:
+      $ref: ./schemas/credit_cards_apis/CreditCardAccountsTransactionAmount.yaml
     EnumCreditCardAccountFee:
       $ref: ./schemas/enum/EnumCreditCardAccountFee.yaml
     EnumCreditCardAccountsBillingValueType:
