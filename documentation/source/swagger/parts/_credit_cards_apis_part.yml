@@ -74,26 +74,26 @@ paths:
         - $ref: "#/components/parameters/page"
         - $ref: "#/components/parameters/pageSize"
       responses:
-        "200":
-          $ref: "#/components/responses/OKResponseCreditCardAccountsList"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "405":
-          $ref: "#/components/responses/MethodNotAllowed"
-        "406":
-          $ref: "#/components/responses/NotAcceptable"
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-        default:
-          $ref: "#/components/responses/OKResponseCreditCardAccountsList"
+        '200':
+          $ref: '#/components/responses/OKResponseCreditCardAccountsList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
       security:
         - OpenId:
             - "openid"
@@ -115,26 +115,26 @@ paths:
         - $ref: "#/components/parameters/xCustomerUserAgent"
         - $ref: "#/components/parameters/creditCardAccountId"
       responses:
-        "200":
-          $ref: "#/components/responses/OKResponseCreditCardAccountsIdentification"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "405":
-          $ref: "#/components/responses/MethodNotAllowed"
-        "406":
-          $ref: "#/components/responses/NotAcceptable"
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-        default:
-          $ref: "#/components/responses/OKResponseCreditCardAccountsIdentification"
+        '200':
+          $ref: '#/components/responses/OKResponseCreditCardAccountsIdentification'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
       security:
         - OpenId:
             - "openid"
@@ -160,26 +160,26 @@ paths:
         - $ref: "#/components/parameters/fromDueDate"
         - $ref: "#/components/parameters/toDueDate"
       responses:
-        "200":
-          $ref: "#/components/responses/OKResponseCreditCardAccountsBills"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "405":
-          $ref: "#/components/responses/MethodNotAllowed"
-        "406":
-          $ref: "#/components/responses/NotAcceptable"
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-        default:
-          $ref: "#/components/responses/OKResponseCreditCardAccountsBills"
+        '200':
+          $ref: '#/components/responses/OKResponseCreditCardAccountsBills'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
       security:
         - OpenId:
             - "openid"
@@ -208,26 +208,26 @@ paths:
         - $ref: "#/components/parameters/creditCardTransactionType"
         - $ref: "#/components/parameters/creditCardPayeeMCC"
       responses:
-        "200":
-          $ref: "#/components/responses/OKResponseCreditCardAccountsTransactions"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "405":
-          $ref: "#/components/responses/MethodNotAllowed"
-        "406":
-          $ref: "#/components/responses/NotAcceptable"
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-        default:
-          $ref: "#/components/responses/OKResponseCreditCardAccountsTransactions"
+        '200':
+          $ref: '#/components/responses/OKResponseCreditCardAccountsTransactions'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
       security:
         - OpenId:
             - "openid"
@@ -249,26 +249,26 @@ paths:
         - $ref: "#/components/parameters/xCustomerUserAgent"
         - $ref: "#/components/parameters/creditCardAccountId"
       responses:
-        "200":
-          $ref: "#/components/responses/OKResponseCreditCardAccountsLimits"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "405":
-          $ref: "#/components/responses/MethodNotAllowed"
-        "406":
-          $ref: "#/components/responses/NotAcceptable"
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-        default:
-          $ref: "#/components/responses/OKResponseCreditCardAccountsLimits"
+        '200':
+          $ref: '#/components/responses/OKResponseCreditCardAccountsLimits'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
       security:
         - OpenId:
             - "openid"
@@ -296,26 +296,26 @@ paths:
         - $ref: "#/components/parameters/creditCardTransactionType"
         - $ref: "#/components/parameters/creditCardPayeeMCC"
       responses:
-        "200":
-          $ref: "#/components/responses/OKResponseCreditCardAccountsTransactions"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "405":
-          $ref: "#/components/responses/MethodNotAllowed"
-        "406":
-          $ref: "#/components/responses/NotAcceptable"
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-        default:
-          $ref: "#/components/responses/OKResponseCreditCardAccountsTransactions"
+        '200':
+          $ref: '#/components/responses/OKResponseCreditCardAccountsTransactions'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
       security:
         - OpenId:
             - "openid"
@@ -521,6 +521,8 @@ components:
         application/json; charset=utf-8:
           schema:
             $ref: ./schemas/ResponseError.yaml
+    UnprocessableEntity:
+      $ref: ./responses/UnprocessableEntity.yaml
     Unauthorized:
       description: Cabeçalho de autenticação ausente/inválido ou token inválido
       content:
