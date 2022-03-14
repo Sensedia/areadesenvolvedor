@@ -350,8 +350,6 @@ components:
       $ref: ./schemas/enum/EnumCreditCardAccountsFinanceChargeType.yaml
     EnumCreditCardAccountsLineLimitType:
       $ref: ./schemas/enum/EnumCreditCardAccountsLineLimitType.yaml
-    EnumCreditCardAccountsLineName:
-      $ref: ./schemas/enum/EnumCreditCardAccountsLineName.yaml
     EnumCreditCardAccountNetwork:
       $ref: ./schemas/enum/EnumCreditCardAccountNetwork.yaml
     EnumCreditCardAccountsOtherCreditType:
