@@ -15,9 +15,12 @@ properties:
   address:
     type: string
     maxLength: 150
-    pattern: '[\w\W\s]*'
+    pattern: '[\w*\W*]'
     example: Av Naburo Ykesaki, 1270
-    description: Corresponde ao endereço comercial do cliente
+    description: |
+      Corresponde ao endereço comercial do cliente
+
+      [Regra de negócio] Caso a transmissora não possua a informação deverá retornar "NA" neste campo.
   additionalInfo:
     type: string
     maxLength: 30
