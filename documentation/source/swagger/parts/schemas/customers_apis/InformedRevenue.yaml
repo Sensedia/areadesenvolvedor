@@ -13,7 +13,8 @@ properties:
     minItems: 0
     example: Informações adicionais
     description: |
-      Texto livre para complementar informação relativa ao patrimonio. 
+      Texto livre para complementar informação relativa ao patrimonio.
+      
       [Restrição] Preencher quando frequency for igual OUTROS.
   amount:
     type: number
