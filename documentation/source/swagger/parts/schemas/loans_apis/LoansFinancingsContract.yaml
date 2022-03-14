@@ -146,6 +146,7 @@ properties:
     type: array
     items:
       $ref: ./LoansFinancingsContractInterestRate.yaml
+    minItems: 0
   contractedFees:
     type: array
     items:

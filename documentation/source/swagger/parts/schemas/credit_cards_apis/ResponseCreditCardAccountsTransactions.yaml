@@ -6,10 +6,10 @@ required:
 properties:
   data:
     type: array
-    items: 
+    items:
       $ref: ./CreditCardAccountsTransaction.yaml
   links:
-    $ref: ../Links.yaml
+    $ref: Links_fase2_credit_cards.yaml
   meta:
     $ref: ../Meta.yaml
 additionalProperties: false
