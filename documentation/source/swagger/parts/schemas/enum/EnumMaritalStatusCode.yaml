@@ -11,3 +11,5 @@ enum:
 example: "SOLTEIRO"
 description: |
   Estado marital do cliente.
+
+  [Restrição] Preenchimento obrigatório quando selecionado o tipo 'OUTRO'.

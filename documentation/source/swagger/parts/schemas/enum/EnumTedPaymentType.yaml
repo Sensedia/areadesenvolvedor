@@ -1,0 +1,7 @@
+type: string
+maxLength: 3
+enum:
+  - TED
+example: TED
+description: |
+  Este campo define o tipo de pagamento que será iniciado após a autorização do consentimento.

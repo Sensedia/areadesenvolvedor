@@ -9,7 +9,7 @@ properties:
     items:
       $ref: ./FinancingsListContract.yaml
   links:
-    $ref: ../Links.yaml
+    $ref: Links_fase2_financings.yaml
   meta:
     $ref: ../Meta.yaml
 additionalProperties: false

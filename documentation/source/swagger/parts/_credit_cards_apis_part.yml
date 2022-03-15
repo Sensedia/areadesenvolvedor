@@ -44,15 +44,15 @@ info:
   version: 1.0.4
   license:
     name: Apache 2.0
-    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+    url: "https://www.apache.org/licenses/LICENSE-2.0"
   contact:
     name: Governança do Open Banking Brasil – Especificações
     email: gt-interfaces@openbankingbr.org
-    url: 'https://openbanking-brasil.github.io/areadesenvolvedor/'
+    url: "https://openbanking-brasil.github.io/areadesenvolvedor/"
 servers:
-  - url: 'https://api.banco.com.br/open-banking/credit-cards-accounts/v1'
+  - url: "https://api.banco.com.br/open-banking/credit-cards-accounts/v1"
     description: Servidor de Produção
-  - url: 'https://apih.banco.com.br/open-banking/credit-cards-accounts/v1'
+  - url: "https://apih.banco.com.br/open-banking/credit-cards-accounts/v1"
     description: Servidor de Homologação
 tags:
   - name: Credit Card
@@ -66,13 +66,13 @@ paths:
       operationId: creditCardsGetAccounts
       description: Método para obter a lista de contas de pagamento pós-paga mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento
       parameters:
-        - $ref: '#/components/parameters/Authorization'
-        - $ref: '#/components/parameters/xFapiAuthDate'
-        - $ref: '#/components/parameters/xFapiCustomerIpAddress'
-        - $ref: '#/components/parameters/xFapiInteractionId'
-        - $ref: '#/components/parameters/xCustomerUserAgent'
-        - $ref: '#/components/parameters/page'
-        - $ref: '#/components/parameters/pageSize'
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/xFapiAuthDate"
+        - $ref: "#/components/parameters/xFapiCustomerIpAddress"
+        - $ref: "#/components/parameters/xFapiInteractionId"
+        - $ref: "#/components/parameters/xCustomerUserAgent"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
       responses:
         '200':
           $ref: '#/components/responses/OKResponseCreditCardAccountsList'
@@ -88,18 +88,18 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseCreditCardAccountsList'
       security:
         - OpenId:
-            - 'openid'
+            - "openid"
           OAuth2Security:
-            - 'consent:consentId'
-            - 'credit-cards-accounts'
+            - "consent:consentId"
+            - "credit-cards-accounts"
   /accounts/{creditCardAccountId}:
     get:
       tags:
@@ -108,12 +108,12 @@ paths:
       operationId: creditCardsGetAccountsCreditCardAccountId
       description: Método para obter os dados de identificação da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.
       parameters:
-        - $ref: '#/components/parameters/Authorization'
-        - $ref: '#/components/parameters/xFapiAuthDate'
-        - $ref: '#/components/parameters/xFapiCustomerIpAddress'
-        - $ref: '#/components/parameters/xFapiInteractionId'
-        - $ref: '#/components/parameters/xCustomerUserAgent'
-        - $ref: '#/components/parameters/creditCardAccountId'
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/xFapiAuthDate"
+        - $ref: "#/components/parameters/xFapiCustomerIpAddress"
+        - $ref: "#/components/parameters/xFapiInteractionId"
+        - $ref: "#/components/parameters/xCustomerUserAgent"
+        - $ref: "#/components/parameters/creditCardAccountId"
       responses:
         '200':
           $ref: '#/components/responses/OKResponseCreditCardAccountsIdentification'
@@ -129,18 +129,18 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseCreditCardAccountsIdentification'
       security:
         - OpenId:
-            - 'openid'
+            - "openid"
           OAuth2Security:
-            - 'consent:consentId'
-            - 'credit-cards-accounts'
+            - "consent:consentId"
+            - "credit-cards-accounts"
   /accounts/{creditCardAccountId}/bills:
     get:
       tags:
@@ -149,16 +149,16 @@ paths:
       description: Método para obter a lista de faturas da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.
       operationId: creditCardsGetAccountsCreditCardAccountIdBills
       parameters:
-        - $ref: '#/components/parameters/Authorization'
-        - $ref: '#/components/parameters/xFapiAuthDate'
-        - $ref: '#/components/parameters/xFapiCustomerIpAddress'
-        - $ref: '#/components/parameters/xFapiInteractionId'
-        - $ref: '#/components/parameters/xCustomerUserAgent'
-        - $ref: '#/components/parameters/creditCardAccountId'
-        - $ref: '#/components/parameters/page'
-        - $ref: '#/components/parameters/pageSize'
-        - $ref: '#/components/parameters/fromDueDate'
-        - $ref: '#/components/parameters/toDueDate'
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/xFapiAuthDate"
+        - $ref: "#/components/parameters/xFapiCustomerIpAddress"
+        - $ref: "#/components/parameters/xFapiInteractionId"
+        - $ref: "#/components/parameters/xCustomerUserAgent"
+        - $ref: "#/components/parameters/creditCardAccountId"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/fromDueDate"
+        - $ref: "#/components/parameters/toDueDate"
       responses:
         '200':
           $ref: '#/components/responses/OKResponseCreditCardAccountsBills'
@@ -174,18 +174,18 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseCreditCardAccountsBills'
       security:
         - OpenId:
-            - 'openid'
+            - "openid"
           OAuth2Security:
-            - 'consent:consentId'
-            - 'credit-cards-accounts'
+            - "consent:consentId"
+            - "credit-cards-accounts"
   /accounts/{creditCardAccountId}/bills/{billId}/transactions:
     get:
       tags:
@@ -194,19 +194,19 @@ paths:
       operationId: creditCardsGetAccountsCreditCardAccountIdBillsBillIdTransactions
       description: Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId e billId mantida pelo cliente na instituição transmissora.
       parameters:
-        - $ref: '#/components/parameters/Authorization'
-        - $ref: '#/components/parameters/xFapiAuthDate'
-        - $ref: '#/components/parameters/xFapiCustomerIpAddress'
-        - $ref: '#/components/parameters/xFapiInteractionId'
-        - $ref: '#/components/parameters/xCustomerUserAgent'
-        - $ref: '#/components/parameters/creditCardAccountId'
-        - $ref: '#/components/parameters/billId'
-        - $ref: '#/components/parameters/page'
-        - $ref: '#/components/parameters/pageSize'
-        - $ref: '#/components/parameters/fromTransactionDate'
-        - $ref: '#/components/parameters/toTransactionDate'
-        - $ref: '#/components/parameters/creditCardTransactionType'
-        - $ref: '#/components/parameters/creditCardPayeeMCC'
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/xFapiAuthDate"
+        - $ref: "#/components/parameters/xFapiCustomerIpAddress"
+        - $ref: "#/components/parameters/xFapiInteractionId"
+        - $ref: "#/components/parameters/xCustomerUserAgent"
+        - $ref: "#/components/parameters/creditCardAccountId"
+        - $ref: "#/components/parameters/billId"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/fromTransactionDate"
+        - $ref: "#/components/parameters/toTransactionDate"
+        - $ref: "#/components/parameters/creditCardTransactionType"
+        - $ref: "#/components/parameters/creditCardPayeeMCC"
       responses:
         '200':
           $ref: '#/components/responses/OKResponseCreditCardAccountsTransactions'
@@ -222,18 +222,18 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseCreditCardAccountsTransactions'
       security:
         - OpenId:
-            - 'openid'
+            - "openid"
           OAuth2Security:
-            - 'consent:consentId'
-            - 'credit-cards-accounts'
+            - "consent:consentId"
+            - "credit-cards-accounts"
   /accounts/{creditCardAccountId}/limits:
     get:
       tags:
@@ -242,12 +242,12 @@ paths:
       operationId: creditCardsGetAccountsCreditCardAccountIdLimits
       description: Método para obter os limites da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.
       parameters:
-        - $ref: '#/components/parameters/Authorization'
-        - $ref: '#/components/parameters/xFapiAuthDate'
-        - $ref: '#/components/parameters/xFapiCustomerIpAddress'
-        - $ref: '#/components/parameters/xFapiInteractionId'
-        - $ref: '#/components/parameters/xCustomerUserAgent'
-        - $ref: '#/components/parameters/creditCardAccountId'
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/xFapiAuthDate"
+        - $ref: "#/components/parameters/xFapiCustomerIpAddress"
+        - $ref: "#/components/parameters/xFapiInteractionId"
+        - $ref: "#/components/parameters/xCustomerUserAgent"
+        - $ref: "#/components/parameters/creditCardAccountId"
       responses:
         '200':
           $ref: '#/components/responses/OKResponseCreditCardAccountsLimits'
@@ -263,18 +263,18 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseCreditCardAccountsLimits'
       security:
         - OpenId:
-            - 'openid'
+            - "openid"
           OAuth2Security:
-            - 'consent:consentId'
-            - 'credit-cards-accounts'
+            - "consent:consentId"
+            - "credit-cards-accounts"
   /accounts/{creditCardAccountId}/transactions:
     get:
       tags:
@@ -283,18 +283,18 @@ paths:
       operationId: creditCardsGetAccountsCreditCardAccountIdTransactions
       description: Método para obter a lista de transações da conta de pagamento pós-paga identificada por creditCardAccountId mantida pelo cliente na instituição transmissora.
       parameters:
-        - $ref: '#/components/parameters/Authorization'
-        - $ref: '#/components/parameters/xFapiAuthDate'
-        - $ref: '#/components/parameters/xFapiCustomerIpAddress'
-        - $ref: '#/components/parameters/xFapiInteractionId'
-        - $ref: '#/components/parameters/xCustomerUserAgent'
-        - $ref: '#/components/parameters/creditCardAccountId'
-        - $ref: '#/components/parameters/page'
-        - $ref: '#/components/parameters/pageSize'
-        - $ref: '#/components/parameters/fromTransactionDate'
-        - $ref: '#/components/parameters/toTransactionDate'
-        - $ref: '#/components/parameters/creditCardTransactionType'
-        - $ref: '#/components/parameters/creditCardPayeeMCC'
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/xFapiAuthDate"
+        - $ref: "#/components/parameters/xFapiCustomerIpAddress"
+        - $ref: "#/components/parameters/xFapiInteractionId"
+        - $ref: "#/components/parameters/xCustomerUserAgent"
+        - $ref: "#/components/parameters/creditCardAccountId"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/fromTransactionDate"
+        - $ref: "#/components/parameters/toTransactionDate"
+        - $ref: "#/components/parameters/creditCardTransactionType"
+        - $ref: "#/components/parameters/creditCardPayeeMCC"
       responses:
         '200':
           $ref: '#/components/responses/OKResponseCreditCardAccountsTransactions'
@@ -310,18 +310,18 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseCreditCardAccountsTransactions'
       security:
         - OpenId:
-            - 'openid'
+            - "openid"
           OAuth2Security:
-            - 'consent:consentId'
-            - 'credit-cards-accounts'
+            - "consent:consentId"
+            - "credit-cards-accounts"
 components:
   schemas:
     CreditCardsAccountsIdentificationData:
@@ -350,8 +350,6 @@ components:
       $ref: ./schemas/enum/EnumCreditCardAccountsFinanceChargeType.yaml
     EnumCreditCardAccountsLineLimitType:
       $ref: ./schemas/enum/EnumCreditCardAccountsLineLimitType.yaml
-    EnumCreditCardAccountsLineName:
-      $ref: ./schemas/enum/EnumCreditCardAccountsLineName.yaml
     EnumCreditCardAccountNetwork:
       $ref: ./schemas/enum/EnumCreditCardAccountNetwork.yaml
     EnumCreditCardAccountsOtherCreditType:
@@ -367,7 +365,7 @@ components:
     EnumCreditDebitIndicator:
       $ref: ./schemas/enum/EnumCreditDebitIndicator.yaml
     Links:
-      $ref: ./schemas/Links.yaml
+      $ref: ./schemas/credit_cards_apis/Links_fase2_credit_cards.yaml
     Meta:
       $ref: ./schemas/Meta.yaml
     ResponseCreditCardAccountsList:
@@ -418,7 +416,7 @@ components:
   securitySchemes:
     OpenId:
       type: openIdConnect
-      openIdConnectUrl: 'https://auth.mockbank.poc.raidiam.io/.well-known/openid-configuration'
+      openIdConnectUrl: "https://auth.mockbank.poc.raidiam.io/.well-known/openid-configuration"
     OAuth2Security:
       type: oauth2
       description: "Fluxo OAuth necessário para que a receptora tenha acesso aos dados na instituição transmissora. Requer o processo de redirecionamento e autenticação do usuário a que se referem os dados."
@@ -434,7 +432,7 @@ components:
       headers:
         x-fapi-interaction-id:
           schema:
-            $ref: '#/components/schemas/XFapiInteractionId'
+            $ref: "#/components/schemas/XFapiInteractionId"
       content:
         application/json:
           schema:
@@ -444,7 +442,7 @@ components:
       headers:
         x-fapi-interaction-id:
           schema:
-            $ref: '#/components/schemas/XFapiInteractionId'
+            $ref: "#/components/schemas/XFapiInteractionId"
       content:
         application/json:
           schema:
@@ -454,7 +452,7 @@ components:
       headers:
         x-fapi-interaction-id:
           schema:
-            $ref: '#/components/schemas/XFapiInteractionId'
+            $ref: "#/components/schemas/XFapiInteractionId"
       content:
         application/json:
           schema:
@@ -464,7 +462,7 @@ components:
       headers:
         x-fapi-interaction-id:
           schema:
-            $ref: '#/components/schemas/XFapiInteractionId'
+            $ref: "#/components/schemas/XFapiInteractionId"
       content:
         application/json:
           schema:
@@ -474,13 +472,13 @@ components:
       headers:
         x-fapi-interaction-id:
           schema:
-            $ref: '#/components/schemas/XFapiInteractionId'
+            $ref: "#/components/schemas/XFapiInteractionId"
       content:
         application/json:
           schema:
             $ref: ./schemas/credit_cards_apis/ResponseCreditCardAccountsTransactions.yaml
     BadRequest:
-      description: 'A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.'
+      description: "A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL."
       content:
         application/json; charset=utf-8:
           schema:
@@ -516,11 +514,13 @@ components:
           schema:
             $ref: ./schemas/ResponseError.yaml
     TooManyRequests:
-      description: 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido'
+      description: "A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido"
       content:
         application/json; charset=utf-8:
           schema:
             $ref: ./schemas/ResponseError.yaml
+    UnprocessableEntity:
+      $ref: ./responses/UnprocessableEntity.yaml
     Unauthorized:
       description: Cabeçalho de autenticação ausente/inválido ou token inválido
       content:
