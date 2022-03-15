@@ -3,8 +3,10 @@ maxLength: 15
 enum:
   - PESSOA_NATURAL
   - PESSOA_JURIDICA
+  - NAO_SE_APLICA
 example: PESSOA_NATURAL
 description: |
-  Identificação do Tipo de Pessoa da pessoa envolvida na transação.
-  Pessoa Natural - Informar CPF no campo “payerCnpjCpf”
-  Pessoa Jurídica - Informar CNPJ no campo “payerCnpjCpf”
+  Identificação do Tipo de Pessoa da pessoa envolvida na transação.   
+  Pessoa Natural - Informar CPF no campo “payerCnpjCpf”.   
+  Pessoa Jurídica - Informar CNPJ no campo “payerCnpjCpf”.   
+  Não se aplica - Desconsiderar a informação do campo caso os campos partieCnpjCpf e partieCompeCode sejam igual a 'NA'.
