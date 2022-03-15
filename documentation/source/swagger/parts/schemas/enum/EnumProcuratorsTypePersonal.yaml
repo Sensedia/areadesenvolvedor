@@ -3,7 +3,7 @@ maxLength: 19
 enum:
   - REPRESENTANTE_LEGAL
   - PROCURADOR
-  - NAO_APLICA
+  - NAO_POSSUI
 example: PROCURADOR
 description: |
   Tipo de representante.
