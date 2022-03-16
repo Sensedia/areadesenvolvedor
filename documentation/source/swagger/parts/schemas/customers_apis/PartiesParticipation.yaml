@@ -79,7 +79,7 @@ properties:
     description: |
       País de emissão do documento. Código do pais de acordo com o código alpha3 do ISO-3166.
 
-      [Regra de negócio] Caso a transmissora não possua a informação deverá retornar "NA" neste campo.
+      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
   documentExpirationDate:
     type: string
     format: date
