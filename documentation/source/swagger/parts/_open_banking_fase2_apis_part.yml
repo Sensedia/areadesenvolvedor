@@ -3014,6 +3014,8 @@ components:
       $ref: ./schemas/credit_cards_apis/CreditCardsAccountsPaymentMethod.yaml
     CreditCardsAccountsIdentificationData:
       $ref: ./schemas/credit_cards_apis/CreditCardsAccountsIdentificationData.yaml
+    CreditCardAccountsTransactionAmount:
+      $ref: ./schemas/credit_cards_apis/CreditCardAccountsTransactionAmount.yaml
     CustomerEmail:
       $ref: ./schemas/customers_apis/CustomerEmail.yaml
     CustomerPhone:
