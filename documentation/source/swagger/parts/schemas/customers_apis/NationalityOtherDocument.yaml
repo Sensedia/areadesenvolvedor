@@ -37,9 +37,9 @@ properties:
     pattern: '[\w*\W*]'
     example: Brasil
     description: |
-      Nome do país
+      Nome do país.
 
-      [Restrição] Informação deve ser enviada de forma mandatória quando existente e caso a transmissora não a possua deve informar "NA".
+      Informação deve ser enviada de forma mandatória quando existente e caso a transmissora não a possua deve informar "NA".
   typeAdditionalInfo:
     type: string
     maxLength: 70
