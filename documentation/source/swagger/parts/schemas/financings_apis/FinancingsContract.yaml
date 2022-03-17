@@ -64,9 +64,7 @@ properties:
   disbursementDate:
     type: array
     description: |
-      Lista que traz as de Desembolso do valor contratado.
-
-      No caso de uma liberação de recursos feita em D0 mas com referência retroativa feita em D -1, contabilmente a data correta seria D -1.
+      Lista que traz as Datas de Desembolso do valor contratado.
     items:
       type: string
       format: date
