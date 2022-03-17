@@ -62,7 +62,7 @@ properties:
     maxLength: 50
     example: "Casado"
     description: |
-      Campo livre para complementar a informação relativa ao estado marital, quando selecionada a opção 'OUTROS'.
+      Campo livre para complementar a informação relativa ao estado marital.
 
       [Restrição] Preenchimento obrigatório quando selecionado o tipo 'OUTRO'.
   sex:
