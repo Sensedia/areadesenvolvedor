@@ -9,7 +9,6 @@ required:
   - feeType
   - feeTypeAdditionalInfo
   - otherCreditsAdditionalInfo
-  - otherCreditsType
   - chargeIdentificator
   - chargeNumber
   - brazilianAmount
