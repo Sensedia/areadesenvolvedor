@@ -6,7 +6,7 @@ required:
   - creditDebitType
   - transactionType
   - transactionalAdditionalInfo
-  - feeType
+  - paymentType
   - feeTypeAdditionalInfo
   - otherCreditsType
   - chargeIdentificator
