@@ -7,6 +7,6 @@ enum:
   - DIVORCIADO
   - UNIAO_ESTAVEL
   - OUTRO
-example: 'SOLTEIRO'
+example: "SOLTEIRO"
 description: |
-  Estado marital do cliente. 
+  Estado marital do cliente.

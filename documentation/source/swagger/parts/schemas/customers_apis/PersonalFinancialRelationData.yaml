@@ -29,12 +29,13 @@ properties:
     maxItems: 12
   productsServicesTypeAdditionalInfo:
     type: string
-    pattern: '[\w\W\s]*'
+    pattern: '^\w{2}[\w\W\s]*$'
     maxLength: 100
+    minLength: 2
     example: Informações adicionais do tipo de serviço.
     description: |
       Informações adicionais do tipo de serviço.
-      [Restrição] Campo obrigatório quando productsServicesType for 'OUTROS'.
+      [Restrição] Campo obrigatório quando productsServicesType for 'OUTROS', caso contrário deve ser informado NA.
   procurators:
     type: array
     items:
