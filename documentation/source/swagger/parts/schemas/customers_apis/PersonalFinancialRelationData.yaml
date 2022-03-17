@@ -3,7 +3,6 @@ description: 'Objeto que reúne as informações relativas ao relacionamento do 
 required:
   - updateDateTime
   - startDate
-  - procurators
   - productsServicesType
   - accounts
 properties:
@@ -40,8 +39,10 @@ properties:
     type: array
     items:
       $ref: ./PersonalProcurator.yaml
-    minItems: 1
-    description: Lista dos representantes. De preenchimento obrigatório se houver representante.
+    minItems: 0
+    description: |
+      Lista dos representantes. 
+      [Restrição] De preenchimento obrigatório se houver representante. Informação deve ser enviada de forma mandatória quando existente, apesar do erro na especificação.
   accounts:
     type: array
     items:
