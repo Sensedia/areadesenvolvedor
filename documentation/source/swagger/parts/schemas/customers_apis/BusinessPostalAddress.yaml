@@ -7,6 +7,7 @@ required:
   - countrySubDivision
   - postCode
   - country
+  - countryCode
 properties:
   isMain:
     type: boolean
