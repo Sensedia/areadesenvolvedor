@@ -42,7 +42,7 @@ properties:
     minItems: 0
     description: |
       Lista dos representantes. 
-      [Restrição] De preenchimento obrigatório se houver representante. Informação deve ser enviada de forma mandatória quando existente, apesar do erro na especificação.
+      [Restrição] De preenchimento obrigatório se houver representante.
   accounts:
     type: array
     items:
