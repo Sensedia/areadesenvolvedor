@@ -38,10 +38,13 @@ properties:
   townName:
     type: string
     maxLength: 50
-    pattern: '[\w\W\s]*'
+    pattern: '^\w{2}[\w\W\s]*$'
+    minLength: 2
     example: Marília
     description: |
-      Localidade: O nome da localidade corresponde à designação da cidade ou município no qual o endereço está localizado.
+      Localidade: O nome da localidade corresponde à designação da cidade ou município no qual o endereço está localizado.  
+      
+      [Restrição] Caso a transmissora não possua a informação deverá retornar "NA" neste campo.
   ibgeTownCode:
     type: string
     pattern: \d{7}$
