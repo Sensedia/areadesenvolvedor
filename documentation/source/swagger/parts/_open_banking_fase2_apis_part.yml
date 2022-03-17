@@ -3029,6 +3029,8 @@ components:
       $ref: ./schemas/credit_cards_apis/CreditCardsAccountsIdentificationData.yaml
     CreditCardAccountsTransactionAmount:
       $ref: ./schemas/credit_cards_apis/CreditCardAccountsTransactionAmount.yaml
+    CreditCardAccountsTransactionBrazilianAmount:
+      $ref: ./schemas/credit_cards_apis/CreditCardAccountsTransactionBrazilianAmount.yaml
     CustomerEmail:
       $ref: ./schemas/customers_apis/CustomerEmail.yaml
     CustomerPhone:
