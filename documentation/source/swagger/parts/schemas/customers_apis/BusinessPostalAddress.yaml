@@ -29,8 +29,7 @@ properties:
     pattern: '\w*\W*'
     example: Centro
     description: |
-      Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas.   
-      [Restrição] Preenchimento obrigatório, se houver.
+      Bairro é uma comunidade ou região localizada em uma cidade ou município de acordo com as suas subdivisões geográficas. Preenchimento obrigatório, se houver.
   townName:
     type: string
     maxLength: 50
