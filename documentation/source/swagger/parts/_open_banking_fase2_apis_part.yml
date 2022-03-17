@@ -855,6 +855,8 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
@@ -923,6 +925,8 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
@@ -991,6 +995,8 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
@@ -1066,6 +1072,8 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
@@ -1137,6 +1145,8 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
@@ -1190,6 +1200,7 @@ paths:
         - $ref: '#/components/parameters/xFapiInteractionId'
         - $ref: '#/components/parameters/xCustomerUserAgent'
         - $ref: '#/components/parameters/creditCardAccountId'
+        - $ref: "#/components/parameters/billId"
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/pageSize'
         - $ref: '#/components/parameters/fromTransactionDate'
@@ -1211,6 +1222,8 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
@@ -3014,6 +3027,8 @@ components:
       $ref: ./schemas/credit_cards_apis/CreditCardsAccountsPaymentMethod.yaml
     CreditCardsAccountsIdentificationData:
       $ref: ./schemas/credit_cards_apis/CreditCardsAccountsIdentificationData.yaml
+    CreditCardAccountsTransactionAmount:
+      $ref: ./schemas/credit_cards_apis/CreditCardAccountsTransactionAmount.yaml
     CustomerEmail:
       $ref: ./schemas/customers_apis/CustomerEmail.yaml
     CustomerPhone:
@@ -3393,6 +3408,8 @@ components:
       $ref: ./parameters/AccountsType.yaml
     Authorization:
       $ref: ./parameters/Authorization.yaml
+    billId:
+      $ref: ./parameters/BillId.yaml
     contractId:
       $ref: ./parameters/ContractId.yaml
     creditDebitIndicator:
