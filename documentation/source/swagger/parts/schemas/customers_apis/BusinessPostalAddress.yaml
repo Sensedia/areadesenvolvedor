@@ -14,9 +14,13 @@ properties:
   address:
     type: string
     maxLength: 150
-    pattern: '[\w\W\s]*'
+    minLength: 2
+    pattern: '^\w{2}[\w\W\s]*$'
     example: Av Naburo Ykesaki, 1270
-    description: Corresponde ao endereço comercial do cliente
+    description: |
+      Corresponde ao endereço comercial do cliente.
+
+      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
   additionalInfo:
     type: string
     maxLength: 30
@@ -62,7 +66,7 @@ properties:
     type: string
     maxLength: 3
     example: BRA
-    description: "Código do pais de acordo com o código “alpha3” do ISO-3166"
+    description: 'Código do pais de acordo com o código “alpha3” do ISO-3166'
   geographicCoordinates:
     $ref: ../GeographicCoordinates.yaml
 additionalProperties: false
