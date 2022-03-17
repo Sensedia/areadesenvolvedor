@@ -326,6 +326,8 @@ components:
   schemas:
     CreditCardAccountsTransactionAmount:
       $ref: ./schemas/credit_cards_apis/CreditCardAccountsTransactionAmount.yaml
+    CreditCardAccountsTransactionBrazilianAmount:
+      $ref: ./schemas/credit_cards_apis/CreditCardAccountsTransactionBrazilianAmount.yaml
     CreditCardsAccountsIdentificationData:
       $ref: ./schemas/credit_cards_apis/CreditCardsAccountsIdentificationData.yaml
     CreditCardAccountsBillsData:
