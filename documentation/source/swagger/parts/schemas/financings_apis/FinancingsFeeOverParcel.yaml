@@ -9,13 +9,17 @@ properties:
     maxLength: 140
     pattern: '[\w\W\s]*'
     example: Reavaliação periódica do bem
-    description: Denominação da Tarifa pactuada
+    description: |
+      Denominação da Tarifa pactuada.
+      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
   feeCode:
     type: string
     maxLength: 140
     pattern: '[\w\W\s]*'
     example: aval_bem
-    description: Sigla identificadora da tarifa pactuada
+    description: |
+      Sigla identificadora da tarifa pactuada.  
+      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
   feeAmount:
     type: string
     pattern: '^-?\d{1,15}\.\d{2,4}$'

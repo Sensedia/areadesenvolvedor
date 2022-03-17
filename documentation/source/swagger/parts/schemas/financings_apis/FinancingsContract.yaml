@@ -63,6 +63,10 @@ properties:
     description: Data de contratação da operação de crédito. Especificação RFC-3339
   disbursementDate:
     type: array
+    description: |
+      Lista que traz as de Desembolso do valor contratado.
+
+      No caso de uma liberação de recursos feita em D0 mas com referência retroativa feita em D -1, contabilmente a data correta seria D -1.
     items:
       type: string
       format: date
@@ -73,7 +77,6 @@ properties:
         Data do Desembolso do valor contratado. Especificação RFC-3339.
         No caso de uma liberação de recursos feita em D0 mas com referência retroativa feita em D -1, contabilmente a data correta seria D -1.
     minItems: 0
-    description: "Lista que traz as de Desembolso do valor contratado."
   settlementDate:
     type: string
     format: date
