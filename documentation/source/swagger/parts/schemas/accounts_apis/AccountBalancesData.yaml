@@ -14,8 +14,8 @@ properties:
     format: double
     pattern: '^-?\d{1,15}\.\d{2,4}$'
     description: 'Saldo disponível para utilização imediata. No caso de conta de depósito a vista, sem considerar cheque especial e investimentos atrelados a conta. Admite saldo negativo. Expresso em valor monetário com 4 casas decimais.'
-    maxLength: 20
-    minLength: 0
+    minimum: 0
+    maximum: 99999999999999999999
     nullable: true
     example: 100000.0400
   availableAmountCurrency:
@@ -31,6 +31,8 @@ properties:
     description: 'Saldo bloqueado, não disponível para utilização imediata, por motivo de bloqueio apresentado para o cliente nos canais eletrônicos Expresso em valor monetário com 4 casas decimais.'
     maxLength: 20
     minLength: 0
+    minimum: 0
+    maximum: 99999999999999999999
     nullable: true
     example: 99.9999
   blockedAmountCurrency:
@@ -46,6 +48,8 @@ properties:
     description: 'Saldo disponível com aplicação automática - corresponde a soma do saldo disponível acrescido do valor obtido a partir da aplicação automática Expresso em valor monetário com 4 casas decimais.'
     maxLength: 20
     minLength: 0
+    minimum: 0
+    maximum: 99999999999999999999
     nullable: true
     example: 100000.04
   automaticallyInvestedAmountCurrency:

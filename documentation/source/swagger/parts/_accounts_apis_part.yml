@@ -311,14 +311,6 @@ components:
   parameters:
     accountId:
       $ref: ./parameters/AccountId.yaml
-    accountsBranchCode:
-      $ref: ./parameters/AccountsBranchCode.yaml
-    accountsCheckDigit:
-      $ref: ./parameters/AccountsCheckDigit.yaml
-    accountsCompeCode:
-      $ref: ./parameters/AccountsCompeCode.yaml
-    accountsNumber:
-      $ref: ./parameters/AccountsNumber.yaml
     accountType:
       $ref: ./parameters/AccountsType.yaml
     Authorization:
