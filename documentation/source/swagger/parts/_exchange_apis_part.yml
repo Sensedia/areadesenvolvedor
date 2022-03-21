@@ -86,8 +86,6 @@ components:
       $ref: ./schemas/exchange_apis/ExchangeVetValue.yaml
     OnlineRate:
       $ref: ./schemas/exchange_apis/OnlineRate.yaml
-    NoIdentificationFrequencyDistribution:
-      $ref: ./schemas/business_commons/NoIdentificationFrequencyDistribution.yaml
     VetValueFrequencyDistributionPrice:
       $ref: ./schemas/business_commons/FrequencyDistributionPrice.yaml
     EnumExchangeDeliveryForeignCurrency:
