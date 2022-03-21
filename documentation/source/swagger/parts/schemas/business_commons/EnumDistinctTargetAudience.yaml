@@ -1,7 +1,7 @@
 type: string
-description: Público alvo (PESSOAL_NATURAL ou PESSOA_JURIDICA).
+description: Público alvo (PESSOA_JURIDICA ou PESSOA_JURIDICA).
 maxLength: 15
 enum:
-  - PESSOAL_NATURAL
+  - PESSOA_NATURAL
   - PESSOA_JURIDICA
-example: PESSOAL_NATURAL
+example: PESSOA_JURIDICA
