@@ -19,7 +19,7 @@ properties:
           deliveryForeignCurrency: ESPECIE,
           transactionType: COMPRA,
           transactionCategory: COMERCIO_EXTERIOR,
-          targetAudience: PESSOAL_NATURAL,
+          targetAudience: PESSOA_NATURAL,
           value: "5.5023"
         },
         {
