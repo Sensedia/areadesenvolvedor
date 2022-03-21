@@ -167,15 +167,13 @@ components:
     InvestmentsFixedIncomeBankIndex:
       $ref: ./schemas/investments_apis/InvestmentsFixedIncomeBankIndex.yaml
     InvestmentFundMinimumAmount:
-      $ref: ./schemas/investments_apis/InvestimentFundMinimumAmount.yaml
+      $ref: ./schemas/investments_apis/InvestmentFundMinimumAmount.yaml
     InvestmentsFixedIncomeBankInvestmentConditions:
       $ref: ./schemas/investments_apis/InvestmentsFixedIncomeBankInvestmentConditions.yaml
     InvestmentsFixedIncomeCredit:
       $ref: ./schemas/investments_apis/InvestmentsFixedIncomeCredit.yaml
     InvestmentsFund:
       $ref: ./schemas/investments_apis/InvestmentsFund.yaml
-    InvestmentsFundEnumExpirationGracePeriod:
-      $ref: ./schemas/investments_apis/EnumExpirationGracePeriod.yaml
     InvestmentsFundAdmin:
       $ref: ./schemas/investments_apis/Admin.yaml
     InvestmentsFundFundManager:
