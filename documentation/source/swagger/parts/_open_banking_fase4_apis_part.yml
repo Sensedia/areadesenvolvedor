@@ -711,7 +711,7 @@ components:
     InvestmentsFundGeneralConditions:
       $ref: ./schemas/investments_apis/InvestmentsFundGeneralConditions.yaml
     DistributionFrequencyPrice:
-      $ref: ./schemas/business_commons/FrequencyDistributionPrice.yaml
+      $ref: ./schemas/business_commons/InvestmentFrequencyDistributionPrice.yaml
     InvestmentsTreasure:
       $ref: ./schemas/investments_apis/InvestmentsTreasure.yaml
     InvestmentsVariableIncome:
