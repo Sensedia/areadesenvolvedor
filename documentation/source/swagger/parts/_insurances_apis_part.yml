@@ -138,8 +138,6 @@ components:
       $ref: ./schemas/business_commons/InsurancePensionReclaim.yaml
     InsurancePensionReclaimTableItem:
       $ref: ./schemas/business_commons/InsurancePensionReclaimTableItem.yaml
-    NoIdentificationFrequencyDistribution:
-      $ref: ./schemas/business_commons/NoIdentificationFrequencyDistribution.yaml
     EnumPersonalIndemnifiablePeriodType:
       $ref: ./schemas/business_commons/InsurancePensionEnumIndemnifiablePeriodType.yaml
     # Fim schemas comuns
@@ -251,8 +249,8 @@ components:
       $ref: ./schemas/Links.yaml
     Meta:
       $ref: ./schemas/Meta.yaml
-    Phase4Meta:
-      $ref: ./schemas/Phase4Meta.yaml
+    OpenDataMeta:
+      $ref: ./schemas/OpenDataMeta.yaml
   parameters:
     page:
       $ref: ./parameters/Page.yaml
