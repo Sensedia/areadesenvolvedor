@@ -14,8 +14,8 @@ properties:
     format: double
     pattern: '^-?\d{1,15}\.\d{2,4}$'
     description: 'Valor do limite contratado do cheque especial.'
-    maxLength: 20
-    minLength: 0
+    minimum: 0
+    maximum: 99999999999999999999
     nullable: true
     example: 99.9999
   overdraftContractedLimitCurrency:
@@ -29,8 +29,8 @@ properties:
     format: double
     pattern: '^-?\d{1,15}\.\d{2,4}$'
     description: 'Valor utilizado total do limite do cheque especial e o adiantamento a depositante.'
-    maxLength: 20
-    minLength: 0
+    minimum: 0
+    maximum: 99999999999999999999
     nullable: true
     example: 10000.9999
   overdraftUsedLimitCurrency:
@@ -44,8 +44,8 @@ properties:
     format: double
     pattern: '^-?\d{1,15}\.\d{2,4}$'
     description: 'Valor de operação contratada em caráter emergencial para cobertura de saldo devedor em conta de depósitos à vista e de excesso sobre o limite pactuado de cheque especial.'
-    maxLength: 20
-    minLength: 0
+    minimum: 0
+    maximum: 99999999999999999999
     example: 99.9999
     nullable: true
   unarrangedOverdraftAmountCurrency:

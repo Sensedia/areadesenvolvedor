@@ -9,6 +9,7 @@ properties:
     items:
       $ref: ./AccountTransactionsData.yaml
     minItems: 0
+    maxItems: 1000 # TODO - verificar
     description: |
       Lista dos lançamentos referentes às transações realizadas e de lançamentos futuros para as contas de: depósito à vista, poupança e de pagamento pré-paga
   links:

@@ -9,6 +9,7 @@ properties:
     items:
       $ref: ./AccountData.yaml
     minItems: 0
+    maxItems: 1000 # TODO - verificar
     description: Lista de contas depósito à vista, poupança e pagamento pré-pagas mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento
   links:
     $ref: ../Links.yaml
