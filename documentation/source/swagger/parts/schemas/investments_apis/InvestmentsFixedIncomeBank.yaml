@@ -2,6 +2,7 @@ type: object
 required:
   - participant
   - issuerInstitutionCnpjNumber
+  - issuerInstitutionName
   - investmentType
   - index
   - investmentConditions
@@ -15,6 +16,13 @@ properties:
     maxLength: 14
     pattern: '^\d{14}$'
     example: '45086338000178'
+  issuerInstitutionName:
+    type: string
+    maxLength: 250
+    minLength: 1
+    pattern: '\w+\W*'
+    example: 'Organização A1'
+    description: 'Nome da instituição emissora.'
   investmentType:
     $ref: ../enum/EnumInvestmentsFixedIncomeBankProductType.yaml
   index:
