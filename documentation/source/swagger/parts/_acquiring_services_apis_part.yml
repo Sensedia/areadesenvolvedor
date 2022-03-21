@@ -75,8 +75,8 @@ components:
       $ref: "./schemas/acquiring_services_apis/OkResponseGetAcquiringServicesContract.yaml"
     Links:
       $ref: "./schemas/Links.yaml"
-    Phase4Meta:
-      $ref: "./schemas/Phase4Meta.yaml"
+    OpenDataMeta.yaml:
+      $ref: "./schemas/OpenDataMeta.yaml"
     Participant:
       $ref: ./schemas/business_commons/Participant.yaml
     EnumAcquiringServicesFeeName:

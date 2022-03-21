@@ -249,8 +249,8 @@ components:
       $ref: ./schemas/Links.yaml
     Meta:
       $ref: ./schemas/Meta.yaml
-    Phase4Meta:
-      $ref: ./schemas/Phase4Meta.yaml
+    OpenDataMeta.yaml:
+      $ref: ./schemas/OpenDataMeta.yaml
   parameters:
     page:
       $ref: ./parameters/Page.yaml
