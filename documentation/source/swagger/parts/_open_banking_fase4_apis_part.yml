@@ -743,7 +743,7 @@ components:
     Meta:
       $ref: ./schemas/Meta.yaml
     Phase4Meta:
-      $ref: ./schemas/Phase4Meta.yaml
+      $ref: ./schemas/OpenDataMeta.yaml
     ResponseError:
       $ref: ./schemas/ResponseError.yaml
     OKResponseSurvivalCoveragePension:

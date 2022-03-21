@@ -76,7 +76,7 @@ components:
     Meta:
       $ref: ./schemas/Meta.yaml
     Phase4Meta:
-      $ref: ./schemas/Phase4Meta.yaml
+      $ref: ./schemas/OpenDataMeta.yaml
   parameters:
     page:
       $ref: ./parameters/Page.yaml
