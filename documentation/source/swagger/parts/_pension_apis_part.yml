@@ -107,7 +107,7 @@ components:
       $ref: "./schemas/Links.yaml"
     Meta:
       $ref: "./schemas/Meta.yaml"
-    Phase4Meta:
+    OpenDataMeta:
       $ref: ./schemas/OpenDataMeta.yaml
     Participant:
       $ref: ./schemas/business_commons/Participant.yaml
