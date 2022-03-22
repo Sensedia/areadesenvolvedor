@@ -10,14 +10,13 @@ required:
   - unarrangedOverdraftAmountCurrency
 properties:
   overdraftContractedLimit:
-    type: number
-    format: double
+    type: string
     pattern: '^-?\d{1,15}\.\d{2,4}$'
     description: 'Valor do limite contratado do cheque especial.'
     maxLength: 20
     minLength: 0
     nullable: true
-    example: 99.9999
+    example: '99.9999'
   overdraftContractedLimitCurrency:
     type: string
     pattern: '^(\w{3}){1}$'
@@ -40,13 +39,12 @@ properties:
     description: Moeda referente ao valor utilizado total do limite do cheque especial e o adiantamento a depositante, segundo modelo ISO-4217. p.ex. 'BRL'. Pode ser preenchido com “NA” caso a instituição não possua a informação.
     example: BRL
   unarrangedOverdraftAmount:
-    type: number
-    format: double
+    type: string
     pattern: '^-?\d{1,15}\.\d{2,4}$'
     description: 'Valor de operação contratada em caráter emergencial para cobertura de saldo devedor em conta de depósitos à vista e de excesso sobre o limite pactuado de cheque especial.'
     maxLength: 20
     minLength: 0
-    example: 99.9999
+    example: '99.9999'
     nullable: true
   unarrangedOverdraftAmountCurrency:
     type: string
