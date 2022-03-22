@@ -9,6 +9,8 @@ info:
 
     <strong>API de Investimentos</strong>
 
+    O compartilhamento de dados relacionados aos produtos de títulos financeiros se restringe ao mercado primário.
+
     A tabela abaixo atende aos seguintes produtos: 
 
     - Lista de produtos de renda fixa bancária (CDB, RDB, LCI e LCA);
@@ -18,8 +20,6 @@ info:
     <strong>Obs.:</strong> O campo <strong>denominação</strong> é apresentado no Swagger e no Json de exemplo como <strong>investmentType</strong>.
 
     <i>“Visando refletir uma padronização de mercado, foi proposto que a classificação de papéis do SINACOR seja utilizada para definir o preenchimento do campo denominação”.</i>
-    ![Classificação denominação](images/extras/tabela_api_investimentos_classificacao_denominacao.png)
-    <a href="images/extras/tabela_api_investimentos_classificacao_denominacao.xlsx" target="_blank">Download da Tabela de Classificação de Denominação</a>
   version: 1.0.0-rc1.0
 tags:
   - name: API - Títulos de Capitalização
@@ -686,6 +686,8 @@ components:
       $ref: ./schemas/investments_apis/InvestmentsFund.yaml
     InvestmentsFundAdmin:
       $ref: ./schemas/investments_apis/Admin.yaml
+    InvestmentsFundEnumExpirationGracePeriod:
+      $ref: ./schemas/investments_apis/EnumExpirationGracePeriod.yaml
     InvestmentsFundFundManager:
       $ref: ./schemas/investments_apis/FundManager.yaml
     InvestmentsFundFees:
@@ -696,8 +698,8 @@ components:
       $ref: ./schemas/investments_apis/Redemption.yaml
     InvestmentsFundGeneralConditionsApplication:
       $ref: ./schemas/investments_apis/Application.yaml
-    InvestimentFundMinimumAmount:
-      $ref: ./schemas/investments_apis/InvestimentFundMinimumAmount.yaml
+    InvestmentFundMinimumAmount:
+      $ref: ./schemas/investments_apis/InvestmentFundMinimumAmount.yaml
     InvestmentsFixedIncomeBank:
       $ref: ./schemas/investments_apis/InvestmentsFixedIncomeBank.yaml
     InvestmentsFixedIncomeBankIndex:
@@ -709,7 +711,7 @@ components:
     InvestmentsFundGeneralConditions:
       $ref: ./schemas/investments_apis/InvestmentsFundGeneralConditions.yaml
     DistributionFrequencyPrice:
-      $ref: ./schemas/business_commons/FrequencyDistributionPrice.yaml
+      $ref: ./schemas/business_commons/InvestmentFrequencyDistributionPrice.yaml
     InvestmentsTreasure:
       $ref: ./schemas/investments_apis/InvestmentsTreasure.yaml
     InvestmentsVariableIncome:
@@ -748,8 +750,8 @@ components:
       $ref: ./schemas/pension_apis/survival/OkResponseGetSurvivalPensionContract.yaml
     GetSurvivalPensionContractData:
       $ref: ./schemas/pension_apis/survival/GetSurvivalPensionContractData.yaml
-    SurvivalPensionInvestimentFund:
-      $ref: ./schemas/pension_apis/survival/SurvivalPensionInvestimentFund.yaml
+    SurvivalPensionInvestmentFund:
+      $ref: ./schemas/pension_apis/survival/SurvivalPensionInvestmentFund.yaml
     SurvivalPensionMinimumRequirements:
       $ref: ./schemas/pension_apis/survival/SurvivalPensionMinimumRequirements.yaml
     SurvivalPensionDefferalPeriod:
