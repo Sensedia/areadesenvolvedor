@@ -742,11 +742,7 @@ components:
       $ref: ./schemas/Links.yaml
     Meta:
       $ref: ./schemas/Meta.yaml
-<<<<<<< HEAD
-    Phase4Meta:
-=======
     OpenDataMeta:
->>>>>>> GT-PR-SEGUROS
       $ref: ./schemas/OpenDataMeta.yaml
     ResponseError:
       $ref: ./schemas/ResponseError.yaml
