@@ -10,4 +10,5 @@ enum:
   - IPCA
   - IGP_M
   - INPC
+  - NAO_APLICAVEL
 example: IPCA
