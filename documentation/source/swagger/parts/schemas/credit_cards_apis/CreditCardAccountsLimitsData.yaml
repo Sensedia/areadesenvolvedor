@@ -28,11 +28,12 @@ properties:
   lineNameAdditionalInfo:
     type: string
     pattern: '[\w\W\s]*'
+    maxLength: 1000 #to-do verificar
     example: "Informações adicionais e complementares."
     description: Campo de preenchimento obrigatório se selecionada a opção 'OUTRAS' em lineName.
   isLimitFlexible:
-    type: boolean  
-    description: 'Indica se a operação de crédito é: com limite flexível (true) ou com limite (false).'
+    type: boolean
+    description: "Indica se a operação de crédito é: com limite flexível (true) ou com limite (false)."
     example: true
   limitAmountCurrency:
     type: string
@@ -44,6 +45,8 @@ properties:
       Todos os limite informados estão representados com a moeda vigente do do Brasil.
   limitAmount:
     type: number
+    maximum: 99999999999999999999
+    minimum: 0
     format: double
     pattern: '^-?\d{1,15}\.\d{2,4}$'
     description: Valor total do limite informado Expresso em valor monetário com 4 casas decimais.
@@ -64,6 +67,8 @@ properties:
     format: double
     pattern: '^-?\d{1,15}\.\d{2,4}$'
     description: Valor utilizado do limite informado Expresso em valor monetário com 4 casas decimais.
+    maximum: 99999999999999999999
+    minimum: 0
     maxLength: 20
     minLength: 0
     example: 7500.0500
@@ -83,6 +88,8 @@ properties:
     description: Valor disponível do limite informado Expresso em valor monetário com 4 casas decimais.
     maxLength: 20
     minLength: 0
+    maximum: 99999999999999999999
+    minimum: 0
     nullable: true
     example: 2499.9500
 additionalProperties: false

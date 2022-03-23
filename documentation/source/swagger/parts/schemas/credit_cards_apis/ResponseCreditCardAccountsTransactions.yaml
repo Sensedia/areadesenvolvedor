@@ -6,7 +6,8 @@ required:
 properties:
   data:
     type: array
-    items: 
+    maxItems: 1000 # todo verificar
+    items:
       $ref: ./CreditCardAccountsTransaction.yaml
   links:
     $ref: ../Links.yaml
