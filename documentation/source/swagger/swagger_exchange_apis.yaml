@@ -138,7 +138,7 @@ components:
           format: date-time
           example: '2021-05-21T08:30:00Z'
       additionalProperties: false
-    Phase4Meta:
+    OpenDataMeta:
       type: object
       description: Meta informações referente à API requisitada.
       required:
@@ -170,7 +170,7 @@ components:
         links:
           $ref: '#/components/schemas/Links'
         meta:
-          $ref: '#/components/schemas/Phase4Meta'
+          $ref: '#/components/schemas/OpenDataMeta'
       additionalProperties: false
     OKResponseExchangeVetValue:
       type: object
@@ -186,7 +186,7 @@ components:
         links:
           $ref: '#/components/schemas/Links'
         meta:
-          $ref: '#/components/schemas/Phase4Meta'
+          $ref: '#/components/schemas/OpenDataMeta'
       additionalProperties: false
     ExchangeOnlineRate:
       type: object
@@ -236,6 +236,7 @@ components:
         - deliveryForeignCurrency
         - rangeTransactionCategory
         - vetAmount
+        - targetAudience
       properties:
         participant:
           $ref: '#/components/schemas/Participant'
@@ -250,7 +251,7 @@ components:
         targetAudience:
           $ref: '#/components/schemas/EnumTargetAudience'
         vetAmount:
-          $ref: '#/components/schemas/VetValueFrequencyDistribution'
+          $ref: '#/components/schemas/NoIdentificationFrequencyDistribution'
       additionalProperties: false
     OnlineRate:
       type: object
@@ -261,6 +262,7 @@ components:
         - transactionType
         - transactionCategory
         - value
+        - targetAudience
       properties:
         foreignCurrency:
           type: string
@@ -282,32 +284,14 @@ components:
           example: '5.5023'
           description: Valor da operação.
       additionalProperties: false
-    VetValueFrequencyDistribution:
+    NoIdentificationFrequencyDistribution:
       type: object
       description: Distribuição por frequência.
       required:
-        - name
-        - code
-        - chargingTriggerInfo
         - prices
         - minimum
         - maximum
       properties:
-        name:
-          type: string
-          description: Nome do serviço
-          maxLength: 200
-          example: NA
-        code:
-          type: string
-          description: Código de identificação do serviço.
-          maxLength: 200
-          example: NA
-        chargingTriggerInfo:
-          type: string
-          description: Fatos geradores de cobrança.
-          maxLength: 200
-          example: NA
         prices:
           type: array
           description: Distribuição dos preços.
@@ -548,7 +532,7 @@ components:
                       maxLength: 2048
                   additionalProperties: false
               meta:
-                $ref: '#/components/schemas/Meta'
+                $ref: '#/components/schemas/OpenDataMeta'
             additionalProperties: false
     MethodNotAllowed:
       description: O consumidor tentou acessar o recurso com um método não suportado

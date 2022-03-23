@@ -3864,7 +3864,7 @@ Conjunto de informações referentes às informações de câmbio
 |foreignCurrency|[CurrencyCode](#schemacurrencycode)|true|Moeda referente ao valor monetário, seguindo o modelo ISO-4217.|
 |deliveryForeignCurrency|[EnumExchangeDeliveryForeignCurrency](#schemaenumexchangedeliveryforeigncurrency)|true|A classificação da forma de operação, conforme a circular BCB nº 3690 de 16/12/2013. (Vide Enum)<br><ul><li>ESPECIE</li><li>CARTAO_PRE_PAGO</li><li>TELETRANSMISSAO_SWIFT</li></ul>|
 |rangeTransactionCategory|[EnumExchangeRangeTransactionCategory](#schemaenumexchangerangetransactioncategory)|true|A classificação conforme a circular BCB nº 4015.|
-|targetAudience|[EnumTargetAudience](#schemaenumtargetaudience)|false|A considerar os domínios abaixo:<br><br>  1. Pessoa Natural<br>  2. Pessoa Jurídica<br>  3. Ambas (Pessoa Natural e Jurídica)|
+|targetAudience|[EnumTargetAudience](#schemaenumtargetaudience)|true|A considerar os domínios abaixo:<br><br>  1. Pessoa Natural<br>  2. Pessoa Jurídica<br>  3. Ambas (Pessoa Natural e Jurídica)|
 |vetAmount|[VetValueFrequencyDistribution](#schemavetvaluefrequencydistribution)|true|Distribuição por frequência.|
 
 <h2 id="tocS_OnlineRate">OnlineRate</h2>
@@ -3896,7 +3896,7 @@ Taxa disponibilizada (taxa online) pelas instituições no formato D+0/D+2 (valo
 |deliveryForeignCurrency|[EnumExchangeDeliveryForeignCurrency](#schemaenumexchangedeliveryforeigncurrency)|true|A classificação da forma de operação, conforme a circular BCB nº 3690 de 16/12/2013. (Vide Enum)<br><ul><li>ESPECIE</li><li>CARTAO_PRE_PAGO</li><li>TELETRANSMISSAO_SWIFT</li></ul>|
 |transactionType|[EnumExchangeTransactionType](#schemaenumexchangetransactiontype)|true|Determina se o Banco está comprando ou vendendo a moeda estrangeira nas operações<br>spot,  que se liquidam em até dois dias (não aplica-se a operações futuras. (Vide Enum)<br>- Compra<br>- Venda|
 |transactionCategory|[EnumExchangeTransactionCategory](#schemaenumexchangetransactioncategory)|true|A classificação do tipo de operação, conforme a circular BCB nº 3690 de 16/12/2013.|
-|targetAudience|[EnumDistinctTargetAudience](#schemaenumdistincttargetaudience)|false|Público alvo (ou PF ou PJ).|
+|targetAudience|[EnumDistinctTargetAudience](#schemaenumdistincttargetaudience)|true|Público alvo (ou PF ou PJ).|
 |value|string|true|Valor da operação.|
 
 <h2 id="tocS_VetValueFrequencyDistribution">VetValueFrequencyDistribution</h2>
