@@ -82,12 +82,12 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseInvoiceFinancingsContractList'
       security:
         - OpenId:
             - 'openid'
@@ -123,12 +123,12 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseInvoiceFinancingsContract'
       security:
         - OpenId:
             - 'openid'
@@ -166,12 +166,12 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseInvoiceFinancingsWarranties'
       security:
         - OpenId:
             - 'openid'
@@ -209,12 +209,12 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseInvoiceFinancingsInstalments'
       security:
         - OpenId:
             - 'openid'
@@ -252,12 +252,12 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseInvoiceFinancingsPayments'
       security:
         - OpenId:
             - 'openid'
@@ -431,6 +431,8 @@ components:
       $ref: ./responses/NotFound.yaml
     TooManyRequests:
       $ref: ./responses/TooManyRequests.yaml
+    UnprocessableEntity:
+      $ref: ./responses/UnprocessableEntity.yaml
     Unauthorized:
       $ref: ./responses/Unauthorized.yaml
 
