@@ -66,6 +66,7 @@ properties:
     $ref: ../enum/EnumSex.yaml
   companyCnpj:
     type: array
+    maxItems: 1000 # TODO - Validar
     items:
       type: string
       pattern: '\d{14}|^NA$'
@@ -78,6 +79,7 @@ properties:
     $ref: ./PersonalDocument.yaml
   otherDocuments:
     type: array
+    maxItems: 1000 # TODO - Validar
     items:
       $ref: ./PersonalOtherDocument.yaml
     minItems: 1
@@ -89,10 +91,12 @@ properties:
     description: Informa se o Cliente tem nacionalidade brasileira.
   nationality:
     type: array
+    maxItems: 1000 # TODO - Validar
     items:
       $ref: ./Nationality.yaml
   filiation:
-    type: array          
+    type: array   
+    maxItems: 1000 # TODO - Validar
     items:
       $ref: ./Filiation.yaml
   contacts:

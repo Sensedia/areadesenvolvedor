@@ -6,7 +6,8 @@ properties:
   code:
     type: number
     pattern: ^\d{7}$|^NA$
-    maxLength: 7
+    maximum: 9999999
+    minimum: 0    
     description: |
       Traz o código do ramo da atividade principal da empresa consultada, segundo padrão CNAE (Classificação Nacional de Atividades Econômicas)
     example: 8599604

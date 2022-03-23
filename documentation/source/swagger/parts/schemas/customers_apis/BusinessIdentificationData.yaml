@@ -57,22 +57,25 @@ properties:
     description: Número completo do CNPJ da Empresa consultada  - o CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara
   companyCnpjNumber: 
     type: array
+    maxItems: 1000 # TODO - Validar
     items:
       type: string
-    maxLength: 14
-    pattern: \d{14}|^NA$
+      pattern: \d{14}|^NA$
+      maxLength: 14
     example: ["50685362000135", "50685362006555"]
     description: |
       Número completo do CNPJ da instituição responsável pelo Cadastro - o CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. 
       Deve-se ter apenas os números do CNPJ, sem máscara
   otherDocuments:
     type: array
+    maxItems: 1000 # TODO - Validar
     items:
       $ref: ./BusinessOtherDocument.yaml
     minItems: 1
     description: Relação dos demais documentos
   parties:
     type: array
+    maxItems: 1000 # TODO - Validar
     items:
       $ref: ./PartiesParticipation.yaml
     minItems: 1
