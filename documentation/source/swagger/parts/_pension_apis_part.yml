@@ -78,9 +78,9 @@ components:
     OKResponseSurvivalCoveragePension:
       $ref: "./schemas/pension_apis/survival/OkResponseGetSurvivalPensionContract.yaml"
     GetSurvivalPensionContractData:
-      $ref: "./schemas/pension_apis/survival/GetSurvivalPensionContractData.yaml"
-    SurvivalPensionInvestimentFund:
-      $ref: "./schemas/pension_apis/survival/SurvivalPensionInvestimentFund.yaml"
+      $ref: './schemas/pension_apis/survival/GetSurvivalPensionContractData.yaml'
+    SurvivalPensionInvestmentFund:
+      $ref: './schemas/pension_apis/survival/SurvivalPensionInvestmentFund.yaml'
     SurvivalPensionMinimumRequirements:
       $ref: ./schemas/pension_apis/survival/SurvivalPensionMinimumRequirements.yaml
     SusepProcessNumber:
@@ -133,20 +133,12 @@ components:
       $ref: ./schemas/business_commons/InsurancePensionMinValue.yaml
     InsurancePensionMaxValue:
       $ref: ./schemas/business_commons/InsurancePensionMaxValue.yaml
-    InsurancePensionCoverageDeductible:
-      $ref: ./schemas/business_commons/InsurancePensionCoverageDeductible.yaml
-    InsurancePensionCoverageDifferentiatedDeductible:
-      $ref: ./schemas/business_commons/InsurancePensionCoverageDifferentiatedDeductible.yaml
     RiskPensionMinimumRequirement:
       $ref: ./schemas/pension_apis/risk/RiskPensionMinimumRequirement.yaml
-    EnumInsurancePensionCategory:
-      $ref: ./schemas/enum/EnumInsurancePensionCategory.yaml
     InsurancePensionReclaimTableItem:
       $ref: ./schemas/business_commons/InsurancePensionReclaimTableItem.yaml
     InsurancePensionEnumPmbacRemuneration:
       $ref: ./schemas/business_commons/InsurancePensionEnumPmbacRemuneration.yaml
-    InsurancePensionBenefitRecalculation:
-      $ref: ./schemas/business_commons/InsurancePensionBenefitRecalculation.yaml
     AgeAdjustment:
       $ref: ./schemas/business_commons/InsurancePensionAgeAdjustment.yaml
     CurrencyCode:
@@ -159,8 +151,6 @@ components:
       $ref: ./schemas/business_commons/EnumAdditional.yaml
     EnumGracePeriodUnit:
       $ref: ./schemas/business_commons/EnumGracePeriodUnit.yaml
-    EnumTerm:
-      $ref: ./schemas/business_commons/EnumTerm.yaml
     InsurancePensionEnumFinancialRegime:
       $ref: ./schemas/business_commons/InsurancePensionEnumFinancialRegime.yaml
   parameters:
