@@ -57,7 +57,7 @@ properties:
     type: array
     items:
       $ref: ./InvoiceFinancingsBalloonPayment.yaml
-    minItems: 0
+    minItems: 1
     description: "Lista que traz as datas de vencimento e valor das parcelas não regulares do contrato da modalidade de crédito consultada"
     nullable: true
 additionalProperties: false

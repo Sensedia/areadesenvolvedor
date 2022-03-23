@@ -40,12 +40,11 @@ properties:
     example: "BRL"
   paidAmount:
     description: "Traz o valor do pagamento referente ao  contrato da modalidade de crédito consultada. Expresso em valor monetário com 4 casas decimais"
-    type: number
-    format: double
+    type: string
     pattern: '^-?\d{1,15}\.\d{2,4}$'
-    maxLength: 20
-    minLength: 0
-    example: 100000.0400
+    maxLength: 21
+    minLength: 1
+    example: '100000.0400'
   overParcel:
     type: object
     description: Objeto das tarifas e encargos que foram pagos fora da parcela.
@@ -77,12 +76,11 @@ properties:
               example: "aval_bem"
             feeAmount:
               description: "Valor do pagamento do encargo pago fora da parcela. Expresso em valor monetário com até 4 casas decimais."
-              type: number
-              format: double
+              type: string
               pattern: '^-?\d{1,15}\.\d{2,4}$'
-              maxLength: 20
-              minLength: 0
-              example: 100000.0400
+              maxLength: 21
+              minLength: 1
+              example: '100000.0400'
           additionalProperties: false
         minItems: 1
       charge:
@@ -114,12 +112,11 @@ properties:
               example: "Informações Adicionais"
             chargeAmount:
               description: Valor do pagamento do encargo pago fora da parcela. Expresso em valor monetário com até 4 casas decimais.
-              type: number
-              format: double
+              type: string
               pattern: '^-?\d{1,15}\.\d{2,4}$'
-              maxLength: 20
-              minLength: 0
-              example: 100000.0400
+              maxLength: 21
+              minLength: 1
+              example: '100000.0400'
           additionalProperties: false
     additionalProperties: false
 additionalProperties: false
