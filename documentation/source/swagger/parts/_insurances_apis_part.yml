@@ -138,6 +138,8 @@ components:
       $ref: ./schemas/business_commons/InsurancePensionReclaim.yaml
     InsurancePensionReclaimTableItem:
       $ref: ./schemas/business_commons/InsurancePensionReclaimTableItem.yaml
+    NoIdentificationFrequencyDistribution:
+      $ref: ./schemas/business_commons/NoIdentificationFrequencyDistribution.yaml
     EnumPersonalIndemnifiablePeriodType:
       $ref: ./schemas/business_commons/InsurancePensionEnumIndemnifiablePeriodType.yaml
     # Fim schemas comuns
@@ -247,8 +249,6 @@ components:
 
     Links:
       $ref: ./schemas/Links.yaml
-    Meta:
-      $ref: ./schemas/Meta.yaml
     OpenDataMeta:
       $ref: ./schemas/OpenDataMeta.yaml
   parameters:
@@ -280,28 +280,28 @@ components:
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: ./schemas/ResponseError.yaml
+            $ref: ./schemas/OpenDataResponseError.yaml
     InternalServerError:
       description: Ocorreu um erro no gateway da API ou no microsserviço
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: ./schemas/ResponseError.yaml
+            $ref: ./schemas/OpenDataResponseError.yaml
     MethodNotAllowed:
       description: O consumidor tentou acessar o recurso com um método não suportado
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: ./schemas/ResponseError.yaml
+            $ref: ./schemas/OpenDataResponseError.yaml
     NotFound:
       description: O recurso solicitado não existe ou não foi implementado
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: ./schemas/ResponseError.yaml
+            $ref: ./schemas/OpenDataResponseError.yaml
     TooManyRequests:
       description: 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido'
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: ./schemas/ResponseError.yaml
+            $ref: ./schemas/OpenDataResponseError.yaml
