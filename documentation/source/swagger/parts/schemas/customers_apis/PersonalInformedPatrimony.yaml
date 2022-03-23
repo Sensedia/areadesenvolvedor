@@ -7,8 +7,8 @@ properties:
   amount:
     type: number
     format: double
-    minLength: 0
-    maxLength: 20
+    minimum: 0
+    maximum: 99999999999999999999
     nullable: true
     pattern: '^-?\d{1,15}\.\d{2,4}$'
     example: 100000.0400
@@ -23,7 +23,7 @@ properties:
     description: Moeda referente ao valor do patrimônio, segundo modelo ISO-4217.
   year:
     type: number
-    maxLength: 4
+    minimum: 0
     maximum: 9999
     nullable: true
     example: 2010

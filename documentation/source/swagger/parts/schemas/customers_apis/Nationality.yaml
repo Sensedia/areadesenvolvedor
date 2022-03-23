@@ -12,6 +12,7 @@ properties:
       Campo de preenchimento obrigatório caso o cliente não possua nacionalidade brasileira. Preencher indicando todas suas demais nacionalidades utilizando o código de pais de acordo com o código “alpha3” do ISO-3166.p.ex.'CAN'
   documents:
     type: array
+    maxItems: 1000 # TODO - Validar
     items:
       $ref: ./NationalityOtherDocument.yaml
     description: Lista que traz relação de documentos complementares de pessoas com nacionalidade diferente de brasileira

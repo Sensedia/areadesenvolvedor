@@ -37,12 +37,14 @@ properties:
       [Restrição] Campo obrigatório quando productsServicesType for 'OUTROS'.
   procurators:
     type: array
+    maxItems: 1000 # TODO - Validar
     items:
       $ref: ./PersonalProcurator.yaml
     minItems: 1
     description: Lista dos representantes. De preenchimento obrigatório se houver representante.
   accounts:
     type: array
+    maxItems: 1000 # TODO - Validar
     items:
       $ref: ./PersonalAccount.yaml
     minItems: 1

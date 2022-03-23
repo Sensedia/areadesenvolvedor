@@ -7,18 +7,21 @@ required:
 properties:
   postalAddresses:
     type: array
+    maxItems: 1000 # TODO - Validar
     items:
       $ref: ./BusinessPostalAddress.yaml
     minItems: 1
     description: Lista de endereços da pessoa jurídica
   phones:
     type: array
+    maxItems: 1000 # TODO - Validar
     items:
       $ref: ./CustomerPhone.yaml
     minItems: 1
     description: Lista com telefones de contato da pessoa jurídica
   emails:
     type: array
+    maxItems: 1000 # TODO - Validar
     items:
       $ref: ./CustomerEmail.yaml
     minItems: 1

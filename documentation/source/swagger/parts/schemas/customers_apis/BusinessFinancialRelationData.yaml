@@ -32,9 +32,11 @@ properties:
     items:
       $ref: ./BusinessProcurator.yaml
     minItems: 1
+    maxItems: 1000 # TODO - Validar
     description: Lista dos representantes. De preenchimento obrigatório se houver representante.
   accounts:
     type: array
+    maxItems: 1000 # TODO - Validar
     items:
       $ref: ./BusinessAccount.yaml
     minItems: 1
