@@ -132,8 +132,6 @@ components:
       $ref: ./schemas/business_commons/InsurancePensionReclaim.yaml
     InsurancePensionReclaimTableItem:
       $ref: ./schemas/business_commons/InsurancePensionReclaimTableItem.yaml
-    NoIdentificationFrequencyDistribution:
-      $ref: ./schemas/business_commons/NoIdentificationFrequencyDistribution.yaml
     EnumPersonalIndemnifiablePeriodType:
       $ref: ./schemas/business_commons/InsurancePensionEnumIndemnifiablePeriodType.yaml
     # Fim schemas comuns
@@ -165,6 +163,8 @@ components:
       $ref: ./schemas/enum/EnumCoverageItemDeductibleType.yaml
     EnumCoverageItemGeographicScopeType:
       $ref: ./schemas/enum/EnumCoverageItemGeographicScopeType.yaml
+    EnumInsurancePersonalBenefitRecalculationCriteria:
+      $ref: ./schemas/enum/EnumInsurancePersonalBenefitRecalculationCriteria.yaml
     AutomotivePartsItem:
       $ref: ./schemas/insurances_apis/automotive/AutomotivePartsItem.yaml
     EnumAutomotivePartType:
@@ -233,6 +233,8 @@ components:
       $ref: ./schemas/enum/EnumInsuranceCategory.yaml
     EnumPersonalIndemnityPaymentFrequencyType:
       $ref: ./schemas/enum/EnumPersonalIndemnityPaymentFrequencyType.yaml
+    EnumInsurancePersonalAgeAdjustmentCriteria:
+      $ref: ./schemas/enum/EnumInsurancePersonalAgeAdjustmentCriteria.yaml
     EnumExcludedRisks:
       $ref: ./schemas/business_commons/EnumExcludedRisks.yaml
     EnumPersonalInsuranceOtherGuaranteedValues:

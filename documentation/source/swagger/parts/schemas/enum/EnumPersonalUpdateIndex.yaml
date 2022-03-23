@@ -5,7 +5,7 @@ description: |
     2. IGP-M (FGV)
     3. INPC (IBGE)
     4. NÃO APLICÁVEL
-maxLength: 9
+maxLength: 13
 enum:
   - IPCA
   - IGP_M
