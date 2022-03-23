@@ -6,6 +6,7 @@ required:
   - countrySubDivision
   - postCode
   - country
+  - countryCode
 properties:
   isMain:
     type: boolean
@@ -14,9 +15,13 @@ properties:
   address:
     type: string
     maxLength: 150
-    pattern: '[\w\W\s]*'
+    minLength: 2
+    pattern: '^\w{2}[\w\W\s]*$'
     example: Av Naburo Ykesaki, 1270
-    description: Corresponde ao endereço comercial do cliente
+    description: |
+      Corresponde ao endereço comercial do cliente.
+
+      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
   additionalInfo:
     type: string
     maxLength: 30
@@ -33,10 +38,13 @@ properties:
   townName:
     type: string
     maxLength: 50
-    pattern: '[\w\W\s]*'
+    pattern: '^\w{2}[\w\W\s]*$'
+    minLength: 2
     example: Marília
     description: |
-      Localidade: O nome da localidade corresponde à designação da cidade ou município no qual o endereço está localizado.
+      Localidade: O nome da localidade corresponde à designação da cidade ou município no qual o endereço está localizado.  
+      
+      [Restrição] Caso a transmissora não possua a informação deverá retornar "NA" neste campo.
   ibgeTownCode:
     type: string
     pattern: \d{7}$
@@ -55,14 +63,16 @@ properties:
   country:
     type: string
     maxLength: 80
-    pattern: '[\w\W\s]*'
+    pattern: '\w*\W*'
     example: Brasil
-    description: Nome do país
+    description: |
+      Nome do país
+      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
   countryCode:
     type: string
     maxLength: 3
     example: BRA
-    description: "Código do pais de acordo com o código “alpha3” do ISO-3166"
+    description: "Código do pais de acordo com o código alpha3 do ISO-3166"
   geographicCoordinates:
     $ref: ../GeographicCoordinates.yaml
 additionalProperties: false

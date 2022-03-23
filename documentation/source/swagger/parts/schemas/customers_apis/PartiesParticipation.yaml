@@ -10,7 +10,6 @@ required:
   - shareholding
   - documentType
   - documentNumber
-  - documentCountry
 properties:
   personType:
     $ref: ../enum/EnumPersonType.yaml

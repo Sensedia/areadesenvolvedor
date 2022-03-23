@@ -34,7 +34,8 @@ properties:
   country:
     type: string
     maxLength: 80
-    pattern: '[\w*\W*]'
+    pattern: '[\w\W\s]*'
+    minItems: 0
     example: Brasil
     description: |
       Nome do país.
