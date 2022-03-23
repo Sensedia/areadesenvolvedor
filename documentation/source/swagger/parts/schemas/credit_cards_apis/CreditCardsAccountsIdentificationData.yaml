@@ -31,6 +31,7 @@ properties:
     example: "NA"
   paymentMethod:
     type: array
+    maxItems: 1000 #todo verificar
     items:
       $ref: ./CreditCardsAccountsPaymentMethod.yaml
     minItems: 1

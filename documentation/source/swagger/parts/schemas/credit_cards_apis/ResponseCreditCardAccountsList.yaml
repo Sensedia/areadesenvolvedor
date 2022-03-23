@@ -6,6 +6,7 @@ required:
 properties:
   data:
     type: array
+    maxItems: 1000 # todo verificar
     description: Conjunto de informações de conta de pagamento pós-paga
     items:
       $ref: ./CreditCardAccountsData.yaml

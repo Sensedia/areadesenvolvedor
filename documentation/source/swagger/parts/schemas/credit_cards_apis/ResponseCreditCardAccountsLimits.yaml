@@ -6,6 +6,7 @@ required:
 properties:
   data:
     type: array
+    maxItems: 1000 # todo verificar
     items:
       $ref: ./CreditCardAccountsLimitsData.yaml
   links:
