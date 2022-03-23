@@ -867,6 +867,10 @@ components:
       $ref: ./schemas/enum/EnumChargeTypeSignalingType.yaml
     EnumInsuranceTermType:
       $ref: ./schemas/enum/EnumInsuranceTermType.yaml
+    EnumInsurancePersonalAgeAdjustmentCriteria:
+      $ref: ./schemas/enum/EnumInsurancePersonalAgeAdjustmentCriteria.yaml
+    EnumInsurancePersonalBenefitRecalculationCriteria:
+      $ref: ./schemas/enum/EnumInsurancePersonalBenefitRecalculationCriteria.yaml
     EnumCustomerServiceType:
       $ref: ./schemas/enum/EnumCustomerServiceType.yaml
     EnumPremiumPaymentMethodType:
