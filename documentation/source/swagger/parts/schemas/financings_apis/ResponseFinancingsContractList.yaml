@@ -8,6 +8,7 @@ properties:
     type: array
     items:
       $ref: ./FinancingsListContract.yaml
+    maxItems: 1000 # TODO - verificar
   links:
     $ref: ../Links.yaml
   meta:

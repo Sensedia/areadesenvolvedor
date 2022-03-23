@@ -80,6 +80,8 @@ properties:
     format: double
     minLength: 0
     maxLength: 20
+    maximum: 99999999999999999999
+    minimum: 0
     pattern: '^-?\d{1,15}\.\d{2,4}$'
     example: 100000.0400
     nullable: true
@@ -118,6 +120,8 @@ properties:
   CET:
     type: number
     maxLength: 19
+    maximum: 9999999999999999999
+    minimum: 0
     example: 0.2900
     nullable: true
     description: |
@@ -138,15 +142,18 @@ properties:
     type: array
     items:
       $ref: ./FinancingsContractInterestRate.yaml
+    maxItems: 1000 # TODO - verificar
   contractedFees:
     type: array
     items:
       $ref: ./FinancingsContractedFee.yaml
     minItems: 0
+    maxItems: 1000 # TODO - verificar
   contractedFinanceCharges:
     type: array
     description: "Lista que traz os encargos pactuados no contrato"
     items:
       $ref: ./FinancingsFinanceCharge.yaml
     minItems: 0
+    maxItems: 1000 # TODO - verificar
 additionalProperties: false

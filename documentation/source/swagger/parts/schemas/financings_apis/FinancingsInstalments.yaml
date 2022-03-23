@@ -15,6 +15,8 @@ properties:
   totalNumberOfInstalments:
     type: number
     maxLength: 6
+    maximum: 999999
+    minimum: 0
     example: 130632
     nullable: true
     description: Prazo Total segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
@@ -32,24 +34,32 @@ properties:
   contractRemainingNumber:
     type: number
     maxLength: 6
+    maximum: 999999
+    minimum: 0
     description: Prazo Remanescente segundo o tipo (dia, semana, mês, ano) referente à Modalidade de Crédito informada.
     nullable: true
     example: 14600
   paidInstalments:
     type: number
-    description: 'Quantidade de prestações pagas. (No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)'
+    description: "Quantidade de prestações pagas. (No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)"
     maxLength: 3
+    maximum: 999
+    minimum: 0
     nullable: true
     example: 73
   dueInstalments:
     type: number
     maxLength: 3
+    maximum: 999
+    minimum: 0
     description: "Quantidade de prestações a vencer.(No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)"
     nullable: true
     example: 57
   pastDueInstalments:
     type: number
     maxLength: 3
+    maximum: 999
+    minimum: 0
     nullable: true
     description: "Quantidade de prestações vencidas. (No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)"
     example: 73
@@ -58,6 +68,7 @@ properties:
     items:
       $ref: ./FinancingsBalloonPayment.yaml
     minItems: 0
+    maxItems: 1000 # TODO - verificar
     description: "Lista que traz as datas de vencimento e valor das parcelas não regulares do contrato da modalidade de crédito consultada"
     nullable: true
 additionalProperties: false
