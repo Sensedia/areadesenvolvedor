@@ -14,7 +14,7 @@ properties:
     pattern: '^\d{1}\.\d{1,6}$'
   operationRate:
     type: string
-    description: Percentual de clientes.
+    description: Percentual de operação.
     example: '0.500000'
     maxLength: 8
     pattern: '^\d{1}\.\d{1,6}$'
