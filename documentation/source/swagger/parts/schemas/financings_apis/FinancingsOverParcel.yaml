@@ -8,10 +8,12 @@ properties:
     type: array
     items:
       $ref: ./FinancingsFeeOverParcel.yaml
+    maxItems: 1000 # TODO - verificar
     description: Lista das tarifas que foram pagas fora da parcela, só para pagamento avulso.
   charges:
     type: array
     items:
-      $ref: ./FinancingsChargeOverParcel.yaml          
+      $ref: ./FinancingsChargeOverParcel.yaml
+    maxItems: 1000 # TODO - verificar
     description: Lista dos encargos que foram pagos fora da parcela.
 additionalProperties: false

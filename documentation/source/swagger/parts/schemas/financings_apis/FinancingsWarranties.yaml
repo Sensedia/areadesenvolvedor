@@ -19,6 +19,8 @@ properties:
     type: number
     format: double
     maxLength: 20
+    maximum: 99999999999999999999
+    minimum: 0
     pattern: '^-?\d{1,15}\.\d{2,4}$'
     example: 200.0001
     description: |
