@@ -138,6 +138,8 @@ properties:
     type: array
     items:
       $ref: ./UnarrangedAccountOverdraftContractInterestRate.yaml
+    description: |
+      Caso o contrato não possua taxas de juros, deve ser compartilhardo uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 explícito.
   contractedFees:
     type: array
     items:
