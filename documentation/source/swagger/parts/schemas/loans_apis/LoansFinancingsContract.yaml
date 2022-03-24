@@ -117,7 +117,7 @@ properties:
     example: "2018-02-15"
     description: |
       Data de vencimento primeira parcela do principal
-      Caso a instituição não possua a informação para compartilhamento, informar NA
+      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA
   CET:
     type: number
     maxLength: 19
