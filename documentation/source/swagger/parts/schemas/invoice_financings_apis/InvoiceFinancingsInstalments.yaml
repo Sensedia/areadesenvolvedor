@@ -3,7 +3,6 @@ description: Conjunto de informações referentes às parcelas / prestações da
 required:
   - dueInstalments
   - pastDueInstalments
-  - balloonPayments
   - typeContractRemaining
   - contractRemainingNumber
   - typeNumberOfInstalments
@@ -57,7 +56,7 @@ properties:
     type: array
     items:
       $ref: ./InvoiceFinancingsBalloonPayment.yaml
-    minItems: 1
+    minItems: 0
     description: "Lista que traz as datas de vencimento e valor das parcelas não regulares do contrato da modalidade de crédito consultada"
     nullable: true
 additionalProperties: false

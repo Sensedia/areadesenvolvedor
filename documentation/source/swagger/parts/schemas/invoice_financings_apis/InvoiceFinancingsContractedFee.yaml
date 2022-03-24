@@ -11,8 +11,11 @@ properties:
   feeName:
     type: string
     maxLength: 140
-    pattern: '[\w\W\s]*'
-    description: Denominação da Tarifa pactuada
+    minLength: 2
+    pattern: 'NA|[\w\W\s]+'
+    description: |
+      Denominação da Tarifa pactuada
+      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
     example: Excesso em Conta
   feeCode:
     type: string
