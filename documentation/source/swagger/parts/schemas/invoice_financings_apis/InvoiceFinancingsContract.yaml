@@ -63,6 +63,7 @@ properties:
     type: array
     description: |
       Lista que traz as Datas de Desembolso do valor contratado.
+    minItems: 0
     items:
       type: string
       format: date
@@ -101,7 +102,8 @@ properties:
     type: string
     format: date
     maxLength: 10
-    pattern: ^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$
+    minLength: 2
+    pattern: NA|^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$
     example: "2028-01-15"
     description: Data de vencimento Final da operação. Especificação RFC-3339
   instalmentPeriodicity:
@@ -118,9 +120,12 @@ properties:
     type: string
     format: date
     maxLength: 10
-    pattern: ^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$
+    minLength: 2
+    pattern: NA|^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$
     example: "2018-02-15"
-    description: Data de vencimento primeira parcela do principal
+    description: |
+      Data de vencimento primeira parcela do principal.
+      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
   CET:
     type: string
     maxLength: 19
@@ -142,6 +147,7 @@ properties:
       [Restrição] Obrigatório para complementar a informação relativa à amortização quando selecionada a opção OUTROS, para os demais casos informar "NA".
   interestRates:
     type: array
+    description: Caso o contrato não possua taxas de juros, deve ser compartilhado uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 explícito.
     items:
       $ref: ./InvoiceFinancingsContractInterestRate.yaml
   contractedFees:
