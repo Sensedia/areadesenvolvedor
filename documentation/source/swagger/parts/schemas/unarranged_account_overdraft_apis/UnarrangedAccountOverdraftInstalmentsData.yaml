@@ -3,7 +3,6 @@ description: Conjunto de informações referentes ao prazo remanescente e às pa
 required:
   - dueInstalments
   - pastDueInstalments
-  - balloonPayments
   - typeContractRemaining
   - contractRemainingNumber
   - typeNumberOfInstalments
@@ -37,7 +36,7 @@ properties:
     example: 14600
   paidInstalments:
     type: number
-    description: 'Quantidade de prestações pagas. (No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)'
+    description: "Quantidade de prestações pagas. (No caso de modalidades que não possuam parcelas, o número de prestações é igual a zero)"
     maxLength: 3
     nullable: true
     example: 73
