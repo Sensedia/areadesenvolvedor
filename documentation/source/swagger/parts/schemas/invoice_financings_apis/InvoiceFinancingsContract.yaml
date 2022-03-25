@@ -61,6 +61,8 @@ properties:
     description: Data de contratação da operação de crédito. Especificação RFC-3339
   disbursementDates:
     type: array
+    description: |
+      Lista que traz as Datas de Desembolso do valor contratado.
     minItems: 0
     items:
       type: string
