@@ -61,6 +61,8 @@ properties:
     description: Data de contratação da operação de crédito. Especificação RFC-3339
   disbursementDates:
     type: array
+    description: |
+      Lista que traz as Datas de Desembolso do valor contratado.
     minItems: 0
     items:
       type: string
@@ -101,7 +103,7 @@ properties:
     format: date
     maxLength: 10
     minLength: 2
-    pattern: NA|^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$
+    pattern: ^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$
     example: "2028-01-15"
     description: Data de vencimento Final da operação. Especificação RFC-3339
   instalmentPeriodicity:
@@ -119,7 +121,7 @@ properties:
     format: date
     maxLength: 10
     minLength: 2
-    pattern: NA|^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$
+    pattern: ^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$
     example: "2018-02-15"
     description: |
       Data de vencimento primeira parcela do principal.
