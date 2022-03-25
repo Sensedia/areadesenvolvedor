@@ -100,7 +100,7 @@ properties:
     example: "2028-01-15"
     description: |
       Data de vencimento Final da operação. Especificação RFC-3339.
-      
+
       [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA.
   instalmentPeriodicity:
     $ref: ../enum/EnumContractInstalmentPeriodicity.yaml
@@ -116,9 +116,11 @@ properties:
     type: string
     format: date
     maxLength: 10
-    pattern: ^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$
+    pattern: ^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$|^NA$
     example: "2018-02-15"
-    description: Data de vencimento primeira parcela do principal
+    description: |
+      Data de vencimento primeira parcela do principal
+      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA
   CET:
     type: number
     maxLength: 19
@@ -147,6 +149,7 @@ properties:
       CNPJ do consignante (CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica). Deve-se ter apenas os números do CNPJ, sem máscara. Informação adicional específica para Modalidade de Crédito: Empréstimo-Crédito Pessoal Consignado
   interestRates:
     type: array
+    description: Caso o contrato não possua taxas de juros, deve ser compartilhado uma lista vazia. Caso o contrato possua uma taxa de juros com valor 0, deve ser compartilhado um objeto com o valor 0 explícito.
     items:
       $ref: ./LoansFinancingsContractInterestRate.yaml
   contractedFees:
