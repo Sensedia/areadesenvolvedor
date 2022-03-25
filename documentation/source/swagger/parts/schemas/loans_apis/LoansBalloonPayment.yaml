@@ -24,7 +24,6 @@ properties:
     description: Valor monetário da parcela não regular a vencer. Expresso em valor monetário com 4 casas decimais.
     type: string
     pattern: '^-?\d{1,15}\.\d{2,4}$'
-    nullable: true
     maxLength: 21
     minLength: 4
     example: '100000.0400'

@@ -32,7 +32,7 @@ properties:
     example: "Informações adicionais"
   preFixedRate:
     type: string
-    pattern: ^\d{1}\.\d{4}$'
+    pattern: '^\d{1}\.\d{4}$'
     maxLength: 6
     minLength: 6
     example: '0.6000'
@@ -42,7 +42,7 @@ properties:
       (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)
   postFixedRate:
     type: string
-    pattern: ^\d{1}\.\d{4}$'
+    pattern: '^\d{1}\.\d{4}$'
     maxLength: 6
     minLength: 6
     description: |
