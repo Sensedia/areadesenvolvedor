@@ -31,22 +31,25 @@ properties:
       Campo livre para complementar a informação relativa ao Tipo de taxa referencial ou indexador.
       [Restrição] Obrigatório para complementar a informação relativa ao Tipo de taxa referencial ou indexador, quando selecionada o tipo ou subtipo OUTRO.
   preFixedRate:
-    type: number
+    type: string
+    pattern: '^\d{1}\.\d{4}$'
+    maxLength: 6
+    minLength: 6
     description: |
       "Taxa pré fixada aplicada sob o contrato da modalidade crédito.
       p.ex. 0.0045. O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros
       (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)"
-    maxLength: 19
-    example: 0.6000
-    nullable: true
+    example: '0.6000'
   postFixedRate:
-    type: number
+    type: string
+    pattern: '^\d{1}\.\d{4}$'
+    maxLength: 6
+    minLength: 6
     description: |
       "Taxa pós fixada aplicada sob o contrato da modalidade crédito.
       p.ex. 0.0045 .O preenchimento deve respeitar as 4 casas decimais, mesmo que venham preenchidas com zeros
       (representação de porcentagem p.ex: 0.1500. Este valor representa 15%. O valor 1 representa 100%)"
-    maxLength: 19
-    example: 0.5500
+    example: '0.5500'
   additionalInfo:
     type: string
     maxLength: 1200
