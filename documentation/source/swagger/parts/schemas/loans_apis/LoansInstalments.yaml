@@ -3,7 +3,6 @@ description: Conjunto de informações referentes ao prazo remanescente e às pa
 required:
   - dueInstalments
   - pastDueInstalments
-  - balloonPayments
   - typeContractRemaining
   - contractRemainingNumber
   - typeNumberOfInstalments
