@@ -19,7 +19,7 @@ properties:
     maxLength: 3
     pattern: ^(\w{3}){1}$|^NA$
     example: CAN
-    description: Pais de emissão do tipo de documento informado. Código do pais de acordo com o código “alpha3” do ISO-3166
+    description: Pais de emissão do tipo de documento informado. Código do pais de acordo com o código alpha3 do ISO-3166
   expirationDate:
     type: string
     format: date
