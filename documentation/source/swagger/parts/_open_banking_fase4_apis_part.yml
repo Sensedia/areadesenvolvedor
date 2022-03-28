@@ -802,10 +802,6 @@ components:
       $ref: ./schemas/business_commons/InsurancePensionEnumIndemnifiablePeriodType.yaml
     Society:
       $ref: ./schemas/business_commons/Society.yaml
-    InsurancePensionCoverageDeductible:
-      $ref: ./schemas/business_commons/InsurancePensionCoverageDeductible.yaml
-    InsurancePensionCoverageDifferentiatedDeductible:
-      $ref: ./schemas/business_commons/InsurancePensionCoverageDifferentiatedDeductible.yaml
     TermsAndConditions:
       $ref: ./schemas/business_commons/TermsAndConditionsItem.yaml
     InsurancePensionMinValue:
@@ -816,8 +812,6 @@ components:
       $ref: ./schemas/business_commons/InsurancePensionReclaim.yaml
     InsurancePensionReclaimTableItem:
       $ref: ./schemas/business_commons/InsurancePensionReclaimTableItem.yaml
-    InsurancePensionBenefitRecalculation:
-      $ref: ./schemas/business_commons/InsurancePensionBenefitRecalculation.yaml
     AgeAdjustment:
       $ref: ./schemas/business_commons/InsurancePensionAgeAdjustment.yaml
     EnumTargetAudience:
