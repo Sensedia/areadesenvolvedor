@@ -8,8 +8,6 @@ properties:
     type: string
     description: |
       Denominação da Tarifa pactuada.
-
-      [Restrição] Caso a instituição não possua a informação para compartilhamento, informar NA
     maxLength: 140
     pattern: '[\w\W\s]*'
     example: "Saque a descoberto"
