@@ -386,10 +386,6 @@ components:
   parameters:
     Authorization:
       $ref: ./parameters/Authorization.yaml
-    page:
-      $ref: ./parameters/Page.yaml
-    pageSize:
-      $ref: ./parameters/PageSize.yaml
     xCustomerUserAgent:
       $ref: ./parameters/XCustomerUserAgent.yaml
     xFapiAuthDate:
