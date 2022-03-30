@@ -37,7 +37,7 @@ info:
     ### `/accounts/{accountId}/overdraft-limits`
       - permissions:
         - GET: **ACCOUNTS_OVERDRAFT_LIMITS_READ**
-  version: 1.0.3
+  version: 2.0.0-RC1.0
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
@@ -85,12 +85,12 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseAccountList'
       security:
         - OpenId:
             - 'openid'     
@@ -126,12 +126,12 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseAccountIdentification'
       security:
         - OpenId:
             - 'openid'     
@@ -167,12 +167,12 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseAccountBalances'
       security:
         - OpenId:
             - 'openid'     
@@ -213,12 +213,12 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseAccountTransactions'
       security:
         - OpenId:
             - 'openid'     
@@ -254,12 +254,12 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseAccountOverdraftLimits'
       security:
         - OpenId:
             - 'openid'     
@@ -421,3 +421,5 @@ components:
       $ref: ./responses/TooManyRequests.yaml
     Unauthorized:
       $ref: ./responses/Unauthorized.yaml
+    UnprocessableEntity:
+      $ref: ./responses/UnprocessableEntity.yaml

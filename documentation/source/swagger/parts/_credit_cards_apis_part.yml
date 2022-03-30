@@ -41,7 +41,7 @@ info:
       - permissions:
         - GET: **CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ**
 
-  version: 1.0.4
+  version: 2.0.0-RC1.0
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
@@ -88,12 +88,12 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseCreditCardAccountsList'
       security:
         - OpenId:
             - 'openid'
@@ -129,12 +129,12 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseCreditCardAccountsIdentification'
       security:
         - OpenId:
             - 'openid'
@@ -174,12 +174,12 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseCreditCardAccountsBills'
       security:
         - OpenId:
             - 'openid'
@@ -222,12 +222,12 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseCreditCardAccountsTransactions'
       security:
         - OpenId:
             - 'openid'
@@ -263,12 +263,12 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseCreditCardAccountsLimits'
       security:
         - OpenId:
             - 'openid'
@@ -310,12 +310,12 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/OKResponseCreditCardAccountsTransactions'
       security:
         - OpenId:
             - 'openid'
@@ -324,6 +324,10 @@ paths:
             - 'credit-cards-accounts'
 components:
   schemas:
+    CreditCardAccountsTransactionAmount:
+      $ref: ./schemas/credit_cards_apis/CreditCardAccountsTransactionAmount.yaml
+    CreditCardAccountsTransactionBrazilianAmount:
+      $ref: ./schemas/credit_cards_apis/CreditCardAccountsTransactionBrazilianAmount.yaml
     CreditCardsAccountsIdentificationData:
       $ref: ./schemas/credit_cards_apis/CreditCardsAccountsIdentificationData.yaml
     CreditCardAccountsBillsData:
@@ -350,8 +354,6 @@ components:
       $ref: ./schemas/enum/EnumCreditCardAccountsFinanceChargeType.yaml
     EnumCreditCardAccountsLineLimitType:
       $ref: ./schemas/enum/EnumCreditCardAccountsLineLimitType.yaml
-    EnumCreditCardAccountsLineName:
-      $ref: ./schemas/enum/EnumCreditCardAccountsLineName.yaml
     EnumCreditCardAccountNetwork:
       $ref: ./schemas/enum/EnumCreditCardAccountNetwork.yaml
     EnumCreditCardAccountsOtherCreditType:
@@ -521,6 +523,8 @@ components:
         application/json; charset=utf-8:
           schema:
             $ref: ./schemas/ResponseError.yaml
+    UnprocessableEntity:
+      $ref: ./responses/UnprocessableEntity.yaml
     Unauthorized:
       description: Cabeçalho de autenticação ausente/inválido ou token inválido
       content:

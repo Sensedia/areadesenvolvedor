@@ -3,7 +3,6 @@ description: Conjunto de informações referentes às parcelas / prestações da
 required:
   - dueInstalments
   - pastDueInstalments
-  - balloonPayments
   - typeContractRemaining
   - contractRemainingNumber
   - typeNumberOfInstalments
