@@ -49,7 +49,6 @@ jobs:
           pwd
  
       - name: "'Sensedia/openapi' Integration"
-        if: ${{ env.enable-openapi-integration }}
         run: |
           cd open-api-repository-integration
           bash git-repository-integration.sh "${{ github.event.inputs.git_user_email }}"\
@@ -59,7 +58,6 @@ jobs:
            "openapi"\
            "${{ github.event.inputs.git_commit_message }}"
       - name: "'Sensedia/draft-openapi' Integration"
-        if: ${{ env.enable-openapi-integration }}
         run: |
           cd open-api-repository-integration
           bash git-repository-integration.sh "${{ github.event.inputs.git_user_email }}"\
