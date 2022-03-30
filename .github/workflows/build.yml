@@ -19,17 +19,17 @@ jobs:
     steps:
       - run: sudo apt-get purge ruby 
       - uses: actions/checkout@v2
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ${{ env.ruby-version }}
-      - uses: actions/setup-python@v1
-        with:
-          python-version: "3.7"
+      # - name: Set up Ruby
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: ${{ env.ruby-version }}
+      # - uses: actions/setup-python@v1
+        # with:
+        #   python-version: "3.7"
       - uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: gems-${{ runner.os }}-${{ env.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
+        # with:
+        #   path: vendor/bundle
+        #   key: gems-${{ runner.os }}-${{ env.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
           
       - uses: actions/setup-node@v1
         with:
@@ -67,7 +67,6 @@ jobs:
           rm -rf ./open-api-repository-integration/generated-sources
           cd open-api-repository-integration
           ruby yaml2json.rb
-          bash generate-swagger-ui-html.sh
           cd ..
           echo "::set-output name=git_user_name::$(git --no-pager log --format=format:'%an' -n 1)"
           echo "::set-output name=git_user_email::$(git --no-pager log --format=format:'%ae' -n 1)"
@@ -96,26 +95,21 @@ jobs:
            "${{ steps.repoIntegration.outputs.git_commit_message }}"
 
       # 5. Build Portal Site
-      - name: Build Portal Site
-        if: success() && env.is-deploy-branch == 'true'
-        run: |
-          cd documentation 
-          mv source/versions ..
-          bundle config set deployment 'true'
-          bundle install
-          bundle exec middleman build
+      # - name: Build Portal Site
+      #   if: success() && env.is-deploy-branch == 'true'
+      #   run: |
+      #     cd documentation 
+      #     mv source/versions ..
+      #     bundle config set deployment 'true'
+      #     bundle install
+      #     bundle exec middleman build
 
       # On success, will run the next steps.
       # 6. Compress build folder in tar.gz format to deploy.
-      - name: Compress build folder
+      - name: Compress open-api-repository-integration folder
         if: success() && env.is-deploy-branch == 'true'
         run: |
-          rm -rf build
-          mkdir build
-          mv documentation/build/* build
-          ls -la build
-          tar -cvzf build.tar.gz build
-          tar -xvzf build.tar.gz
+          tar -cvzf build.tar.gz open-api-repository-integration
 
       # 7. Upload build.tar.gz built in previous step to Github repository artifacts.
       - uses: actions/upload-artifact@v2
@@ -132,4 +126,10 @@ jobs:
         with:
           workflow: Deploy
           token: ${{ secrets.AREADEV_INTEGRATION }}
-          inputs: '{ "build_id": "${{ github.run_id }}" }'
+          inputs: |
+              '{ 
+                  "build_id": "${{ github.run_id }}" ,
+                  "git_user_email": "${{ steps.repoIntegration.outputs.git_user_email }}" ,
+                  "git_user_name": "${{ steps.repoIntegration.outputs.git_user_name }}",
+                  "git_commit_message": "${{ steps.repoIntegration.outputs.git_commit_message }}"
+              }'

@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: documentation
+        working-directory: .
     env:
       ruby-version: 2.5
     steps:
@@ -29,21 +29,41 @@ jobs:
           branch: ${{ github.ref_name }}
           run_id: ${{ github.event.inputs.build_id }}
           name: build_folder_artifact
-          path: ./documentation
+          path: .
 
       # 2. Extract build.tar.gz and copy files to build
       - name: Extract build.tar.gz and copy files to build
         run: | 
           tar -zxvf build.tar.gz
-          cp -Rf source/versions build
           ls -la
           ls -la build
           pwd
  
+      - name: "'Sensedia/openapi' Integration"
+        if: ${{ env.enable-openapi-integration }}
+        run: |
+          cd build
+          bash git-repository-integration.sh "${{ github.event.inputs.git_user_email }}"\
+           "${{ github.event.inputs.git_user_name }}"\
+           "${{ secrets.AREADEV_INTEGRATION }}"\
+           "${{ github.ref_name }}"\
+           "openapi"\
+           "${{ github.event.inputs.git_commit_message }}"
+      - name: "'Sensedia/draft-openapi' Integration"
+        if: ${{ env.enable-openapi-integration }}
+        run: |
+          cd build
+          bash git-repository-integration.sh "${{ github.event.inputs.git_user_email }}"\
+           "${{ github.event.inputs.git_user_name }}"\
+           "${{ secrets.AREADEV_INTEGRATION }}"\
+           "${{ github.ref_name }}"\
+           "draft-openapi"\
+           "${{ github.event.inputs.git_commit_message }}"
+
       #3. Deploy files in documentation/build
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./documentation/build
+      # - name: Deploy
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./documentation/build
       
