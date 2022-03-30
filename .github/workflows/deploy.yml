@@ -45,13 +45,13 @@ jobs:
         run: | 
           tar -zxvf build.tar.gz
           ls -la
-          ls -la build
+          ls -la open-api-repository-integration
           pwd
  
       - name: "'Sensedia/openapi' Integration"
         if: ${{ env.enable-openapi-integration }}
         run: |
-          cd build
+          cd open-api-repository-integration
           bash git-repository-integration.sh "${{ github.event.inputs.git_user_email }}"\
            "${{ github.event.inputs.git_user_name }}"\
            "${{ secrets.AREADEV_INTEGRATION }}"\
@@ -61,7 +61,7 @@ jobs:
       - name: "'Sensedia/draft-openapi' Integration"
         if: ${{ env.enable-openapi-integration }}
         run: |
-          cd build
+          cd open-api-repository-integration
           bash git-repository-integration.sh "${{ github.event.inputs.git_user_email }}"\
            "${{ github.event.inputs.git_user_name }}"\
            "${{ secrets.AREADEV_INTEGRATION }}"\
