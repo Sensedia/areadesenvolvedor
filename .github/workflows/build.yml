@@ -73,26 +73,26 @@ jobs:
           echo "::set-output name=git_commit_message::$(git --no-pager log --format=format:'%B' -n 1)"
 
       # 4. Copy generated-source files to 'Sensedia/openapi' and 'Sensedia/draft-openapi' repository (Commit them).
-      - name: "'Sensedia/openapi' Integration"
-        if: ${{ env.enable-openapi-integration }}
-        run: |
-          cd open-api-repository-integration
-          bash git-repository-integration.sh "${{ steps.repoIntegration.outputs.git_user_email }}"\
-           "${{ steps.repoIntegration.outputs.git_user_name }}"\
-           "${{ secrets.AREADEV_INTEGRATION }}"\
-           "${{ github.ref_name }}"\
-           "openapi"\
-           "${{ steps.repoIntegration.outputs.git_commit_message }}"
-      - name: "'Sensedia/draft-openapi' Integration"
-        if: ${{ env.enable-openapi-integration }}
-        run: |
-          cd open-api-repository-integration
-          bash git-repository-integration.sh "${{ steps.repoIntegration.outputs.git_user_email }}"\
-           "${{ steps.repoIntegration.outputs.git_user_name }}"\
-           "${{ secrets.AREADEV_INTEGRATION }}"\
-           "${{ github.ref_name }}"\
-           "draft-openapi"\
-           "${{ steps.repoIntegration.outputs.git_commit_message }}"
+      # - name: "'Sensedia/openapi' Integration"
+      #   if: ${{ env.enable-openapi-integration }}
+      #   run: |
+      #     cd open-api-repository-integration
+      #     bash git-repository-integration.sh "${{ steps.repoIntegration.outputs.git_user_email }}"\
+      #      "${{ steps.repoIntegration.outputs.git_user_name }}"\
+      #      "${{ secrets.AREADEV_INTEGRATION }}"\
+      #      "${{ github.ref_name }}"\
+      #      "openapi"\
+      #      "${{ steps.repoIntegration.outputs.git_commit_message }}"
+      # - name: "'Sensedia/draft-openapi' Integration"
+      #   if: ${{ env.enable-openapi-integration }}
+      #   run: |
+      #     cd open-api-repository-integration
+      #     bash git-repository-integration.sh "${{ steps.repoIntegration.outputs.git_user_email }}"\
+      #      "${{ steps.repoIntegration.outputs.git_user_name }}"\
+      #      "${{ secrets.AREADEV_INTEGRATION }}"\
+      #      "${{ github.ref_name }}"\
+      #      "draft-openapi"\
+      #      "${{ steps.repoIntegration.outputs.git_commit_message }}"
 
       # 5. Build Portal Site
       # - name: Build Portal Site
@@ -127,9 +127,9 @@ jobs:
           workflow: Deploy
           token: ${{ secrets.AREADEV_INTEGRATION }}
           inputs: |
-              '{ 
+              { 
                   "build_id": "${{ github.run_id }}" ,
                   "git_user_email": "${{ steps.repoIntegration.outputs.git_user_email }}" ,
                   "git_user_name": "${{ steps.repoIntegration.outputs.git_user_name }}",
                   "git_commit_message": "${{ steps.repoIntegration.outputs.git_commit_message }}"
-              }'
+              }
