@@ -24,7 +24,7 @@ info:
 
     - II - até uma hora, para os demais casos.
 
-  version: 1.0.4
+  version: 2.0.0-RC1.0
 tags:
   - name: API - Consentimento
     description: |
