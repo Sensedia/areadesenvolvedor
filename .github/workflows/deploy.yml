@@ -21,8 +21,6 @@ jobs:
     defaults:
       run:
         working-directory: .
-    env:
-      ruby-version: 2.5
     steps:
       - uses: actions/checkout@v2
 
@@ -40,7 +38,7 @@ jobs:
           name: build_folder_artifact
           path: .
 
-      # 2. Extract build.tar.gz and copy files to build
+      # 2. Extract build.tar.gz
       - name: Extract build.tar.gz and copy files to build
         run: | 
           tar -zxvf build.tar.gz
@@ -66,11 +64,3 @@ jobs:
            "${{ github.ref_name }}"\
            "draft-openapi"\
            "${{ github.event.inputs.git_commit_message }}"
-
-      #3. Deploy files in documentation/build
-      # - name: Deploy
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./documentation/build
-      

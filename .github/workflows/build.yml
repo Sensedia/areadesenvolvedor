@@ -23,14 +23,14 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.ruby-version }}
-      # - uses: actions/setup-python@v1
-        # with:
-        #   python-version: "3.7"
       - uses: actions/cache@v2
         with:
           path: vendor/bundle
           key: gems-${{ runner.os }}-${{ env.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
-          
+      - uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
@@ -72,46 +72,13 @@ jobs:
           echo "::set-output name=git_user_email::$(git --no-pager log --format=format:'%ae' -n 1)"
           echo "::set-output name=git_commit_message::$(git --no-pager log --format=format:'%B' -n 1)"
 
-      # 4. Copy generated-source files to 'Sensedia/openapi' and 'Sensedia/draft-openapi' repository (Commit them).
-      # - name: "'Sensedia/openapi' Integration"
-      #   if: ${{ env.enable-openapi-integration }}
-      #   run: |
-      #     cd open-api-repository-integration
-      #     bash git-repository-integration.sh "${{ steps.repoIntegration.outputs.git_user_email }}"\
-      #      "${{ steps.repoIntegration.outputs.git_user_name }}"\
-      #      "${{ secrets.AREADEV_INTEGRATION }}"\
-      #      "${{ github.ref_name }}"\
-      #      "openapi"\
-      #      "${{ steps.repoIntegration.outputs.git_commit_message }}"
-      # - name: "'Sensedia/draft-openapi' Integration"
-      #   if: ${{ env.enable-openapi-integration }}
-      #   run: |
-      #     cd open-api-repository-integration
-      #     bash git-repository-integration.sh "${{ steps.repoIntegration.outputs.git_user_email }}"\
-      #      "${{ steps.repoIntegration.outputs.git_user_name }}"\
-      #      "${{ secrets.AREADEV_INTEGRATION }}"\
-      #      "${{ github.ref_name }}"\
-      #      "draft-openapi"\
-      #      "${{ steps.repoIntegration.outputs.git_commit_message }}"
-
-      # 5. Build Portal Site
-      # - name: Build Portal Site
-      #   if: success() && env.is-deploy-branch == 'true'
-      #   run: |
-      #     cd documentation 
-      #     mv source/versions ..
-      #     bundle config set deployment 'true'
-      #     bundle install
-      #     bundle exec middleman build
-
-      # On success, will run the next steps.
-      # 6. Compress build folder in tar.gz format to deploy.
+      # 4. Compress build folder in tar.gz format to deploy.
       - name: Compress open-api-repository-integration folder
         if: success() && env.is-deploy-branch == 'true'
         run: |
           tar -cvzf build.tar.gz open-api-repository-integration
 
-      # 7. Upload build.tar.gz built in previous step to Github repository artifacts.
+      # 5. Upload build.tar.gz built in previous step to Github repository artifacts.
       - uses: actions/upload-artifact@v2
         if: success() && env.is-deploy-branch == 'true'
         with:
@@ -119,7 +86,7 @@ jobs:
           path: build.tar.gz
           retention-days: 1
 
-      # 8. Invoke Deploy Workflow passing the 'build_id' and 'integration_branch' parameters.
+      # 6. Invoke Deploy Workflow passing the workflow parameters.
       - name: Invoke deploy workflow
         if: success() && env.is-deploy-branch == 'true'
         uses: benc-uk/workflow-dispatch@v1
