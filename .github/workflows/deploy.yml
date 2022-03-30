@@ -5,6 +5,15 @@ on:
       build_id:
         description: 'ID of build to deploy'     
         required: true
+      git_user_email:
+        description: 'Git user e-mail'
+        required: true
+      git_user_name:
+        description: 'Git user name'
+        required: true
+      git_commit_message:
+        description: 'Git commit message'
+        required: true
 jobs:
   deploy:
     name: Deploy Github pages
