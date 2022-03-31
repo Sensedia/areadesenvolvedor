@@ -2,7 +2,6 @@ type: object
 description: Período de concessão do benefício
 required:
   - incomeModalities
-  - biometricTable
 properties:
   incomeModalities:
     type: array
