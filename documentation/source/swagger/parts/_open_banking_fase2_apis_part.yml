@@ -167,7 +167,7 @@ paths:
 
         ### Dicionário de dados
 
-        <a href="dictionary/consentsPostConsents_v2.csv" target="_blank">Fazer download do dicionário de dados</a>
+        <a href="dictionary/consentsPostConsents_v1.csv" target="_blank">Fazer download do dicionário de dados</a>
 
         ### Especificação em OAS 3.0
 
@@ -231,7 +231,7 @@ paths:
 
         ### Dicionário de dados
 
-        <a href="dictionary/consentsGetConsentsConsentId_v2.csv" target="_blank">Fazer download do dicionário de dados</a>
+        <a href="dictionary/consentsGetConsentsConsentId_v1.csv" target="_blank">Fazer download do dicionário de dados</a>
 
         ### Especificação em OAS 3.0
 
@@ -329,7 +329,7 @@ paths:
 
         ### Dicionário de dados
 
-        <a href="dictionary/resourcesGetResources_v2.csv" target="_blank">Fazer download do dicionário de dados</a>
+        <a href="dictionary/resourcesGetResources_v1.csv" target="_blank">Fazer download do dicionário de dados</a>
 
       parameters:
         - $ref: '#/components/parameters/Authorization'
